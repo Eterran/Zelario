@@ -13,8 +13,10 @@ What kind of Encounters to add?
 What kind of NPCs to add?
 ...
 Extra extra features: Sounds, simple animation
+Ñ@#W$9876543210?!abc;:+=-,._ 
 ####################################################################################################
 Entity:
+    StatsDeclaration:
     Hero:
         Archetypes:
             Archer:
@@ -47,7 +49,6 @@ Entity:
     Status:
         ListOfStatus:
         StatusEffects:
-    StatsDeclaration:
     Death:
 
 Game: 

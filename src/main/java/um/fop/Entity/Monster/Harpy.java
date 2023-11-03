@@ -1,4 +1,4 @@
-package main.java.um.fop_assignment.Monster;
+package Entity.Monster;
 
 public class Harpy extends Monster {
     
