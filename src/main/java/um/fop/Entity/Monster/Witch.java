@@ -1,8 +1,9 @@
 package Entity.Monster;
 
 public class Witch extends Monster{
-    public Entity(int initialHP, int initialMP, int initialPhysicalAttack,
+    public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,
                   int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense) {
+        String name = "Witch";
        int HP = 40;
        int MP = 0;
        int physicalAttack = 10;
