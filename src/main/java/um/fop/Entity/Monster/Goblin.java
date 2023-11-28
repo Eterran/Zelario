@@ -1,7 +1,7 @@
 package Entity.Monster;
 
 public class Goblin extends Monster{
-    public Goblin(int initialHP, int initialMP, int initialPhysicalAttack,
+    public Entity(int initialHP, int initialMP, int initialPhysicalAttack,
                   int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense) {
        int HP = 40;
        int MP = 0;
