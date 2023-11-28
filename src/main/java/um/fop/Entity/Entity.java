@@ -2,9 +2,10 @@ package Entity;
 
 
 public class Entity {
-     public Entity(int HP, int MP, int physicalAttack,
+     public Entity(String name, int HP, int MP, int physicalAttack,
                  int magicalAttack, int physicalDefense, int magicalDefense,
                  int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
+        this.name = name;
         this.HP = HP;
         this.MP = MP;
         this.physicalAttack = physicalAttack;
@@ -13,7 +14,9 @@ public class Entity {
         this.magicalDefense = magicalDefense;
         this.skill1 = skill1;
         this.skill2 = skill2;
+        this.skill3 = skill3;   
         this.CDSkillOne = CDSkillOne;
         this.CDSkillTwo = CDSkillTwo;
+        this.CDSkillThree = CDSkillThree;
     }
 }
