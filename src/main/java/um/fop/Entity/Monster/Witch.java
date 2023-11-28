@@ -9,7 +9,8 @@ public class Witch extends Monster{
        int magicalAttack = 0;
        int physicalDefense = 5;
        int magicalDefense = 2;
-        int skillOne = 100
-        int 
+       int skill1 = 100;
+       int CDSKillOne = 4;
+       
     }
 }
