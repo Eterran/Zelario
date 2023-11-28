@@ -1,7 +1,7 @@
 package Entity.Monster;
 
 public class Harpy extends Monster {
-     public Harpy(int initialHP, int initialMP, int initialPhysicalAttack,
+     public Entity(int initialHP, int initialMP, int initialPhysicalAttack,
                   int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
        int HP = 60;
        int MP = 20;
