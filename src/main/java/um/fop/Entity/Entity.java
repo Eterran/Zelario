@@ -1,7 +1,5 @@
-package com.mycompany.textadventure2;
-
 public class Entity {
-    // Instance variables
+     
     private String name;
     private int HP;
     private int MP;
