@@ -1,8 +1,8 @@
 package Entity.Player;
 
 public class Warrior extends Archetypes{
-    public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,
-                  int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
+    public Warrior(String name, int initialHP, int initialMP, int initialPhysicalAttack,
+                  int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int skill3, int CDSkill1, int CDSkill2, int CDSkill3) {
        String name = "Warrior";
        int HP = 250;
        int MP = 75;
