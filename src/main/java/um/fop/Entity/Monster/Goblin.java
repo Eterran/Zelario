@@ -1,6 +1,6 @@
-package Monster;
+package Entity.Monster;
 
-public class Goblin {
+public class Goblin extends Monster{
     private String monsterName;
     private int HP;
     private int MP;
