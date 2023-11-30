@@ -1,20 +1,35 @@
 package Entitypack.Playerpack;
 
 public class Paladin extends Archetypes{
-     public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,
-                  int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
-       String name = "Paladin";
-       int HP = 350;
-       int MP = 100;
-       int physicalAttack = 70;
-       int magicalAttack = 60;
-       int physicalDefense = 80;
-       int magicalDefense = 60;
-       int skill1 = 50; //Buff Physical Attack
-       int skill2 = 100; //Holy Smite
-       int skill3 = 1000; //Divine Shield (immune damage 2 round)
-       int CDSKillOne = 3;
-       int CDSkillTwo = 3;
-       int CDSkillThree = 6;
+     name = "Paladin";
+       HP = 350;
+       MP = 100;
+       physicalAttack = 70;
+       magicalAttack = 60;
+       physicalDefense = 80;
+       magicalDefense = 60;
+       skillOne = 20; //Buff Physical Attack
+       skillTwo = 100; //Holy Smite, damage and heal a small amount
+       skillThree = 0; //Divine Shield (immune damage 2 round)
+       CDSkillOne = 3;
+       CDSkillTwo = 3;
+       CDSkillThree = 6;
+
+     public void useSkillOne() {
+        
+        physicalAttack =(getPhysicalAttack() + getSkill1());
+    }
+
+    public void useSkillTwo() {
+       
+         damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
+         HP += (int) (damageDealt * (30 / 100.0));
+        
+    }
+
+    public void useSkillThree() {
+        
+         damageTaken = getSkill3() ;
+        
     }
 }
