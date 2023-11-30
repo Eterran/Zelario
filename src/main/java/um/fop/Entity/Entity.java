@@ -1,5 +1,9 @@
+package Entity;
+import Entity.Status;
+import java.util.Map;
+import java.util.HashMap;
+
 public class Entity {
-     
     private String name;
     private int HP;
     private int MP;
@@ -84,5 +88,47 @@ public class Entity {
    
    public int CDSkillThree() {
         return CDSkillThree;
+    }
+    protected Map<Status, Integer> statuses;
+    int exp;
+    int level;
+    boolean isFrozen;
+    boolean isConfused;
+    boolean isSilenced;
+    public Entity() {
+        this.statuses = new HashMap<>();
+        isFrozen = false;
+        isConfused = false;
+        isSilenced = false;
+    }
+    //Status functions
+    public void applyStatus(Status status, int rounds){
+        this.statuses.put(status, rounds);
+    }
+    public void removeStatus(Status status){
+        this.statuses.remove(status);
+    }
+    //Status Effects
+    public void applyEffects(){
+        for (Map.Entry<Status, Integer> entry : statuses.entrySet()){
+            Status status = entry.getKey();
+            switch(status){
+                case POISONED:
+                    
+                    break;
+                case SILENCED:
+
+                    break;
+                case CONFUSION:
+
+                    break;
+                case FROZEN:
+
+                    break;
+                case WEAKENED:
+
+                    break;
+            }
+        }
     }
 }
