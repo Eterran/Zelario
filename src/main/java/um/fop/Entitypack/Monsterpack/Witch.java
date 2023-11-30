@@ -1,6 +1,7 @@
 package Entitypack.Monsterpack;
 
 public class Witch extends Monster{
+   public Witch(){
    name = "Witch";
         HP = 40;
         MP = 0;
@@ -16,4 +17,5 @@ public class Witch extends Monster{
         int damageDealt = (int) (getSkill1() * (1.0 - getMagicalDefence() / 100.0));
       
     }
+}
 }
