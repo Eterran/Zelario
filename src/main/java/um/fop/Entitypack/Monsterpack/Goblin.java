@@ -1,7 +1,7 @@
 package Entitypack.Monsterpack;
 
 public class Goblin extends Monster{
-    
+   public Goblin(){ 
        name = "Goblin";
        HP = 40;
        MP = 0;
@@ -9,5 +9,5 @@ public class Goblin extends Monster{
        magicalAttack = 0;
        physicalDefense = 5;
        magicalDefense = 2;
-    
+   }
 }
