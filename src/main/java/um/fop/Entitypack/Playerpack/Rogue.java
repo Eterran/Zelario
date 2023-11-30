@@ -1,6 +1,7 @@
 package Entitypack.Playerpack;
 
 public class Rogue extends Archetypes{
+     public Rogue(){
      name = "Rogue";
        HP = 250;
        MP = 75;
@@ -14,7 +15,7 @@ public class Rogue extends Archetypes{
        CDSkillOne = 4;
        CDSkillTwo = 2;
        CDSkillThree = 6;
-         
+     }
     public void useSkillOne() {
         
        damageDealt = (int) (getSkill1() * (1.0 - getPhysicalDefence() / 100.0));
