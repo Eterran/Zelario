@@ -14,10 +14,10 @@ public class Harpy extends Monster {
        CDSkillTwo = 6;
        
        public void useSkillOne() {
-        HP = (int)(skillOne * (1.0 - physicalDefence / 100.0)); //player HP
+         int damageDealt = (int) (getSkill1() * (1.0 - getPhysicalDefence() / 100.0)); //player HP
     }
     
     public void useSkilltwo(){
-       HP = (int)(skillOne * (1.0 - magicalDefence / 100.0)); //player HP, and add weakend to player
+        int damageDealt = (int) (getSkill2() * (1.0 - getMagicalDefence() / 100.0)); //player HP, and add weakend to player
     }
 }
