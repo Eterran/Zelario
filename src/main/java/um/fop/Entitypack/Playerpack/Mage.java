@@ -1,20 +1,34 @@
 package Entitypack.Playerpack;
 
 public class Mage extends Archetypes{
-     public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,
-                  int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
-       String name = "Mage";
-       int HP = 200;
-       int MP = 150;
-       int physicalAttack = 30;
-       int magicalAttack = 100;
-       int physicalDefense = 20;
-       int magicalDefense = 30;
-       int skill1 = 50; //Healing LV5 unlock
-       int skill2 = 100; //Fireball LV10 Unlock
-       int skill3 = 200; //Frost Nova LV30 Unlock & can freeze all opponent
-       int CDSKillOne = 4;
-       int CDSkillTwo = 2;
-       int CDSkillThree = 6;
+    name = "Mage";
+       HP = 200;
+       MP = 150;
+       physicalAttack = 30;
+       magicalAttack = 100;
+       physicalDefense = 20;
+       magicalDefense = 30;
+       skillOne = 20; //Poison LV5 unlock
+       skillTwo = 100; //Fireball LV10 Unlock
+       skillThree = 200; //Frost Nova LV30 Unlock & can freeze all opponent
+       CDSKillOne = 4;
+       CDSkillTwo = 2;
+       CDSkillThree = 6;
+    
+       public void useSkillOne() {
+        
+        damageDealt = (int) (getSkill1() * (1.0 - getMagicalDefence() / 100.0));
+    }
+
+    public void useSkillTwo() {
+       
+         damageDealt = (int) (getSkill2() * (1.0 - getMagicalDefence() / 100.0));
+        
+    }
+
+    public void useSkillThree() {
+        
+         damageDealt = (int) (getSkill3() * (1.0 - getMagicalDefence() / 100.0));
+        
     }
 }
