@@ -1,6 +1,7 @@
 package Entitypack.Playerpack;
 
 public class Mage extends Archetypes{
+    public Mage(){
     name = "Mage";
        HP = 200;
        MP = 150;
@@ -14,7 +15,7 @@ public class Mage extends Archetypes{
        CDSKillOne = 4;
        CDSkillTwo = 2;
        CDSkillThree = 6;
-    
+    }
        public void useSkillOne() {
         
         damageDealt = (int) (getSkill1() * (1.0 - getMagicalDefence() / 100.0));
