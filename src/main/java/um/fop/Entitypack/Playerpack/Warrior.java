@@ -1,6 +1,7 @@
 package Entitypack.Playerpack;
 
 public class Warrior extends Archetypes{
+    public Warrior(){
     name = "Warrior";
        HP = 250;
        MP = 75;
@@ -14,7 +15,8 @@ public class Warrior extends Archetypes{
        CDSKillOne = 2;
        CDSkillTwo = 4;
        CDSkillThree = 20;
-         
+    }
+    
      public void useSkillOne() {
         
         physicalAttack =(getPhysicalAttack() + getSkill1());
