@@ -2,7 +2,7 @@ package Entitypack.Monsterpack;
 
 public class Skeleton extends Monster{
     
-        Monstername = "Skeleton";
+        name = "Skeleton";
         HP = 60;
         MP = 0;
         physicalAttack = 12;
