@@ -1,6 +1,7 @@
 package Entitypack.Playerpack;
 
 public class Archer extends Archetypes{
+     public Archer(){
      name = "Archer";
         HP = 240;
         MP = 60;
@@ -14,7 +15,7 @@ public class Archer extends Archetypes{
         CDSKillOne = 4;
         CDSkillTwo = 2;
         CDSkillThree = 6;
-    
+     }
 
 
     public void useSkillOne() {
@@ -34,3 +35,4 @@ public class Archer extends Archetypes{
         
     }
 }
+
