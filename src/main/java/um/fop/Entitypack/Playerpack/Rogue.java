@@ -1,21 +1,34 @@
 package Entitypack.Playerpack;
 
 public class Rogue extends Archetypes{
-     public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,
-                  int initialMagicalAttack, int initialPhysicalDefense, int initialMagicalDefense, int skill1, int skill2, int CDSkillOne, int CDSkillTwo) {
-       String name = "Rogue";
-       int HP = 250;
-       int MP = 75;
-       int physicalAttack = 60;
-       int magicalAttack = 40;
-       int physicalDefense = 50;
-       int magicalDefense = 40;
-       int skill1 = 50; //Healing
-       int skill2 = 150; //Backstab (stun one round)
-       int skill3 = 0; //ShadowStep (immune spell or attack one time)
-       int CDSKillOne = 4;
-       int CDSkillTwo = 2;
-       int CDSkillThree = 6;
+     name = "Rogue";
+       HP = 250;
+       MP = 75;
+       physicalAttack = 60;
+       magicalAttack = 40;
+       physicalDefense = 50;
+       magicalDefense = 40;
+       skillOne = 50; //Smite
+       skillTwo = 150; //Backstab (stun one round)
+       skillThree = 0; //ShadowStep (immune spell or attack one time)
+       CDSkillOne = 4;
+       CDSkillTwo = 2;
+       CDSkillThree = 6;
          
+    public void useSkillOne() {
+        
+       damageDealt = (int) (getSkill1() * (1.0 - getPhysicalDefence() / 100.0));
+    }
+
+    public void useSkillTwo() {
+       
+         damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
+        
+    }
+
+    public void useSkillThree() {
+        
+         damageTaken = getSkill3() ;
+        
     }
 }
