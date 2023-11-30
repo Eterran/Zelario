@@ -1,6 +1,7 @@
 package Entitypack.Monsterpack;
 
 public class Harpy extends Monster {
+     public Harpy(){
      name = "Harpy";
        HP = 60;
        MP = 20;
@@ -20,4 +21,5 @@ public class Harpy extends Monster {
     public void useSkilltwo(){
         int damageDealt = (int) (getSkill2() * (1.0 - getMagicalDefence() / 100.0)); //player HP, and add weakend to player
     }
+}
 }
