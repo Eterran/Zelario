@@ -1,6 +1,7 @@
 package Entitypack.Monsterpack;
 
 public class Orc extends Monster{
+    public Orc(){
     name = "Orc";
         HP = 70;
         MP = 0;
@@ -9,4 +10,5 @@ public class Orc extends Monster{
         physicalDefense = 9;
         magicalDefense = 4;
 
+}
 }
