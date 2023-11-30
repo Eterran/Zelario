@@ -1,4 +1,4 @@
-package Entity.Player;
+package Entitypack.Playerpack;
 
 public class Archer extends Archetypes{
      private String playerName;

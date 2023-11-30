@@ -1,10 +1,5 @@
-package Entity.Monster;
-import Entity.Entity;
-import Monster.Goblin;
-import Monster.Harpy;
-import Monster.Witch;
-import Monster.Orc;
-import Monster.Skeleton;
+package Entitypack.Monsterpack;
+import Entitypack.Entity;
 public class Monster extends Entity{
     Goblin goblinObj = new Goblin("Goblin", 40, 0, 10, 0, 5, 2);
         Harpy harpyObj = new Harpy("Harpy", 60, 20, 14, 10, 8, 8, 100, 150, 4, 6);

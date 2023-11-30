@@ -1,4 +1,4 @@
-package Entity.Monster;
+package Entitypack.Monsterpack;
 
 public class Goblin extends Monster{
     private String monsterName;

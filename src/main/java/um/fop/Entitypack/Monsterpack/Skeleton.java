@@ -1,4 +1,4 @@
-package Entity.Monster;
+package Entitypack.Monsterpack;
 
 public class Skeleton extends Monster{
     public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,

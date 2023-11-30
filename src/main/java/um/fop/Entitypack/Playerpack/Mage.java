@@ -1,4 +1,4 @@
-package Entity.Player;
+package Entitypack.Playerpack;
 
 public class Mage extends Archetypes{
      public Entity(String name, int initialHP, int initialMP, int initialPhysicalAttack,

@@ -1,4 +1,4 @@
-package Entity.Player;
+package Entitypack.Playerpack;
 
 public class Warrior extends Archetypes{
     public Warrior(String name, int initialHP, int initialMP, int initialPhysicalAttack,

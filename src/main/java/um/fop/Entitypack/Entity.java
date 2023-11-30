@@ -1,6 +1,6 @@
-package Entity;
-import Entity.Status;
+package Entitypack;
 import java.util.Map;
+import Entitypack.Status;
 import java.util.HashMap;
 
 public class Entity {

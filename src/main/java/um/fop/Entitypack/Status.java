@@ -1,4 +1,5 @@
-package Entity;
+package Entitypack;
+
 
 public enum Status {
     POISONED,
