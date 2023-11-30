@@ -1,55 +1,36 @@
 package Entitypack.Playerpack;
 
 public class Archer extends Archetypes{
-     private String playerName;
-    private int HP;
-    private int MP;
-    private int physicalAttack;
-    private int magicalAttack;
-    private int physicalDefence;
-    private int magicalDefence;
-    private int skillOne; // Healing
-    private int skillTwo; // Rapid shot
-    private int skillThree; // Trick shot
-    private int CDSkillOne;
-    private int CDSkillTwo;
-    private int CDSkillThree;
+     name = "Archer";
+        HP = 240;
+        MP = 60;
+        physicalAttack = 65;
+        magicalAttack = 50;
+        physicalDefense = 45;
+        magicalDefense = 20;
+        skillOne = 50; // "Buff attack for one turn" LV5 unlock
+        skillTwo = 100; //Rapid arrow LV10 Unlock
+        skillThree = 500; //Trick shot LV30 Unlock 
+        CDSKillOne = 4;
+        CDSkillTwo = 2;
+        CDSkillThree = 6;
+    
 
-    public Archer(String name, int initialHP, int initialMP, int initialPhysicalAttack,
-                  int initialMagicalAttack, int initialPhysicalDefence, int initialMagicalDefence,
-                  int skill1, int skill2, int skill3, int CDSkill1, int CDSkill2, int CDSkill3) {
-        playerName = name;
-        HP = initialHP;
-        MP = initialMP;
-        physicalAttack = initialPhysicalAttack;
-        magicalAttack = initialMagicalAttack;
-        physicalDefence = initialPhysicalDefence;
-        magicalDefence = initialMagicalDefence;
-        skillOne = skill1;
-        skillTwo = skill2;
-        skillThree = skill3;
-        CDSkillOne = CDSkill1;
-        CDSkillTwo = CDSkill2;
-        CDSkillThree = CDSkill3;
+
+    public void useSkillOne() {
+        
+        physicalAttack =(getPhysicalAttack() + getSkill1());
     }
 
-    public void useSKillOne() {
-        HP += skillOne;
+    public void useSkillTwo() {
+       
+         damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
+        
     }
-    
-    public void useSkilltwo(){
-       HP = (int)(skillOne * (1.0 - physicalDefence / 100.0)); //enemy HP
-    }
-    
-     public void useSkillThree(){
-       HP = (int)(skillTwo * (1.0 - physicalDefence / 100.0)); //enemy HP
-    }
-     
-      public void damagedealt(){
-       HP = (int)(physicalAttack * (1.0 - physicalDefence / 100.0)); //enemy HP
-    }
-      
-       public void damagetaken(){
-       HP = (int)(physicalAttack * (1.0 - physicalDefence / 100.0)); //enemy physical attack
+
+    public void useSkillThree() {
+        
+         damageDealt = (int) (getSkill3() * (1.0 - getPhysicalDefence() / 100.0));
+        
     }
 }
