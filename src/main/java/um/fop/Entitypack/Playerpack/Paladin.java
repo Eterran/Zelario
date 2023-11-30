@@ -1,6 +1,7 @@
 package Entitypack.Playerpack;
 
 public class Paladin extends Archetypes{
+     public Paladin(){
      name = "Paladin";
        HP = 350;
        MP = 100;
@@ -14,7 +15,7 @@ public class Paladin extends Archetypes{
        CDSkillOne = 3;
        CDSkillTwo = 3;
        CDSkillThree = 6;
-
+     }
      public void useSkillOne() {
         
         physicalAttack =(getPhysicalAttack() + getSkill1());
