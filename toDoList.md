@@ -55,7 +55,7 @@ Game:
     GameLogic:
         TurnBasedLogic:
             
-    Menu:
+    Menu:$
     Art:
         Colorful text:
         ASCII art:
