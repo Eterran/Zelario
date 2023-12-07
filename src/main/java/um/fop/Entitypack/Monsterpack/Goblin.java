@@ -7,7 +7,8 @@ public class Goblin extends Monster{
        MP = 0;
        physicalAttack = 10;
        magicalAttack = 0;
-       physicalDefense = 5;
-       magicalDefense = 2;
+       physicalDefence = 5;
+       magicalDefence = 2;
+       int expDrop = 25;
    }
 }

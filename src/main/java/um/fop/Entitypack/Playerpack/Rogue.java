@@ -7,8 +7,8 @@ public class Rogue extends Archetypes{
        MP = 75;
        physicalAttack = 60;
        magicalAttack = 40;
-       physicalDefense = 50;
-       magicalDefense = 40;
+       physicalDefence = 50;
+       magicalDefence = 40;
        skillOne = 50; //Smite
        skillTwo = 150; //Backstab (stun one round)
        skillThree = 0; //ShadowStep (immune spell or attack one time)
@@ -18,18 +18,18 @@ public class Rogue extends Archetypes{
      }
     public void useSkillOne() {
         
-       damageDealt = (int) (getSkill1() * (1.0 - getPhysicalDefence() / 100.0));
-    }
+          int damageDealt = (int) (getSkill1() * (1.0 - getPhysicalDefence() / 100.0));
+     }
 
     public void useSkillTwo() {
        
-         damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
+         int damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
         
     }
 
     public void useSkillThree() {
         
-         damageTaken = getSkill3() ;
+         int damageTaken = getSkill3() ;
         
     }
 }

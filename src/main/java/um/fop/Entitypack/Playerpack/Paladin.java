@@ -7,8 +7,8 @@ public class Paladin extends Archetypes{
        MP = 100;
        physicalAttack = 70;
        magicalAttack = 60;
-       physicalDefense = 80;
-       magicalDefense = 60;
+       physicalDefence = 80;
+       magicalDefence = 60;
        skillOne = 20; //Buff Physical Attack
        skillTwo = 100; //Holy Smite, damage and heal a small amount
        skillThree = 0; //Divine Shield (immune damage 2 round)
@@ -23,14 +23,14 @@ public class Paladin extends Archetypes{
 
     public void useSkillTwo() {
        
-         damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
+         int damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
          HP += (int) (damageDealt * (30 / 100.0));
         
     }
 
     public void useSkillThree() {
         
-         damageTaken = getSkill3() ;
+         int damageTaken = getSkill3() ;
         
     }
 }
