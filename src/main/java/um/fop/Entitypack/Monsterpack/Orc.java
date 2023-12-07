@@ -1,5 +1,5 @@
 package Entitypack.Monsterpack;
-
+import Entitypack.Entity;
 public class Orc extends Monster{
     public Orc(){
     name = "Orc";

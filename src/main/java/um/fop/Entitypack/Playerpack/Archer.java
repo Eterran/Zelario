@@ -1,5 +1,5 @@
 package Entitypack.Playerpack;
-
+import Entitypack.Entity;
 public class Archer extends Archetypes{
      public Archer(){
      name = "Archer";
