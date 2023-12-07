@@ -7,7 +7,7 @@ public class Skeleton extends Monster{
         MP = 0;
         physicalAttack = 12;
         magicalAttack = 0;
-        physicalDefense = 7;
-        magicalDefense = 3;
+        physicalDefence = 7;
+        magicalDefence = 3;
     }
 }
