@@ -7,8 +7,8 @@ public class Orc extends Monster{
         MP = 0;
         physicalAttack = 15;
         magicalAttack = 0;
-        physicalDefense = 9;
-        magicalDefense = 4;
+        physicalDefence = 9;
+        magicalDefence = 4;
 
 }
 }
