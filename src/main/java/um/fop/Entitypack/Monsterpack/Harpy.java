@@ -21,7 +21,7 @@ public class Harpy extends Monster {
         int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0)); // player HP
     }
 
-    public void useSkilltwo(Entity target) {
+    public void useSkillTwo(Entity target) {
         int damageDealt = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0)); // player HP, and add
                                                                                                  // weakend to player
     }
