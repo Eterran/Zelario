@@ -16,20 +16,20 @@ public class Mage extends Archetypes{
        CDSkillTwo = 2;
        CDSkillThree = 6;
     }
-       public void useSkillOne() {
+       public void useSkillOne(Entity target) {
         
-        int damageDealt = (int) (getSkill1() * (1.0 - getMagicalDefence() / 100.0));
+        int damageDealt = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
     }
 
-    public void useSkillTwo() {
+    public void useSkillTwo(Entity target) {
        
-         int damageDealt = (int) (getSkill2() * (1.0 - getMagicalDefence() / 100.0));
+         int damageDealt = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
         
     }
 
-    public void useSkillThree() {
+    public void useSkillThree(Entity target) {
         
-         int damageDealt = (int) (getSkill3() * (1.0 - getMagicalDefence() / 100.0));
+         int damageDealt = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
         
     }
 }

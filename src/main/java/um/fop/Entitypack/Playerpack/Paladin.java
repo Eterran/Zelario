@@ -18,19 +18,19 @@ public class Paladin extends Archetypes{
      }
      public void useSkillOne() {
         
-        physicalAttack =(getPhysicalAttack() + getSkill1());
+        physicalAttack =(this.getPhysicalAttack() + this.getSkill1());
     }
 
-    public void useSkillTwo() {
+    public void useSkillTwo(Entity target) {
        
-         int damageDealt = (int) (getSkill2() * (1.0 - getPhysicalDefence() / 100.0));
-         HP += (int) (damageDealt * (30 / 100.0));
+         int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+         this.HP += (int) (damageDealt * (30 / 100.0));
         
     }
 
     public void useSkillThree() {
         
-         int damageTaken = getSkill3() ;
+         int damageTaken = this.getSkill3() ;
         
     }
 }
