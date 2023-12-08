@@ -113,21 +113,27 @@ public class Entity {
         return CDSkillThree;
     }
 
-    public void damageDealt(Entity target) {
-        target.HP -= (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); // enemy HP
+    public int damageDealt(Entity target) {
+        int damageDealt = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0));
+        
+        return damageDealt;
     }
 
-    public void damageTaken(Entity target) {
-        this.HP -= (int) (target.physicalAttack * (1.0 - this.physicalDefence / 100.0)); // enemy physical attack
+    public int damageTaken(Entity target) {
+       int damageTaken = (int) (target.physicalAttack * (1.0 - this.physicalDefence / 100.0));// enemy physical attack
+        
+        return damageTaken; 
     }
 
     public void healing() {
         HP += 50;
     }
 
-    public void defend() {
-        HP -= (int) (physicalAttack * (1.0 - physicalDefence / 80.0));// enemy physical attack
+    public void defend(Entity target) {
+        int damageTaken = (int) (damageDealt(target) * (1.0 - this.physicalDefence / 80.0));
+        this.HP -= damageTaken;
     }
+    
 
     // Statuses & Level
     protected Map<Status, Integer> statuses;

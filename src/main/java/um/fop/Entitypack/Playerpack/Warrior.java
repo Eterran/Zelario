@@ -26,9 +26,11 @@ public class Warrior extends Archetypes {
 
      }
 
-     public void useSkillThree() {
+     
+  
+      public void useSkillThree(Entity target) {
           
-          int damageTaken = (int) (damageDealt() * this.getSkill3() / 100);
-
-     }
+          int damageTaken = (int) (damageDealt(target) * this.getSkill3() / 100);
+          // Other logic for using Skill Three
+      }
 }
