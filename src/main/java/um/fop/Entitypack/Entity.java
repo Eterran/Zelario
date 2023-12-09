@@ -58,6 +58,12 @@ public class Entity {
     public String getName() {
         return name;
     }
+    public int getMaxHP() {
+        return maxHP;
+    }
+    public int getMaxMP() {
+        return maxMP;
+    }
 
     public int getHP() {
         return HP;
@@ -132,6 +138,11 @@ public class Entity {
     public void defend(Entity target) {
         int damageTaken = (int) (damageDealt(target) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
+    }
+
+    public void defaultAttack() {
+        
+        this.physicalAttack =(this.getPhysicalAttack() - this.getSkill1());
     }
     
 
