@@ -4,17 +4,18 @@ import Entitypack.Entity;
 
 public class Harpy extends Monster {
     public Harpy() {
-        name = "Harpy";
-        HP = 60;
-        MP = 20;
-        physicalAttack = 14;
-        magicalAttack = 10;
-        physicalDefence = 8;
-        magicalDefence = 8;
-        skillOne = 150; // Talon strike
-        skillTwo = 150; // Wind Gust
-        CDSkillOne = 4;
-        CDSkillTwo = 6;
+        super();
+        this.name = "Harpy";
+        this.HP = 60;
+        this.MP = 20;
+        this.physicalAttack = 14;
+        this.magicalAttack = 10;
+        this.physicalDefence = 8;
+        this.magicalDefence = 8;
+        this.skillOne = 150; // Talon strike
+        this.skillTwo = 150; // Wind Gust
+        this.CDSkillOne = 4;
+        this.CDSkillTwo = 6;
     }
 
     public void useSkillOne(Entity target) {

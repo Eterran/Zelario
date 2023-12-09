@@ -25,34 +25,35 @@ public class Entity {
     // skillThree, int CDSkillOne, int CDSkillTwo, int CDSkillThree
 
     public Entity() {
-        name = "Default Entity";
-        maxHP = 100;
-        maxMP = 100;
-        HP = maxHP;
-        MP = maxMP;
-        physicalAttack = 1;
-        magicalAttack = 1;
-        physicalDefence = 1;
-        magicalDefence = 1;
-        skillOne = 1;
-        skillTwo = 1;
-        skillThree = 1;
-        CDSkillOne = 1;
-        CDSkillTwo = 1;
-        CDSkillThree = 1;
+        this.name = "Default Entity";
+        this.maxHP = 100;
+        this.maxMP = 100;
+        this.HP = maxHP;
+        this.MP = maxMP;
+        this.physicalAttack = 1;
+        this.magicalAttack = 1;
+        this.physicalDefence = 1;
+        this.magicalDefence = 1;
+        this.skillOne = 1;
+        this.skillTwo = 1;
+        this.skillThree = 1;
+        this.CDSkillOne = 1;
+        this.CDSkillTwo = 1;
+        this.CDSkillThree = 1;
         this.exp = 1;
         this.level = 0;
+        this.expDrop = 1;
 
         Map<Status, Integer> statuses;
 
-        isFrozen = false;
-        isConfused = false;
-        isSilenced = false;
-        isWeakened = false;
+        this.isFrozen = false;
+        this.isConfused = false;
+        this.isSilenced = false;
+        this.isWeakened = false;
 
-        isSkill1Unlocked = false;
-        isSkill2Unlocked = false;
-        isSkill3Unlocked = false;
+        this.isSkill1Unlocked = false;
+        this.isSkill2Unlocked = false;
+        this.isSkill3Unlocked = false;
     }
 
     public String getName() {
@@ -132,7 +133,7 @@ public class Entity {
     }
 
     public void healing() {
-        HP += 50;
+        this.HP += 50;
     }
 
     public void defend(Entity target) {
@@ -148,17 +149,18 @@ public class Entity {
 
     // Statuses & Level
     protected Map<Status, Integer> statuses;
-    int exp;
-    int level;
+    protected int exp;
+    protected int level;
+    protected int expDrop;
 
-    boolean isFrozen;
-    boolean isConfused;
-    boolean isSilenced;
-    boolean isWeakened;
+    protected boolean isFrozen;
+    protected boolean isConfused;
+    protected boolean isSilenced;
+    protected boolean isWeakened;
 
-    boolean isSkill1Unlocked;
-    boolean isSkill2Unlocked;
-    boolean isSkill3Unlocked;
+    protected boolean isSkill1Unlocked;
+    protected boolean isSkill2Unlocked;
+    protected boolean isSkill3Unlocked;
 
     /*
      * public Entity() {
@@ -198,7 +200,7 @@ public class Entity {
             switch (status) {
                 case POISONED:
                     if (statuses.get(status) > 0)
-                        this.HP *= 0.95;
+                        this.HP = (int) (maxHP * 0.95);
                     break;
                 case SILENCED:
                     if (statuses.get(status) > 0)
@@ -230,7 +232,7 @@ public class Entity {
 
     public void gainEXP(Entity defeatedEntity) {
         if (level != 35) {
-            this.exp += 30;
+            this.exp += defeatedEntity.expDrop;
         }
     }
 
