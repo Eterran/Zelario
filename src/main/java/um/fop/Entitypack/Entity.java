@@ -20,6 +20,7 @@ public class Entity {
     protected int CDSkillOne;
     protected int CDSkillTwo;
     protected int CDSkillThree;
+    protected int totalStats;
     // String name, int HP, int MP, int physicalAttack, int magicalAttack, int
     // physicalDefence, int magicalDefence, int skillOne, int skillTwo, int
     // skillThree, int CDSkillOne, int CDSkillTwo, int CDSkillThree
@@ -30,19 +31,21 @@ public class Entity {
         this.maxMP = 100;
         this.HP = maxHP;
         this.MP = maxMP;
-        this.physicalAttack = 1;
-        this.magicalAttack = 1;
-        this.physicalDefence = 1;
-        this.magicalDefence = 1;
-        this.skillOne = 1;
-        this.skillTwo = 1;
-        this.skillThree = 1;
-        this.CDSkillOne = 1;
-        this.CDSkillTwo = 1;
-        this.CDSkillThree = 1;
-        this.exp = 1;
-        this.level = 0;
-        this.expDrop = 1;
+        this.physicalAttack = -1;
+        this.magicalAttack = -1;
+        this.physicalDefence = -1;
+        this.magicalDefence = -1;
+        this.skillOne = -1;
+        this.skillTwo = -1;
+        this.skillThree = -1;
+        this.CDSkillOne = -1;
+        this.CDSkillTwo = -1;
+        this.CDSkillThree = -1;
+        this.exp = -1;
+        this.level = -1;
+        this.expDrop = -1;
+        this.totalStats = this.maxHP + this.maxMP + this.physicalAttack + this.magicalAttack + this.physicalDefence 
+                        + this.magicalDefence + this.skillOne + this.skillTwo + this.skillThree;
 
         Map<Status, Integer> statuses;
 
@@ -65,15 +68,12 @@ public class Entity {
     public int getMaxMP() {
         return maxMP;
     }
-
     public int getHP() {
         return HP;
     }
-
     public int getMP() {
         return MP;
     }
-
     public int getPhysicalAttack() {
         // if weakened
         int temp;
@@ -83,43 +83,33 @@ public class Entity {
         }
         return physicalAttack;
     }
-
     public int getMagicalAttack() {
         return magicalAttack;
     }
-
     public int getPhysicalDefence() {
         return physicalDefence;
     }
-
     public int getMagicalDefence() {
         return magicalDefence;
     }
-
     public int getSkill1() {
         return skillOne;
     }
-
     public int getSkill2() {
         return skillTwo;
     }
-
     public int getSkill3() {
         return skillThree;
     }
-
-    public int CDSkillOne() {
+    public int getCDSkillOne() {
         return CDSkillOne;
     }
-
-    public int CDSkillTwo() {
+    public int getCDSkillTwo() {
         return CDSkillTwo;
     }
-
-    public int CDSkillThree() {
+    public int getCDSkillThree() {
         return CDSkillThree;
     }
-
     public int damageDealt(Entity target) {
         int damageDealt = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0));
         
@@ -146,6 +136,9 @@ public class Entity {
         this.physicalAttack =(this.getPhysicalAttack() - this.getSkill1());
     }
     
+    public void useSkillOne(Entity target){}
+    public void useSkillTwo(Entity target){}
+    public void useSkillThree(Entity target){}
 
     // Statuses & Level
     protected Map<Status, Integer> statuses;
@@ -229,11 +222,15 @@ public class Entity {
             }
         }
     }
-
-    public void gainEXP(Entity defeatedEntity) {
+    public int getEXPDrop(){
+        return this.expDrop;
+    }
+    public int gainEXP(Entity defeatedEntity) {
         if (level != 35) {
-            this.exp += defeatedEntity.expDrop;
+            this.exp += defeatedEntity.getEXPDrop();
+            return defeatedEntity.getEXPDrop();
         }
+        return 0;
     }
 
     public int levelUp() {

@@ -1,5 +1,7 @@
 package Entitypack.Playerpack;
+
 import Entitypack.Entity;
+
 public class Warrior extends Archetypes {
      public Warrior() {
           name = "Warrior";
@@ -18,7 +20,7 @@ public class Warrior extends Archetypes {
      }
 
      public void useSkillOne(Entity target) {
-         int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+          int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
      }
 
      public void useSkillTwo(Entity target) {
@@ -26,11 +28,9 @@ public class Warrior extends Archetypes {
 
      }
 
-     
-  
-      public void useSkillThree(Entity target) {
-          
+     public void useSkillThree(Entity target) {
+
           int damageTaken = (int) (damageDealt(target) * this.getSkill3() / 100);
           // Other logic for using Skill Three
-      }
+     }
 }
