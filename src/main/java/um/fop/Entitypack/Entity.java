@@ -16,16 +16,16 @@ public class Entity {
     protected int magicalAttack;
     protected int physicalDefence;
     protected int magicalDefence;
-    protected int skillOne;
-    protected int skillTwo;
-    protected int skillThree;
-    protected int CDSkillOne;
-    protected int CDSkillTwo;
-    protected int CDSkillThree;
+    protected int skill1;
+    protected int skill2;
+    protected int skill3;
+    protected int CDSkill1;
+    protected int CDSkill2;
+    protected int CDSkill3;
     protected int totalStats;
     // String name, int HP, int MP, int physicalAttack, int magicalAttack, int
-    // physicalDefence, int magicalDefence, int skillOne, int skillTwo, int
-    // skillThree, int CDSkillOne, int CDSkillTwo, int CDSkillThree
+    // physicalDefence, int magicalDefence, int skill1, int skill2, int
+    // skill3, int CDSkill1, int CDSkill2, int CDSkill3
 
     public Entity() {
         this.name = "Default Entity";
@@ -37,20 +37,20 @@ public class Entity {
         this.magicalAttack = -1;
         this.physicalDefence = -1;
         this.magicalDefence = -1;
-        this.skillOne = -1;
-        this.skillTwo = -1;
-        this.skillThree = -1;
-        this.CDSkillOne = -1;
-        this.CDSkillTwo = -1;
-        this.CDSkillThree = -1;
+        this.skill1 = -1;
+        this.skill2 = -1;
+        this.skill3 = -1;
+        this.CDSkill1 = -1;
+        this.CDSkill2 = -1;
+        this.CDSkill3 = -1;
         this.exp = -1;
         this.level = -1;
         this.expDrop = -1;
         this.statsLevel = level;
         this.totalStats = this.maxHP + this.maxMP + this.physicalAttack + this.magicalAttack + this.physicalDefence 
-                        + this.magicalDefence + this.skillOne + this.skillTwo + this.skillThree;
+                        + this.magicalDefence + this.skill1 + this.skill2 + this.skill3;
 
-        Map<Status, Integer> statuses;
+        Map<Status, Integer> statuseS;
 
         this.isFrozen = false;
         this.isConfused = false;
@@ -63,55 +63,55 @@ public class Entity {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
     public int getMaxHP() {
-        return maxHP;
+        return this.maxHP;
     }
     public int getMaxMP() {
-        return maxMP;
+        return this.maxMP;
     }
     public int getHP() {
-        return HP;
+        return this.HP;
     }
     public int getMP() {
-        return MP;
+        return this.MP;
     }
     public int getPhysicalAttack() {
         // if weakened
         int temp;
         if (this.isWeakened) {
-            temp = (int) (physicalAttack * 0.8);
+            temp = (int) (this.physicalAttack * 0.8);
             return temp;
         }
-        return physicalAttack;
+        return this.physicalAttack;
     }
     public int getMagicalAttack() {
-        return magicalAttack;
+        return this.magicalAttack;
     }
     public int getPhysicalDefence() {
-        return physicalDefence;
+        return this.physicalDefence;
     }
     public int getMagicalDefence() {
-        return magicalDefence;
+        return this.magicalDefence;
     }
     public int getSkill1() {
-        return skillOne;
+        return this.skill1;
     }
     public int getSkill2() {
-        return skillTwo;
+        return this.skill2;
     }
     public int getSkill3() {
-        return skillThree;
+        return this.skill3;
     }
-    public int getCDSkillOne() {
-        return CDSkillOne;
+    public int getCDSkill1() {
+        return this.CDSkill1;
     }
-    public int getCDSkillTwo() {
-        return CDSkillTwo;
+    public int getCDSkill2() {
+        return this.CDSkill2;
     }
-    public int getCDSkillThree() {
-        return CDSkillThree;
+    public int getCDSkill3() {
+        return this.CDSkill3;
     }
     public int damageDealt(Entity target) {
         int damageDealt = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0));
@@ -132,93 +132,89 @@ public class Entity {
     public void defend(Entity target) {
         int damageTaken = (int) (damageDealt(target) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
-    }
+    } something wrong with this
 
     public void defaultAttack() {
         
         this.physicalAttack =(this.getPhysicalAttack() - this.getSkill1());
     }
     
-    public void useSkillOne(Entity target){}
-    public void useSkillTwo(Entity target){}
-    public void useSkillThree(Entity target){}
+    public void useSkill1(Entity target){}
+    public void useSkill2(Entity target){}
+    public void useSkill3(Entity target){}
 
-    // Statuses & Level
-    protected Map<Status, Integer> statuses;
+    // StatuseS & Level
+    protected Map<Status, Integer> statuseS;
     protected int exp;
     protected int level;
-    protected int expDrop;
+    public int expDrop;
     protected int statsLevel;
 
-    protected boolean isFrozen;
-    protected boolean isConfused;
-    protected boolean isSilenced;
-    protected boolean isWeakened;
+    public boolean isFrozen;
+    public boolean isConfused;
+    public boolean isSilenced;
+    public boolean isWeakened;
 
-    protected boolean isSkill1Unlocked;
-    protected boolean isSkill2Unlocked;
-    protected boolean isSkill3Unlocked;
+    public boolean isSkill1Unlocked;
+    public boolean isSkill2Unlocked;
+    public boolean isSkill3Unlocked;
 
     /*
      * public Entity() {
-     * this.statuses = new HashMap<>();
+     * this.statuseS = new HashMap<>();
      * isFrozen = false;
      * isConfused = false;
      * isSilenced = false;
      * }
      */
 
-    // Status functions
+// Status functions
     public void applyStatus(Status status, int rounds) {
-        this.statuses.put(status, rounds);
+        this.statuseS.put(status, rounds);
     }
-
     public void removeStatus(Status status) {
-        this.statuses.remove(status);
+        this.statuseS.remove(status);
     }
-
     public void clearAllStatus() {
-        for (Map.Entry<Status, Integer> entry : statuses.entrySet()) {
+        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
             entry.setValue(0);
         }
     }
-
     public void tickStatus() {
-        for (Map.Entry<Status, Integer> entry : statuses.entrySet()) {
-            if (statuses.get(entry) > 0)
-                entry.setValue(statuses.get(entry) - 1);
+        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
+            if (this.statuseS.get(entry) > 0)
+                entry.setValue(statuseS.get(entry) - 1);
         }
     }
-
-    // Status Effects
+// Status Effects
     public void applyEffects() {
-        for (Map.Entry<Status, Integer> entry : statuses.entrySet()) {
+        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
             Status status = entry.getKey();
             switch (status) {
                 case POISONED:
-                    if (statuses.get(status) > 0)
+                    if (statuseS.get(status) > 0)
                         this.HP = (int) (maxHP * 0.95);
                     break;
                 case SILENCED:
-                    if (statuses.get(status) > 0)
+                    if (statuseS.get(status) > 0)
                         this.isSilenced = true;
                     else
                         this.isSilenced = false;
                     break;
                 case CONFUSION:
-                    if (statuses.get(status) > 0)
+                    if (statuseS.get(status) > 0)
                         this.isConfused = true;
                     else
                         this.isConfused = false;
                     break;
                 case FROZEN:
-                    if (statuses.get(status) > 0)
+                    if (statuseS.get(status) > 0)
                         this.isFrozen = true;
                     else
                         this.isFrozen = false;
                     break;
                 case WEAKENED:
-                    if (statuses.get(status) > 0)
+                    if (statuseS.get(status) > 0)
                         this.isWeakened = true;
                     else
                         this.isWeakened = false;
@@ -226,6 +222,7 @@ public class Entity {
             }
         }
     }
+//Level Functions
     public int getEXPDrop(){
         return this.expDrop;
     }
@@ -453,5 +450,11 @@ public class Entity {
         } else if (this.level == 25) {
             this.isSkill3Unlocked = true;
         }
+    }
+//CD function
+    public void CDDecrement(){
+        if(this.getCDSkill1() > 0) this.CDSkill1--;
+        if(this.getCDSkill2() > 0) this.CDSkill2--;
+        if(this.getCDSkill3() > 0) this.CDSkill3--;
     }
 }

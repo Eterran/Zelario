@@ -11,26 +11,26 @@ public class Archer extends Archetypes {
           magicalAttack = 50;
           physicalDefence = 45;
           magicalDefence = 20;
-          skillOne = 50; // "Buff attack for one turn" LV5 unlock
-          skillTwo = 100; // Rapid arrow LV10 Unlock
-          skillThree = 500; // Trick shot LV30 Unlock
-          CDSkillOne = 4;
-          CDSkillTwo = 2;
-          CDSkillThree = 6;
+          skill1 = 50; // "Buff attack for one turn" LV5 unlock
+          skill2 = 100; // Rapid arrow LV10 Unlock
+          skill3 = 500; // Trick shot LV30 Unlock
+          CDSkill1 = 4;
+          CDSkill2 = 2;
+          CDSkill3 = 6;
      }
 
-     public void useSkillOne() {
+     public void useSkill1() {
 
           this.physicalAttack = (this.getPhysicalAttack() + this.getSkill1());
      }
 
-     public void useSkillTwo(Entity target) {
+     public void useSkill2(Entity target) {
 
           int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
 
      }
 
-     public void useSkillThree(Entity target) {
+     public void useSkill3(Entity target) {
 
           int damageDealt = (int) (this.getSkill3() * (1.0 - target.getPhysicalDefence() / 100.0));
 
