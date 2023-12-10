@@ -1,6 +1,8 @@
 package Entitypack;
 
 import java.util.Map;
+import java.util.Random;
+
 import Entitypack.Status;
 import java.util.HashMap;
 
@@ -44,6 +46,7 @@ public class Entity {
         this.exp = -1;
         this.level = -1;
         this.expDrop = -1;
+        this.statsLevel = level;
         this.totalStats = this.maxHP + this.maxMP + this.physicalAttack + this.magicalAttack + this.physicalDefence 
                         + this.magicalDefence + this.skillOne + this.skillTwo + this.skillThree;
 
@@ -145,6 +148,7 @@ public class Entity {
     protected int exp;
     protected int level;
     protected int expDrop;
+    protected int statsLevel;
 
     protected boolean isFrozen;
     protected boolean isConfused;
@@ -232,7 +236,9 @@ public class Entity {
         }
         return 0;
     }
-
+    public int getLevel(){
+        return this.level;
+    }
     public int levelUp() {
         if (this.exp >= 25 && this.level < 2) {
             this.level = 2;
@@ -339,7 +345,106 @@ public class Entity {
         }
         return -1;
     }
-
+    public void setLevelStats(){
+        String heroType = this.getName();
+        Random r = new Random();
+        if(heroType.equals("Archer")){
+            for(; this.statsLevel < this.getLevel(); this.statsLevel++){
+                this.maxHP += 10;
+                this.maxMP += 5;
+                this.physicalAttack += 25;
+                this.magicalAttack += 5;
+                this.physicalDefence += 2;
+                this.magicalDefence += 1;
+                for(int i = 0; i < 5; i++){
+                    this.physicalAttack += 1;
+                    this.magicalAttack += 1;
+                    this.physicalDefence += 1;
+                    this.magicalDefence += 1;
+                }
+                for(int i = 0; i < 5; i++){
+                    this.maxHP += 1;
+                    this.maxMP += 1;
+                }
+            }
+        } else if(heroType.equals("Mage")){
+            for(; this.statsLevel < this.getLevel(); this.statsLevel++){
+                this.maxHP += 9;
+                this.maxMP += 17;
+                this.physicalAttack += 5;
+                this.magicalAttack += 20;
+                this.physicalDefence += 1;
+                this.magicalDefence += 2;
+                for(int i = 0; i < 5; i++){
+                    this.physicalAttack += 1;
+                    this.magicalAttack += 1;
+                    this.physicalDefence += 1;
+                    this.magicalDefence += 1;
+                }
+                for(int i = 0; i < 5; i++){
+                    this.maxHP += 1;
+                    this.maxMP += 1;
+                }
+            }
+        } else if(heroType.equals("Paladin")){
+            for(; this.statsLevel < this.getLevel(); this.statsLevel++){
+                this.maxHP += 5;
+                this.maxMP += 5;
+                this.physicalAttack += 10;
+                this.magicalAttack += 10;
+                this.physicalDefence += 2;
+                this.magicalDefence += 2;
+                for(int i = 0; i < 5; i++){
+                    this.physicalAttack += 1;
+                    this.magicalAttack += 1;
+                    this.physicalDefence += 1;
+                    this.magicalDefence += 1;
+                }
+                for(int i = 0; i < 5; i++){
+                    this.maxHP += 1;
+                    this.maxMP += 1;
+                }
+            }
+        } else if(heroType.equals("Rogue")){
+            for(; this.statsLevel < this.getLevel(); this.statsLevel++){
+                this.maxHP += 6;
+                this.maxMP += 6;
+                this.physicalAttack += 13;
+                this.magicalAttack += 5;
+                this.physicalDefence += 5;
+                this.magicalDefence += 1;
+                for(int i = 0; i < 5; i++){
+                    this.physicalAttack += 1;
+                    this.magicalAttack += 1;
+                    this.physicalDefence += 1;
+                    this.magicalDefence += 1;
+                }
+                for(int i = 0; i < 5; i++){
+                    this.maxHP += 1;
+                    this.maxMP += 1;
+                }
+            }
+        } else if(heroType.equals("Warrior")){
+            for(; this.statsLevel < this.getLevel(); this.statsLevel++){
+                this.maxHP += 25;
+                this.maxMP += 5;
+                this.physicalAttack += 7;
+                this.magicalAttack += 3;
+                this.physicalDefence += 4;
+                this.magicalDefence += 4;
+                for(int i = 0; i < 5; i++){
+                    this.physicalAttack += 1;
+                    this.magicalAttack += 1;
+                    this.physicalDefence += 1;
+                    this.magicalDefence += 1;
+                }
+                for(int i = 0; i < 5; i++){
+                    this.maxHP += 1;
+                    this.maxMP += 1;
+                }
+            }
+        }
+    }
     public void checkLvl() {
         if (this.level == 5) {
             this.isSkill1Unlocked = true;
