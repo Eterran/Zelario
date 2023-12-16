@@ -9,6 +9,9 @@ public class Paladin extends Archetypes{
        magicalAttack = 60;
        physicalDefence = 80;
        magicalDefence = 60;
+       this.skillOneName = "Rage";
+       this.skillTwoName = "Holy Smite";
+       this.skillThreeName = "Divine Shield";
        skill1 = 20; //Buff Physical Attack
        skill2 = 100; //Holy Smite, damage and heal a small amount
        skill3 = 0; //Divine Shield (immune damage 2 round)
@@ -29,10 +32,9 @@ public class Paladin extends Archetypes{
         
     }
 
-    public void useSkill3(Entity target, int dmg) {
-        
-         dmg = this.getSkill3() ;
-         this.damageDealt(target, dmg);
-        
-    }
+    public void useSkill3() {
+     int damage = this.getSkill3();
+     damageTaken(damage);
+ }
+ 
 }

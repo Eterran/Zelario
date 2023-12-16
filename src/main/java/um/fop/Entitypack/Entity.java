@@ -16,6 +16,9 @@ public class Entity {
     protected int magicalAttack;
     protected int physicalDefence;
     protected int magicalDefence;
+    protected String skillOneName;
+    protected String skillTwoName;
+    protected String skillThreeName;
     protected int skill1;
     protected int skill2;
     protected int skill3;
@@ -37,6 +40,9 @@ public class Entity {
         this.magicalAttack = -1;
         this.physicalDefence = -1;
         this.magicalDefence = -1;
+        this.skillOneName ="";
+        this.skillTwoName ="";
+        this.skillThreeName ="";
         this.skill1 = -1;
         this.skill2 = -1;
         this.skill3 = -1;
@@ -95,6 +101,15 @@ public class Entity {
     public int getMagicalDefence() {
         return this.magicalDefence;
     }
+    public String getSkillOneName() {
+        return this.skillOneName;
+    }
+    public String getSkillTwoName() {
+        return this.skillTwoName;
+    }
+    public String getSkillThreeName() {
+        return this.skillThreeName;
+    }
     public int getSkill1() {
         return this.skill1;
     }
@@ -122,9 +137,11 @@ public class Entity {
     }
    
 
-    public int damageTaken(Entity target, int dmg) {     
-        return target.HP - damageDealt(target, dmg); 
+    public int damageTaken(int dmg) {
+        this.HP -= dmg;
+        return this.HP;  // Return the updated HP value if needed
     }
+    
 
     public void healing() {
         this.HP += 50;

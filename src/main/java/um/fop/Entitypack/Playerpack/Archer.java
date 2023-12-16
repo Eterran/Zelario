@@ -11,6 +11,9 @@ public class Archer extends Archetypes {
           magicalAttack = 50;
           physicalDefence = 45;
           magicalDefence = 20;
+          this.skillOneName = "Precise";
+          this.skillTwoName = "Rapid Arrow";
+          this.skillThreeName = "Trick Shot";
           skill1 = 50; // "Buff attack for one turn" LV5 unlock
           skill2 = 100; // Rapid arrow LV10 Unlock
           skill3 = 500; // Trick shot LV30 Unlock

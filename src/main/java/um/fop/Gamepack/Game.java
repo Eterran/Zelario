@@ -20,9 +20,9 @@ public class Game {
         System.out.println("2. Defend");
         System.out.println("3. Escape");
         System.out.println("4. Heal" );
-        System.out.println("5. " + player.getSkill1Name());
-        System.out.println("6. " + player.getSkill2Name());
-        System.out.println("7. " + player.getSkill3Name());
+        System.out.println("5. " + player.getSkillOneName());
+        System.out.println("6. " + player.getSkillTwoName());
+        System.out.println("7. " + player.getSkillThreeName());
 
         if(!player.isFrozen){
             while(turn){

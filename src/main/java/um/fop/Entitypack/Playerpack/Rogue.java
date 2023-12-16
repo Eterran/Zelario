@@ -9,6 +9,9 @@ public class Rogue extends Archetypes{
        magicalAttack = 40;
        physicalDefence = 50;
        magicalDefence = 40;
+       this.skillOneName = "Smite";
+       this.skillTwoName = "Backstab";
+       this.skillThreeName = "ShadowStep";
        skill1 = 50; //Smite
        skill2 = 150; //Backstab (stun one round)
        skill3 = 0; //ShadowStep (immune spell or attack one time)
@@ -29,10 +32,10 @@ public class Rogue extends Archetypes{
         
     }
 
-    public void useSkill3(Entity target, int dmg) {
-        
-     dmg = this.getSkill3() ;
-     this.damageDealt(target, dmg);
+    public void useSkill3() {
+     int damage = this.getSkill3();
+     damageTaken(damage);
+ }
     
 }
-}
+

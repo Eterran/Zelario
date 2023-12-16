@@ -11,6 +11,9 @@ public class Warrior extends Archetypes {
           magicalAttack = 40;
           physicalDefence = 50;
           magicalDefence = 40;
+          this.skillOneName = "Cha Cha Cha";
+          this.skillTwoName = "Furious Strike";
+          this.skillThreeName = "Shield Wall";
           skill1 = 50; // "Cha Cha Cha"
           skill2 = 200; // Furious strike
           skill3 = 50; // Shield wall (reducing damage taken)
