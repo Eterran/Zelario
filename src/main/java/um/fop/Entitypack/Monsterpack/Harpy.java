@@ -18,12 +18,17 @@ public class Harpy extends Monster {
         this.CDSkill2 = 6;
     }
 
-    public void useSkill1(Entity target) {
-        int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0)); // player HP
+    public void useSkill1(Entity target, int dmg) {
+        dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0)); // player HP
+        this.damageDealt(target, dmg);
     }
 
-    public void useSkill2(Entity target) {
-        int damageDealt = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0)); // player HP, and add
-                                                                                                 // weakend to player
+    public void useSkill2(Entity target, int dmg) {
+        dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0)); // player HP, and add
+        this.damageDealt(target, dmg);                                               // weakend to player
+    }
+   public void magicalAttack(Entity target, int dmg) {//magical normal attack
+        dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
+        this.damageDealt(target, dmg);
     }
 }

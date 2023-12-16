@@ -24,15 +24,17 @@ public class Archer extends Archetypes {
           this.physicalAttack = (this.getPhysicalAttack() + this.getSkill1());
      }
 
-     public void useSkill2(Entity target) {
+     public void useSkill2(Entity target, int dmg) {
 
-          int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
 
      }
 
-     public void useSkill3(Entity target) {
+     public void useSkill3(Entity target, int dmg) {
 
-          int damageDealt = (int) (this.getSkill3() * (1.0 - target.getPhysicalDefence() / 100.0));
+          dmg = (int) (this.getSkill3() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
 
      }
 }

@@ -15,9 +15,10 @@ public class Witch extends Monster {
           CDSkill1 = 4;
      }
 
-     public void useSkill1(Entity target) {
+     public void useSkill1(Entity target, int dmg) {
 
-           int damageDealt = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
+           dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
+           this.damageDealt(target, dmg);
 
      }
 }

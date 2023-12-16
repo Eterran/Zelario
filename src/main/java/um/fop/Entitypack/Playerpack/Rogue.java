@@ -16,20 +16,23 @@ public class Rogue extends Archetypes{
        CDSkill2 = 2;
        CDSkill3 = 6;
      }
-    public void useSkill1(Entity target) {
+    public void useSkill1(Entity target, int dmg) {
         
-          int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+          dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
      }
 
-    public void useSkill2(Entity target) {
+    public void useSkill2(Entity target, int dmg) {
        
-         int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+         dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+         this.damageDealt(target, dmg);
         
     }
 
-    public void useSkill3() {
+    public void useSkill3(Entity target, int dmg) {
         
-         int damageTaken = this.getSkill3() ;
-        
-    }
+     dmg = this.getSkill3() ;
+     this.damageDealt(target, dmg);
+    
+}
 }

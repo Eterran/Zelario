@@ -113,26 +113,27 @@ public class Entity {
     public int getCDSkill3() {
         return this.CDSkill3;
     }
-    public int damageDealt(Entity target) {
-        int damageDealt = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0));
-        
-        return damageDealt;
+    public int damageDealt(Entity target, int dmg){   
+        return dmg;
     }
+    public int normalAttack(Entity target, int dmg) {//physical normal attack
+        dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
+        return target.HP - dmg;
+    }
+   
 
-    public int damageTaken(Entity target) {
-       int damageTaken = (int) (target.physicalAttack * (1.0 - this.physicalDefence / 100.0));// enemy physical attack
-        
-        return damageTaken; 
+    public int damageTaken(Entity target, int dmg) {     
+        return target.HP - damageDealt(target, dmg); 
     }
 
     public void healing() {
         this.HP += 50;
     }
 
-    public void defend(Entity target) {
-        int damageTaken = (int) (damageDealt(target) * (1.0 - this.physicalDefence / 80.0));
+    public void defend(Entity target, int dmg) {
+        int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
-    } something wrong with this
+    } 
 
     public void defaultAttack() {
         

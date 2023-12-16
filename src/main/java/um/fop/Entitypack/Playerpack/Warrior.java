@@ -19,18 +19,21 @@ public class Warrior extends Archetypes {
           CDSkill3 = 20;
      }
 
-     public void useSkill1(Entity target) {
-          int damageDealt = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+     public void useSkill1(Entity target, int dmg) {
+          dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
      }
 
-     public void useSkill2(Entity target) {
-          int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+     public void useSkill2(Entity target, int dmg) {
+          dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
 
      }
 
-     public void useSkill3(Entity target) {
-
-          int damageTaken = (int) (damageDealt(target) * this.getSkill3() / 100);
-          // Other logic for using Skill Three
-     }
+     public void useSkill3(Entity target, int dmg) {
+          double reductionPercentage = this.getSkill3() / 100.0;
+          int reducedDamage = (int) (dmg * (1.0 - reductionPercentage));
+          this.damageDealt(target, reducedDamage);
+      }
+      
 }
