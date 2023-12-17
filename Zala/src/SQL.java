@@ -1,5 +1,4 @@
 import java.sql.*; // 导入Java SQL包，用于数据库操作
-import java.util.Scanner; // 导入Scanner类，用于读取控制台输入
 
 public class SQL {
     // 数据库连接信息
@@ -7,32 +6,14 @@ public class SQL {
     private static final String PASS = "123456"; // 数据库密码
     private static final String DB_URL = "jdbc:mysql://localhost:3306/austin?useSSL=false&allowPublicKeyRetrieval=true";
 
-    public static void main(String[] args) {
-        // 通过try-with-resources语句来自动关闭资源
-        try (
-                Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                Scanner scanner = new Scanner(System.in)
-        ) {
-            System.out.println("Welcome to game account registration!");
-
-            // 提示用户输入用户名和密码
-            System.out.print("Enter username: ");
-            String username = scanner.nextLine();
-            System.out.print("Enter password: ");
-            String password = scanner.nextLine();
-
-            // 尝试注册用户
-            if (registerUser(conn, username, password)) {
-                System.out.println("Registration successful!");
-            } else {
-                System.out.println("Registration failed, username may be taken.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // 如果连接或查询出现问题，打印错误轨迹
-        }
-    }
-
-    private static boolean registerUser(Connection conn, String username, String password) {
+    /**
+     * 尝试注册新用户
+     * @param conn 数据库连接
+     * @param username 用户名
+     * @param password 密码
+     * @return 注册是否成功
+     */
+    public static boolean registerUser(Connection conn, String username, String password) {
         // SQL语句用于插入新用户
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -46,5 +27,12 @@ public class SQL {
         }
     }
 
+    /**
+     * 获取数据库连接
+     * @return 数据库连接对象
+     * @throws SQLException 如果连接失败
+     */
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL, USER, PASS);
+    }
 }
-
