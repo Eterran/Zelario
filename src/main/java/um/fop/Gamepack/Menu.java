@@ -7,7 +7,7 @@ public class Menu {
     public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 
-		File file=new File("C:\\Users\\user\\Documents\\UM Documents\\WIX 1002 Fundamental of Programming\\ASCII_Menu Logo.txt");
+		File file=new File("ASCII_Menu Logo.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{

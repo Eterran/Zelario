@@ -2,6 +2,7 @@ package Entitypack.Monsterpack;
 import Entitypack.Entity;
 public class Goblin extends Monster{
    public Goblin(){ 
+    super();
        this.name = "Goblin";
        this.HP = 40;
        this.MP = 0;

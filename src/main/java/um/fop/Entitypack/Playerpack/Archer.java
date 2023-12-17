@@ -11,6 +11,9 @@ public class Archer extends Archetypes {
           magicalAttack = 50;
           physicalDefence = 45;
           magicalDefence = 20;
+          this.skillOneName = "Precise";
+          this.skillTwoName = "Rapid Arrow";
+          this.skillThreeName = "Trick Shot";
           skill1 = 50; // "Buff attack for one turn" LV5 unlock
           skill2 = 100; // Rapid arrow LV10 Unlock
           skill3 = 500; // Trick shot LV30 Unlock
@@ -24,15 +27,17 @@ public class Archer extends Archetypes {
           this.physicalAttack = (this.getPhysicalAttack() + this.getSkill1());
      }
 
-     public void useSkill2(Entity target) {
+     public void useSkill2(Entity target, int dmg) {
 
-          int damageDealt = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
 
      }
 
-     public void useSkill3(Entity target) {
+     public void useSkill3(Entity target, int dmg) {
 
-          int damageDealt = (int) (this.getSkill3() * (1.0 - target.getPhysicalDefence() / 100.0));
+          dmg = (int) (this.getSkill3() * (1.0 - target.getPhysicalDefence() / 100.0));
+          this.damageDealt(target, dmg);
 
      }
 }

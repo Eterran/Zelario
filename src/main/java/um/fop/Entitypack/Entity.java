@@ -16,6 +16,9 @@ public class Entity {
     protected int magicalAttack;
     protected int physicalDefence;
     protected int magicalDefence;
+    protected String skillOneName;
+    protected String skillTwoName;
+    protected String skillThreeName;
     protected int skill1;
     protected int skill2;
     protected int skill3;
@@ -37,6 +40,9 @@ public class Entity {
         this.magicalAttack = -1;
         this.physicalDefence = -1;
         this.magicalDefence = -1;
+        this.skillOneName ="";
+        this.skillTwoName ="";
+        this.skillThreeName ="";
         this.skill1 = -1;
         this.skill2 = -1;
         this.skill3 = -1;
@@ -95,6 +101,15 @@ public class Entity {
     public int getMagicalDefence() {
         return this.magicalDefence;
     }
+    public String getSkillOneName() {
+        return this.skillOneName;
+    }
+    public String getSkillTwoName() {
+        return this.skillTwoName;
+    }
+    public String getSkillThreeName() {
+        return this.skillThreeName;
+    }
     public int getSkill1() {
         return this.skill1;
     }
@@ -113,26 +128,29 @@ public class Entity {
     public int getCDSkill3() {
         return this.CDSkill3;
     }
-    public int damageDealt(Entity target) {
-        int damageDealt = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0));
-        
-        return damageDealt;
+    public int damageDealt(Entity target, int dmg){   
+        return dmg;
     }
+    public int normalAttack(Entity target, int dmg) {//physical normal attack
+        dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
+        return target.HP - dmg;
+    }
+   
 
-    public int damageTaken(Entity target) {
-       int damageTaken = (int) (target.physicalAttack * (1.0 - this.physicalDefence / 100.0));// enemy physical attack
-        
-        return damageTaken; 
+    public int damageTaken(int dmg) {
+        this.HP -= dmg;
+        return this.HP;  // Return the updated HP value if needed
     }
+    
 
     public void healing() {
         this.HP += 50;
     }
 
-    public void defend(Entity target) {
-        int damageTaken = (int) (damageDealt(target) * (1.0 - this.physicalDefence / 80.0));
+    public void defend(Entity target, int dmg) {
+        int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
-    } something wrong with this
+    } 
 
     public void defaultAttack() {
         
