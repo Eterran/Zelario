@@ -3,9 +3,6 @@ package Entitypack;
 import java.util.Map;
 import java.util.Random;
 
-import Entitypack.Status;
-import java.util.HashMap;
-
 public class Entity {
     protected String name;
     protected int maxHP;
@@ -131,8 +128,8 @@ public class Entity {
     public int damageDealt(Entity target, int dmg){   
         return dmg;
     }
-    public int normalAttack(Entity target, int dmg) {//physical normal attack
-        dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
+    public int normalAttack(Entity target) {//physical normal attack
+        int dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
         return target.HP - dmg;
     }
    
@@ -200,8 +197,9 @@ public class Entity {
     }
     public void tickStatus() {
         for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
-            if (this.statuses.get(entry) > 0)
-                entry.setValue(statuses.get(entry) - 1);
+            Status status = entry.getKey();
+            if (this.statuses.get(status) > 0)
+                entry.setValue(statuses.get(status) - 1);
         }
     }
 // Status Effects

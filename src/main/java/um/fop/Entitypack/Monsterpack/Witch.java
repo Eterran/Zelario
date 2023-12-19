@@ -4,16 +4,17 @@ import Entitypack.Entity;
 
 public class Witch extends Monster {
      public Witch() {
-          name = "Witch";
-          HP = 40;
-          MP = 0;
-          physicalAttack = 10;
-          magicalAttack = 0;
-          physicalDefence = 5;
-          magicalDefence = 2;
+          super();
+          this.name = "Witch";
+          this.HP = 40;
+          this.MP = 0;
+          this.physicalAttack = 10;
+          this.magicalAttack = 0;
+          this.physicalDefence = 5;
+          this.magicalDefence = 2;
           this.skillOneName = "Fireball";
-          skill1 = 100; // Fireball
-          CDSkill1 = 4;
+          this.skill1 = 100; // Fireball
+          this.CDSkill1 = 4;
      }
 
      public void useSkill1(Entity target, int dmg) {

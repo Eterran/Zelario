@@ -11,10 +11,14 @@ public class Game {
         //displayCombatMenu();
         Scanner s = new Scanner(System.in);
         if(player.getHP() <= 0) {
+            s.close();
             loseCombat();
+            return;
         }
         if(monster.getHP() <= 0) {
+            s.close();
             winCombat(player, monster);
+            return;
         }
         System.out.println("1. Attack");
         System.out.println("2. Defend");
@@ -26,18 +30,26 @@ public class Game {
 
         if(!player.isFrozen){
             while(turn){
-                int choice = s.nextInt();                                      //Abnormal input handling required
+                int choice;
+                while(true){
+                    try {
+                        choice = Integer.parseInt(s.nextLine());
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Invalid input");
+                    }
+                }
                 switch(choice){
                     case 1:
-                        player.defaultAttack(monster);
+                        player.normalAttack(monster);
                         endTurn();
                         break;
                     case 2:
-                        player.defend(monster);
+                        //player.defend(monster);
                         endTurn();
                         break;
                     case 3:
-                        Escape();
+                        //Escape();
                         endTurn();
                         return;
                     case 4:
@@ -93,11 +105,11 @@ public class Game {
             Random r = new Random();
             int enemyChoice = r.nextInt(99);
             if(monster.getSkill1() == -1){
-                monster.defaultAttack(player);
+                monster.normalAttack(player);
                 endTurn();
             }else if(monster.getSkill2() != -1){
                 if(enemyChoice < 40){
-                    monster.defaultAttack(player);
+                    monster.normalAttack(player);
                     endTurn();
                 } else if(enemyChoice < 70) {
                     monster.useSkill1(player);
@@ -129,6 +141,7 @@ public class Game {
         
     }
     public void loseCombat(){
-        displayLoseCombat();                                                                 // how to handle losing?
+        //displayLoseCombat();                                                                 // how to handle losing?
+        System.out.println("You lost!");
     }
 }

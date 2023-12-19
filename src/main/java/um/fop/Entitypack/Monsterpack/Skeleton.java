@@ -2,13 +2,14 @@ package Entitypack.Monsterpack;
 import Entitypack.Entity;
 public class Skeleton extends Monster{
     public Skeleton(){
-        name = "Skeleton";
-        HP = 60;
-        MP = 0;
-        physicalAttack = 12;
-        magicalAttack = 0;
-        physicalDefence = 7;
-        magicalDefence = 3;
-        int expDrop = 30;
+        super();
+        this.name = "Skeleton";
+        this.HP = 60;
+        this.MP = 0;
+        this.physicalAttack = 12;
+        this.magicalAttack = 0;
+        this.physicalDefence = 7;
+        this.magicalDefence = 3;
+        this.expDrop = 30;
     }
 }

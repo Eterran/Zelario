@@ -4,22 +4,22 @@ import Entitypack.Entity;
 
 public class Warrior extends Archetypes {
      public Warrior() {
-          name = "Warrior";
-          HP = 250;
-          MP = 75;
-          physicalAttack = 60;
-          magicalAttack = 40;
-          physicalDefence = 50;
-          magicalDefence = 40;
+          this.name = "Warrior";
+          this.HP = 250;
+          this.MP = 75;
+          this.physicalAttack = 60;
+          this.magicalAttack = 40;
+          this.physicalDefence = 50;
+          this.magicalDefence = 40;
           this.skillOneName = "Cha Cha Cha";
           this.skillTwoName = "Furious Strike";
           this.skillThreeName = "Shield Wall";
-          skill1 = 50; // "Cha Cha Cha"
-          skill2 = 200; // Furious strike
-          skill3 = 50; // Shield wall (reducing damage taken)
-          CDSkill1 = 2;
-          CDSkill2 = 4;
-          CDSkill3 = 20;
+          this.skill1 = 50; // "Cha Cha Cha"
+          this.skill2 = 200; // Furious strike
+          this.skill3 = 50; // Shield wall (reducing damage taken)
+          this.CDSkill1 = 2;
+          this.CDSkill2 = 4;
+          this.CDSkill3 = 20;
      }
 
      public void useSkill1(Entity target, int dmg) {

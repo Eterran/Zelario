@@ -1,7 +1,5 @@
 package Entitypack.Monsterpack;
 
-import Entitypack.Entity;
-
 public class Goblin extends Monster {
    public Goblin() {
       super();

@@ -4,22 +4,23 @@ import Entitypack.Entity;
 
 public class Archer extends Archetypes {
      public Archer() {
-          name = "Archer";
-          HP = 240;
-          MP = 60;
-          physicalAttack = 65;
-          magicalAttack = 50;
-          physicalDefence = 45;
-          magicalDefence = 20;
+          super();
+          this.name = "Archer";
+          this.HP = 240;
+          this.MP = 60;
+          this.physicalAttack = 65;
+          this.magicalAttack = 50;
+          this.physicalDefence = 45;
+          this.magicalDefence = 20;
           this.skillOneName = "Precise";
           this.skillTwoName = "Rapid Arrow";
           this.skillThreeName = "Trick Shot";
-          skill1 = 50; // "Buff attack for one turn" LV5 unlock
-          skill2 = 100; // Rapid arrow LV10 Unlock
-          skill3 = 500; // Trick shot LV30 Unlock
-          CDSkill1 = 4;
-          CDSkill2 = 2;
-          CDSkill3 = 6;
+          this.skill1 = 50; // "Buff attack for one turn" LV5 unlock
+          this.skill2 = 100; // Rapid arrow LV10 Unlock
+          this.skill3 = 500; // Trick shot LV30 Unlock
+          this.CDSkill1 = 4;
+          this.CDSkill2 = 2;
+          this.CDSkill3 = 6;
      }
 
      public void useSkill1() {
