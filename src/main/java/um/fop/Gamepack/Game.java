@@ -107,6 +107,12 @@ public class Game {
                         if(player.getCDSkill3() == 0){
                             if(!player.isSilenced){
                                 player.useSkill3(monster);
+                                if(monster.checkMonsterHPChange(monsterPreviousHP)) 
+                                    System.out.println("You used " + player.getSkillThreeName() 
+                                    + " and hit " + monster.getName() + " for " + (monsterPreviousHP-monster.getHP()) + "HP!");
+                                else 
+                                    System.out.println("You used " + player.getSkillThreeName() 
+                                    + " and buff youself for " + player.getSkill1() + "ATK!");
                                 endTurn();
                             } else {
                                 System.out.println("You are silenced!");

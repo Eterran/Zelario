@@ -24,7 +24,7 @@ public class Archer extends Archetypes {
      }
 
      public int useSkill1(Entity target) {
-          target.applyStatus(Status.ARCHERSKILL1BUFF, 2);
+          this.applyStatus(Status.ARCHERSKILL1BUFF, 2);
           return getSkill1();
      }
 

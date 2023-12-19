@@ -56,7 +56,9 @@ public class Entity {
         this.isConfused = false;
         this.isSilenced = false;
         this.isWeakened = false;
-        
+        this.isArcherBuff = false;
+        this.isWarriorBuff = false;
+        this.isPaladinBuff = false;
 
         this.isSkill1Unlocked = false;
         this.isSkill2Unlocked = false;
@@ -79,11 +81,15 @@ public class Entity {
     }
     public int getPhysicalAttack() {
         // if weakened
-        int temp;
+        int temp = 0;
         if (this.isWeakened) {
             temp = (int) (this.physicalAttack * 0.8);
+            if(this.isArcherBuff) temp += getSkill1();
+            if(this.isPaladinBuff) temp += getSkill1();
             return temp;
         }
+        if(this.isArcherBuff) temp += this.getPhysicalAttack() + getSkill1();
+        if(this.isPaladinBuff) temp += this.getPhysicalAttack() + getSkill1();
         return this.physicalAttack;
     }
     public int getMagicalAttack() {
@@ -169,6 +175,9 @@ public class Entity {
     public boolean isConfused;
     public boolean isSilenced;
     public boolean isWeakened;
+    public boolean isArcherBuff;
+    public boolean isWarriorBuff;
+    public boolean isPaladinBuff;
 
     public boolean isSkill1Unlocked;
     public boolean isSkill2Unlocked;
@@ -237,21 +246,21 @@ public class Entity {
                     break;
                 case ARCHERSKILL1BUFF:
                     if (statuses.get(status) > 0)
-                        this.isWeakened = true;
+                        this.isArcherBuff = true;
                     else
-                        this.isWeakened = false;
+                        this.isArcherBuff = false;
                     break;
                 case PALADINSKILL1BUFF:
                     if (statuses.get(status) > 0)
-                        this.isWeakened = true;
+                        this.isPaladinBuff = true;
                     else
-                        this.isWeakened = false;
+                        this.isPaladinBuff = false;
                     break;
                 case WARRIORDMGRESIST:
                     if (statuses.get(status) > 0)
-                        this.isWeakened = true;
+                        this.isWarriorBuff = true;
                     else
-                        this.isWeakened = false;
+                        this.isWarriorBuff = false;
                     break;
             }
         }
