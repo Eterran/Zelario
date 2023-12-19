@@ -23,10 +23,7 @@ public class Entity {
     protected int CDSkill2;
     protected int CDSkill3;
     protected int totalStats;
-    // String name, int HP, int MP, int physicalAttack, int magicalAttack, int
-    // physicalDefence, int magicalDefence, int skill1, int skill2, int
-    // skill3, int CDSkill1, int CDSkill2, int CDSkill3
-
+    
     public Entity() {
         this.name = "Default Entity";
         this.maxHP = 100;
@@ -59,12 +56,12 @@ public class Entity {
         this.isConfused = false;
         this.isSilenced = false;
         this.isWeakened = false;
+        
 
         this.isSkill1Unlocked = false;
         this.isSkill2Unlocked = false;
         this.isSkill3Unlocked = false;
     }
-
     public String getName() {
         return this.name;
     }
@@ -126,38 +123,41 @@ public class Entity {
         return this.CDSkill3;
     }
     public int damageDealt(Entity target, int dmg){   
+        target.damageTaken(dmg);
         return dmg;
     }
     public int normalAttack(Entity target) {//physical normal attack
         int dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
-        return target.HP - dmg;
+        target.damageTaken(dmg);
+        return dmg;
     }
-   
-
     public int damageTaken(int dmg) {
         this.HP -= dmg;
         return this.HP;  // Return the updated HP value if needed
     }
-    
-
     public void healing() {
         this.HP += 50;
     }
-
     public void defend(Entity target, int dmg) {
         int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
     } 
-
     public void defaultAttack() {
-        
         this.physicalAttack =(this.getPhysicalAttack() - this.getSkill1());
     }
-    
-    public void useSkill1(Entity target){}
-    public void useSkill2(Entity target){}
-    public void useSkill3(Entity target){}
-
+    public int useSkill1(Entity target){
+        return -1;
+    }
+    public int useSkill2(Entity target){
+        return -1;
+    }
+    public int useSkill3(Entity target){
+        return -1;
+    }
+    public boolean checkMonsterHPChange(int previousHP){
+        if(previousHP > this.getHP()) return true;
+        return false;
+    }
     // statuses & Level
     protected Map<Status, Integer> statuses;
     protected int exp;
@@ -230,6 +230,24 @@ public class Entity {
                         this.isFrozen = false;
                     break;
                 case WEAKENED:
+                    if (statuses.get(status) > 0)
+                        this.isWeakened = true;
+                    else
+                        this.isWeakened = false;
+                    break;
+                case ARCHERSKILL1BUFF:
+                    if (statuses.get(status) > 0)
+                        this.isWeakened = true;
+                    else
+                        this.isWeakened = false;
+                    break;
+                case PALADINSKILL1BUFF:
+                    if (statuses.get(status) > 0)
+                        this.isWeakened = true;
+                    else
+                        this.isWeakened = false;
+                    break;
+                case WARRIORDMGRESIST:
                     if (statuses.get(status) > 0)
                         this.isWeakened = true;
                     else

@@ -22,21 +22,24 @@ public class Warrior extends Archetypes {
           this.CDSkill3 = 20;
      }
 
-     public void useSkill1(Entity target, int dmg) {
-          dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
+     public int useSkill1(Entity target) {
+          int dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
+          return dmg;
      }
 
-     public void useSkill2(Entity target, int dmg) {
-          dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+     public int useSkill2(Entity target) {
+          int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
-
+          return dmg;
      }
 
-     public void useSkill3(Entity target, int dmg) {
+     public int useSkill3(Entity target) {
+
           double reductionPercentage = this.getSkill3() / 100.0;
           int reducedDamage = (int) (dmg * (1.0 - reductionPercentage));
           this.damageDealt(target, reducedDamage);
+          return dmg;
       }
       
 }

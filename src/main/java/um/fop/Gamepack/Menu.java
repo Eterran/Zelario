@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 
 public class Menu {
     public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
 
 		File file=new File("ASCII_Menu Logo.txt");
 		Scanner sc=new Scanner(file);

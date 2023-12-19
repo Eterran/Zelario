@@ -1,5 +1,5 @@
 package Entitypack.Monsterpack;
-import Entitypack.Entity;
+
 public class Skeleton extends Monster{
     public Skeleton(){
         super();

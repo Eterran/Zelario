@@ -1,6 +1,6 @@
 package Entitypack.Playerpack;
 
-import Entitypack.Entity;
+import Entitypack.*;
 
 public class Paladin extends Archetypes {
      public Paladin() {
@@ -22,22 +22,22 @@ public class Paladin extends Archetypes {
           this.CDSkill3 = 6;
      }
 
-     public void useSkill1() {
-
-          physicalAttack = (this.getPhysicalAttack() + this.getSkill1());
+     public int useSkill1(Entity target) {
+          target.applyStatus(Status.PALADINSKILL1BUFF, 3);
+          return getSkill1();
      }
 
-     public void useSkill2(Entity target, int dmg) {
-
-          dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+     public int useSkill2(Entity target) {
+          int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.HP += (int) (damageDealt(target, dmg) * (30 / 100.0));
           this.damageDealt(target, dmg);
-
+          return dmg;
      }
 
-     public void useSkill3() {
-          int damage = this.getSkill3();
-          damageTaken(damage);
+     public int useSkill3(Entity target) {
+          int dmg = this.getSkill3();
+          target.damageTaken(dmg);
+          return dmg;
      }
 
 }

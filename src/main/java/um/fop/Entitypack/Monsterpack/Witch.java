@@ -15,16 +15,18 @@ public class Witch extends Monster {
           this.skillOneName = "Fireball";
           this.skill1 = 100; // Fireball
           this.CDSkill1 = 4;
+          this.expDrop = 65;
      }
 
-     public void useSkill1(Entity target, int dmg) {
-
-           dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
-           this.damageDealt(target, dmg);
-
-     }
-     public void magicalAttack(Entity target, int dmg) {//magical normal attack
-          dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
+     public int useSkill1(Entity target) {
+          int dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
-      }
+          return dmg;
+     }
+
+     public int normalAttack(Entity target) {// magical normal attack
+          int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
+          this.damageDealt(target, dmg);
+          return dmg;
+     }
 }

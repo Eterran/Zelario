@@ -22,28 +22,27 @@ public class Mage extends Archetypes {
           this.CDSkill3 = 6;
      }
 
-     public void useSkill1(Entity target, int dmg) {
-
-          dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
+     public int useSkill1(Entity target) {
+          int dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
+          return dmg;
      }
 
-     public void useSkill2(Entity target, int dmg) {
-
-          dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
+     public int useSkill2(Entity target) {
+          int dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
-
+          return dmg;
      }
 
-     public void useSkill3(Entity target, int dmg) {
-
-          dmg = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
+     public int useSkill3(Entity target) {
+          int dmg = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
-
+          return dmg;
      }
 
-     public void magicalAttack(Entity target, int dmg) {// magical normal attack
-          dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
+     public int normalAttack(Entity target) {// magical normal attack
+          int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
           this.damageDealt(target, dmg);
+          return dmg;
      }
 }
