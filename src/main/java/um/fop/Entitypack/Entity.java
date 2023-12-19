@@ -40,9 +40,9 @@ public class Entity {
         this.magicalAttack = -1;
         this.physicalDefence = -1;
         this.magicalDefence = -1;
-        this.skillOneName ="";
-        this.skillTwoName ="";
-        this.skillThreeName ="";
+        this.skillOneName ="Default Skill1";
+        this.skillTwoName ="Default Skill1";
+        this.skillThreeName ="Default Skill1";
         this.skill1 = -1;
         this.skill2 = -1;
         this.skill3 = -1;
@@ -56,7 +56,7 @@ public class Entity {
         this.totalStats = this.maxHP + this.maxMP + this.physicalAttack + this.magicalAttack + this.physicalDefence 
                         + this.magicalDefence + this.skill1 + this.skill2 + this.skill3;
 
-        Map<Status, Integer> statuseS;
+        Map<Status, Integer> statuses;
 
         this.isFrozen = false;
         this.isConfused = false;
@@ -161,8 +161,8 @@ public class Entity {
     public void useSkill2(Entity target){}
     public void useSkill3(Entity target){}
 
-    // StatuseS & Level
-    protected Map<Status, Integer> statuseS;
+    // statuses & Level
+    protected Map<Status, Integer> statuses;
     protected int exp;
     protected int level;
     public int expDrop;
@@ -179,7 +179,7 @@ public class Entity {
 
     /*
      * public Entity() {
-     * this.statuseS = new HashMap<>();
+     * this.statuses = new HashMap<>();
      * isFrozen = false;
      * isConfused = false;
      * isSilenced = false;
@@ -188,51 +188,51 @@ public class Entity {
 
 // Status functions
     public void applyStatus(Status status, int rounds) {
-        this.statuseS.put(status, rounds);
+        this.statuses.put(status, rounds);
     }
     public void removeStatus(Status status) {
-        this.statuseS.remove(status);
+        this.statuses.remove(status);
     }
     public void clearAllStatus() {
-        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
+        for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
             entry.setValue(0);
         }
     }
     public void tickStatus() {
-        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
-            if (this.statuseS.get(entry) > 0)
-                entry.setValue(statuseS.get(entry) - 1);
+        for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
+            if (this.statuses.get(entry) > 0)
+                entry.setValue(statuses.get(entry) - 1);
         }
     }
 // Status Effects
     public void applyEffects() {
-        for (Map.Entry<Status, Integer> entry : this.statuseS.entrySet()) {
+        for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
             Status status = entry.getKey();
             switch (status) {
                 case POISONED:
-                    if (statuseS.get(status) > 0)
+                    if (statuses.get(status) > 0)
                         this.HP = (int) (maxHP * 0.95);
                     break;
                 case SILENCED:
-                    if (statuseS.get(status) > 0)
+                    if (statuses.get(status) > 0)
                         this.isSilenced = true;
                     else
                         this.isSilenced = false;
                     break;
                 case CONFUSION:
-                    if (statuseS.get(status) > 0)
+                    if (statuses.get(status) > 0)
                         this.isConfused = true;
                     else
                         this.isConfused = false;
                     break;
                 case FROZEN:
-                    if (statuseS.get(status) > 0)
+                    if (statuses.get(status) > 0)
                         this.isFrozen = true;
                     else
                         this.isFrozen = false;
                     break;
                 case WEAKENED:
-                    if (statuseS.get(status) > 0)
+                    if (statuses.get(status) > 0)
                         this.isWeakened = true;
                     else
                         this.isWeakened = false;
@@ -372,14 +372,16 @@ public class Entity {
                 this.physicalDefence += 2;
                 this.magicalDefence += 1;
                 for(int i = 0; i < 5; i++){
-                    this.physicalAttack += 1;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 1;
-                    this.magicalDefence += 1;
+                    int rand = r.nextInt(4);
+                    if(rand == 0) this.physicalAttack += 1;
+                    if(rand == 1) this.magicalAttack += 1;
+                    if(rand == 2) this.physicalDefence += 1;
+                    if(rand == 3) this.magicalDefence += 1;
                 }
                 for(int i = 0; i < 5; i++){
-                    this.maxHP += 1;
-                    this.maxMP += 1;
+                    int rand = r.nextInt(2);
+                    if(rand == 0)this.maxHP += 1;
+                    if(rand == 1)this.maxMP += 1;
                 }
             }
         } else if(heroType.equals("Mage")){
@@ -391,14 +393,16 @@ public class Entity {
                 this.physicalDefence += 1;
                 this.magicalDefence += 2;
                 for(int i = 0; i < 5; i++){
-                    this.physicalAttack += 1;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 1;
-                    this.magicalDefence += 1;
+                    int rand = r.nextInt(4);
+                    if(rand == 0) this.physicalAttack += 1;
+                    if(rand == 1) this.magicalAttack += 1;
+                    if(rand == 2) this.physicalDefence += 1;
+                    if(rand == 3) this.magicalDefence += 1;
                 }
                 for(int i = 0; i < 5; i++){
-                    this.maxHP += 1;
-                    this.maxMP += 1;
+                    int rand = r.nextInt(2);
+                    if(rand == 0)this.maxHP += 1;
+                    if(rand == 1)this.maxMP += 1;
                 }
             }
         } else if(heroType.equals("Paladin")){
@@ -410,14 +414,16 @@ public class Entity {
                 this.physicalDefence += 2;
                 this.magicalDefence += 2;
                 for(int i = 0; i < 5; i++){
-                    this.physicalAttack += 1;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 1;
-                    this.magicalDefence += 1;
+                    int rand = r.nextInt(4);
+                    if(rand == 0) this.physicalAttack += 1;
+                    if(rand == 1) this.magicalAttack += 1;
+                    if(rand == 2) this.physicalDefence += 1;
+                    if(rand == 3) this.magicalDefence += 1;
                 }
                 for(int i = 0; i < 5; i++){
-                    this.maxHP += 1;
-                    this.maxMP += 1;
+                    int rand = r.nextInt(2);
+                    if(rand == 0)this.maxHP += 1;
+                    if(rand == 1)this.maxMP += 1;
                 }
             }
         } else if(heroType.equals("Rogue")){
@@ -429,14 +435,16 @@ public class Entity {
                 this.physicalDefence += 5;
                 this.magicalDefence += 1;
                 for(int i = 0; i < 5; i++){
-                    this.physicalAttack += 1;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 1;
-                    this.magicalDefence += 1;
+                    int rand = r.nextInt(4);
+                    if(rand == 0) this.physicalAttack += 1;
+                    if(rand == 1) this.magicalAttack += 1;
+                    if(rand == 2) this.physicalDefence += 1;
+                    if(rand == 3) this.magicalDefence += 1;
                 }
                 for(int i = 0; i < 5; i++){
-                    this.maxHP += 1;
-                    this.maxMP += 1;
+                    int rand = r.nextInt(2);
+                    if(rand == 0)this.maxHP += 1;
+                    if(rand == 1)this.maxMP += 1;
                 }
             }
         } else if(heroType.equals("Warrior")){
@@ -448,14 +456,16 @@ public class Entity {
                 this.physicalDefence += 4;
                 this.magicalDefence += 4;
                 for(int i = 0; i < 5; i++){
-                    this.physicalAttack += 1;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 1;
-                    this.magicalDefence += 1;
+                    int rand = r.nextInt(4);
+                    if(rand == 0) this.physicalAttack += 1;
+                    if(rand == 1) this.magicalAttack += 1;
+                    if(rand == 2) this.physicalDefence += 1;
+                    if(rand == 3) this.magicalDefence += 1;
                 }
                 for(int i = 0; i < 5; i++){
-                    this.maxHP += 1;
-                    this.maxMP += 1;
+                    int rand = r.nextInt(2);
+                    if(rand == 0)this.maxHP += 1;
+                    if(rand == 1)this.maxMP += 1;
                 }
             }
         }
