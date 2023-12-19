@@ -13,6 +13,7 @@ public class Witch extends Monster {
           this.physicalDefence = 5;
           this.magicalDefence = 2;
           this.skillOneName = "Fireball";
+          this.skill1Description = "a potent fire-based magical attack.";
           this.skill1 = 100; // Fireball
           this.CDSkill1 = 4;
           this.expDrop = 40;

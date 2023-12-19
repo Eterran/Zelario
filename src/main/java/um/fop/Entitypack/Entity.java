@@ -15,8 +15,11 @@ public class Entity {
     protected int physicalDefence;
     protected int magicalDefence;
     protected String skillOneName;
+    protected String skill1Description;
     protected String skillTwoName;
+    protected String skill2Description;
     protected String skillThreeName;
+    protected String skill3Description;
     protected int skill1;
     protected int skill2;
     protected int skill3;
@@ -36,8 +39,11 @@ public class Entity {
         this.physicalDefence = -1;
         this.magicalDefence = -1;
         this.skillOneName ="Default Skill1";
-        this.skillTwoName ="Default Skill1";
-        this.skillThreeName ="Default Skill1";
+        this.skill1Description = "Default skill 1 description.";
+        this.skillTwoName ="Default Skill2";
+        this.skill2Description = "Default skill 2 description.";
+        this.skillThreeName ="Default Skill3";
+        this.skill3Description = "Default skill 3 description.";
         this.skill1 = -1;
         this.skill2 = -1;
         this.skill3 = -1;
@@ -93,51 +99,79 @@ public class Entity {
         if(this.isPaladinBuff) temp += this.getPhysicalAttack() + getSkill1();
         return this.physicalAttack;
     }
+
     public int getMagicalAttack() {
         return this.magicalAttack;
     }
+
     public int getPhysicalDefence() {
         return this.physicalDefence;
     }
+
     public int getMagicalDefence() {
         return this.magicalDefence;
     }
+
     public String getSkillOneName() {
         return this.skillOneName;
     }
+
+    public String getSkill1Description(){
+        return this.skill1Description;
+    }
+
     public String getSkillTwoName() {
         return this.skillTwoName;
     }
-    public String getSkillThreeName() {
-        return this.skillThreeName;
+
+     public String getSkill2Description(){
+        return this.skill2Description;
     }
+
+    public String getSkillThreeName() {
+        return 
+        this.skillThreeName;
+    }
+
+     public String getSkill3Description(){
+        return this.skill3Description;
+    }
+
     public int getSkill1() {
         return this.skill1;
     }
+
     public int getSkill2() {
         return this.skill2;
     }
+
     public int getSkill3() {
         return this.skill3;
     }
+
     public int getCDSkill1() {
         return this.CDSkill1;
     }
+
     public int getCDSkill2() {
         return this.CDSkill2;
     }
+
     public int getCDSkill3() {
         return this.CDSkill3;
     }
+
     public int damageDealt(Entity target, int dmg){   
         target.damageTaken(dmg);
         return dmg;
     }
+
     public int normalAttack(Entity target) {//physical normal attack
         int dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
         target.damageTaken(dmg);
         return dmg;
     }
+
     public int damageTaken(int dmg) {
         if(this.isWarriorBuff){
             double reductionPercentage = this.getSkill3() / 100.0;
@@ -148,22 +182,28 @@ public class Entity {
             this.HP -= dmg;
             return this.HP;  // Return the updated HP value if needed
     }
+
     public void healing() {
         this.HP += 50;
     }
+
     public void defend(Entity target, int dmg) {
         int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
     } 
+
     public int useSkill1(Entity target){
         return -1;
     }
+
     public int useSkill2(Entity target){
         return -1;
     }
+
     public int useSkill3(Entity target){
         return -1;
     }
+    
     public boolean checkMonsterHPChange(int previousHP){
         if(previousHP > this.getHP()) return true;
         return false;

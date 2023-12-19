@@ -12,12 +12,15 @@ public class Paladin extends Archetypes {
           this.physicalDefence = 80;
           this.magicalDefence = 60;
           this.skillOneName = "Rage";
+          this.skill1Description = "Paladin attack increased for 3 rounds.";
           this.skillTwoName = "Holy Smite";
+          this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt.";
           this.skillThreeName = "Divine Shield";
+           this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";
           this.skill1 = 20; // Buff Physical Attack
           this.skill2 = 100; // Holy Smite, damage and heal a small amount
           this.skill3 = 0; // Divine Shield (immune damage 2 round)
-          this.CDSkill1 = 3;
+          this.CDSkill1 = 4;
           this.CDSkill2 = 3;
           this.CDSkill3 = 6;
      }

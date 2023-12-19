@@ -12,8 +12,11 @@ public class Rogue extends Archetypes {
           this.physicalDefence = 50;
           this.magicalDefence = 40;
           this.skillOneName = "Smite";
+          this.skill1Description = "Slash a hit to monster.";
           this.skillTwoName = "Backstab";
+          this.skill2Description = "The Rogue sneaks behind the target, delivering a devastating backstab, causing extra damage and stunning the enemy for 1 round.";
           this.skillThreeName = "ShadowStep";
+          this.skill1Description = "The Rogue can evade the next spell or attack from the enemies.";
           this.skill1 = 50; // Smite
           this.skill2 = 150; // Backstab (stun one round)
           this.skill3 = 0; // ShadowStep (immune spell or attack one time)
