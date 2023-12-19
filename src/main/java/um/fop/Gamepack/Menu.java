@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 public class Menu {
     public static void main(String[] args) throws FileNotFoundException {
 
-		File file=new File("ASCII_Menu Logo.txt");
+		File file=new File("src\\main\\java\\um\\fop\\Gamepack\\ASCII_Menu_Logo.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{
