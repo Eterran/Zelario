@@ -15,7 +15,7 @@ public class Witch extends Monster {
           this.skillOneName = "Fireball";
           this.skill1 = 100; // Fireball
           this.CDSkill1 = 4;
-          this.expDrop = 65;
+          this.expDrop = 40;
      }
 
      public int useSkill1(Entity target) {

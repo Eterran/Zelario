@@ -2,6 +2,7 @@ package Entitypack;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.HashMap;
 
 public class Entity {
     protected String name;
@@ -23,7 +24,7 @@ public class Entity {
     protected int CDSkill2;
     protected int CDSkill3;
     protected int totalStats;
-    
+
     public Entity() {
         this.name = "Default Entity";
         this.maxHP = 100;
@@ -50,7 +51,7 @@ public class Entity {
         this.totalStats = this.maxHP + this.maxMP + this.physicalAttack + this.magicalAttack + this.physicalDefence 
                         + this.magicalDefence + this.skill1 + this.skill2 + this.skill3;
 
-        Map<Status, Integer> statuses;
+        this.statuses = new HashMap<>();
 
         this.isFrozen = false;
         this.isConfused = false;
@@ -138,8 +139,14 @@ public class Entity {
         return dmg;
     }
     public int damageTaken(int dmg) {
-        this.HP -= dmg;
-        return this.HP;  // Return the updated HP value if needed
+        if(this.isWarriorBuff){
+            double reductionPercentage = this.getSkill3() / 100.0;
+            int reducedDamage = (int) (dmg * (1.0 - reductionPercentage));
+            this.HP -= reducedDamage;
+            return reducedDamage;
+        }
+            this.HP -= dmg;
+            return this.HP;  // Return the updated HP value if needed
     }
     public void healing() {
         this.HP += 50;
@@ -148,9 +155,6 @@ public class Entity {
         int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
         this.HP -= damageTaken;
     } 
-    public void defaultAttack() {
-        this.physicalAttack =(this.getPhysicalAttack() - this.getSkill1());
-    }
     public int useSkill1(Entity target){
         return -1;
     }
@@ -182,15 +186,6 @@ public class Entity {
     public boolean isSkill1Unlocked;
     public boolean isSkill2Unlocked;
     public boolean isSkill3Unlocked;
-
-    /*
-     * public Entity() {
-     * this.statuses = new HashMap<>();
-     * isFrozen = false;
-     * isConfused = false;
-     * isSilenced = false;
-     * }
-     */
 
 // Status functions
     public void applyStatus(Status status, int rounds) {
@@ -282,108 +277,75 @@ public class Entity {
     public int levelUp() {
         if (this.exp >= 25 && this.level < 2) {
             this.level = 2;
-            return this.level;
         } else if (this.exp >= 50 && this.level < 3) {
             this.level = 3;
-            return this.level;
         } else if (this.exp >= 80 && this.level < 4) {
             this.level = 4;
-            return this.level;
         } else if (this.exp >= 110 && this.level < 5) {
             this.level = 5;
-            return this.level;
         } else if (this.exp >= 140 && this.level < 6) {
             this.level = 6;
-            return this.level;
         } else if (this.exp >= 170 && this.level < 7) {
             this.level = 7;
-            return this.level;
         } else if (this.exp >= 210 && this.level < 8) {
             this.level = 8;
-            return this.level;
         } else if (this.exp >= 250 && this.level < 9) {
             this.level = 9;
-            return this.level;
         } else if (this.exp >= 300 && this.level < 10) {
             this.level = 10;
-            return this.level;
         } else if (this.exp >= 350 && this.level < 11) {
             this.level = 11;
-            return this.level;
         } else if (this.exp >= 400 && this.level < 12) {
             this.level = 12;
-            return this.level;
         } else if (this.exp >= 450 && this.level < 13) {
             this.level = 13;
-            return this.level;
         } else if (this.exp >= 500 && this.level < 14) {
             this.level = 14;
-            return this.level;
         } else if (this.exp >= 550 && this.level < 15) {
             this.level = 15;
-            return this.level;
         } else if (this.exp >= 600 && this.level < 16) {
             this.level = 16;
-            return this.level;
         } else if (this.exp >= 650 && this.level < 17) {
             this.level = 17;
-            return this.level;
         } else if (this.exp >= 700 && this.level < 18) {
             this.level = 18;
-            return this.level;
         } else if (this.exp >= 750 && this.level < 19) {
             this.level = 19;
-            return this.level;
         } else if (this.exp >= 800 && this.level < 20) {
             this.level = 20;
-            return this.level;
         } else if (this.exp >= 850 && this.level < 21) {
             this.level = 21;
-            return this.level;
         } else if (this.exp >= 900 && this.level < 22) {
             this.level = 22;
-            return this.level;
         } else if (this.exp >= 950 && this.level < 23) {
             this.level = 23;
-            return this.level;
         } else if (this.exp >= 1000 && this.level < 24) {
             this.level = 24;
-            return this.level;
         } else if (this.exp >= 1070 && this.level < 25) {
             this.level = 25;
-            return this.level;
         } else if (this.exp >= 1150 && this.level < 26) {
             this.level = 26;
-            return this.level;
         } else if (this.exp >= 1230 && this.level < 27) {
             this.level = 27;
-            return this.level;
         } else if (this.exp >= 1310 && this.level < 28) {
             this.level = 28;
-            return this.level;
         } else if (this.exp >= 1400 && this.level < 29) {
             this.level = 29;
-            return this.level;
         } else if (this.exp >= 1500 && this.level < 30) {
             this.level = 30;
-            return this.level;
         } else if (this.exp >= 1600 && this.level < 31) {
             this.level = 31;
-            return this.level;
         } else if (this.exp >= 1700 && this.level < 32) {
             this.level = 32;
-            return this.level;
         } else if (this.exp >= 1800 && this.level < 33) {
             this.level = 33;
-            return this.level;
         } else if (this.exp >= 1900 && this.level < 34) {
             this.level = 34;
-            return this.level;
         } else if (this.exp >= 2000 && this.level < 35) {
             this.level = 35;
-            return this.level;
         }
-        return -1;
+        this.checkLvl();
+        return this.level;
     }
     public void setLevelStats(){
         String heroType = this.getName();

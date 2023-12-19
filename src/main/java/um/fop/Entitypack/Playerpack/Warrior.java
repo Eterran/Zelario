@@ -37,11 +37,7 @@ public class Warrior extends Archetypes {
 
      public int useSkill3(Entity target) {
           this.applyStatus(Status.WARRIORDMGRESIST, 3);
-
-          double reductionPercentage = this.getSkill3() / 100.0;
-          int reducedDamage = (int) (dmg * (1.0 - reductionPercentage));
-          this.damageDealt(target, reducedDamage);
-          return dmg;
+          return getSkill1();
       }
       
 }
