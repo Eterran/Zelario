@@ -24,7 +24,10 @@ public class Game {
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
             // displayCombatMenu();
-            checkWinLose(player, monster);
+            if(checkWinLose(player, monster) != 0){
+                s.close();
+                return;
+            }
             System.out.println("1. Attack");
             System.out.println("2. Defend");
             System.out.println("3. Escape");
@@ -148,7 +151,10 @@ public class Game {
                 System.out.println("You are stunned!");
                 endTurn();
             }
-            checkWinLose(player, monster);
+            if(checkWinLose(player, monster) != 0){
+                s.close();
+                return;
+            }
             if (!monster.isFrozen && !monster.isStunned) {
                 if (!turn && isMonsterAlive) {
                     Random r = new Random();
@@ -216,15 +222,16 @@ public class Game {
         System.out.println("You lost!");
         isMonsterAlive = false;
     }
-    public void checkWinLose(Entity player, Entity monster) {
+    public int checkWinLose(Entity player, Entity monster) {
         if (player.getHP() <= 0) {
             loseCombat();
-            return;
+            return -1;
         }
         if (monster.getHP() <= 0) {
             winCombat(player, monster);
-            return;
+            return 1;
         }
+        return 0;
     }
     public Entity spawnRandom(){
         Random r = new Random();

@@ -1,3 +1,4 @@
+package SQLpack;
 import java.sql.*; // 导入Java SQL包，用于数据库操作
 
 public class SQL {
