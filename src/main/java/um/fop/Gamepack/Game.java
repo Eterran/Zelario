@@ -25,7 +25,6 @@ public class Game {
         while (isMonsterAlive) {
             // displayCombatMenu();
             if(checkWinLose(player, monster) != 0){
-                s.close();
                 return;
             }
             System.out.println("1. Attack");
@@ -50,6 +49,7 @@ public class Game {
                             break;
                         } catch (Exception e) {
                             System.out.println("Invalid input");
+                            s.nextLine();
                         }
                     }
                     int monsterPreviousHP = monster.getHP();
@@ -152,7 +152,6 @@ public class Game {
                 endTurn();
             }
             if(checkWinLose(player, monster) != 0){
-                s.close();
                 return;
             }
             if (!monster.isFrozen && !monster.isStunned) {

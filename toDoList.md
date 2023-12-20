@@ -15,45 +15,45 @@ What kind of NPCs to add?
 Extra extra features: Sounds, simple animation
 Ñ@#W$9876543210?!abc;:+=-,._ 
 ####################################################################################################
-Entity:
-    StatsDeclaration:
-    Hero:
-        Archetypes:
-            Archer:
-                Skills:
-            Mage:
-                Skills:
-            Paladin:
-                Skills:
-            Rogue:
-                Skills:
-            Warrior:
-                Skills:
+$Entity:
+    $StatsDeclaration:
+    $Hero:
+        $Archetypes:
+            $Archer:
+                $Skills:
+            $Mage:
+                $Skills:
+            $Paladin:
+                $Skills:
+            $Rogue:
+                $Skills:
+            $Warrior:
+                $Skills:
 
-            Leveling:
-                ExpSystem:
+            $Leveling:
+                $ExpSystem:
 
-    Monster:
-        Goblin:
-            Stats:
-        Harpy:
-            Stats:
-            Abilities:
-        Orc:
-            Stats:
-        Skeleton:
-            Stats:
-        Witch:
-            Stats:
-            Abilities:
-    Status:
-        ListOfStatus:
-        StatusEffects:
-    Death:
+    $Monster:
+        $Goblin:
+            $Stats:
+        $Harpy:
+            $Stats:
+            $Abilities:
+        $Orc:
+            $Stats:
+        $Skeleton:
+            $Stats:
+        $Witch:
+            $Stats:
+            $Abilities:
+    $Status:
+        $ListOfStatus:
+        $StatusEffects:
+    $Death:
 
-Game: 
-    GameLogic:
-        TurnBasedLogic:
+$Game: 
+    $GameLogic:
+        $TurnBasedLogic:
             
     Menu:$
     Art:
