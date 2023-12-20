@@ -1,11 +1,10 @@
 import Entitypack.*;
-import Entitypack.Monsterpack.Goblin;
-import Entitypack.Playerpack.Archer;
+import Entitypack.Playerpack.*;
 import Gamepack.*;
 
 public class Start {
     public static void main(String[] args) {
-        Entity player = new Archer();
+        Entity player = new Paladin();
         Game game = new Game(player);
         while(true)
             game.beginCombat(player, game.spawnRandom());

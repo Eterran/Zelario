@@ -2,7 +2,7 @@ package Entitypack.Playerpack;
 
 import Entitypack.*;
 
-public class Archer extends Archetypes {
+public class Archer extends Player {
      public Archer() {
           super();
           this.name = "Archer";

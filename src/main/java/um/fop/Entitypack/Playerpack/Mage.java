@@ -3,7 +3,7 @@ package Entitypack.Playerpack;
 import Entitypack.Entity;
 import Entitypack.Status;
 
-public class Mage extends Archetypes {
+public class Mage extends Player {
      public Mage() {
           this.name = "Mage";
           this.HP = 200;

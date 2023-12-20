@@ -2,7 +2,7 @@ package Entitypack.Playerpack;
 
 import Entitypack.*;
 
-public class Paladin extends Archetypes {
+public class Paladin extends Player {
      public Paladin() {
           this.name = "Paladin";
           this.HP = 350;
@@ -16,7 +16,7 @@ public class Paladin extends Archetypes {
           this.skillTwoName = "Holy Smite";
           this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt.";
           this.skillThreeName = "Divine Shield";
-           this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";
+          this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";
           this.skill1 = 20; // Buff Physical Attack
           this.skill2 = 100; // Holy Smite, damage and heal a small amount
           this.skill3 = 0; // Divine Shield (immune damage 2 round)
@@ -35,8 +35,7 @@ public class Paladin extends Archetypes {
           return dmg;
      }
      public int useSkill3(Entity target) {
-          int dmg = this.getSkill3();
-          target.damageTaken(dmg);
-          return dmg;
+          this.applyStatus(Status.IMMUNITY, 2);
+          return this.skill3;
      }
 }

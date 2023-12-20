@@ -63,6 +63,9 @@ public class Entity {
         this.isConfused = false;
         this.isSilenced = false;
         this.isWeakened = false;
+        this.isStunned = false;
+        this.isImmune = false;
+        this.isShadowed = false;
         this.isArcherBuff = false;
         this.isWarriorBuff = false;
         this.isPaladinBuff = false;
@@ -88,16 +91,16 @@ public class Entity {
     }
     public int getPhysicalAttack() {
         // if weakened
-        int temp = 0;
+        int temp = this.physicalAttack;
         if (this.isWeakened) {
             temp = (int) (this.physicalAttack * 0.8);
             if(this.isArcherBuff) temp += getSkill1();
             if(this.isPaladinBuff) temp += getSkill1();
             return temp;
         }
-        if(this.isArcherBuff) temp += this.getPhysicalAttack() + getSkill1();
-        if(this.isPaladinBuff) temp += this.getPhysicalAttack() + getSkill1();
-        return this.physicalAttack;
+        if(this.isArcherBuff) temp += getSkill1();
+        if(this.isPaladinBuff) temp += getSkill1();
+        return temp;
     }
 
     public int getMagicalAttack() {
@@ -129,8 +132,7 @@ public class Entity {
     }
 
     public String getSkillThreeName() {
-        return 
-        this.skillThreeName;
+        return this.skillThreeName;
     }
 
      public String getSkill3Description(){
@@ -167,12 +169,19 @@ public class Entity {
     }
 
     public int normalAttack(Entity target) {//physical normal attack
-        int dmg = (int) (this.physicalAttack * (1.0 - target.physicalDefence / 100.0)); 
+        int dmg = (int) (this.getPhysicalAttack() * (1.0 - target.getPhysicalDefence() / 100.0)); 
         target.damageTaken(dmg);
         return dmg;
     }
 
     public int damageTaken(int dmg) {
+        if(this.isImmune){
+            return 0;
+        }
+        if(this.isShadowed){
+            this.isShadowed = false;
+            return 0;
+        }
         if(this.isWarriorBuff){
             double reductionPercentage = this.getSkill3() / 100.0;
             int reducedDamage = (int) (dmg * (1.0 - reductionPercentage));
@@ -219,6 +228,9 @@ public class Entity {
     public boolean isConfused;
     public boolean isSilenced;
     public boolean isWeakened;
+    public boolean isStunned;
+    public boolean isImmune;
+    public boolean isShadowed;
     public boolean isArcherBuff;
     public boolean isWarriorBuff;
     public boolean isPaladinBuff;
@@ -278,6 +290,24 @@ public class Entity {
                         this.isWeakened = true;
                     else
                         this.isWeakened = false;
+                    break;
+                case STUNNED:
+                    if (statuses.get(status) > 0)
+                        this.isStunned = true;
+                    else
+                        this.isStunned = false;
+                    break;
+                case IMMUNITY:
+                    if (statuses.get(status) > 0)
+                        this.isImmune = true;
+                    else
+                        this.isImmune = false;
+                    break;
+                case SHADOWSTEP:
+                    if (statuses.get(status) > 0)
+                        this.isShadowed = true;
+                    else
+                        this.isShadowed = false;
                     break;
                 case ARCHERSKILL1BUFF:
                     if (statuses.get(status) > 0)

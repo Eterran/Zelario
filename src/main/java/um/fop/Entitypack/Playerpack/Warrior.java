@@ -3,7 +3,7 @@ package Entitypack.Playerpack;
 import Entitypack.Entity;
 import Entitypack.Status;
 
-public class Warrior extends Archetypes {
+public class Warrior extends Player {
      public Warrior() {
           this.name = "Warrior";
           this.HP = 250;

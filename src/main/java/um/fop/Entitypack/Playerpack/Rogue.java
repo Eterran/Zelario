@@ -1,8 +1,9 @@
 package Entitypack.Playerpack;
 
 import Entitypack.Entity;
+import Entitypack.Status;
 
-public class Rogue extends Archetypes {
+public class Rogue extends Player {
      public Rogue() {
           this.name = "Rogue";
           this.HP = 250;
@@ -35,13 +36,13 @@ public class Rogue extends Archetypes {
      public int useSkill2(Entity target) {
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
+          target.applyStatus(Status.STUNNED, 1);
           return dmg;
      }
 
      public int useSkill3(Entity target) {
-          int dmg = this.getSkill3();
-          target.damageTaken(dmg);
-          return dmg;
+          this.applyStatus(Status.SHADOWSTEP, 9);
+          return this.skill3;
      }
 
 }
