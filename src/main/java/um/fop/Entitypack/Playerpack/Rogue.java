@@ -21,19 +21,26 @@ public class Rogue extends Player {
           this.skill1 = 50; // Smite
           this.skill2 = 150; // Backstab (stun one round)
           this.skill3 = 0; // ShadowStep (immune spell or attack one time)
+          this.skill1Mp = 30; 
+          this.skill2Mp = 40; 
+          this.skill3Mp = 50; 
+          this.MaxCDSkill1 = 4;
+          this.MaxCDSkill2 = 2;
+          this.MaxCDSkill3 = 6;
           this.CDSkill1 = 4;
           this.CDSkill2 = 2;
           this.CDSkill3 = 6;
      }
 
      public int useSkill1(Entity target) {
-
+          this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
           return dmg;
      }
 
      public int useSkill2(Entity target) {
+          this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
           target.applyStatus(Status.STUNNED, 1);
@@ -41,6 +48,7 @@ public class Rogue extends Player {
      }
 
      public int useSkill3(Entity target) {
+          this.setMP(this.getMP() - this.getSkill1Mp());
           this.applyStatus(Status.SHADOWSTEP, 9);
           return this.skill3;
      }

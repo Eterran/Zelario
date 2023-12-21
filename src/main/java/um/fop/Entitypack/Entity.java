@@ -23,6 +23,12 @@ public class Entity {
     protected int skill1;
     protected int skill2;
     protected int skill3;
+    protected int skill1Mp;
+    protected int skill2Mp;
+    protected int skill3Mp;
+    protected int MaxCDSkill1;
+    protected int MaxCDSkill2;
+    protected int MaxCDSkill3;
     protected int CDSkill1;
     protected int CDSkill2;
     protected int CDSkill3;
@@ -47,6 +53,12 @@ public class Entity {
         this.skill1 = -1;
         this.skill2 = -1;
         this.skill3 = -1;
+        this.skill1Mp = -1;
+        this.skill2Mp = -1;
+        this.skill3Mp = -1;
+        this.MaxCDSkill1 = -1;
+        this.MaxCDSkill2 = -1;
+        this.MaxCDSkill3 = -1;
         this.CDSkill1 = -1;
         this.CDSkill2 = -1;
         this.CDSkill3 = -1;
@@ -151,6 +163,30 @@ public class Entity {
         return this.skill3;
     }
 
+    public int getSkill1Mp() {
+        return this.skill1Mp;
+    }
+
+    public int getSkill2Mp() {
+        return this.skill2Mp;
+    }
+
+    public int getSkill3Mp() {
+        return this.skill3Mp;
+    }
+
+     public int getMaxCDSkill1() {
+        return this.MaxCDSkill1;
+    }
+
+    public int getMaxCDSkill2() {
+        return this.MaxCDSkill2;
+    }
+
+    public int getMaxCDSkill3() {
+        return this.MaxCDSkill3;
+    }
+
     public int getCDSkill1() {
         return this.CDSkill1;
     }
@@ -168,8 +204,9 @@ public class Entity {
         return dmg;
     }
 
+
     public int normalAttack(Entity target) {//physical normal attack
-        int dmg = (int) (this.getPhysicalAttack() * (1.0 - target.getPhysicalDefence() / 100.0)); 
+        int dmg = (int) (this.getPhysicalAttack() * (1.0 - target.getPhysicalDefence() / 100.0) * 0.2); 
         target.damageTaken(dmg);
         return dmg;
     }
@@ -192,14 +229,49 @@ public class Entity {
             return this.HP;  // Return the updated HP value if needed
     }
 
+    public void setHP(int newHP){
+        HP = newHP;
+    }
+    
     public void healing() {
-        this.HP += 50;
+        this.HP +=50;
+         if(this.getHP() > this.getMaxHP()){
+            this.setHP(this.getMaxHP());
+         }
+         else{
+            this.setHP(this.getHP());
+         }
     }
 
-    public void defend(Entity target, int dmg) {
-        int damageTaken = (int) (damageDealt(target, dmg) * (1.0 - this.physicalDefence / 80.0));
-        this.HP -= damageTaken;
+
+    public void defend(Entity target) {
+        this.applyStatus(Status.WARRIORDMGRESIST, 3);
     } 
+
+    public void setMP(int newMP){
+        MP = newMP;
+
+    }
+
+    public boolean checkMana(int mana) {
+        if (this.getMP() >= mana) {
+            return true;
+        } else {
+            
+            return false;
+        }
+    }
+
+    public void RecoverMana(){
+         this.MP +=20;
+         if(this.getMP() > this.getMaxMP()){
+            setMP(this.getMaxMP());
+         }
+         else{
+            setMP(this.getMP());
+         }
+
+    }
 
     public int useSkill1(Entity target){
         return -1;

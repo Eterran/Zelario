@@ -20,6 +20,9 @@ public class Paladin extends Player {
           this.skill1 = 20; // Buff Physical Attack
           this.skill2 = 100; // Holy Smite, damage and heal a small amount
           this.skill3 = 0; // Divine Shield (immune damage 2 round)
+          this.MaxCDSkill1 = 4;
+          this.MaxCDSkill2 = 3;
+          this.MaxCDSkill3 = 6;
           this.CDSkill1 = 4;
           this.CDSkill2 = 3;
           this.CDSkill3 = 6;
@@ -31,6 +34,11 @@ public class Paladin extends Player {
      public int useSkill2(Entity target) {
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.HP += (int) (damageDealt(target, dmg) * (30 / 100.0));
+
+          if(this.HP > getMaxHP()){
+               return getMaxHP();
+          }
+          
           this.damageDealt(target, dmg);
           return dmg;
      }

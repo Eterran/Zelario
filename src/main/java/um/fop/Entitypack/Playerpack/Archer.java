@@ -21,6 +21,12 @@ public class Archer extends Player {
           this.skill1 = 50; // "Buff attack for one turn" LV5 unlock
           this.skill2 = 100; // Rapid arrow LV10 Unlock
           this.skill3 = 300; // Trick shot LV30 Unlock
+          this.skill1 = 30; 
+          this.skill2 = 20; 
+          this.skill3 = 60; 
+          this.MaxCDSkill1 = 4;
+          this.MaxCDSkill2 = 2;
+          this.MaxCDSkill3 = 6;
           this.CDSkill1 = 4;
           this.CDSkill2 = 2;
           this.CDSkill3 = 6;
@@ -32,12 +38,14 @@ public class Archer extends Player {
      }
 
      public int useSkill2(Entity target) {
+          this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
           return dmg;
      }
 
      public int useSkill3(Entity target) {
+          this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = this.getSkill3() ;
           this.damageDealt(target, dmg);
           return dmg;

@@ -76,7 +76,8 @@ public class Game {
                                 System.out.println("Invalid input");
                                 break;
                             }
-                            if (player.getCDSkill1() == 0) {
+                            
+                            if (player.getCDSkill1() == 0 && player.checkMana(player.getSkill1Mp())) {
                                 if (!player.isSilenced) {
                                     player.useSkill1(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
@@ -99,7 +100,7 @@ public class Game {
                                 System.out.println("Invalid input");
                                 break;
                             }
-                            if (player.getCDSkill2() == 0) {
+                            if (player.getCDSkill2() == 0 && player.checkMana(player.getSkill1Mp())) {
                                 if (!player.isSilenced) {
                                     player.useSkill2(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
@@ -122,7 +123,7 @@ public class Game {
                                 System.out.println("Invalid input");
                                 break;
                             }
-                            if (player.getCDSkill3() == 0) {
+                            if (player.getCDSkill3() == 0 && player.checkMana(player.getSkill1Mp())) {
                                 if (!player.isSilenced) {
                                     player.useSkill3(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
@@ -158,10 +159,10 @@ public class Game {
                 if (!turn && isMonsterAlive) {
                     Random r = new Random();
                     int enemyChoice = r.nextInt(99);
-                    if (monster.getSkill1() == -1) {
+                    if (monster.getSkill1() == -1 && monster.checkMana(monster.getSkill1Mp())) {
                         System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                         endTurn();
-                    } else if (monster.getSkill2() != -1) {
+                    } else if (monster.getSkill2() != -1 && monster.checkMana(monster.getSkill1Mp())) {
                         if (enemyChoice < 40) {
                             System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
