@@ -2,32 +2,24 @@ package Mappack;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-//import java.util.Random;
+import java.awt.event.*;
+import java.util.Random;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class GameWinForReal extends JFrame {
     public static void main(String[] args) {
         GameWinForReal frame = new GameWinForReal();
         frame.setVisible(true);
     }
+
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
-
-//    private final char BORDER = 'X';
     private final char OBSTACLE = '#';
     private final char PLAYER = '@';
-//    private final char BLOCKED = '.';
-
-    //private final char GHOST = 'A';
-
     private char[][] map;
     private int playerX, playerY;
-    /*private char A;
-    private char X;
-    private char R;*/
 
     public GameWinForReal() {
         super("Zelario Game");
@@ -35,6 +27,7 @@ public class GameWinForReal extends JFrame {
         JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
         panel.setBackground(Color.BLACK);
         map = new char[HEIGHT][WIDTH];
+
 
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
@@ -129,10 +122,14 @@ public class GameWinForReal extends JFrame {
         for (int j = 11; j < 17; j++) { //底部I
             map[19][j] = '#';
         }
-        map[15][13] = '#';map[15][14] = '#';
-        map[16][13] = '#';map[16][14] = '#';
-        map[17][13] = '#';map[17][14] = '#';
-        map[18][13] = '#';map[18][14] = '#';
+        map[15][13] = '#';
+        map[15][14] = '#';
+        map[16][13] = '#';
+        map[16][14] = '#';
+        map[17][13] = '#';
+        map[17][14] = '#';
+        map[18][13] = '#';
+        map[18][14] = '#';
 
 //O
         for (int j = 21; j < 27; j++) { //顶部
@@ -142,10 +139,14 @@ public class GameWinForReal extends JFrame {
         for (int j = 21; j < 27; j++) { //底部
             map[19][j] = '#';
         }
-        map[15][20] = '#';map[15][27] = '#';
-        map[16][20] = '#';map[16][27] = '#';
-        map[17][20] = '#';map[17][27] = '#';
-        map[18][20] = '#';map[18][27] = '#';
+        map[15][20] = '#';
+        map[15][27] = '#';
+        map[16][20] = '#';
+        map[16][27] = '#';
+        map[17][20] = '#';
+        map[17][27] = '#';
+        map[18][20] = '#';
+        map[18][27] = '#';
 
 
         // 障碍物区域
@@ -168,84 +169,20 @@ public class GameWinForReal extends JFrame {
                 map[i][j] = '$';
             }
         }
-        // 随机绘制地图
-//        Random random = new Random();
-//        for (int i = 0; i < HEIGHT; i++) {
-//            for (int j = 0; j < WIDTH; j++) {
-//                if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1) {
-//                    map[i][j] = BORDER;
-//                } else if (random.nextInt(10) < 2) {
-//                    map[i][j] = OBSTACLE;
-//                } else {
-//                    map[i][j] = '.';
-//                }
-//            }
-//        }
+        map[33][5] = '$';//只有接触这三个坐标才能打boss
+        map[33][6] = '$';
+        map[33][7] = '$';
 
-        // 四边形障碍物设置
-//        for (int k = 0; k < 5; k++) { //搞了4个框框作为障碍物
-//            int x = random.nextInt(WIDTH - 6) + 3;//不让障碍物与边框重合
-//            int y = random.nextInt(HEIGHT - 6) + 3;
-//            int size = random.nextInt(3) + 2;//nextInt(3) 生成0-2的随机数
-//
-//            System.out.println("x=" + x + "--y=" + y + "--size=" + size);
-//
-//            for (int i = y - size - 1; i <= y + size + 1; i++) {
-//                for (int j = x - size - 1; j <= x + size + 1; j++) {
-//                    if (i == y - size - 1 || i == y + size + 1 || j == x - size - 1 || j == x + size + 1) {//检查当前的坐标 (i, j) 是否在正方形边框的边缘
-//                        if (i < 0) {
-//                            i = 0;
-//                        }
-//                        if (i >= HEIGHT) {
-//                            continue;
-//                        }
-//                        if (j < 0) {
-//                            j = 0;
-//                        }
-//                        if (j >= WIDTH) {
-//                            continue;
-//                        }
-//                        System.out.println("i=" + i + "--j=" + j);
-//                        if (map[i][j] == BLOCKED) {
-//                            //	如果已经是'.'，不再设置为BORDER
-//                        } else if (map[i][j] == BORDER && j != x - size - 1 && j != x + size + 1 && i != y - size - 1 && i != y + size + 1) {
-//                            //	如果已经是BORDER，还要设置为BORDER，说明是交接处，设置为'.'，但不能是最边上，最边上还是有设置为BORDER
-//                            map[i][j] = BLOCKED;
-//                        } else {
-//                            map[i][j] = BORDER;
-//                        }
-//                    } else {
-//                        if (i < 0) {
-//                            i = 0;
-//                        }
-//                        if (i >= HEIGHT) {
-//                            continue;
-//                        }
-//                        if (j < 0) {
-//                            j = 0;
-//                        }
-//                        if (j >= WIDTH) {
-//                            continue;
-//                        }
-//                        System.out.println("i=" + i + "--j=" + j);
-//                        map[i][j] = BLOCKED;
-//                    }
-//                }
-//            }
-//        }
-
-        // 放置@字符
-//        do {
-//            playerX = random.nextInt(WIDTH - 2) + 1;
-//            playerY = random.nextInt(HEIGHT - 2) + 1;
-//        } while (map[playerY][playerX] != '.');
-        playerX=20;
-        playerY=14;
+        //主角位置
+        playerX = 20;
+        playerY = 14;
         map[playerY][playerX] = PLAYER;
+        map[30][15] = 'A';
         map[10][10] = 'A';
-        map[10][19] = 'X';
-        map[20][10] = 'R';
-
+        map[15][10] = 'A';
+        map[20][10] = 'A';
+        map[25][10] = 'A';
+        map[30][10] = 'A';
 
 
         // 绘制地图
@@ -281,7 +218,7 @@ public class GameWinForReal extends JFrame {
                         break;
                     case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把
                         // 是=0；否=1；
-                        int choice = JOptionPane.showConfirmDialog(null, "是否重新开始游戏？", "确认", JOptionPane.YES_NO_OPTION);
+                        int choice = JOptionPane.showConfirmDialog(null, "Do You Want To Start The Game Again? ？", "YES", JOptionPane.YES_NO_OPTION);
                         if (choice == 0) {
                             // 游戏重新开始，重新生成地图和玩家位置
                             dispose();
@@ -296,8 +233,17 @@ public class GameWinForReal extends JFrame {
                 System.out.println(playerX);
                 System.out.println(playerY);
                 int newX = playerX + dx, newY = playerY + dy;
-                if (map[newY][newX] != OBSTACLE&& map[newY][newX] != 'A'&& map[newY][newX] != 'X'&& map[newY][newX] != 'R'&& map[newY][newX] != '$') {
-                    System.out.println("x="+playerX);
+                if (newX == 10 && newY == 9||newX ==10 && newY == 11||newX ==9 && newY == 10||newX ==11 && newY == 10||newX ==10 && newY == 14||newX ==9 && newY == 15||newX ==10 && newY == 16||newX ==11 && newY == 15||newX ==11 && newY == 20||newX ==11 && newY == 25||newX ==11 && newY == 30||newX ==16 && newY == 30||newX ==14 && newY == 30||newX ==15 && newY == 29||newX ==15 && newY == 31||newX ==9 && newY == 25||newX ==10 && newY == 24||newX ==10 && newY == 26||newX ==10 && newY == 31||newX ==9 && newY == 30||newX ==10 && newY == 29||newX ==10 && newY == 21||newX ==10 && newY == 19||newX ==9 && newY == 20||newX ==5 && newY ==32||newX ==6 && newY ==32||newX ==7 && newY ==32) {
+                    ConnectToFight connectToFight = new ConnectToFight();
+//                  connectToFight.setVisible(true); // 显示战斗窗口
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            ConnectToFight connectToFight = new ConnectToFight();
+                            connectToFight.setVisible(true); // 在EDT上显示窗口
+                        }
+                    });
+                }
+                if (map[newY][newX] != OBSTACLE && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
                     map[playerY][playerX] = '.';//把之前的位置清零，以及上色
                     map[newY][newX] = PLAYER;
                     playerX = newX;
@@ -363,30 +309,18 @@ public class GameWinForReal extends JFrame {
             for (int j = 0; j < WIDTH; j++) {
                 JLabel label = (JLabel) panel.getComponent(i * WIDTH + j);
                 char ch = map[i][j];
-//               if (ch == BLOCKED) {
-//                   label.setForeground(Color.GRAY);
-///                  label.setText(".");
-//                } else if (ch == BORDER) {
-//                    label.setForeground(Color.WHITE);
-//                    label.setText(String.valueOf(BORDER));
-                 if (ch == OBSTACLE) {
+                if (ch == OBSTACLE) {
                     label.setForeground(Color.GRAY);
                     label.setText(String.valueOf(OBSTACLE));
-                }    else if (ch == 'A') {
-                     label.setForeground(Color.YELLOW);
-                     label.setText(String.valueOf('A'));
-                 }else if (ch == 'X') {
-                         label.setForeground(Color.YELLOW);
-                         label.setText(String.valueOf('X'));
-                     }else if (ch == 'R') {
-                             label.setForeground(Color.YELLOW);
-                             label.setText(String.valueOf('R'));
-                }        else if (ch == '$') {
-                         label.setForeground(Color.RED);
-                         label.setText(String.valueOf('$'));
+                } else if (ch == 'A') {
+                    label.setForeground(Color.YELLOW);
+                    label.setText(String.valueOf('A'));
+                } else if (ch == '$') {
+                    label.setForeground(Color.RED);
+                    label.setText(String.valueOf('$'));
                 } else if (ch == PLAYER) {
-                    System.out.println("1="+playerX);
-                    System.out.println("1="+playerY);
+                    System.out.println("X=" + playerX);
+                    System.out.println("Y=" + playerY);
                     label.setForeground(Color.pink);
                     label.setText(String.valueOf(PLAYER));
                 } else {

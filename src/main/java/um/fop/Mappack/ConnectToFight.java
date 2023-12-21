@@ -1,10 +1,10 @@
-package Map;
+package Mappack;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import Map.GameWinForReal;
+import Mappack.GameWinForReal;
 
 public class ConnectToFight extends JFrame { //override方法重写alt+enter
 
