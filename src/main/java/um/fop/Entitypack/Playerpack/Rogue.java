@@ -40,7 +40,7 @@ public class Rogue extends Player {
      }
 
      public int useSkill2(Entity target) {
-          this.setMP(this.getMP() - this.getSkill1Mp());
+          this.setMP(this.getMP() - this.getSkill2Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
           target.applyStatus(Status.STUNNED, 1);
@@ -48,7 +48,7 @@ public class Rogue extends Player {
      }
 
      public int useSkill3(Entity target) {
-          this.setMP(this.getMP() - this.getSkill1Mp());
+          this.setMP(this.getMP() - this.getSkill3Mp());
           this.applyStatus(Status.SHADOWSTEP, 9);
           return this.skill3;
      }
