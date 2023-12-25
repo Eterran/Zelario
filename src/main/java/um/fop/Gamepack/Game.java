@@ -3,7 +3,9 @@ package Gamepack;
 import java.util.Scanner;
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
+import CombatMenu.CombatMenu;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class Game {
@@ -23,23 +25,15 @@ public class Game {
         isMonsterAlive = true;
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
-            // displayCombatMenu();
+            try{
+                CombatMenu.displayCombatMenu(player,monster);
+            }catch(IOException e){  
+                e.printStackTrace();
+            }
             if(checkWinLose(player, monster) != 0){
                 return;
             }
-            System.out.println("1. Attack");
-            System.out.println("2. Defend");
-            System.out.println("3. Escape");
-            System.out.println("4. Heal");
-            if (player.isSkill1Unlocked)
-                System.out.println(
-                        "5. " + player.getSkillOneName() + "        <" + player.getSkill1Description() + ">");
-            if (player.isSkill2Unlocked)
-                System.out.println(
-                        "6. " + player.getSkillTwoName() + "        <" + player.getSkill2Description() + ">");
-            if (player.isSkill3Unlocked)
-                System.out.println(
-                        "7. " + player.getSkillThreeName() + "        <" + player.getSkill3Description() + ">");
+            
             if (!player.isFrozen && !player.isStunned) {
                 while (turn) {
                     int choice;
