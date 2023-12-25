@@ -109,5 +109,6 @@ public class Start {
         while(true){
             game.beginCombat(player, game.spawnRandom());
         }
+        
     }
 }

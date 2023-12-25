@@ -92,6 +92,7 @@ public class Game {
                                     System.out.println("You are silenced!");
                                 }
                             } else {
+                                System.out.println(player.getMP());
                                 System.out.println("Your skill is not ready yet!");
                             }
                             break;
