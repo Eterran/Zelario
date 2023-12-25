@@ -9,7 +9,7 @@ public class Pick {
 	int heroChoice=-1;
 	public static void main(String[]args)  throws FileNotFoundException{
 		// TODO Auto-generated method stub
-		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
+		File file=new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{
@@ -50,66 +50,32 @@ public class Pick {
 	    System.out.print(">");
 	    
 	    Scanner read=new Scanner(System.in);
-	    int input=read.nextInt();
-	  
-	    
-	    if(input==1)
-	    {
-	    	Rogue.PickRogue();
-	    }
-	    
-	    else if(input==2){
-	    	Warrior.PickWarrior();
-	    }
-	    
-	    else if(input==3) {
-	    	Archer.PickArcher();
-	    	
-	    }
-	    
-	    else if(input==4)
-	    {
-	    	Mage.PickMage();
-	    }
-	    
-	    else if(input==5) {
-	    	Paladin.PickPaladin();
-	    }
-	    
-	    else
-	    {
-	    	while(input!=1&&input!=2&&input!=3&&input!=4&&input!=5)
-	    	{
-	    		System.out.println("Invalid input. Please check again.");
-	            System.out.print(">");
-
-	            input=read.nextInt();
-	            if(input==1) 
-	            {
-	            	Rogue.PickRogue();
-	            }
-	            
-	            else if(input==2) 
-	            {
-	            	Warrior.PickWarrior();
-	            }
-	            
-	            else if(input==3){
-	            	Archer.PickArcher();
-	            }
-	            
-	            
-	    	    else if(input==4)
-	    	    {
-	    	    	Mage.PickMage();
-	    	    }
-	    	    
-	    	    else if(input==5) {
-	    	    	Paladin.PickPaladin();
-	    	    }
-	    	}
-	    
-	    }
+		int input = 0;
+		while(true){
+			try {
+				input=read.nextInt();
+				break;
+			} catch (Exception e) {
+				System.out.println("Invalid input.");
+				read.nextLine();
+			}
+		}
+		while(input<1 || input>5){
+			System.out.println("Invalid input.");
+			input=read.nextInt();
+		}
+		switch (input) {
+			case 1:
+				System.out.println("You have chosen Rogue");
+				break;
+			case 2:
+				System.out.println("You have chosen Rogue");
+				break;
+			default:
+			
+				break;
+		}
+		
 	    sc.close();
 
         
