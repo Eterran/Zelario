@@ -1,17 +1,38 @@
 package Entitypack.Playerpack;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import Entitypack.Entity;
 import Entitypack.Status;
 
 public class Rogue extends Player {
      public Rogue() {
-          this.name = "Rogue";
-          this.HP = 250;
-          this.MP = 75;
-          this.physicalAttack = 60;
-          this.magicalAttack = 40;
-          this.physicalDefence = 50;
-          this.magicalDefence = 40;
+          super();
+          try{
+               Scanner input = new Scanner(new FileInputStream("Rogue.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+         
           this.skillOneName = "Smite";
           this.skill1Description = "Slash a hit to monster.";
           this.skillTwoName = "Backstab";

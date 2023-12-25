@@ -1,10 +1,37 @@
 package Entitypack.Playerpack;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import Entitypack.*;
 
 public class Archer extends Player {
      public Archer() {
           super();
+          try{
+               Scanner input = new Scanner(new FileInputStream("Archer.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+          
           this.name = "Archer";
           this.HP = 240;
           this.MP = 60;

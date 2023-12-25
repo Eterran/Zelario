@@ -77,7 +77,7 @@ public class Game {
                                 break;
                             }
                             
-                            if (player.getCDSkill1() == 0 && player.checkMana(player.getSkill1Mp())) {
+                            if (player.getCDSkill1() == 0 && player.checkMana(player.getSkill1Mp())) { //cd remain 4
                                 if (!player.isSilenced) {
                                     player.useSkill1(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
@@ -92,7 +92,9 @@ public class Game {
                                     System.out.println("You are silenced!");
                                 }
                             } else {
-                                System.out.println(player.getMP());
+                                System.out.println(player.getMP());//chechking
+                                System.out.println(player.getSkill1Mp());//chechking
+                                System.out.println(player.getCDSkill1());//checking current cd
                                 System.out.println("Your skill is not ready yet!");
                             }
                             break;

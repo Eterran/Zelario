@@ -1,16 +1,35 @@
 package Entitypack.Playerpack;
 
 import Entitypack.*;
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Paladin extends Player {
      public Paladin() {
-          this.name = "Paladin";
-          this.HP = 350;
-          this.MP = 100;
-          this.physicalAttack = 700;
-          this.magicalAttack = 60;
-          this.physicalDefence = 80;
-          this.magicalDefence = 60;
+          super();
+          try{
+               Scanner input = new Scanner(new FileInputStream("Paladin.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
           this.skillOneName = "Rage";
           this.skill1Description = "Paladin attack increased for 3 rounds.";
           this.skillTwoName = "Holy Smite";

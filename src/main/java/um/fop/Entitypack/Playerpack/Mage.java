@@ -1,17 +1,38 @@
 package Entitypack.Playerpack;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import Entitypack.Entity;
 import Entitypack.Status;
 
 public class Mage extends Player {
      public Mage() {
-          this.name = "Mage";
-          this.HP = 200;
-          this.MP = 150;
-          this.physicalAttack = 30;
-          this.magicalAttack = 100;
-          this.physicalDefence = 20;
-          this.magicalDefence = 30;
+          super();
+          try{
+               Scanner input = new Scanner(new FileInputStream("Mage.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+          
           this.skillOneName = "Poison";
           this.skill1Description = "Monster will be poisoned for 2 rounds.";
           this.skillTwoName = "Fireball";
