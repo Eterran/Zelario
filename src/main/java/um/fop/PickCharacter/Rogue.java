@@ -9,7 +9,7 @@ public class Rogue {
 	public static void PickRogue() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		File file=new File("Rogue 2 ASCII.txt");
+		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{

@@ -9,7 +9,7 @@ public class Warrior {
 	public static void PickWarrior() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		File file=new File("Warrior ASCII.txt");
+		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{

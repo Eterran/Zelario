@@ -9,7 +9,7 @@ public class Archer {
 	public static void PickArcher() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		File file=new File("Archer ASCII.txt");
+		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{
@@ -60,7 +60,7 @@ public class Archer {
 	    
 	    if(choice==1)
 	    {
-	    	//go to map
+	    	//setHeroChoice(1);
 	    }
 	    
 	    else if(choice==2)
