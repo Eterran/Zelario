@@ -9,7 +9,7 @@ public class Mage {
 	public static void PickMage() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		File file=new File("Mage ASCII.txt");
+		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{
@@ -58,7 +58,7 @@ public class Mage {
 	    
 	    if(choice==1)
 	    {
-	    	//go to map
+	    	
 	    }
 	    
 	    else if(choice==2)

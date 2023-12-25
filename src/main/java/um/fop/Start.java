@@ -2,12 +2,12 @@ import java.util.Scanner;
 import Entitypack.*;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
-import SQLpack.*;
+//import SQLpack.*;
 import java.io.*;
-import java.sql.*;
+//import java.sql.*;
 
 public class Start {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/* 
         String username = "null", pw = "null";
         Scanner s = new Scanner(System.in);
         Connection conn = null;
@@ -103,7 +103,7 @@ public class Start {
             }
         } catch (SQLException e) {
             System.out.println("Unable to establish connection with the server.");
-        }
+        }*/
         Entity player = new Paladin();
         Game game = new Game(player);
         while(true){

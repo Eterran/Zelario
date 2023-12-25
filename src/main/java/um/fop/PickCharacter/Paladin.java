@@ -9,7 +9,7 @@ public class Paladin {
 	public static void PickPaladin() throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		File file=new File("Paladin ASCII.txt");
+		File file=new File("Zelario\\src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc=new Scanner(file);
 		while(sc.hasNextLine())
 		{
