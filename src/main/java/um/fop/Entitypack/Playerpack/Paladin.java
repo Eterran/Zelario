@@ -9,7 +9,7 @@ public class Paladin extends Player {
      public Paladin() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Paladin.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Paladin.txt"));
                String temp;
                String[] stats;
 

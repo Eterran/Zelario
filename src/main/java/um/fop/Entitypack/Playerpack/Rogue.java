@@ -11,7 +11,7 @@ public class Rogue extends Player {
      public Rogue() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Rogue.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Rogue.txt"));
                String temp;
                String[] stats;
 

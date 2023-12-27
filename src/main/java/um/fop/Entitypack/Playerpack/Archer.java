@@ -10,7 +10,7 @@ public class Archer extends Player {
      public Archer() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Archer.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Archer.txt"));
                String temp;
                String[] stats;
 
