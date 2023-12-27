@@ -3,7 +3,7 @@ import Entitypack.*;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
 import Mappack.*;
-import PickCharacter.PickCharacter;
+import PickCharacter.*;
 
 //import SQLpack.*;
 import java.io.*;
