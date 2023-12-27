@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 //import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame {
-    public static void main(String[] args) {
+    public static void enterMap() {
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
     }

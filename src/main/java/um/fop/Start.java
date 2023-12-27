@@ -1,7 +1,8 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 import Entitypack.*;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
+import Mappack.MainFrame;
 import PickCharacter.PickCharacter;
 
 //import SQLpack.*;

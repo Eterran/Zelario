@@ -8,7 +8,6 @@ public class PickCharacter {
 	public static int heroChoice = -1;
 
 	public static void pickCharacterMenu() throws FileNotFoundException {
-		// TODO Auto-generated method stub
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -71,8 +70,6 @@ public class PickCharacter {
 	}
 
 	public static void PickRogue() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -135,8 +132,6 @@ public class PickCharacter {
 	}
 
 	public static void PickArcher() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -203,8 +198,6 @@ public class PickCharacter {
 	}
 
 	public static void PickMage() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -267,8 +260,6 @@ public class PickCharacter {
 	}
 
 	public static void PickWarrior() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -331,8 +322,6 @@ public class PickCharacter {
 	}
 
 	public static void PickPaladin() throws FileNotFoundException {
-		// TODO Auto-generated method stub
-
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {

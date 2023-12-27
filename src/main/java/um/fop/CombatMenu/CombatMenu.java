@@ -1,8 +1,6 @@
 package CombatMenu;
 
-import Entitypack.Entity;
-import Entitypack.Playerpack.*;
-import Entitypack.Monsterpack.*;
+import Entitypack.*;
 
 import java.io.IOException;
 
