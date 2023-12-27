@@ -233,31 +233,30 @@ public class Entity {
         HP = newHP;
     }
     
-    public void healing() {
-        this.HP +=50;
-         if(this.getHP() > this.getMaxHP()){
+    public int healing() {
+        int temp = (int) (this.getMaxHP() * 0.05);
+        this.HP += temp;
+        if(this.getHP() > this.getMaxHP()){
             this.setHP(this.getMaxHP());
-         }
-         else{
+        }
+        else{
             this.setHP(this.getHP());
-         }
+        }
+        return temp;
     }
 
-
     public void defend(Entity target) {
-        this.applyStatus(Status.WARRIORDMGRESIST, 3);
+        this.applyStatus(Status.WARRIORDMGRESIST, 1);
     } 
 
     public void setMP(int newMP){
         MP = newMP;
-
     }
 
     public boolean checkMana(int mana) {
         if (this.getMP() >= mana) {
             return true;
         } else {
-            
             return false;
         }
     }
@@ -270,7 +269,6 @@ public class Entity {
          else{
             setMP(this.getMP());
          }
-
     }
 
     public int useSkill1(Entity target){

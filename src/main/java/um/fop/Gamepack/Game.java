@@ -54,7 +54,7 @@ public class Game {
                             endTurn();
                             break;
                         case 2:
-                            // player.defend(monster);
+                            player.defend(monster);
                             endTurn();
                             break;
                         case 3:
