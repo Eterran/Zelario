@@ -22,6 +22,8 @@ public class Mage extends Player {
                     this.name = stats[0];
                     this.HP = Integer.parseInt(stats[1]);
                     this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
                     this.physicalAttack = Integer.parseInt(stats[3]);
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
@@ -32,7 +34,6 @@ public class Mage extends Player {
           }catch(FileNotFoundException e){
                System.out.println("File was not found");
           }
-          
           this.skillOneName = "Poison";
           this.skill1Description = "Monster will be poisoned for 2 rounds.";
           this.skillTwoName = "Fireball";

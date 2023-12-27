@@ -1,7 +1,5 @@
 package CombatMenu;
 
-import java.util.Scanner;
-
 import Entitypack.Entity;
 import Entitypack.Playerpack.*;
 import Entitypack.Monsterpack.*;

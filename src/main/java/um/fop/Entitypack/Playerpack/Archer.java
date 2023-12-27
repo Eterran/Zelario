@@ -21,6 +21,8 @@ public class Archer extends Player {
                     this.name = stats[0];
                     this.HP = Integer.parseInt(stats[1]);
                     this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
                     this.physicalAttack = Integer.parseInt(stats[3]);
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);

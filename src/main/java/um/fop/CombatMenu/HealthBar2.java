@@ -6,6 +6,7 @@ public class HealthBar2 {
     	
     	int playerHealth= player.getHP();
         int playerMaxHealth= player.getMaxHP(); 
+        System.out.println("Player max health: " + playerMaxHealth);
         int barLength = 30; // Adjust the length of the bar as needed
         int filledBar = (int) (barLength * ((double) playerHealth / playerMaxHealth));
 
