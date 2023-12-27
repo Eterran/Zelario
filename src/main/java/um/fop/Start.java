@@ -2,7 +2,7 @@
 import Entitypack.*;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
-import Mappack.MainFrame;
+import Mappack.*;
 import PickCharacter.PickCharacter;
 
 //import SQLpack.*;
@@ -107,29 +107,34 @@ public class Start {
         } catch (SQLException e) {
             System.out.println("Unable to establish connection with the server.");
         }*/
-        while(PickCharacter.heroChoice == -1){
-            try {
-                PickCharacter.pickCharacterMenu();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found.");
-            }
-        }
-        Entity player;
-        if(PickCharacter.heroChoice == 1){
-            player = new Rogue();
-        } else if(PickCharacter.heroChoice == 2){
-            player = new Warrior();
-        } else if(PickCharacter.heroChoice == 3){
-            player = new Archer();
-        } else if(PickCharacter.heroChoice == 4){
-            player = new Mage();
-        } else {
-            player = new Paladin();
-        }
+        // while(PickCharacter.heroChoice == -1){
+        //     try {
+        //         PickCharacter.pickCharacterMenu();
+        //     } catch (FileNotFoundException e) {
+        //         System.out.println("File not found.");
+        //     }
+        // }
+        // Entity player;
+        // if(PickCharacter.heroChoice == 1){
+        //     player = new Rogue();
+        // } else if(PickCharacter.heroChoice == 2){
+        //     player = new Warrior();
+        // } else if(PickCharacter.heroChoice == 3){
+        //     player = new Archer();
+        // } else if(PickCharacter.heroChoice == 4){
+        //     player = new Mage();
+        // } else {
+        //     player = new Paladin();
+        // }
+        // Game game = new Game(player);
+        // while(true){
+        //     game.beginCombat(player, game.spawnRandom());
+        // }
+        MainFrame.enterMap();
+        Entity player = new Rogue();
         Game game = new Game(player);
         while(true){
             game.beginCombat(player, game.spawnRandom());
         }
-        
     }
 }
