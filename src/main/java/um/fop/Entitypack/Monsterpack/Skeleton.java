@@ -6,6 +6,8 @@ public class Skeleton extends Monster{
         this.name = "Skeleton";
         this.HP = 60;
         this.MP = 0;
+        this.maxHP = this.HP;
+        this.maxMP = this.MP;
         this.physicalAttack = 12;
         this.magicalAttack = 0;
         this.physicalDefence = 7;

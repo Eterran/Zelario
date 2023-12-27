@@ -8,6 +8,8 @@ public class Witch extends Monster {
           this.name = "Witch";
           this.HP = 50;
           this.MP = 80;
+          this.maxHP = this.HP;
+          this.maxMP = this.MP;
           this.physicalAttack = 8;
           this.magicalAttack = 20;
           this.physicalDefence = 6;

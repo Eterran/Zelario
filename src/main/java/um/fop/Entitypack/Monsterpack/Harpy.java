@@ -8,6 +8,8 @@ public class Harpy extends Monster {
         this.name = "Harpy";
         this.HP = 60;
         this.MP = 20;
+        this.maxHP = this.HP;
+        this.maxMP = this.MP;
         this.physicalAttack = 14;
         this.magicalAttack = 10;
         this.physicalDefence = 8;

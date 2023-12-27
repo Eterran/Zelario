@@ -36,10 +36,10 @@ public class Entity {
 
     public Entity() {
         this.name = "Default Entity";
-        this.maxHP = 100;
-        this.maxMP = 100;
-        this.HP = maxHP;
-        this.MP = maxMP;
+        this.maxHP = -1;
+        this.maxMP = -1;
+        this.HP = this.maxHP;
+        this.MP = this.maxMP;
         this.physicalAttack = -1;
         this.magicalAttack = -1;
         this.physicalDefence = -1;
@@ -89,17 +89,17 @@ public class Entity {
     public String getName() {
         return this.name;
     }
-    public int getMaxHP() {
-        return this.maxHP;
-    }
-    public int getMaxMP() {
-        return this.maxMP;
-    }
     public int getHP() {
         return this.HP;
     }
     public int getMP() {
         return this.MP;
+    }
+    public int getMaxHP() {
+        return this.maxHP;
+    }
+    public int getMaxMP() {
+        return this.maxMP;
     }
     public int getPhysicalAttack() {
         // if weakened

@@ -104,7 +104,7 @@ public class Start {
         } catch (SQLException e) {
             System.out.println("Unable to establish connection with the server.");
         }*/
-        Entity player = new Paladin();
+        Entity player = new Warrior();
         Game game = new Game(player);
         while(true){
             game.beginCombat(player, game.spawnRandom());
