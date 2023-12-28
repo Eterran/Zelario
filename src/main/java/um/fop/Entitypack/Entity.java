@@ -233,6 +233,18 @@ public class Entity {
         HP = newHP;
     }
     
+    public void setCDSkill1(int newCD){
+        CDSkill1 = newCD;
+    }
+
+     public void setCDSkill2(int newCD){
+        CDSkill2 = newCD;
+    }
+
+     public void setCDSkill3(int newCD){
+        CDSkill3 = newCD;
+    }
+
     public void healing() {
         this.HP +=50;
          if(this.getHP() > this.getMaxHP()){
