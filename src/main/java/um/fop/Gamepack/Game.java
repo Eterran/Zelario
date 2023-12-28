@@ -1,6 +1,4 @@
 package Gamepack;
-import Entitypack.Playerpack.Rogue;
-
 
 import java.util.Scanner;
 import Entitypack.*;
@@ -9,48 +7,19 @@ import CombatMenu.CombatMenu;
 
 import java.io.IOException;
 import java.util.Random;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Random;
 
-public class Game extends JFrame {
-    private JLabel combatStatusLabel;
-    int initialLevel;
-    boolean isMonsterAlive = true;
-    boolean turn = true;
-    private JLabel statusLabel;
-    private JLabel newLabel;
-
+public class Game {
     public Game(Entity player) {
-        // 设置窗口的属性
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 400);
-        this.setLayout(new BorderLayout());
-
-        // 创建并设置combatStatusLabel
-        combatStatusLabel = new JLabel("Ready to fight!");
-        this.add(combatStatusLabel, BorderLayout.SOUTH);
-
         turn = true;
         isMonsterAlive = true;
         initialLevel = player.getLevel();
-
-        this.setVisible(true);
-
-        newLabel = new JLabel();
-        add(newLabel);
     }
-    private void updateCombatStatus(String text) {
-        SwingUtilities.invokeLater(() -> {
-            combatStatusLabel.setText(text);
-        });
-    }
+    int initialLevel;
+    boolean isMonsterAlive = true;
+    boolean turn = true;
 
     public void beginCombat(Entity player, Entity monster) {
-        statusLabel = new JLabel();
-        add(statusLabel);
-        updateCombatStatus("You entered a combat with a " + monster.getName());
+        System.out.println("You entered a combat with a " + monster.getName());
         Scanner s = new Scanner(System.in);
         turn = true;
         isMonsterAlive = true;
@@ -58,13 +27,14 @@ public class Game extends JFrame {
         while (isMonsterAlive) {
             try{
                 CombatMenu.displayCombatMenu(player,monster);
-            }catch(IOException e){
+                Thread.sleep(100);
+            }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
             }
             if(checkWinLose(player, monster) != 0){
                 return;
             }
-
+            
             if (!player.isFrozen && !player.isStunned) {
                 while (turn) {
                     int choice;
@@ -73,19 +43,18 @@ public class Game extends JFrame {
                             choice = Integer.parseInt(s.nextLine());
                             break;
                         } catch (Exception e) {
-                            updateCombatStatus("Invalid input");
+                            System.out.println("Invalid input");
                             s.nextLine();
                         }
                     }
                     int monsterPreviousHP = monster.getHP();
                     switch (choice) {
                         case 1:
-                            updateCombatStatus("You hit the " + monster.getName() + " for "
+                            System.out.println("You hit the " + monster.getName() + " for "
                                     + player.normalAttack(monster) + "HP!");
                             endTurn();
                             break;
                         case 2:
-                            updateCombatStatus("You brace for a hit!");
                             player.defend(monster);
                             endTurn();
                             break;
@@ -99,86 +68,91 @@ public class Game extends JFrame {
                             break;
                         case 5:
                             if (!player.isSkill1Unlocked) {
-                                updateCombatStatus("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
-
+                            
                             if (player.getCDSkill1() == 0 && player.checkMana(player.getSkill1Mp())) { //cd remain 4
                                 if (!player.isSilenced) {
                                     player.useSkill1(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
-                                        updateCombatStatus("You used " + player.getSkillOneName()
+                                        System.out.println("You used " + player.getSkillOneName()
                                                 + " and hit " + monster.getName() + " for "
                                                 + (monsterPreviousHP - monster.getHP()) + "HP!");
                                     else
-                                        updateCombatStatus("You used " + player.getSkillOneName()
+                                        System.out.println("You used " + player.getSkillOneName()
                                                 + " and buff youself for " + player.getSkill1() + "ATK!");
                                     endTurn();
                                 } else {
-                                    updateCombatStatus("You are silenced!");
+                                    System.out.println("You are silenced!");
                                 }
                             } else {
-                                updateCombatStatus("Current MP: " + player.getMP()); // //chechking 将int转换为String的隐式转换
-                                updateCombatStatus("Skill 1 MP Cost: " + player.getSkill1Mp()); // //chechking
-                                updateCombatStatus("Current Skill 1 Cooldown: " + player.getCDSkill1()); // checking current cd
-                                updateCombatStatus("Your skill is not ready yet!");
+                                //System.out.println(player.getMP());//chechking
+                                //System.out.println(player.getSkill1Mp());//chechking
+                                //System.out.println(player.getCDSkill1());//checking current cd
+                                if(player.getMP() < player.getSkill1Mp()){
+                                    System.out.println("You do not have enough mana!");
+                                }
+                                else if(player.getCDSkill1() != 0){
+                                    System.out.println("Your skill is not ready yet!");
+                                }
                             }
                             break;
                         case 6:
                             if (!player.isSkill2Unlocked) {
-                                updateCombatStatus("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
                             if (player.getCDSkill2() == 0 && player.checkMana(player.getSkill1Mp())) {
                                 if (!player.isSilenced) {
                                     player.useSkill2(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
-                                        updateCombatStatus("You used " + player.getSkillTwoName()
+                                        System.out.println("You used " + player.getSkillTwoName()
                                                 + " and hit " + monster.getName() + " for "
                                                 + (monsterPreviousHP - monster.getHP()) + "HP!");
                                     else
-                                        updateCombatStatus("You used " + player.getSkillTwoName()
+                                        System.out.println("You used " + player.getSkillTwoName()
                                                 + " and buff youself for " + player.getSkill2() + "ATK!");
                                     endTurn();
                                 } else {
-                                    updateCombatStatus("You are silenced!");
+                                    System.out.println("You are silenced!");
                                 }
                             } else {
-                                updateCombatStatus("Your skill is not ready yet!");
+                                System.out.println("Your skill is not ready yet!");
                             }
                             break;
                         case 7:
                             if (!player.isSkill3Unlocked) {
-                                updateCombatStatus("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
                             if (player.getCDSkill3() == 0 && player.checkMana(player.getSkill1Mp())) {
                                 if (!player.isSilenced) {
                                     player.useSkill3(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP))
-                                        updateCombatStatus("You used " + player.getSkillThreeName()
+                                        System.out.println("You used " + player.getSkillThreeName()
                                                 + " and hit " + monster.getName() + " for "
                                                 + (monsterPreviousHP - monster.getHP()) + "HP!");
                                     else
-                                        updateCombatStatus("You used " + player.getSkillThreeName()
+                                        System.out.println("You used " + player.getSkillThreeName()
                                                 + " and buff youself for " + player.getSkill1() + "ATK!");
                                     endTurn();
                                 } else {
-                                    updateCombatStatus("You are silenced!");
+                                    System.out.println("You are silenced!");
                                 }
                             } else {
-                                updateCombatStatus("Your skill is not ready yet!");
+                                System.out.println("Your skill is not ready yet!");
                             }
                             break;
                         default:
-                            updateCombatStatus("Invalid input");
+                            System.out.println("Invalid input");
                     }
                 }
             } else if(player.isFrozen) {
-                updateCombatStatus("You are frozen!");
+                System.out.println("You are frozen!");
                 endTurn();
             } else if(player.isStunned) {
-                updateCombatStatus("You are stunned!");
+                System.out.println("You are stunned!");
                 endTurn();
             }
             if(checkWinLose(player, monster) != 0){
@@ -188,43 +162,46 @@ public class Game extends JFrame {
                 if (!turn && isMonsterAlive) {
                     Random r = new Random();
                     int enemyChoice = r.nextInt(99);
-                    if (monster.getSkill1() == -1 && monster.checkMana(monster.getSkill1Mp())) {
-                        updateCombatStatus(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
+                    if (monster.getSkill1() == -1) {
+                        System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                         endTurn();
-                    } else if (monster.getSkill2() != -1 && monster.checkMana(monster.getSkill1Mp())) {
+                    } else if (monster.getSkill1() != -1) {
                         if (enemyChoice < 40) {
-                            updateCombatStatus(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
+                            System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
                         } else if (enemyChoice < 70) {
-                            if (monster.getCDSkill1() == 0)
-                                monster.useSkill1(player);
+                            if (monster.getCDSkill1() == 0 && monster.checkMana(monster.getSkill1Mp()))
+                                System.out.println(
+                                        monster.getName() + " used " + monster.getSkillOneName() 
+                                        + "hits you for " + monster.useSkill1(player) + "HP!");
                             else
-                                updateCombatStatus(
+                                System.out.println(
                                         monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
                         } else if (enemyChoice < 100) {
                             if (monster.getCDSkill2() == 0)
-                                monster.useSkill2(player);
+                                System.out.println(
+                                        monster.getName() + " used " + monster.getSkillTwoName() 
+                                        + "hits you for " + monster.useSkill2(player) + "HP!");
                             else
-                                updateCombatStatus(
+                                System.out.println(
                                         monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
                         }
                     }
                 }
             } else if(monster.isFrozen){
-                updateCombatStatus(
+                System.out.println(
                         monster.getName() + " is frozen and cannot move! ");
                 endTurn();
             } else if(monster.isStunned){
-                updateCombatStatus(
+                System.out.println(
                         monster.getName() + " is stunned and cannot move! ");
                 endTurn();
             }
             CDandStatus(player, monster);
         }
     }
-
     public void CDandStatus(Entity player, Entity monster) {
         player.CDDecrement();
         monster.CDDecrement();
@@ -232,24 +209,26 @@ public class Game extends JFrame {
         monster.applyEffects();
         player.tickStatus();
         monster.tickStatus();
+        player.recoverMana();
+        monster.recoverMana();
     }
     public void endTurn() {
         turn = !turn;
     }
     public void winCombat(Entity player, Entity monster) {
         // displayWinCombat(player.gainEXP(monster)); // win screen?
-        updateCombatStatus("You have defeated " + monster.getName());
-        updateCombatStatus("You receive " + player.gainEXP(monster) + "EXP!");
+        System.out.println("You have defeated " + monster.getName());
+        System.out.println("You receive " + player.gainEXP(monster) + "EXP!");
         player.clearAllStatus();
         player.levelUp();
         if(initialLevel < player.getLevel()){
-            updateCombatStatus("You are now Level " + player.getLevel());
+            System.out.println("You are now Level " + player.getLevel());
         }
         isMonsterAlive = false;
     }
     public void loseCombat() {
         // displayLoseCombat(); // how to handle losing?
-        updateCombatStatus("You lost!");
+        System.out.println("You lost!");
         isMonsterAlive = false;
     }
     public int checkWinLose(Entity player, Entity monster) {
@@ -277,23 +256,5 @@ public class Game extends JFrame {
         } else {
             return new Harpy();
         }
-
-    }
-    public void updateStatusLabel(String message) {
-        SwingUtilities.invokeLater(() -> {
-            statusLabel.setText(message);
-        });
-    }
-    public void someMethod() {
-        updateStatusLabel("Some message");
-    }
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Entity player = new Rogue(); // 假设你有一个名为Rogue的Entity子类
-            Game gameFrame = new Game(player);
-            Entity mosnter = new Harpy();
-            gameFrame.beginCombat(player, mosnter);
-        });
     }
 }
-
