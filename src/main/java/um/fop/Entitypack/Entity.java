@@ -261,7 +261,7 @@ public class Entity {
         }
     }
 
-    public void RecoverMana(){
+    public void recoverMana(){
          this.MP +=20;
          if(this.getMP() > this.getMaxMP()){
             setMP(this.getMaxMP());
