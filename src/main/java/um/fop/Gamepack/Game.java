@@ -20,12 +20,12 @@ public class Game extends JFrame {
     boolean isMonsterAlive = true;
     boolean turn = true;
     private JLabel statusLabel;
-
+    private JLabel newLabel;
 
     public Game(Entity player) {
         // 设置窗口的属性
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(40, 40);
+        this.setSize(400, 400);
         this.setLayout(new BorderLayout());
 
         // 创建并设置combatStatusLabel
@@ -37,6 +37,9 @@ public class Game extends JFrame {
         initialLevel = player.getLevel();
 
         this.setVisible(true);
+
+        newLabel = new JLabel();
+        add(newLabel);
     }
     private void updateCombatStatus(String text) {
         SwingUtilities.invokeLater(() -> {
@@ -82,7 +85,8 @@ public class Game extends JFrame {
                             endTurn();
                             break;
                         case 2:
-                            // player.defend(monster);
+                            updateCombatStatus("You brace for a hit!");
+                            player.defend(monster);
                             endTurn();
                             break;
                         case 3:
@@ -287,6 +291,8 @@ public class Game extends JFrame {
         SwingUtilities.invokeLater(() -> {
             Entity player = new Rogue(); // 假设你有一个名为Rogue的Entity子类
             Game gameFrame = new Game(player);
+            Entity mosnter = new Harpy();
+            gameFrame.beginCombat(player, mosnter);
         });
     }
 }
