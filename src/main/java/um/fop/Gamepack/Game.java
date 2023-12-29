@@ -8,6 +8,8 @@ import CombatMenu.CombatMenu;
 import java.io.IOException;
 import java.util.Random;
 import javax.swing.*;
+import Entitypack.Entity;
+
 
 public class Game {
     public Game(Entity player) {
@@ -253,15 +255,15 @@ public class Game {
         Random r = new Random();
         int rand = r.nextInt(100);
         if(rand < 27){
-            return new Goblin();
+            return new Goblin(Entity player);
         } else if (rand < 54){
-            return new Orc();
+            return new Orc(Entity player);
         } else if (rand < 81){
-            return new Skeleton();
+            return new Skeleton(Entity player);
         } else if(rand < 90){
-            return new Witch();
+            return new Witch(Entity player);
         } else {
-            return new Harpy();
+            return new Harpy(Entity player);
         }
     }
 }
