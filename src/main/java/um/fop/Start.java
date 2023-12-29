@@ -1,9 +1,8 @@
-import java.util.Scanner;
-
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 import java.lang.Thread.*;
+import javax.swing.text.*;
 
 import Entitypack.*;
 import Entitypack.Monsterpack.Harpy;
@@ -12,7 +11,8 @@ import Gamepack.*;
 import Gamepack.ConsoleToGUI.CustomOutputStream;
 import Mappack.*;
 import PickCharacter.*;
-//import SQLpack.*;
+
+import SQLpack.*;
 import java.io.*;
 //import java.sql.*;
 
@@ -22,12 +22,16 @@ public class Start {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 780);
 
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.setBackground(Color.BLACK);
-        textArea.setForeground(Color.WHITE);
-        textArea.setBorder(null);
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setBackground(Color.BLACK);
+        textPane.setForeground(Color.WHITE);
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        // Create a style object and then set the style attributes
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet red = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.RED);
+        AttributeSet white = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.WHITE);
 
         JTextField userInputField = new JTextField(20);
         userInputField.setBackground(Color.BLACK);
@@ -35,7 +39,7 @@ public class Start {
         userInputField.setBorder(null); 
         userInputField.setFont(new Font("Monospaced", Font.PLAIN, 14)); 
 
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        JScrollPane scrollPane = new JScrollPane(textPane);
         scrollPane.setBorder(null);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -44,7 +48,7 @@ public class Start {
         frame.getContentPane().add(scrollPane, "Center");
         
         // Redirecting System.out to the text area
-        PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
+        PrintStream printStream = new PrintStream(new CustomOutputStream(textPane));
         System.setOut(printStream);
 
         // Panel for user input
@@ -55,11 +59,11 @@ public class Start {
         ConsoleToGUI consoleToGUI = new ConsoleToGUI(userInputField);
 
         // Adding components to the frame
-        frame.getContentPane().add(new JScrollPane(textArea), "Center");
+        frame.getContentPane().add(new JScrollPane(textPane), "Center");
         frame.getContentPane().add(inputPanel, "South");
         frame.setVisible(true);
 
-        String username = "null", pw = "null";
+        // String username = "null", pw = "null";
         // Connection conn = null;
         // try {
         //     conn = SQL.getConnection();
@@ -181,7 +185,7 @@ public class Start {
 
         while(PickCharacter.heroChoice == -1){
             try {
-                PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+                PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
             } catch (FileNotFoundException e) {
                 System.out.println("File not found.");
             }

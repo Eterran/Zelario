@@ -1,4 +1,4 @@
-package Gamepack;
+package UIpack;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
