@@ -20,7 +20,7 @@ public class Game {
     boolean turn = true;
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane) {
-        System.out.println("You entered a combat with a " + monster.getName());
+        System.out.println("You entered a combat with " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
          System.out.println("+");

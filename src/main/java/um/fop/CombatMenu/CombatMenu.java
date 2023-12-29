@@ -2,6 +2,7 @@ package CombatMenu;
 
 import Entitypack.*;
 import UIpack.ColorAttributes;
+import Entitypack.Monsterpack.*;
 
 import java.io.IOException;
 
@@ -24,20 +25,23 @@ public class CombatMenu {
 			System.out.print("-");
 		System.out.println("+");
 		System.out.println();
+		
+		System.out.printf("%-60.8s"+"             ",player.getName());
+		System.out.printf("%s%n",monster.getName());
+		System.out.println("");
 
 		try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), "Red Text\n", ColorAttributes.RED);
-            doc.insertString(doc.getLength(), "White Text\n", ColorAttributes.WHITE);
+            doc.insertString(doc.getLength(), "Level  : ", ColorAttributes.YELLOW);
+			doc.insertString(doc.getLength(), String.format("%3d", player.getLevel()), ColorAttributes.YELLOW);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-		System.out.print(" \033[0;33m Level : " + player.getLevel());
 
 		System.out.println();
 
 		HealthBar2 b = new HealthBar2(); // HPbar for hero
-		b.HeroHealthBar(player);
+		b.HeroHealthBar(player,textPane);
 
 		for (int i = 0; i < 11; i++)
 			System.out.print(" ");
@@ -46,12 +50,12 @@ public class CombatMenu {
 		for (int i = 0; i < 11; i++)
 			System.out.print(" ");
 
-		b.MonsterHealthBar(monster);
+		b.MonsterHealthBar(monster,textPane);
 
 		System.out.println();// HPbar for monster
 
 		ManaBar c = new ManaBar();
-		c.HeroManaBar(player);
+		c.HeroManaBar(player,textPane);
 		for (int i = 0; i < 11; i++)
 			System.out.print(" ");
 
@@ -59,7 +63,7 @@ public class CombatMenu {
 		for (int i = 0; i < 11; i++)
 			System.out.print(" ");
 
-		c.MonsterManaBar(monster);
+		c.MonsterManaBar(monster,textPane);
 		System.out.println();
 		System.out.println();
 		System.out.print("+ ");
@@ -73,44 +77,108 @@ public class CombatMenu {
 		System.out.println(" 3. Escape");
 		System.out.println(" 4. Heal");
 
-		if (player.isSkill1Unlocked == true) {
-			System.out.println("\033[0m \033[0;32m5. " + player.getSkillOneName() + " \u001B[3m\t\t"
-					+ player.getSkill1Description());
-			System.out.print("   \t\t\tRequires " + player.getSkill1Mp() + " mana");
-			System.out.println("\t\tCooldown: " + player.getCDSkill1() + "/" + player.getMaxCDSkill1() + "\033[0m");
-			System.out.println();
+		if (player.isSkill1Unlocked == false) {
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), " 5. ", ColorAttributes.GREEN);
+			doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillOneName()), ColorAttributes.ORANGE);			
+			doc.insertString(doc.getLength(), "\t"+player.getSkill1Description(), ColorAttributes.CYAN);
+			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getSkill1Mp()), ColorAttributes.BLUE);			
+			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill1()), ColorAttributes.ORANGE);	
+			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill1()), ColorAttributes.ORANGE);
+			System.out.println();	
+
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+		
+		
 		}
 
 		else {
-			System.out.println("\033[0m \033[0;90m5. " + player.getSkillOneName() + " \u001B[3m\t*Locked*");
-			System.out.println();
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), player.getSkillOneName(), ColorAttributes.LIGHT_GRAY);	
+			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
+		
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+			
 		}
 
-		if (player.isSkill2Unlocked == true) {
-			System.out.println("\033[0m \033[0;35m6. " + player.getSkillTwoName() + " \u001B[3m\t\t"
-					+ player.getSkill2Description());
-			System.out.print("   \t\t\tRequires " + player.getSkill2Mp() + " mana");
-			System.out.println("\t\tCooldown: " + player.getCDSkill2() + "/" + player.getMaxCDSkill2() + "\033[0m");
-			System.out.println();
+		if (player.isSkill2Unlocked == false) {
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), " 6. ", ColorAttributes.GREEN);
+			doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillTwoName()), ColorAttributes.ORANGE);			
+			doc.insertString(doc.getLength(), "\t"+player.getSkill2Description(), ColorAttributes.CYAN);
+			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getSkill2Mp()), ColorAttributes.BLUE);			
+			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill2()), ColorAttributes.ORANGE);	
+			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill2()), ColorAttributes.ORANGE);
+			System.out.println();	
 
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+		
+		
 		}
 
 		else {
-			System.out.println("\033[0m \033[0;90m6. " + player.getSkillTwoName() + " \u001B[3m\t*Locked*");
-			System.out.println();
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), player.getSkillTwoName(), ColorAttributes.LIGHT_GRAY);	
+			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
+		
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
 		}
 
-		if (player.isSkill3Unlocked == true) {
-			System.out.println("\033[0m \033[0;34m7. " + player.getSkillThreeName() + " \u001B[3m\t\t"
-					+ player.getSkill3Description());
-			System.out.print("   \t\t\tRequires " + player.getSkill3Mp() + " mana");
-			System.out.println("\t\tCooldown: " + player.getCDSkill3() + "/" + player.getMaxCDSkill3() + "\033[0m");
-			System.out.println();
-		} else {
-			System.out.println("\033[0m \033[0;90m7. " + player.getSkillThreeName() + " \u001B[3m\t*Locked* \033[0m");
-			System.out.println();
+		if (player.isSkill3Unlocked == false) {
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), " 7. ", ColorAttributes.GREEN);
+			doc.insertString(doc.getLength(), String.format("%3.20s ", player.getSkillThreeName()), ColorAttributes.ORANGE);			
+			doc.insertString(doc.getLength(), "\t"+player.getSkill3Description(), ColorAttributes.CYAN);
+			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getSkill3Mp()), ColorAttributes.BLUE);			
+			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
+			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill3()), ColorAttributes.ORANGE);	
+			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
+			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill3()), ColorAttributes.ORANGE);
+			System.out.println();	
+
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+		
+		
 		}
 
+		else {
+			try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), player.getSkillThreeName(), ColorAttributes.LIGHT_GRAY);	
+			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
+		
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+		}
 		System.out.println();
 		System.out.print("+");
 		width = 123;
