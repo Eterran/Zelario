@@ -4,16 +4,16 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import Gamepack.ConsoleToGUI;
+import UIpack.ColorAttributes;
+
 import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 import javax.swing.text.*;
 import java.awt.Color;
 
 public class PickCharacter {
 	public static int heroChoice = -1;
 
-	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -22,6 +22,14 @@ public class PickCharacter {
 		}
 		sc.close();
 		System.out.print("+");
+
+		try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "Red Text\n", ColorAttributes.RED);
+            doc.insertString(doc.getLength(), "White Text\n", ColorAttributes.WHITE);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
 
 		int width = 86;
 		for (int a = 0; a < width / 2; a++)
@@ -64,19 +72,19 @@ public class PickCharacter {
         }
 		
 		if (input.equals("1")) {
-			PickRogue(consoleToGUI, userInputField, textArea);
+			PickRogue(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("2")) {
-			PickWarrior(consoleToGUI, userInputField, textArea);
+			PickWarrior(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("3")) {
-			PickArcher(consoleToGUI, userInputField, textArea);
+			PickArcher(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("4")) {
-			PickMage(consoleToGUI, userInputField, textArea);
+			PickMage(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("5")) {
-			PickPaladin(consoleToGUI, userInputField, textArea);
+			PickPaladin(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -134,11 +142,11 @@ public class PickCharacter {
 			heroChoice = 1;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textArea);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -198,11 +206,11 @@ public class PickCharacter {
 			heroChoice = 3;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textArea);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -260,11 +268,11 @@ public class PickCharacter {
 			heroChoice = 4;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textArea);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -322,11 +330,11 @@ public class PickCharacter {
 			heroChoice = 2;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textArea);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextArea textArea) throws FileNotFoundException {
+	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -384,7 +392,7 @@ public class PickCharacter {
 			heroChoice = 5;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textArea);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 	public int getHeroChoice() {

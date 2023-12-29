@@ -1,22 +1,37 @@
 package Gamepack;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.awt.event.*;
 
 public class ConsoleToGUI {
     public static class CustomOutputStream extends OutputStream {
-        private JTextArea textArea;
+        private JTextPane textPane;
 
-        public CustomOutputStream(JTextArea textArea) {
-            this.textArea = textArea;
+        public CustomOutputStream(JTextPane textPane) {
+            this.textPane = textPane;
         }
         @Override
-        public void write(int b) {
-            textArea.append(String.valueOf((char) b));
-            textArea.setCaretPosition(textArea.getDocument().getLength());
+    public void write(int b) {
+        // Convert the byte to a string
+        String text = String.valueOf((char) b);
+
+        // Get the StyledDocument from the JTextPane
+        StyledDocument doc = textPane.getStyledDocument();
+
+        // Append the text to the StyledDocument
+        try {
+            doc.insertString(doc.getLength(), text, null);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
         }
+    // Scroll the JTextPane to the end of the text
+    textPane.setCaretPosition(doc.getLength());
     }
+}
     
     private String userInput = null;
     private final Object lock = new Object();
