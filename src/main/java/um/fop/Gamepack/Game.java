@@ -20,6 +20,11 @@ public class Game {
 
     public void beginCombat(Entity player, Entity monster) {
         System.out.println("You entered a combat with a " + monster.getName());
+        for (int i = 0; i < 123; i++)
+        System.out.print("-");
+         System.out.println("+");
+        System.out.println();
+        
         Scanner s = new Scanner(System.in);
         turn = true;
         isMonsterAlive = true;
