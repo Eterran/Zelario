@@ -3,18 +3,20 @@ package PickCharacter;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import Gamepack.ConsoleToGUI;
+import javax.swing.*;
 
 public class PickCharacter {
 	public static int heroChoice = -1;
 
-	public static void pickCharacterMenu() throws FileNotFoundException {
+	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
 			System.out.println(data);
 		}
-
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -44,32 +46,33 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int input;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			input = read.nextInt();
-		} while (input < 1 || input > 5);
-		if (input == 1) {
-			PickRogue();
-		} else if (input == 2) {
-			PickWarrior();
-		} else if (input == 3) {
-			PickArcher();
-		} else if (input == 4) {
-			PickMage();
-		} else if (input == 5) {
-			PickPaladin();
+
+		String input = "";
+		try {
+			do {
+				input = consoleToGUI.getNextInput();
+				if (!input.matches("^[1-5]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!input.matches("^[1-5]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		
+		if (input.equals("1")) {
+			PickRogue(consoleToGUI, userInputField);
+		} else if (input.equals("2")) {
+			PickWarrior(consoleToGUI, userInputField);
+		} else if (input.equals("3")) {
+			PickArcher(consoleToGUI, userInputField);
+		} else if (input.equals("4")) {
+			PickMage(consoleToGUI, userInputField);
+		} else if (input.equals("5")) {
+			PickPaladin(consoleToGUI, userInputField);
 		}
-		sc.close();
 	}
 
-	public static void PickRogue() throws FileNotFoundException {
+	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -112,26 +115,26 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int choice;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			choice = read.nextInt();
-		} while (choice < 1 || choice > 2);
-		if (choice == 1) {
+		String choice = "";
+		try {
+			do {
+				choice = consoleToGUI.getNextInput();
+				if (!choice.matches("^[1-2]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!choice.matches("^[1-2]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		if (choice.equals("1")) {
 			heroChoice = 1;
 		}
-		else if (choice == 2) {
-			PickCharacter.pickCharacterMenu();
+		else if (choice.equals("2")) {
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
 		}
 	}
 
-	public static void PickArcher() throws FileNotFoundException {
+	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -176,28 +179,26 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int choice;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			choice = read.nextInt();
-		} while (choice < 1 || choice > 2);
-		if (choice == 1) {
+		String choice = "";
+		try {
+			do {
+				choice = consoleToGUI.getNextInput();
+				if (!choice.matches("^[1-2]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!choice.matches("^[1-2]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		if (choice.equals("1")) {
 			heroChoice = 3;
 		}
-
-		else if (choice == 2) {
-			PickCharacter.pickCharacterMenu();
+		else if (choice.equals("2")) {
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
 		}
-
 	}
 
-	public static void PickMage() throws FileNotFoundException {
+	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -240,26 +241,26 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int choice;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			choice = read.nextInt();
-		} while (choice < 1 || choice > 2);
-		if (choice == 1) {
+		String choice = "";
+		try {
+			do {
+				choice = consoleToGUI.getNextInput();
+				if (!choice.matches("^[1-2]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!choice.matches("^[1-2]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		if (choice.equals("1")) {
 			heroChoice = 4;
 		}
-		else if (choice == 2) {
-			PickCharacter.pickCharacterMenu();
+		else if (choice.equals("2")) {
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
 		}
 	}
 
-	public static void PickWarrior() throws FileNotFoundException {
+	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -302,26 +303,26 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int choice;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			choice = read.nextInt();
-		} while (choice < 1 || choice > 2);
-		if (choice == 1) {
+		String choice = "";
+		try {
+			do {
+				choice = consoleToGUI.getNextInput();
+				if (!choice.matches("^[1-2]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!choice.matches("^[1-2]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		if (choice.equals("1")) {
 			heroChoice = 2;
 		}
-		else if (choice == 2) {
-			PickCharacter.pickCharacterMenu();
+		else if (choice.equals("2")) {
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
 		}
 	}
 
-	public static void PickPaladin() throws FileNotFoundException {
+	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -364,22 +365,22 @@ public class PickCharacter {
 		System.out.println("");
 		System.out.print(">");
 
-		Scanner read = new Scanner(System.in);
-		int choice;
-		do {
-			System.out.print(">");
-			while (!read.hasNextInt()) {
-				System.out.println("Invalid input.");
-				System.out.print(">");
-				read.next();
-			}
-			choice = read.nextInt();
-		} while (choice < 1 || choice > 2);
-		if (choice == 1) {
+		String choice = "";
+		try {
+			do {
+				choice = consoleToGUI.getNextInput();
+				if (!choice.matches("^[1-2]$")) {
+					System.out.println("Invalid input.");
+				}
+			} while (!choice.matches("^[1-2]$"));
+        } catch (InterruptedException e) {
+            
+        }
+		if (choice.equals("1")) {
 			heroChoice = 5;
 		}
-		else if (choice == 2) {
-			PickCharacter.pickCharacterMenu();
+		else if (choice.equals("2")) {
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
 		}
 	}
 	public int getHeroChoice() {
