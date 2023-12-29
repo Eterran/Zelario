@@ -1,19 +1,96 @@
 package Entitypack.Monsterpack;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import Entitypack.*;
 
 public class Harpy extends Monster {
-    public Harpy() {
+    public Harpy(Entity player) {
         super();
-        this.name = "Harpy";
-        this.HP = 60;
-        this.MP = 20;
-        this.maxHP = this.HP;
-        this.maxMP = this.MP;
-        this.physicalAttack = 14;
-        this.magicalAttack = 10;
-        this.physicalDefence = 8;
-        this.magicalDefence = 8;
+        if(player.getLevel() == 1){
+          try{
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+
+      }
+
+      if(player.getLevel() == 20){
+          try{
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy2.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+
+      }
+
+      if(player.getLevel() == 30){
+          try{
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy3.txt"));
+               String temp;
+               String[] stats;
+
+               while(input.hasNextLine()){
+                    temp = input.nextLine();
+                    stats = temp.split(",");
+
+                    this.name = stats[0];
+                    this.HP = Integer.parseInt(stats[1]);
+                    this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
+                    this.physicalAttack = Integer.parseInt(stats[3]);
+                    this.magicalAttack = Integer.parseInt(stats[4]);
+                    this.physicalDefence = Integer.parseInt(stats[5]);
+                    this.magicalDefence = Integer.parseInt(stats[6]);
+               }
+
+
+          }catch(FileNotFoundException e){
+               System.out.println("File was not found");
+          }
+
+      }
         this.skillOneName = "Talon Strike";
         this.skill1Description = "a physical damage strike.";
         this.skillTwoName = "Wind Gust";
@@ -30,6 +107,7 @@ public class Harpy extends Monster {
     }
 
     public int useSkill1(Entity target) {
+        setCDSkill1(this.getMaxCDSkill1());
         this.setMP(this.getMP() - this.getSkill1Mp());
         int dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0)); // player HP
         this.damageDealt(target, dmg);
@@ -37,6 +115,7 @@ public class Harpy extends Monster {
     }
 
     public int useSkill2(Entity target) {
+        setCDSkill2(this.getMaxCDSkill2());
         this.setMP(this.getMP() - this.getSkill2Mp());
         int dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0)); // player HP, and add
         this.damageDealt(target, dmg);

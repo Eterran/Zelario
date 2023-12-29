@@ -34,6 +34,7 @@ public class Mage extends Player {
           }catch(FileNotFoundException e){
                System.out.println("File was not found");
           }
+          
           this.skillOneName = "Poison";
           this.skill1Description = "Monster will be poisoned for 2 rounds.";
           this.skillTwoName = "Fireball";

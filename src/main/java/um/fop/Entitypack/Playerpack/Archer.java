@@ -56,12 +56,14 @@ public class Archer extends Player {
      }
 
      public int useSkill1(Entity target) {
+          setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
           this.applyStatus(Status.ARCHERSKILL1BUFF, 2);
           return getSkill1();
      }
 
      public int useSkill2(Entity target) {
+          setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.damageDealt(target, dmg);
@@ -69,6 +71,7 @@ public class Archer extends Player {
      }
 
      public int useSkill3(Entity target) {
+          setCDSkill3(this.getMaxCDSkill3());
           this.setMP(this.getMP() - this.getSkill3Mp());
           int dmg = this.getSkill3() ;
           this.damageDealt(target, dmg);
