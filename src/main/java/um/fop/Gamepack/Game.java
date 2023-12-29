@@ -11,6 +11,7 @@ import javax.swing.*;
 import Entitypack.Entity;
 
 
+
 public class Game {
     public Game(Entity player) {
         turn = true;
@@ -251,19 +252,19 @@ public class Game {
         }
         return 0;
     }
-    public Entity spawnRandom(){
+    public Entity spawnRandom(Entity player){
         Random r = new Random();
         int rand = r.nextInt(100);
         if(rand < 27){
-            return new Goblin(Entity player);
+            return new Goblin(player);
         } else if (rand < 54){
-            return new Orc(Entity player);
+            return new Orc(player);
         } else if (rand < 81){
-            return new Skeleton(Entity player);
+            return new Skeleton(player);
         } else if(rand < 90){
-            return new Witch(Entity player);
+            return new Witch(player);
         } else {
-            return new Harpy(Entity player);
+            return new Harpy(player);
         }
     }
 }
