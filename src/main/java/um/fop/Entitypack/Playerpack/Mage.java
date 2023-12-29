@@ -11,7 +11,7 @@ public class Mage extends Player {
      public Mage() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Mage.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Mage.txt"));
                String temp;
                String[] stats;
 
@@ -22,6 +22,8 @@ public class Mage extends Player {
                     this.name = stats[0];
                     this.HP = Integer.parseInt(stats[1]);
                     this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
                     this.physicalAttack = Integer.parseInt(stats[3]);
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
@@ -32,7 +34,6 @@ public class Mage extends Player {
           }catch(FileNotFoundException e){
                System.out.println("File was not found");
           }
-          
           this.skillOneName = "Poison";
           this.skill1Description = "Monster will be poisoned for 2 rounds.";
           this.skillTwoName = "Fireball";
@@ -56,7 +57,7 @@ public class Mage extends Player {
      
 
      public int useSkill1(Entity target) {
-
+          setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
@@ -66,6 +67,7 @@ public class Mage extends Player {
      }
 
      public int useSkill2(Entity target) {
+          setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);
@@ -73,6 +75,7 @@ public class Mage extends Player {
      }
 
      public int useSkill3(Entity target) {
+          setCDSkill3(this.getMaxCDSkill3());
           this.setMP(this.getMP() - this.getSkill3Mp());
           int dmg = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
           this.damageDealt(target, dmg);

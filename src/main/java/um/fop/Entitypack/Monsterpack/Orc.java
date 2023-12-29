@@ -6,6 +6,8 @@ public class Orc extends Monster{
         this.name = "Orc";
         this.HP = 70;
         this.MP = 0;
+        this.maxHP = this.HP;
+        this.maxMP = this.MP;
         this.physicalAttack = 15;
         this.magicalAttack = 0;
         this.physicalDefence = 9;

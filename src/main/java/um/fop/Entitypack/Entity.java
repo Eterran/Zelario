@@ -36,10 +36,10 @@ public class Entity {
 
     public Entity() {
         this.name = "Default Entity";
-        this.maxHP = 100;
-        this.maxMP = 100;
-        this.HP = maxHP;
-        this.MP = maxMP;
+        this.maxHP = -1;
+        this.maxMP = -1;
+        this.HP = this.maxHP;
+        this.MP = this.maxMP;
         this.physicalAttack = -1;
         this.magicalAttack = -1;
         this.physicalDefence = -1;
@@ -89,17 +89,17 @@ public class Entity {
     public String getName() {
         return this.name;
     }
-    public int getMaxHP() {
-        return this.maxHP;
-    }
-    public int getMaxMP() {
-        return this.maxMP;
-    }
     public int getHP() {
         return this.HP;
     }
     public int getMP() {
         return this.MP;
+    }
+    public int getMaxHP() {
+        return this.maxHP;
+    }
+    public int getMaxMP() {
+        return this.maxMP;
     }
     public int getPhysicalAttack() {
         // if weakened
@@ -249,32 +249,30 @@ public class Entity {
         this.HP +=50;
          if(this.getHP() > this.getMaxHP()){
             this.setHP(this.getMaxHP());
-         }
-         else{
+        }
+        else{
             this.setHP(this.getHP());
-         }
+        }
+        
     }
 
-
     public void defend(Entity target) {
-        this.applyStatus(Status.WARRIORDMGRESIST, 3);
+        this.applyStatus(Status.WARRIORDMGRESIST, 1);
     } 
 
     public void setMP(int newMP){
         MP = newMP;
-
     }
 
     public boolean checkMana(int mana) {
         if (this.getMP() >= mana) {
             return true;
         } else {
-            
             return false;
         }
     }
 
-    public void RecoverMana(){
+    public void recoverMana(){
          this.MP +=20;
          if(this.getMP() > this.getMaxMP()){
             setMP(this.getMaxMP());
@@ -282,7 +280,6 @@ public class Entity {
          else{
             setMP(this.getMP());
          }
-
     }
 
     public int useSkill1(Entity target){

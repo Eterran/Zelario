@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import Mappack.GameWinForReal;
+//import Mappack.GameWinForReal;
 
 public class ConnectToFight extends JFrame { //override方法重写alt+enter
 
@@ -154,15 +154,19 @@ public class ConnectToFight extends JFrame { //override方法重写alt+enter
                 int dx = 0, dy = 0;
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         dy = -1;
                         break;
                     case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         dy = 1;
                         break;
                     case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_A:
                         dx = -1;
                         break;
                     case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_D:
                         dx = 1;
                         break;
                     case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把

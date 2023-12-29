@@ -3,9 +3,8 @@ package Mappack;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Random;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 
 
 public class GameWinForReal extends JFrame {
@@ -205,15 +204,19 @@ public class GameWinForReal extends JFrame {
                 int dx = 0, dy = 0;
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         dy = -1;
                         break;
                     case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         dy = 1;
                         break;
                     case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_A:
                         dx = -1;
                         break;
                     case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_D:
                         dx = 1;
                         break;
                     case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把

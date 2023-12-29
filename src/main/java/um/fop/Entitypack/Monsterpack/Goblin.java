@@ -6,6 +6,8 @@ public class Goblin extends Monster {
       this.name = "Goblin";
       this.HP = 40;
       this.MP = 0;
+      this.maxHP = this.HP;
+      this.maxMP = this.MP;
       this.physicalAttack = 10;
       this.magicalAttack = 0;
       this.physicalDefence = 5;

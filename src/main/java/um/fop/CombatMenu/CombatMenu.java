@@ -1,10 +1,6 @@
 package CombatMenu;
 
-import java.util.Scanner;
-
-import Entitypack.Entity;
-import Entitypack.Playerpack.*;
-import Entitypack.Monsterpack.*;
+import Entitypack.*;
 
 import java.io.IOException;
 
@@ -60,7 +56,6 @@ public class CombatMenu {
 
 		System.out.println();
 		System.out.println(" 1. Normal Attack");
-
 		System.out.println(" 2. Defend");
 		System.out.println(" 3. Escape");
 		System.out.println(" 4. Heal");

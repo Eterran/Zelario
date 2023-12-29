@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Menu {
+public class LoginMenu {
     public static void startingScreen() throws FileNotFoundException {
 		File file=new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc=new Scanner(file);
@@ -12,7 +12,7 @@ public class Menu {
 			String data=sc.nextLine();
 			System.out.println(data);
 		}
-
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -41,6 +41,5 @@ public class Menu {
 
 	    System.out.println("");
 	    System.out.print(">");
-	    sc.close();
 	}
 }

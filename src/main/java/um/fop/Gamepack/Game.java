@@ -27,7 +27,8 @@ public class Game {
         while (isMonsterAlive) {
             try{
                 CombatMenu.displayCombatMenu(player,monster);
-            }catch(IOException e){  
+                Thread.sleep(100);
+            }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
             }
             if(checkWinLose(player, monster) != 0){
@@ -54,7 +55,7 @@ public class Game {
                             endTurn();
                             break;
                         case 2:
-                            // player.defend(monster);
+                            player.defend(monster);
                             endTurn();
                             break;
                         case 3:
@@ -67,7 +68,7 @@ public class Game {
                             break;
                         case 5:
                             if (!player.isSkill1Unlocked) {
-                                System.out.println("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
                             
@@ -86,15 +87,20 @@ public class Game {
                                     System.out.println("You are silenced!");
                                 }
                             } else {
-                                System.out.println(player.getMP());//chechking
-                                System.out.println(player.getSkill1Mp());//chechking
-                                System.out.println(player.getCDSkill1());//checking current cd
-                                System.out.println("Your skill is not ready yet!");
+                                //System.out.println(player.getMP());//chechking
+                                //System.out.println(player.getSkill1Mp());//chechking
+                                //System.out.println(player.getCDSkill1());//checking current cd
+                                if(player.getMP() < player.getSkill1Mp()){
+                                    System.out.println("You do not have enough mana!");
+                                }
+                                else if(player.getCDSkill1() != 0){
+                                    System.out.println("Your skill is not ready yet!");
+                                }
                             }
                             break;
                         case 6:
                             if (!player.isSkill2Unlocked) {
-                                System.out.println("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
                             if (player.getCDSkill2() == 0 && player.checkMana(player.getSkill1Mp())) {
@@ -117,7 +123,7 @@ public class Game {
                             break;
                         case 7:
                             if (!player.isSkill3Unlocked) {
-                                System.out.println("Invalid input");
+                                System.out.println("You have not unlocked this skill yet!");
                                 break;
                             }
                             if (player.getCDSkill3() == 0 && player.checkMana(player.getSkill1Mp())) {
@@ -156,23 +162,27 @@ public class Game {
                 if (!turn && isMonsterAlive) {
                     Random r = new Random();
                     int enemyChoice = r.nextInt(99);
-                    if (monster.getSkill1() == -1 && monster.checkMana(monster.getSkill1Mp())) {
+                    if (monster.getSkill1() == -1) {
                         System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                         endTurn();
-                    } else if (monster.getSkill2() != -1 && monster.checkMana(monster.getSkill1Mp())) {
+                    } else if (monster.getSkill1() != -1) {
                         if (enemyChoice < 40) {
                             System.out.println(monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
                         } else if (enemyChoice < 70) {
-                            if (monster.getCDSkill1() == 0)
-                                monster.useSkill1(player);
+                            if (monster.getCDSkill1() == 0 && monster.checkMana(monster.getSkill1Mp()))
+                                System.out.println(
+                                        monster.getName() + " used " + monster.getSkillOneName() 
+                                        + "hits you for " + monster.useSkill1(player) + "HP!");
                             else
                                 System.out.println(
                                         monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
                             endTurn();
                         } else if (enemyChoice < 100) {
                             if (monster.getCDSkill2() == 0)
-                                monster.useSkill2(player);
+                                System.out.println(
+                                        monster.getName() + " used " + monster.getSkillTwoName() 
+                                        + "hits you for " + monster.useSkill2(player) + "HP!");
                             else
                                 System.out.println(
                                         monster.getName() + " hits you for " + monster.normalAttack(player) + "HP!");
@@ -199,6 +209,8 @@ public class Game {
         monster.applyEffects();
         player.tickStatus();
         monster.tickStatus();
+        player.recoverMana();
+        monster.recoverMana();
     }
     public void endTurn() {
         turn = !turn;

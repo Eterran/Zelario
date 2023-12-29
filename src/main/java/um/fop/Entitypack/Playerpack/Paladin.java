@@ -9,7 +9,7 @@ public class Paladin extends Player {
      public Paladin() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Paladin.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Paladin.txt"));
                String temp;
                String[] stats;
 
@@ -20,6 +20,8 @@ public class Paladin extends Player {
                     this.name = stats[0];
                     this.HP = Integer.parseInt(stats[1]);
                     this.MP = Integer.parseInt(stats[2]);
+                    this.maxHP = Integer.parseInt(stats[1]);
+                    this.maxMP = Integer.parseInt(stats[2]);
                     this.physicalAttack = Integer.parseInt(stats[3]);
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
