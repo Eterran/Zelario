@@ -204,7 +204,7 @@ public class Start {
         }
         Game game = new Game(player);
         while(true){
-            game.beginCombat(player, new Harpy());
+            game.beginCombat(player, new Harpy(),textPane);
         }
     }
 }

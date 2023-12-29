@@ -7,6 +7,7 @@ import CombatMenu.CombatMenu;
 
 import java.io.IOException;
 import java.util.Random;
+import javax.swing.*;
 
 public class Game {
     public Game(Entity player) {
@@ -18,7 +19,7 @@ public class Game {
     boolean isMonsterAlive = true;
     boolean turn = true;
 
-    public void beginCombat(Entity player, Entity monster) {
+    public void beginCombat(Entity player, Entity monster, JTextPane textPane) {
         System.out.println("You entered a combat with a " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
@@ -31,7 +32,7 @@ public class Game {
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
             try{
-                CombatMenu.displayCombatMenu(player,monster);
+                CombatMenu.displayCombatMenu(player,monster,textPane);
                 Thread.sleep(100);
             }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
