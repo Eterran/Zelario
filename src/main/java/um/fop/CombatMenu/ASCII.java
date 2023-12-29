@@ -19,7 +19,7 @@ public class ASCII {
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString("You                   Enemy", 05, 10);
+        graphics.drawString("You                   enemy", 05, 10);
            
         //save this image
         //ImageIO.write(image, "png", new File("/users/mkyong/ascii-art.png"));
