@@ -1,4 +1,4 @@
-
+package SQLpack;
 import java.io.*; // 导入Java I/O库中所有的类，用于文件操作和对象序列化
 import Entitypack.Entity; // 从Entitypack包导入Entity类
 
@@ -30,7 +30,7 @@ class GameProgress implements Serializable {
     public int getXPosition() { return xPosition; }
     public int getYPosition() { return yPosition; }
 }
-}
+
 
 // 用于保存游戏进度的类
 class SaveGame {
