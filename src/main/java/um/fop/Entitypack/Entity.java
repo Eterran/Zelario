@@ -233,16 +233,27 @@ public class Entity {
         HP = newHP;
     }
     
-    public int healing() {
-        int temp = (int) (this.getMaxHP() * 0.05);
-        this.HP += temp;
-        if(this.getHP() > this.getMaxHP()){
+    public void setCDSkill1(int newCD){
+        CDSkill1 = newCD;
+    }
+
+     public void setCDSkill2(int newCD){
+        CDSkill2 = newCD;
+    }
+
+     public void setCDSkill3(int newCD){
+        CDSkill3 = newCD;
+    }
+
+    public void healing() {
+        this.HP +=50;
+         if(this.getHP() > this.getMaxHP()){
             this.setHP(this.getMaxHP());
         }
         else{
             this.setHP(this.getHP());
         }
-        return temp;
+        
     }
 
     public void defend(Entity target) {

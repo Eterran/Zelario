@@ -34,13 +34,7 @@ public class Archer extends Player {
                System.out.println("File was not found");
           }
           
-          this.name = "Archer";
-          this.HP = 240;
-          this.MP = 60;
-          this.physicalAttack = 65;
-          this.magicalAttack = 50;
-          this.physicalDefence = 45;
-          this.magicalDefence = 20;
+        
           this.skillOneName = "Precise";
           this.skill1Description = "Buff physical attack for 2 rounds.";
           this.skillTwoName = "Rapid shot";
