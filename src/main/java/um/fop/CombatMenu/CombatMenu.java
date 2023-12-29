@@ -1,12 +1,18 @@
 package CombatMenu;
 
 import Entitypack.*;
+import UIpack.ColorAttributes;
 
 import java.io.IOException;
 
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
+
 public class CombatMenu {
 
-	public static void displayCombatMenu(Entity player, Entity monster) throws IOException {
+	public static void displayCombatMenu(Entity player, Entity monster, JTextPane textPane) throws IOException {
 		
 		ASCII a = new ASCII();
 		a.YouEnemy();
@@ -19,6 +25,13 @@ public class CombatMenu {
 		System.out.println("+");
 		System.out.println();
 
+		try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "Red Text\n", ColorAttributes.RED);
+            doc.insertString(doc.getLength(), "White Text\n", ColorAttributes.WHITE);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
 		System.out.print(" \033[0;33m Level : " + player.getLevel());
 
 		System.out.println();

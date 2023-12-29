@@ -4,12 +4,16 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import Gamepack.ConsoleToGUI;
+import UIpack.ColorAttributes;
+
 import javax.swing.*;
+import javax.swing.text.*;
+import java.awt.Color;
 
 public class PickCharacter {
 	public static int heroChoice = -1;
 
-	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -18,6 +22,14 @@ public class PickCharacter {
 		}
 		sc.close();
 		System.out.print("+");
+
+		try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "Red Text\n", ColorAttributes.RED);
+            doc.insertString(doc.getLength(), "White Text\n", ColorAttributes.WHITE);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
 
 		int width = 86;
 		for (int a = 0; a < width / 2; a++)
@@ -43,7 +55,6 @@ public class PickCharacter {
 		for (int a = 0; a < width; a++)
 			System.out.print("-");
 		System.out.println("+");
-		System.out.println("");
 		System.out.print(">");
 
 
@@ -60,19 +71,19 @@ public class PickCharacter {
         }
 		
 		if (input.equals("1")) {
-			PickRogue(consoleToGUI, userInputField);
+			PickRogue(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("2")) {
-			PickWarrior(consoleToGUI, userInputField);
+			PickWarrior(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("3")) {
-			PickArcher(consoleToGUI, userInputField);
+			PickArcher(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("4")) {
-			PickMage(consoleToGUI, userInputField);
+			PickMage(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("5")) {
-			PickPaladin(consoleToGUI, userInputField);
+			PickPaladin(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -100,9 +111,10 @@ public class PickCharacter {
 		System.out.println(" ------");
 		System.out.println();
 
-		System.out.println(" Smite:");
-		System.out.println(" Backstab:");
-		System.out.println(" Shadowstep:");
+		System.out.println(" Smite     : Slash a hit to monster");
+		System.out.println(" Backstab  : The Rogue sneaks behind the target, delivering a devastating backstab, ");
+		System.out.println(" 	     causing extra damage and stunning the enemy for 1 round.");
+		System.out.println(" Shadowstep: The Rogue can evade the next spell or attack from the enemies.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
@@ -112,7 +124,6 @@ public class PickCharacter {
 		System.out.println(" Do you want to pick this character?");
 		System.out.println(" 1. Yes");
 		System.out.println(" 2. No");
-		System.out.println("");
 		System.out.print(">");
 
 		String choice = "";
@@ -130,11 +141,11 @@ public class PickCharacter {
 			heroChoice = 1;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -164,9 +175,10 @@ public class PickCharacter {
 		System.out.println(" ------");
 		System.out.println();
 
-		System.out.println(" Precise: ");
-		System.out.println(" Rapid Arrow:");
-		System.out.println(" Trick Shot:");
+		System.out.println(" Precise    : Buff physical attack for 2 rounds.");
+		System.out.println(" Rapid Arrow: Fires a flurry of arrows at the target, dealing moderate damage.");
+		System.out.println(" Trick Shot : Executes a precise shot that can pierce the enemies, ");
+		System.out.println("	      causing heavy damage to the enemy.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
@@ -176,7 +188,6 @@ public class PickCharacter {
 		System.out.println(" Do you want to pick this character?");
 		System.out.println(" 1. Yes");
 		System.out.println(" 2. No");
-		System.out.println("");
 		System.out.print(">");
 
 		String choice = "";
@@ -194,11 +205,11 @@ public class PickCharacter {
 			heroChoice = 3;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -226,9 +237,10 @@ public class PickCharacter {
 		System.out.println(" ------");
 		System.out.println();
 
-		System.out.println(" Poison: ");
-		System.out.println(" Fireball:");
-		System.out.println(" Frost:");
+		System.out.println(" Poison  : Monster will be poisoned for 2 rounds.");
+		System.out.println(" Fireball: Hurls a fiery projectile at the target, dealing moderate fire damage.");
+		System.out.println(" Frost   : The Mage releases a burst of frost, freezing nearby enemies in place ");
+		System.out.println("           for 2 rounds.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
@@ -238,7 +250,6 @@ public class PickCharacter {
 		System.out.println(" Do you want to pick this character?");
 		System.out.println(" 1. Yes");
 		System.out.println(" 2. No");
-		System.out.println("");
 		System.out.print(">");
 
 		String choice = "";
@@ -256,11 +267,11 @@ public class PickCharacter {
 			heroChoice = 4;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -288,9 +299,10 @@ public class PickCharacter {
 		System.out.println(" ------");
 		System.out.println();
 
-		System.out.println(" Cha Cha Cha:");
-		System.out.println(" Furious Strike:");
-		System.out.println(" Shield Wall:");
+		System.out.println(" Cha Cha Cha   : Slash a hit to monster.");
+		System.out.println(" Furious Strike: Unleashes a powerful attack, dealing heavy damage to the target.");
+		System.out.println(" Shield Wall   : The Warrior creates an impenetrable barrier with their shield,");
+		System.out.println(" 	         reducing incoming damage for 3 rounds.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
@@ -300,7 +312,6 @@ public class PickCharacter {
 		System.out.println(" Do you want to pick this character?");
 		System.out.println(" 1. Yes");
 		System.out.println(" 2. No");
-		System.out.println("");
 		System.out.print(">");
 
 		String choice = "";
@@ -318,11 +329,11 @@ public class PickCharacter {
 			heroChoice = 2;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 
-	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField) throws FileNotFoundException {
+	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -350,9 +361,11 @@ public class PickCharacter {
 		System.out.println(" ------");
 		System.out.println();
 
-		System.out.println(" Rage:");
-		System.out.println(" Holy Smite:");
-		System.out.println(" Divine Shield:");
+		System.out.println(" Rage         : Paladin attack increased for 3 rounds.");
+		System.out.println(" Holy Smite   : Smashes the target with divine light, dealing damage and healing the Paladin ");
+		System.out.println("		for a portion of the damage dealt.");
+		System.out.println(" Divine Shield: Creates a protective barrier around the Paladin, rendering them ");
+		System.out.println("		immune to damage for 2 rounds.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
@@ -362,7 +375,6 @@ public class PickCharacter {
 		System.out.println(" Do you want to pick this character?");
 		System.out.println(" 1. Yes");
 		System.out.println(" 2. No");
-		System.out.println("");
 		System.out.print(">");
 
 		String choice = "";
@@ -380,7 +392,7 @@ public class PickCharacter {
 			heroChoice = 5;
 		}
 		else if (choice.equals("2")) {
-			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField);
+			PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
 		}
 	}
 	public int getHeroChoice() {

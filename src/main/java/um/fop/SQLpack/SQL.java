@@ -8,7 +8,7 @@ public class SQL {
     private static final String USER = "root"; // 数据库用户名
     private static final String PASS = "123456"; // 数据库密码
     private static final String DB_URL //= "jdbc:mysql://localhost:3306/austin?useSSL=false&allowPublicKeyRetrieval=true";
-    = "jdbc:mysql://localhost:3306/userDB?user=root";
+            = "jdbc:mysql://localhost:3306/userDB?user=root";
 
     /**
      * 尝试注册新用户
@@ -113,3 +113,4 @@ public class SQL {
         return DriverManager.getConnection(DB_URL, USER, PASS);
     }
 }
+

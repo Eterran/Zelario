@@ -38,7 +38,7 @@ public class Rogue extends Player {
           this.skillOneName = "Smite";
           this.skill1Description = "Slash a hit to monster.";
           this.skillTwoName = "Backstab";
-          this.skill2Description = "The Rogue sneaks behind the target, delivering a devastating backstab, causing extra damage and stunning the enemy for 1 round.";
+          this.skill2Description = "The Rogue sneaks behind the target, delivering a devastating backstab, ";
           this.skillThreeName = "ShadowStep";
           this.skill1Description = "The Rogue can evade the next spell or attack from the enemies.";
           this.skill1 = 50; // Smite
