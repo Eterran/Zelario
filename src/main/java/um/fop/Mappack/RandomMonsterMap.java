@@ -7,7 +7,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
-import java.awt.Point;
 import java.util.ArrayList;
 
 public class RandomMonsterMap extends JFrame {
@@ -19,9 +18,7 @@ public class RandomMonsterMap extends JFrame {
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
     private final char OBSTACLE = '#';
-    private final char PLAYER = '@';//
-
-
+    private final char PLAYER = '@';
 
     private char[][] map;
     private int playerX, playerY;
@@ -220,15 +217,19 @@ public class RandomMonsterMap extends JFrame {
                 int dx = 0, dy = 0;
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
+                    case KeyEvent.VK_W:
                         dy = -1;
                         break;
                     case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_S:
                         dy = 1;
                         break;
                     case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_A:
                         dx = -1;
                         break;
                     case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_D:
                         dx = 1;
                         break;
                     case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把
@@ -245,8 +246,6 @@ public class RandomMonsterMap extends JFrame {
                         break;
                 }
                 //主角更新位置
-                System.out.println(playerX);
-                System.out.println(playerY);
                 int newX = playerX + dx, newY = playerY + dy;
                 for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
                     Point charLocation = characterLocations.get(i);

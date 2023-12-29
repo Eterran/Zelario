@@ -19,7 +19,7 @@ public class Game {
     boolean isMonsterAlive = true;
     boolean turn = true;
 
-    public void beginCombat(Entity player, Entity monster, JTextPane textPane) {
+    public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
         System.out.println("You entered a combat with a " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
@@ -43,36 +43,37 @@ public class Game {
             
             if (!player.isFrozen && !player.isStunned) {
                 while (turn) {
-                    int choice;
-                    while (true) {
-                        try {
-                            choice = Integer.parseInt(s.nextLine());
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Invalid input");
-                            s.nextLine();
-                        }
+                    String choice = "";
+                    try {
+                        do {
+                            choice = consoleToGUI.getNextInput();
+                            if (!choice.matches("^[1-7]$")) {
+                                System.out.println("Invalid input.");
+                            }
+                        } while (!choice.matches("^[1-7]$"));
+                    } catch (InterruptedException e) {
+                        
                     }
                     int monsterPreviousHP = monster.getHP();
                     switch (choice) {
-                        case 1:
+                        case "1":
                             System.out.println("You hit the " + monster.getName() + " for "
                                     + player.normalAttack(monster) + "HP!");
                             endTurn();
                             break;
-                        case 2:
+                        case "2":
                             player.defend(monster);
                             endTurn();
                             break;
-                        case 3:
+                        case "3":
                             // Escape();
                             endTurn();
                             return;
-                        case 4:
+                        case "4":
                             player.healing();
                             endTurn();
                             break;
-                        case 5:
+                        case "5":
                             if (!player.isSkill1Unlocked) {
                                 System.out.println("You have not unlocked this skill yet!");
                                 break;
@@ -104,7 +105,7 @@ public class Game {
                                 }
                             }
                             break;
-                        case 6:
+                        case "6":
                             if (!player.isSkill2Unlocked) {
                                 System.out.println("You have not unlocked this skill yet!");
                                 break;
@@ -127,7 +128,7 @@ public class Game {
                                 System.out.println("Your skill is not ready yet!");
                             }
                             break;
-                        case 7:
+                        case "7":
                             if (!player.isSkill3Unlocked) {
                                 System.out.println("You have not unlocked this skill yet!");
                                 break;
