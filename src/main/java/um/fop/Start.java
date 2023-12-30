@@ -82,7 +82,6 @@ public class Start {
 		// 	do {
 		// 		input = consoleToGUI.getNextInput();
 		// 		if (!input.matches("^[1-2]$")) {
-		// 			System.out.println("Invalid input.");
 		// 		}
 		// 	} while (!input.matches("^[1-2]$"));
         // } catch (InterruptedException e) {
@@ -94,6 +93,12 @@ public class Start {
         //         while(true){
         //             try {
         //                 System.out.println("Register");
+                            // System.out.print("+");
+
+                            // int width = 86;
+                            // for (int a=0; a<width;a++)
+                            //     System.out.print("-");
+                            // System.out.println("+");
         //                 System.out.println("Enter your username: ");
         //                 try {
         //                     username = consoleToGUI.getNextInput();
@@ -132,6 +137,12 @@ public class Start {
         //         } catch (Exception e) {
         //             e.printStackTrace();
         //         }
+                    // System.out.print("+");
+
+                    // int width = 86;
+                    // for (int a=0; a<width;a++)
+                    //     System.out.print("-");
+                    // System.out.println("+");
         //         try {
         //             if (!(SQL.usernameExists(conn, username))) {
         //                 System.out.println("Username does not exists, please try again.");
