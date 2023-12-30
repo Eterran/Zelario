@@ -62,7 +62,6 @@ public class ConsoleToGUI {
         }
         String input = userInput;
         userInput = null;
-        System.out.println("User input: " + input);
         return input;
     }
 }

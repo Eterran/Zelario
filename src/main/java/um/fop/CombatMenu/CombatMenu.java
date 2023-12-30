@@ -6,17 +6,18 @@ import Entitypack.Monsterpack.*;
 
 import java.io.IOException;
 
-import javax.swing.JTextPane;
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 
 public class CombatMenu {
 
-	public static void displayCombatMenu(Entity player, Entity monster, JTextPane textPane) throws IOException {
+	public static void displayCombatMenu(Entity player, Entity monster, JTextPane textPane, JFrame frame) throws IOException {
 		
 		ASCII a = new ASCII();
 		a.YouEnemy();
+		frame.setSize(1150, 840);
 
 		System.out.print("+");
 

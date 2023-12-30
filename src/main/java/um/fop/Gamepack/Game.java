@@ -22,7 +22,7 @@ public class Game {
     boolean isMonsterAlive = true;
     boolean turn = true;
 
-    public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
+    public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame) {
         System.out.println("You entered a combat with a " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
@@ -35,7 +35,7 @@ public class Game {
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
             try{
-                CombatMenu.displayCombatMenu(player,monster,textPane);
+                CombatMenu.displayCombatMenu(player,monster,textPane, frame);
                 Thread.sleep(100);
             }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
@@ -240,6 +240,9 @@ public class Game {
         // displayLoseCombat(); // how to handle losing?
         System.out.println("You lost!");
         isMonsterAlive = false;
+    }
+    public void displayLoseCombat(){
+        
     }
     public int checkWinLose(Entity player, Entity monster) {
         if (player.getHP() <= 0) {

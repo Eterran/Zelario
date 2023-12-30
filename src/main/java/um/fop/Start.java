@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.lang.Thread.*;
 import javax.swing.text.*;
+import javax.swing.border.LineBorder;
 
 import Entitypack.*;
 import Entitypack.Monsterpack.Harpy;
@@ -20,18 +21,17 @@ public class Start {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Zelario");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 780);
+        frame.setSize(800, 800);
+
+        // Set the layout of the JFrame's content pane
+        frame.getContentPane().setLayout(new BorderLayout());
 
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
         textPane.setBackground(Color.BLACK);
         textPane.setForeground(Color.WHITE);
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
-
-        // Create a style object and then set the style attributes
-        StyleContext sc = StyleContext.getDefaultStyleContext();
-        AttributeSet red = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.RED);
-        AttributeSet white = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.WHITE);
+        textPane.setBorder(new LineBorder(Color.BLACK));
 
         JTextField userInputField = new JTextField(20);
         userInputField.setBackground(Color.BLACK);
@@ -43,7 +43,8 @@ public class Start {
         scrollPane.setBorder(null);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
+        scrollPane.setBorder(null);
+        
         // Adding components to the frame
         frame.getContentPane().add(scrollPane, "Center");
         
@@ -204,7 +205,7 @@ public class Start {
         }
         Game game = new Game(player);
         while(true){
-            game.beginCombat(player, new Harpy(player),textPane, consoleToGUI);
+            game.beginCombat(player, new Harpy(player),textPane, consoleToGUI, frame);
         }
     }
 }
