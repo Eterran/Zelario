@@ -1,6 +1,5 @@
 package CombatMenu;
 
-import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;

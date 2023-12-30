@@ -260,11 +260,10 @@ public class RandomMonsterMap extends JFrame {
                     Point charLocation = characterLocations.get(i);
                     if (newX == charLocation.x && newY == charLocation.y) {
                         // 如果玩家的新位置包含一个字符，则运行以下代码
-                        ConnectToFight connectToFight = new ConnectToFight();
+                        //ConnectToFight connectToFight = new ConnectToFight();
                         SwingUtilities.invokeLater(new Runnable() {
                             public void run() {
-                                Entity monster = Game.spawnRandom(player);
-                                game.beginCombat(player, monster, textPane, consoleToGUI, frame);
+                                game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame);
                             }
                         });
                     }

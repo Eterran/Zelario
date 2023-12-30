@@ -2,7 +2,6 @@ package CombatMenu;
 
 import Entitypack.*;
 import UIpack.ColorAttributes;
-import Entitypack.Monsterpack.*;
 
 import java.io.IOException;
 

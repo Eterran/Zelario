@@ -4,7 +4,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.awt.event.*;
 
 public class ConsoleToGUI {

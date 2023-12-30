@@ -1,8 +1,6 @@
 package CombatMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Entitypack.Entity;

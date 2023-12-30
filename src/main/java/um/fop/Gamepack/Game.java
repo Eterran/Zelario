@@ -10,9 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javax.swing.*;
-import Entitypack.Entity;
-
-
 
 public class Game {
     public Game(Entity player) {
@@ -25,15 +22,14 @@ public class Game {
     boolean turn = true;
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame) {
-        frame.setVisible(true);
-        RandomMonsterMap.getMapFrame().setVisible(false);
+        // frame.setVisible(true);
+        // RandomMonsterMap.getMapFrame().setVisible(false);
         System.out.println("You entered a combat with a " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
          System.out.println("+");
         System.out.println();
         
-        Scanner s = new Scanner(System.in);
         turn = true;
         isMonsterAlive = true;
         initialLevel = player.getLevel();
@@ -44,10 +40,14 @@ public class Game {
             }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
             }
-            if(checkWinLose(player, monster, consoleToGUI) != 0){
+            int temp = checkWinLose(player, monster, consoleToGUI);
+            if(temp == 1){
+                frame.setVisible(true);
+                RandomMonsterMap.getMapFrame().setVisible(false);
+                return;
+            } else if (temp == -1){
                 return;
             }
-            
             if (!player.isFrozen && !player.isStunned) {
                 while (turn) {
                     String choice = "";
@@ -169,7 +169,12 @@ public class Game {
                 System.out.println("You are stunned!");
                 endTurn();
             }
-            if(checkWinLose(player, monster, consoleToGUI) != 0){
+            temp = checkWinLose(player, monster, consoleToGUI);
+            if(temp == 1){
+                frame.setVisible(true);
+                RandomMonsterMap.getMapFrame().setVisible(false);
+                return;
+            } else if (temp == -1){
                 return;
             }
             if (!monster.isFrozen && !monster.isStunned) {
