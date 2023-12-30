@@ -10,7 +10,7 @@ public class Goblin extends Monster {
       super();
       if(player.getLevel() == 1){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Goblin.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Goblin.txt"));
                String temp;
                String[] stats;
 
@@ -38,7 +38,7 @@ public class Goblin extends Monster {
 
       if(player.getLevel() == 20){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Goblin2.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Goblin2.txt"));
                String temp;
                String[] stats;
 
