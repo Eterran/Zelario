@@ -23,14 +23,6 @@ public class PickCharacter {
 		sc.close();
 		System.out.print("+");
 
-		try {
-            StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), "Red Text\n", ColorAttributes.RED);
-            doc.insertString(doc.getLength(), "White Text\n", ColorAttributes.WHITE);
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-
 		int width = 86;
 		for (int a = 0; a < width / 2; a++)
 			System.out.print("- ");
