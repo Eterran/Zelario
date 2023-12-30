@@ -10,7 +10,7 @@ public class Harpy extends Monster {
         super();
         if(player.getLevel() == 1){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Harpy.txt"));
                String temp;
                String[] stats;
 
@@ -38,7 +38,7 @@ public class Harpy extends Monster {
 
       if(player.getLevel() == 20){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy2.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Harpy2.txt"));
                String temp;
                String[] stats;
 
@@ -66,7 +66,7 @@ public class Harpy extends Monster {
 
       if(player.getLevel() == 30){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy3.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 30 Monster stats\\Witch3.txt"));
                String temp;
                String[] stats;
 
