@@ -8,9 +8,9 @@ import Entitypack.Entity;
 public class Skeleton extends Monster{
     public Skeleton(Entity player){
         super();
-        if(player.getLevel() == 1){
+        if(player.getLevel() >= 1 && player.getLevel() < 10){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Skeleton.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Skeleton.txt"));
                String temp;
                String[] stats;
 
@@ -36,9 +36,9 @@ public class Skeleton extends Monster{
 
       }
 
-      if(player.getLevel() == 20){
+      if(player.getLevel() >= 10 && player.getLevel() < 25){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Skeleton2.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Skeleton2.txt"));
                String temp;
                String[] stats;
 
@@ -64,9 +64,9 @@ public class Skeleton extends Monster{
 
       }
 
-      if(player.getLevel() == 30){
+      if(player.getLevel() >= 25){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Skeleton3.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 30 Monster stats\\Skeleton3.txt"));
                String temp;
                String[] stats;
 

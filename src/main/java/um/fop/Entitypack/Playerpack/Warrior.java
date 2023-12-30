@@ -11,7 +11,7 @@ public class Warrior extends Player {
      public Warrior() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("Warrior.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Stat for player\\Warrior.txt"));
                String temp;
                String[] stats;
 

@@ -8,9 +8,9 @@ import Entitypack.*;
 public class Harpy extends Monster {
     public Harpy(Entity player) {
         super();
-        if(player.getLevel() == 1){
+        if(player.getLevel() >= 1 && player.getLevel() < 10){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Harpy.txt"));
                String temp;
                String[] stats;
 
@@ -36,9 +36,9 @@ public class Harpy extends Monster {
 
       }
 
-      if(player.getLevel() == 20){
+       if(player.getLevel() >= 10 && player.getLevel() < 25){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy2.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Harpy2.txt"));
                String temp;
                String[] stats;
 
@@ -64,9 +64,9 @@ public class Harpy extends Monster {
 
       }
 
-      if(player.getLevel() == 30){
+      if(player.getLevel() >= 25 ){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Harpy3.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 30 Monster stats\\Harpy3.txt"));
                String temp;
                String[] stats;
 

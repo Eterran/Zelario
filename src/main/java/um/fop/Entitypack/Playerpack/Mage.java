@@ -11,7 +11,7 @@ public class Mage extends Player {
      public Mage() {
           super();
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Mage.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Stat for player\\Mage.txt"));
                String temp;
                String[] stats;
 

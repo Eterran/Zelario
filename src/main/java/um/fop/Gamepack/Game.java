@@ -3,11 +3,16 @@ package Gamepack;
 import java.util.Scanner;
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
+import Mappack.RandomMonsterMap;
 import CombatMenu.CombatMenu;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import javax.swing.*;
+import Entitypack.Entity;
+
+
 
 public class Game {
     public Game(Entity player) {
@@ -19,7 +24,9 @@ public class Game {
     boolean isMonsterAlive = true;
     boolean turn = true;
 
-    public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
+    public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame) {
+        frame.setVisible(true);
+        RandomMonsterMap.getMapFrame().setVisible(false);
         System.out.println("You entered a combat with a " + monster.getName());
         for (int i = 0; i < 123; i++)
         System.out.print("-");
@@ -32,12 +39,12 @@ public class Game {
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
             try{
-                CombatMenu.displayCombatMenu(player,monster,textPane);
+                CombatMenu.displayCombatMenu(player, monster, textPane, frame);
                 Thread.sleep(100);
             }catch(IOException | InterruptedException e){  
                 e.printStackTrace();
             }
-            if(checkWinLose(player, monster) != 0){
+            if(checkWinLose(player, monster, consoleToGUI) != 0){
                 return;
             }
             
@@ -52,7 +59,7 @@ public class Game {
                             }
                         } while (!choice.matches("^[1-7]$"));
                     } catch (InterruptedException e) {
-                        
+                        e.printStackTrace();
                     }
                     int monsterPreviousHP = monster.getHP();
                     switch (choice) {
@@ -162,7 +169,7 @@ public class Game {
                 System.out.println("You are stunned!");
                 endTurn();
             }
-            if(checkWinLose(player, monster) != 0){
+            if(checkWinLose(player, monster, consoleToGUI) != 0){
                 return;
             }
             if (!monster.isFrozen && !monster.isStunned) {
@@ -223,45 +230,90 @@ public class Game {
         turn = !turn;
     }
     public void winCombat(Entity player, Entity monster) {
-        // displayWinCombat(player.gainEXP(monster)); // win screen?
-        System.out.println("You have defeated " + monster.getName());
-        System.out.println("You receive " + player.gainEXP(monster) + "EXP!");
+        displayWinCombat();
+        isMonsterAlive = false;
+        System.out.println("+You have defeated " + monster.getName());
+        System.out.println("+You receive " + player.gainEXP(monster) + "EXP!");
         player.clearAllStatus();
         player.levelUp();
         if(initialLevel < player.getLevel()){
-            System.out.println("You are now Level " + player.getLevel());
+            System.out.println("+You are now Level " + player.getLevel());
         }
-        isMonsterAlive = false;
     }
-    public void loseCombat() {
-        // displayLoseCombat(); // how to handle losing?
-        System.out.println("You lost!");
+    public void loseCombat(ConsoleToGUI consoleToGUI) {
+        displayLoseCombat();
         isMonsterAlive = false;
+        String choice = "";
+        try {
+            do {
+                choice = consoleToGUI.getNextInput();
+                if (!choice.matches("^[1-7]$")) {
+                    System.out.println("Invalid input.");
+                }
+            } while (!choice.matches("^[1-7]$"));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-    public int checkWinLose(Entity player, Entity monster) {
+    public void displayLoseCombat(){
+        File file=new File("src\\main\\java\\um\\fop\\ASCII\\LosingScreen.txt");
+        Scanner s;
+        try {
+            s = new Scanner(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+		while(s.hasNextLine())
+		{
+			String line = s.nextLine();
+			System.out.println(line);
+		}
+		s.close();
+    }
+    public void displayWinCombat(){
+        File file=new File("src\\main\\java\\um\\fop\\ASCII\\WinningScreen.txt");
+        Scanner s;
+        try {
+            s = new Scanner(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+		while(s.hasNextLine())
+		{
+			String line = s.nextLine();
+            System.out.print("\t");
+			System.out.println(line);
+		}
+		s.close();
+    }
+    public int checkWinLose(Entity player, Entity monster, ConsoleToGUI consoleToGUI) {
         if (player.getHP() <= 0) {
-            loseCombat();
+            loseCombat(consoleToGUI);
+            isMonsterAlive = false;
             return -1;
         }
         if (monster.getHP() <= 0) {
             winCombat(player, monster);
+            isMonsterAlive = false;
             return 1;
         }
         return 0;
     }
-    public Entity spawnRandom(){
+    public static Entity spawnRandom(Entity player){
         Random r = new Random();
         int rand = r.nextInt(100);
         if(rand < 27){
-            return new Goblin();
+            return new Goblin(player);
         } else if (rand < 54){
-            return new Orc();
+            return new Orc(player);
         } else if (rand < 81){
-            return new Skeleton();
+            return new Skeleton(player);
         } else if(rand < 90){
-            return new Witch();
+            return new Witch(player);
         } else {
-            return new Harpy();
+            return new Harpy(player);
         }
     }
 }
