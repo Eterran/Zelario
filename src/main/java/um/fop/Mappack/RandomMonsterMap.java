@@ -8,12 +8,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.ArrayList;
+import Entitypack.Entity;
+import Gamepack.*;
 
 public class RandomMonsterMap extends JFrame {
-    public static void main(String[] args) {
-        RandomMonsterMap frame = new RandomMonsterMap();
-        frame.setVisible(true);
-    }
+    // public static void main(String[] args) {
+    //     RandomMonsterMap frame = new RandomMonsterMap();
+    //     frame.setVisible(true);
+    // }
+    private static RandomMonsterMap mapFrame;
 
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
@@ -23,8 +26,14 @@ public class RandomMonsterMap extends JFrame {
     private char[][] map;
     private int playerX, playerY;
 
+    public static void setFrame(RandomMonsterMap frame){
+        mapFrame = frame;
+    }
+    public static RandomMonsterMap getMapFrame(){
+        return mapFrame;
+    }
 
-    public RandomMonsterMap() {
+    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game) {
         super("Zelario Game");
 
         JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
@@ -254,8 +263,8 @@ public class RandomMonsterMap extends JFrame {
                         ConnectToFight connectToFight = new ConnectToFight();
                         SwingUtilities.invokeLater(new Runnable() {
                             public void run() {
-                                ConnectToFight connectToFight = new ConnectToFight();
-                                connectToFight.setVisible(true); // 在EDT上显示窗口
+                                Entity monster = Game.spawnRandom(player);
+                                game.beginCombat(player, monster, textPane, consoleToGUI, frame);
                             }
                         });
                     }
@@ -295,7 +304,7 @@ public class RandomMonsterMap extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                System.out.println("successful！");//只在控制台显示
+                //System.out.println("successful！");//只在控制台显示
                 refreshMap(panel);
                 // 移动下player，方便查看到 要不要无所谓 copy来的 有点太高级了
                 try {
@@ -356,8 +365,8 @@ public class RandomMonsterMap extends JFrame {
                     label.setForeground(Color.RED);
                     label.setText(String.valueOf('$'));
                     } else if (ch == PLAYER) {
-                        System.out.println("1=" + playerX);
-                        System.out.println("1=" + playerY);
+                        //System.out.println("1=" + playerX);
+                        //System.out.println("1=" + playerY);
                         label.setForeground(Color.pink);
                         label.setText(String.valueOf(PLAYER));
                     } else {

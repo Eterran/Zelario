@@ -204,8 +204,10 @@ public class Start {
             player = new Paladin();
         }
         Game game = new Game(player);
-        while(true){
-            game.beginCombat(player, new Harpy(player),textPane, consoleToGUI, frame);
-        }
+
+        RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player),textPane, consoleToGUI, frame, game));
+        RandomMonsterMap.getMapFrame().setVisible(true);
+        frame.setVisible(false);
+
     }
 }

@@ -17,7 +17,7 @@ public class CombatMenu {
 		
 		ASCII a = new ASCII();
 		a.YouEnemy();
-		frame.setSize(1150, 840);
+		frame.setSize(1150, 825);
 
 		System.out.print("+");
 
