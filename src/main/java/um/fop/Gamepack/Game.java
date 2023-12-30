@@ -8,6 +8,9 @@ import CombatMenu.CombatMenu;
 import java.io.IOException;
 import java.util.Random;
 import javax.swing.*;
+import Entitypack.Entity;
+
+
 
 public class Game {
     public Game(Entity player) {

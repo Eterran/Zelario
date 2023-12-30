@@ -18,7 +18,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.println(data);
+			try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.GREEN);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
 		}
 		sc.close();
 		System.out.print("+");
@@ -80,7 +86,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.println(data);
+			try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.ORANGE);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
 		}
 
 		System.out.print("+");
@@ -142,9 +154,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.print("      ");
-
-			System.out.println(data);
+			try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.CYAN);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
 		}
 
 		System.out.print("+");
@@ -206,8 +222,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.println(data);
-		}
+try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.MAGENTA);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}		}
 
 		System.out.print("+");
 
@@ -268,8 +289,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.println(data);
-		}
+try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.RED);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}		}
 
 		System.out.print("+");
 
@@ -330,8 +356,13 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-			System.out.println(data);
-		}
+			try {
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), data, ColorAttributes.PINK);
+				System.out.println();
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}		}
 
 		System.out.print("+");
 
@@ -354,10 +385,10 @@ public class PickCharacter {
 		System.out.println();
 
 		System.out.println(" Rage         : Paladin attack increased for 3 rounds.");
-		System.out.println(" Holy Smite   : Smashes the target with divine light, dealing damage and healing the Paladin ");
-		System.out.println("		for a portion of the damage dealt.");
+		System.out.println(" Holy Smite   : Smashes the target with divine light, dealing damage and healing the ");
+		System.out.println("	        Paladin for a portion of the damage dealt.");
 		System.out.println(" Divine Shield: Creates a protective barrier around the Paladin, rendering them ");
-		System.out.println("		immune to damage for 2 rounds.");
+		System.out.println("	        immune to damage for 2 rounds.");
 
 		System.out.print("+");
 		for (int a = 0; a < width; a++)
