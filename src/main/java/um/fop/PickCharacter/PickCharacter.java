@@ -82,7 +82,7 @@ public class PickCharacter {
 	}
 
 	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -150,7 +150,7 @@ public class PickCharacter {
 	}
 
 	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -218,11 +218,11 @@ public class PickCharacter {
 	}
 
 	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-try {
+		try {
 				StyledDocument doc = textPane.getStyledDocument();
 				doc.insertString(doc.getLength(), data, ColorAttributes.MAGENTA);
 				System.out.println();
@@ -273,9 +273,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
+       		 } catch (InterruptedException e) {
             
-        }
+       		 }
 		if (choice.equals("1")) {
 			heroChoice = 4;
 		}
@@ -285,11 +285,11 @@ try {
 	}
 
 	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-try {
+		try {
 				StyledDocument doc = textPane.getStyledDocument();
 				doc.insertString(doc.getLength(), data, ColorAttributes.RED);
 				System.out.println();
@@ -340,9 +340,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
-            
-        }
+	        } catch (InterruptedException e) {
+	            
+	        }
 		if (choice.equals("1")) {
 			heroChoice = 2;
 		}
@@ -352,7 +352,7 @@ try {
 	}
 
 	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -408,9 +408,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
-            
-        }
+	        } catch (InterruptedException e) {
+	            
+	        }
 		if (choice.equals("1")) {
 			heroChoice = 5;
 		}
