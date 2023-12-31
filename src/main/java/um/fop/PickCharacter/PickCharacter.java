@@ -14,7 +14,7 @@ public class PickCharacter {
 	public static int heroChoice = -1;
 
 	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
+		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
