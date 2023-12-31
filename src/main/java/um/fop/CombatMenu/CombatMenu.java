@@ -3,7 +3,9 @@ package CombatMenu;
 import Entitypack.*;
 import UIpack.ColorAttributes;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -12,15 +14,103 @@ import javax.swing.text.StyledDocument;
 
 public class CombatMenu {
 
+	public static void displayIcon(Entity player, Entity monster, JTextPane textPane, JFrame frame) {
+
+		File heroIconFile=null;
+		File enemyIconFile=null;
+		try {
+			
+			if(player.getName().equals("Archer"))
+			{
+				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Archer Icon.txt");
+			}	
+			if(player.getName().equals("Mage"))
+				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Mage Icon.txt");
+
+			if(player.getName().equals("Paladin"))
+				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin Icon.txt");
+			
+			if(player.getName().equals("Rogue"))
+				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue Icon.txt");
+			
+			if(player.getName().equals("Warrior"))
+				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior Icon.txt");
+
+			if(monster.getName().equals("Boss"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Boss Icon.txt");
+
+			if(monster.getName().equals("Goblin"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Goblin Icon.txt");
+
+			if(monster.getName().equals("Harpy"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Harpy Icon.txt");
+
+			if(monster.getName().equals("Orc"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Orc Icon.txt");
+
+			if(monster.getName().equals("Skeleton"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Skeleton Icon.txt");
+
+			if(monster.getName().equals("Witch"))
+				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Witch Icon.txt");
+			
+			
+			Scanner heroScanner = new Scanner(heroIconFile);
+			Scanner enemyScanner = new Scanner(enemyIconFile);
+
+			while (heroScanner.hasNextLine() || enemyScanner.hasNextLine()) {
+				if (heroScanner.hasNextLine()) {
+					String heroLine = heroScanner.nextLine();
+					
+					try {
+						StyledDocument doc = textPane.getStyledDocument();
+						doc.insertString(doc.getLength(), "\t", ColorAttributes.WHITE);
+						doc.insertString(doc.getLength(), heroLine, ColorAttributes.YELLOW);
+						
+					} catch (BadLocationException e) {
+						e.printStackTrace();
+					}
+					//System.out.print("\t" + heroLine);
+				} else {
+					System.out.print("\t"); // Print empty space if hero file is shorter
+				}
+				
+				for (int i = 0; i < 40; i++) {
+					System.out.print(" "); // Print 30 spaces between the two files
+				}
+				if (enemyScanner.hasNextLine()) {
+					String enemyLine = enemyScanner.nextLine();
+					try {
+						StyledDocument doc = textPane.getStyledDocument();
+						doc.insertString(doc.getLength(), "\t", ColorAttributes.WHITE);
+						doc.insertString(doc.getLength(), enemyLine, ColorAttributes.RED);
+						System.out.println();
+						
+					} catch (BadLocationException e) {
+						e.printStackTrace();
+					}
+					//System.out.println("\t" + enemyLine);
+				} else {
+					System.out.println(); // Move to the next line if enemy file is shorter
+				}
+			}
+	
+			heroScanner.close();
+			enemyScanner.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void displayCombatMenu(Entity player, Entity monster, JTextPane textPane, JFrame frame) throws IOException {
 		
-		ASCII a = new ASCII();
-		a.YouEnemy();
+		displayIcon(player,monster,textPane,frame);
 		frame.setSize(1150, 825);
 
 		System.out.print("+");
 
 		int width = 123;
+
 		for (int i = 0; i < width; i++)
 			System.out.print("-");
 		System.out.println("+");
@@ -80,7 +170,7 @@ public class CombatMenu {
 		if (player.isSkill1Unlocked == true) {
 			try {
 				StyledDocument doc = textPane.getStyledDocument();
-				doc.insertString(doc.getLength(), "\n 5. ", ColorAttributes.GREEN);
+				doc.insertString(doc.getLength(), " 5. ", ColorAttributes.GREEN);
 				doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillOneName()), ColorAttributes.ORANGE);			
 				doc.insertString(doc.getLength(), "\t"+player.getSkill1Description(), ColorAttributes.CYAN);
 				doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
@@ -103,7 +193,7 @@ public class CombatMenu {
 		else {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-			doc.insertString(doc.getLength(), String.format("\n 5. %3.20s", player.getSkillOneName()), ColorAttributes.LIGHT_GRAY);
+			doc.insertString(doc.getLength(), String.format(" 5. %3.20s", player.getSkillOneName()), ColorAttributes.LIGHT_GRAY);
 			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
 		
         } catch (BadLocationException e) {

@@ -14,7 +14,7 @@ public class PickCharacter {
 	public static int heroChoice = -1;
 
 	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -82,7 +82,7 @@ public class PickCharacter {
 	}
 
 	public static void PickRogue(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Rogue ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -150,7 +150,7 @@ public class PickCharacter {
 	}
 
 	public static void PickArcher(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Archer ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -218,7 +218,7 @@ public class PickCharacter {
 	}
 
 	public static void PickMage(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Mage ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -285,7 +285,7 @@ public class PickCharacter {
 	}
 
 	public static void PickWarrior(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
@@ -352,7 +352,7 @@ public class PickCharacter {
 	}
 
 	public static void PickPaladin(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
-		File file = new File("Zelario-main\\src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
+		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Paladin ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();

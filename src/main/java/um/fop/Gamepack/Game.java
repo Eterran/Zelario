@@ -28,6 +28,8 @@ public class Game {
         // frame.setVisible(true);
         // RandomMonsterMap.getMapFrame().setVisible(false);
         System.out.println("You entered a combat with a " + monster.getName());
+
+        System.out.print("+");
         for (int i = 0; i < 123; i++)
         System.out.print("-");
          System.out.println("+");
@@ -91,7 +93,7 @@ public class Game {
                             return;
                         case "4":
                             player.healing();
-                            if(player.getHP() > player.getMaxHP()){
+                            if(player.getHP() < player.getMaxHP()){
                                try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
@@ -106,7 +108,7 @@ public class Game {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), " healed ", ColorAttributes.GREEN);
-                                doc.insertString(doc.getLength(),  Integer.toString((player.getMaxHP()-player.getHP())), ColorAttributes.GREEN);
+                                doc.insertString(doc.getLength(),  Integer.toString(50-(player.getHP()-player.getMaxHP())), ColorAttributes.GREEN);
                                 doc.insertString(doc.getLength(), " HP! ", ColorAttributes.GREEN);
 
                                 } catch (BadLocationException e) {
@@ -372,10 +374,11 @@ public class Game {
 
                         try {
                             StyledDocument doc = textPane.getStyledDocument();
+                            doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                            doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.MAGENTA);
+                            doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                             doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))), ColorAttributes.MAGENTA);
-                            doc.insertString(doc.getLength(), " HP!", ColorAttributes.MAGENTA);
+                            doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
 
                         } catch (BadLocationException e) {
                             e.printStackTrace();
@@ -385,10 +388,11 @@ public class Game {
                         if (enemyChoice < 40) {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                 doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                                doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.MAGENTA);
+                                doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))), ColorAttributes.MAGENTA);
-                                doc.insertString(doc.getLength(), " HP!", ColorAttributes.MAGENTA);
+                                doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
 
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -399,11 +403,12 @@ public class Game {
                             {
                                 try {
                                 StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                 doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                 doc.insertString(doc.getLength(), " used ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), monster.getSkillOneName() , ColorAttributes.PINK);
-                                doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
-                                doc.insertString(doc.getLength(), String.format(" %d HP!", monster.useSkill1(player)), ColorAttributes.RED);
+                                doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), String.format(" %d HP!\n", monster.useSkill1(player)), ColorAttributes.RED);
 
 
                                 } catch (BadLocationException e) {
@@ -415,10 +420,11 @@ public class Game {
                             {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
+                                     doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                                    doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))), ColorAttributes.MAGENTA);
-                                    doc.insertString(doc.getLength(), " HP!", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -431,11 +437,12 @@ public class Game {
                             {
                                 try {
                                 StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                 doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                 doc.insertString(doc.getLength(), " used ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), monster.getSkillTwoName() , ColorAttributes.PINK);
-                                doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
-                                doc.insertString(doc.getLength(), String.format(" %d HP!", monster.useSkill2(player)), ColorAttributes.RED);
+                                doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), String.format(" %d HP!\n", monster.useSkill2(player)), ColorAttributes.RED);
 
 
                                 } catch (BadLocationException e) {
@@ -447,10 +454,11 @@ public class Game {
                             {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
+                                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                                    doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))), ColorAttributes.MAGENTA);
-                                    doc.insertString(doc.getLength(), " HP!", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -464,8 +472,9 @@ public class Game {
             } else if(monster.isFrozen){
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
+                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                    doc.insertString(doc.getLength(), " is frozen and cannot move! ", ColorAttributes.CYAN);                    
+                    doc.insertString(doc.getLength(), " is frozen and cannot move! \n", ColorAttributes.CYAN);                    
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
@@ -475,8 +484,9 @@ public class Game {
             } else if(monster.isStunned){
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
+                     doc.insertString(doc.getLength(), "\n ", ColorAttributes.MAGENTA);
                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                    doc.insertString(doc.getLength(), " is stunned and cannot move! ", ColorAttributes.CYAN);                    
+                    doc.insertString(doc.getLength(), " is stunned and cannot move! \n", ColorAttributes.CYAN);                    
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
@@ -505,11 +515,11 @@ public class Game {
         isMonsterAlive = false;
          try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(),"+Congratulations! You have defeated ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength()," Congratulations! You have defeated ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
             doc.insertString(doc.getLength(), "! ", ColorAttributes.YELLOW);  
            
-            doc.insertString(doc.getLength(),"\n+You have received  ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength(),"\n You have received  ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(),  Integer.toString(player.gainEXP(monster)), ColorAttributes.PINK);
             doc.insertString(doc.getLength(), "EXP! ", ColorAttributes.PINK);   
 
@@ -523,7 +533,7 @@ public class Game {
         if(initialLevel < player.getLevel()){
             try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(),"+You are now ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength()," You are now ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(), String.format("Level %d", player.getLevel()), ColorAttributes.PINK);
             doc.insertString(doc.getLength(), "! ", ColorAttributes.YELLOW);  
            
