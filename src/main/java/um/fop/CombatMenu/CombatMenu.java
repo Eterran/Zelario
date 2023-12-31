@@ -77,25 +77,25 @@ public class CombatMenu {
 		System.out.println(" 3. Escape");
 		System.out.println(" 4. Heal");
 
-		if (player.isSkill1Unlocked == false) {
+		if (player.isSkill1Unlocked == true) {
 			try {
-            StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), " 5. ", ColorAttributes.GREEN);
-			doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillOneName()), ColorAttributes.ORANGE);			
-			doc.insertString(doc.getLength(), "\t"+player.getSkill1Description(), ColorAttributes.CYAN);
-			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
-			doc.insertString(doc.getLength(), Integer.toString(player.getSkill1Mp()), ColorAttributes.BLUE);			
-			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
-			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
-			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill1()), ColorAttributes.ORANGE);	
-			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
-			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill1()), ColorAttributes.ORANGE);
-			System.out.println();	
+				StyledDocument doc = textPane.getStyledDocument();
+				doc.insertString(doc.getLength(), "\n 5. ", ColorAttributes.GREEN);
+				doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillOneName()), ColorAttributes.ORANGE);			
+				doc.insertString(doc.getLength(), "\t"+player.getSkill1Description(), ColorAttributes.CYAN);
+				doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
+				doc.insertString(doc.getLength(), Integer.toString(player.getSkill1Mp()), ColorAttributes.BLUE);			
+				doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
+				doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
+				doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill1()), ColorAttributes.ORANGE);	
+				doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
+				doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill1()), ColorAttributes.ORANGE);
+				System.out.println();	
 
 
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
 		
 		
 		}
@@ -103,7 +103,7 @@ public class CombatMenu {
 		else {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), player.getSkillOneName(), ColorAttributes.LIGHT_GRAY);	
+			doc.insertString(doc.getLength(), String.format("\n 5. %3.20s", player.getSkillOneName()), ColorAttributes.LIGHT_GRAY);
 			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
 		
         } catch (BadLocationException e) {
@@ -112,10 +112,10 @@ public class CombatMenu {
 			
 		}
 
-		if (player.isSkill2Unlocked == false) {
+		if (player.isSkill2Unlocked == true) {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), " 6. ", ColorAttributes.GREEN);
+            doc.insertString(doc.getLength(), "\n 6. ", ColorAttributes.GREEN);
 			doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillTwoName()), ColorAttributes.ORANGE);			
 			doc.insertString(doc.getLength(), "\t"+player.getSkill2Description(), ColorAttributes.CYAN);
 			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
@@ -138,7 +138,7 @@ public class CombatMenu {
 		else {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), player.getSkillTwoName(), ColorAttributes.LIGHT_GRAY);	
+            doc.insertString(doc.getLength(), String.format("\n 6. %3.20s", player.getSkillTwoName()), ColorAttributes.LIGHT_GRAY);
 			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
 		
         } catch (BadLocationException e) {
@@ -146,10 +146,10 @@ public class CombatMenu {
         }
 		}
 
-		if (player.isSkill3Unlocked == false) {
+		if (player.isSkill3Unlocked == true) {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), " 7. ", ColorAttributes.GREEN);
+            doc.insertString(doc.getLength(), "\n 7. ", ColorAttributes.GREEN);
 			doc.insertString(doc.getLength(), String.format("%3.20s ", player.getSkillThreeName()), ColorAttributes.ORANGE);			
 			doc.insertString(doc.getLength(), "\t"+player.getSkill3Description(), ColorAttributes.CYAN);
 			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
@@ -172,8 +172,9 @@ public class CombatMenu {
 		else {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), player.getSkillThreeName(), ColorAttributes.LIGHT_GRAY);	
+           doc.insertString(doc.getLength(), String.format("\n 7. %3.20s", player.getSkillThreeName()), ColorAttributes.LIGHT_GRAY);
 			doc.insertString(doc.getLength(), "\t*Locked*", ColorAttributes.LIGHT_GRAY);
+		
 		
         } catch (BadLocationException e) {
             e.printStackTrace();
