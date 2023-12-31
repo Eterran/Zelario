@@ -35,11 +35,11 @@ public class Rogue extends Player {
                System.out.println("File was not found");
           }
          
-          this.skillOneName = "Smite";
+          this.skillOneName = "Smite\t";
           this.skill1Description = "Slash a hit to monster.";
-          this.skillTwoName = "Backstab";
+          this.skillTwoName = "Backstab\t";
           this.skill2Description = "The Rogue sneaks behind the target, delivering a devastating backstab. ";
-          this.skillThreeName = "ShadowStep";
+          this.skillThreeName = "ShadowStep\t";
           this.skill1Description = "The Rogue can evade the next spell or attack from the enemies.";
           this.skill1 = 50; // Smite
           this.skill2 = 150; // Backstab (stun one round)
