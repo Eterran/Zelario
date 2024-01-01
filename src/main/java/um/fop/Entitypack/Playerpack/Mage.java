@@ -35,11 +35,11 @@ public class Mage extends Player {
                System.out.println("File was not found");
           }
           
-          this.skillOneName = "Poison";
+          this.skillOneName = "Poison\t";
           this.skill1Description = "Monster will be poisoned for 2 rounds.";
-          this.skillTwoName = "Fireball";
+          this.skillTwoName = "Fireball\t";
           this.skill2Description = "Hurls a fiery projectile at the target, dealing moderate fire damage.";
-          this.skillThreeName = "Frost";
+          this.skillThreeName = "Frost\t";
           this.skill3Description = "The Mage releases a burst of frost, freezing nearby enemies in place for 2 rounds.";
           this.skill1 = 20; // Poison LV5 unlock
           this.skill2 = 100; // Fireball LV10 Unlock

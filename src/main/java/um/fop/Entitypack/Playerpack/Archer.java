@@ -35,11 +35,11 @@ public class Archer extends Player {
           }
           
         
-          this.skillOneName = "Precise";
+          this.skillOneName = "Precise\t";
           this.skill1Description = "Buff physical attack for 2 rounds.";
-          this.skillTwoName = "Rapid shot";
+          this.skillTwoName = "Rapid shot\t";
           this.skill2Description = "Fires a flurry of arrows at the target, dealing moderate damage.";
-          this.skillThreeName = "Trick Shot";
+          this.skillThreeName = "Trick Shot\t";
           this.skill3Description = "Executes a precise shot that can pierce the enemies, causing heavy damage to the enemy.";
           this.skill1 = 50; // "Buff attack for one turn" LV5 unlock
           this.skill2 = 100; // Rapid arrow LV10 Unlock

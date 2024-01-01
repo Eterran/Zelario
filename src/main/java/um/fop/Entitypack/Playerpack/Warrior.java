@@ -35,11 +35,11 @@ public class Warrior extends Player {
                System.out.println("File was not found");
           }
          
-          this.skillOneName = "Cha Cha Cha";
+          this.skillOneName = "Cha Cha Cha\t";
           this.skill1Description = "Slash a hit to monster.";
           this.skillTwoName = "Furious Strike";
           this.skill2Description = "Unleashes a powerful attack, dealing heavy damage to the target.";
-          this.skillThreeName = "Shield Wall";
+          this.skillThreeName = "Shield Wall\t";
           this.skill3Description = "The Warrior creates an impenetrable barrier with their shield, reducing incoming damage for 3 rounds.";
           this.skill1 = 50; // "Cha Cha Cha"
           this.skill2 = 200; // Furious strike

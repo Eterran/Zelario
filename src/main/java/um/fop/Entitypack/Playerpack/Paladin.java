@@ -32,9 +32,9 @@ public class Paladin extends Player {
           }catch(FileNotFoundException e){
                System.out.println("File was not found");
           }
-          this.skillOneName = "Rage\t";
+          this.skillOneName = "Rage\t\t";
           this.skill1Description = "Paladin attack increased for 3 rounds.";
-          this.skillTwoName = "Holy Smite";
+          this.skillTwoName = "Holy Smite\t";
           this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt.";
           this.skillThreeName = "Divine Shield";
           this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";

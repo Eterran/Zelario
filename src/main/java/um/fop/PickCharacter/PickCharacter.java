@@ -222,7 +222,7 @@ public class PickCharacter {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-try {
+		try {
 				StyledDocument doc = textPane.getStyledDocument();
 				doc.insertString(doc.getLength(), data, ColorAttributes.MAGENTA);
 				System.out.println();
@@ -273,9 +273,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
+       		 } catch (InterruptedException e) {
             
-        }
+       		 }
 		if (choice.equals("1")) {
 			heroChoice = 4;
 		}
@@ -289,7 +289,7 @@ try {
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
 			String data = sc.nextLine();
-try {
+		try {
 				StyledDocument doc = textPane.getStyledDocument();
 				doc.insertString(doc.getLength(), data, ColorAttributes.RED);
 				System.out.println();
@@ -340,9 +340,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
-            
-        }
+	        } catch (InterruptedException e) {
+	            
+	        }
 		if (choice.equals("1")) {
 			heroChoice = 2;
 		}
@@ -408,9 +408,9 @@ try {
 					System.out.println("Invalid input.");
 				}
 			} while (!choice.matches("^[1-2]$"));
-        } catch (InterruptedException e) {
-            
-        }
+	        } catch (InterruptedException e) {
+	            
+	        }
 		if (choice.equals("1")) {
 			heroChoice = 5;
 		}
