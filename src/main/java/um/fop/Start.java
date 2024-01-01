@@ -1,20 +1,16 @@
-import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import java.lang.Thread.*;
-import javax.swing.text.*;
 import javax.swing.border.LineBorder;
 
 import Entitypack.*;
-import Entitypack.Monsterpack.Harpy;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
 import Gamepack.ConsoleToGUI.CustomOutputStream;
 import Mappack.*;
 import PickCharacter.*;
 
-import SQLpack.*;
 import java.io.*;
+//import SQLpack.*;
 //import java.sql.*;
 
 public class Start {

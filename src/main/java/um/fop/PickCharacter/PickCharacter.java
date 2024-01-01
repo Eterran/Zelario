@@ -8,7 +8,6 @@ import UIpack.ColorAttributes;
 
 import javax.swing.*;
 import javax.swing.text.*;
-import java.awt.Color;
 
 public class PickCharacter {
 	public static int heroChoice = -1;
@@ -94,7 +93,7 @@ public class PickCharacter {
 				e.printStackTrace();
 			}
 		}
-
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -162,7 +161,7 @@ public class PickCharacter {
 				e.printStackTrace();
 			}
 		}
-
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -229,7 +228,7 @@ public class PickCharacter {
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}		}
-
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -295,8 +294,9 @@ public class PickCharacter {
 				System.out.println();
 			} catch (BadLocationException e) {
 				e.printStackTrace();
-			}		}
-
+			}		
+		}
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;
@@ -362,8 +362,9 @@ public class PickCharacter {
 				System.out.println();
 			} catch (BadLocationException e) {
 				e.printStackTrace();
-			}		}
-
+			}		
+		}
+		sc.close();
 		System.out.print("+");
 
 		int width = 86;

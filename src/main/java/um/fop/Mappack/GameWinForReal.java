@@ -237,7 +237,7 @@ public class GameWinForReal extends JFrame {
                 System.out.println(playerY);
                 int newX = playerX + dx, newY = playerY + dy;
                 if (newX == 10 && newY == 9||newX ==10 && newY == 11||newX ==9 && newY == 10||newX ==11 && newY == 10||newX ==10 && newY == 14||newX ==9 && newY == 15||newX ==10 && newY == 16||newX ==11 && newY == 15||newX ==11 && newY == 20||newX ==11 && newY == 25||newX ==11 && newY == 30||newX ==16 && newY == 30||newX ==14 && newY == 30||newX ==15 && newY == 29||newX ==15 && newY == 31||newX ==9 && newY == 25||newX ==10 && newY == 24||newX ==10 && newY == 26||newX ==10 && newY == 31||newX ==9 && newY == 30||newX ==10 && newY == 29||newX ==10 && newY == 21||newX ==10 && newY == 19||newX ==9 && newY == 20||newX ==5 && newY ==32||newX ==6 && newY ==32||newX ==7 && newY ==32) {
-                    ConnectToFight connectToFight = new ConnectToFight();
+                    //ConnectToFight connectToFight = new ConnectToFight();
 //                  connectToFight.setVisible(true); // 显示战斗窗口
                     SwingUtilities.invokeLater(new Runnable() {
                         public void run() {

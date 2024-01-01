@@ -1,11 +1,11 @@
 package Gamepack;
 
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
 import Mappack.RandomMonsterMap;
+
 import UIpack.ColorAttributes;
 import CombatMenu.CombatMenu;
 

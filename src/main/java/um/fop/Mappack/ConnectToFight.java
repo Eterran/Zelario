@@ -19,9 +19,9 @@ public class ConnectToFight extends JFrame { //override方法重写alt+enter
     private final char PLAYER = '@';
     private char[][] map;
     private int playerX, playerY;
-    private char A;
-    private char X;
-    private char R;
+    // private char A;
+    // private char X;
+    // private char R;
 
     public ConnectToFight() {
         super("Zelario Game");
