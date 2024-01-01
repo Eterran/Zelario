@@ -258,14 +258,17 @@ public class RandomMonsterMap extends JFrame {
                 int newX = playerX + dx, newY = playerY + dy;
                 for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
                     Point charLocation = characterLocations.get(i);
-                    if (newX == charLocation.x && newY == charLocation.y) {
+                    if ((newX == charLocation.x && newY == charLocation.y)) {
+                        RandomMonsterMap.getMapFrame().setVisible(false);
                         // 如果玩家的新位置包含一个字符，则运行以下代码
                         //ConnectToFight connectToFight = new ConnectToFight();
-                        SwingUtilities.invokeLater(new Runnable() {
+                        //SwingUtilities.invokeLater(new Runnable() {
+                        Thread thread = new Thread(new Runnable() {
                             public void run() {
                                 game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame);
                             }
                         });
+                        thread.start();
                     }
                     if (map[newY][newX] != OBSTACLE && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
                         map[playerY][playerX] = '.';//把之前的位置清零，以及上色
@@ -321,7 +324,7 @@ public class RandomMonsterMap extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "you really wanna quit the game？", "you really wanna leave us?", JOptionPane.YES_NO_OPTION);
+                int choice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }

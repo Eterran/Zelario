@@ -1,6 +1,8 @@
 package Gamepack;
 
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
 import Mappack.RandomMonsterMap;
@@ -26,13 +28,13 @@ public class Game {
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame) {
         // frame.setVisible(true);
-        // RandomMonsterMap.getMapFrame().setVisible(false);
+        
         System.out.println("You entered a combat with a " + monster.getName());
 
         System.out.print("+");
         for (int i = 0; i < 123; i++)
         System.out.print("-");
-         System.out.println("+");
+        System.out.println("+");
         System.out.println();
         
         turn = true;
@@ -48,7 +50,6 @@ public class Game {
             int temp = checkWinLose(player, monster, textPane,consoleToGUI);
             if(temp == 1){
                 frame.setVisible(true);
-                RandomMonsterMap.getMapFrame().setVisible(false);
                 return;
             } else if (temp == -1){
                 return;
@@ -64,7 +65,7 @@ public class Game {
                             }
                         } while (!choice.matches("^[1-7]$"));
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                         e.printStackTrace();
                     }
                     int monsterPreviousHP = monster.getHP();
                     switch (choice) {
@@ -361,7 +362,6 @@ public class Game {
             temp = checkWinLose(player, monster, textPane,consoleToGUI);
             if(temp == 1){
                 frame.setVisible(true);
-                RandomMonsterMap.getMapFrame().setVisible(false);
                 return;
             } else if (temp == -1){
                 return;
@@ -513,7 +513,7 @@ public class Game {
     public void winCombat(Entity player, Entity monster, JTextPane textPane) {
         displayWinCombat();
         isMonsterAlive = false;
-         try {
+        try {
             StyledDocument doc = textPane.getStyledDocument();
             doc.insertString(doc.getLength()," Congratulations! You have defeated ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -596,11 +596,13 @@ public class Game {
         if (player.getHP() <= 0) {
             loseCombat(consoleToGUI);
             isMonsterAlive = false;
+            RandomMonsterMap.getMapFrame().setVisible(true);
             return -1;
         }
         if (monster.getHP() <= 0) {
             winCombat(player, monster,textPane);
             isMonsterAlive = false;
+            RandomMonsterMap.getMapFrame().setVisible(true);
             return 1;
         }
         return 0;

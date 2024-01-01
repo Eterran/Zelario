@@ -218,10 +218,5 @@ public class Start {
 
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player),textPane, consoleToGUI, frame, game));
         RandomMonsterMap.getMapFrame().setVisible(true);
-        //frame.setVisible(false);
-
-        // while(true){
-        //     game.beginCombat(player, new Harpy(player), textPane, consoleToGUI, frame);
-        // }
     }
 }
