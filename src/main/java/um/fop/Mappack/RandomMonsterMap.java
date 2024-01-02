@@ -13,10 +13,6 @@ import Gamepack.*;
 import UIpack.ConsoleToGUI;
 
 public class RandomMonsterMap extends JFrame {
-    // public static void main(String[] args) {
-    //     RandomMonsterMap frame = new RandomMonsterMap();
-    //     frame.setVisible(true);
-    // }
     private static RandomMonsterMap mapFrame;
 
     private final int WIDTH = 40;
@@ -290,8 +286,9 @@ public class RandomMonsterMap extends JFrame {
 
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(480, 480);
+        setSize(600, 600);
         setLocationRelativeTo(null);//null 参数意味着窗口将相对于屏幕的中央定位
+        setResizable(false);
         setFocusable(true);//可以获取焦点
         requestFocus();//请求将焦点赋予给当前组件。因为：窗口一旦显示，就能立即响应用户的输入，like：键盘事件
         /*在图形用户界面（GUI）编程中，"焦点"指的是当前接收键盘输入和类似事件的组件。当一个组件有焦点时，它可以接收来自用户的键盘事件，

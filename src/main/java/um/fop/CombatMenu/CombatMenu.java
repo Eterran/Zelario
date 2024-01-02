@@ -105,7 +105,7 @@ public class CombatMenu {
 	public static void displayCombatMenu(Entity player, Entity monster, JTextPane textPane, JFrame frame) throws IOException {
 		
 		displayIcon(player,monster,textPane,frame);
-		frame.setSize(1150, 825);
+		frame.setSize(1150, 800);
 
 		System.out.print("+");
 

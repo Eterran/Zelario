@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.awt.event.*;
 
 import Entitypack.*;
 import Entitypack.Playerpack.*;
@@ -19,6 +20,8 @@ public class Start {
         JFrame frame = new JFrame("Zelario");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(810, 800);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         // Set the layout of the JFrame's content pane
         frame.getContentPane().setLayout(new BorderLayout());
@@ -31,8 +34,39 @@ public class Start {
         textPane.setBorder(new LineBorder(Color.BLACK));
 
         JTextField userInputField = new JTextField(20);
+        userInputField.setText("Enter input here");
+        userInputField.setForeground(Color.GRAY);
+
+        Timer timer = new Timer(500, null);
+        timer.addActionListener(e -> {
+            if (userInputField.getText().endsWith(">")) {
+                userInputField.setText(userInputField.getText().substring(0, userInputField.getText().length() - 1));
+            } else {
+                userInputField.setText(userInputField.getText() + ">");
+            }
+        });
+
+        userInputField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (userInputField.getText().equals("Enter input here")) {
+                    userInputField.setText("");
+                    userInputField.setForeground(Color.WHITE);
+                }
+                timer.start();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (userInputField.getText().isEmpty()) {
+                    userInputField.setText("Enter input here");
+                    userInputField.setForeground(Color.GRAY);
+                }
+                timer.stop();
+            }
+        });
+
         userInputField.setBackground(Color.BLACK);
-        userInputField.setForeground(Color.WHITE); 
         userInputField.setBorder(null); 
         userInputField.setFont(new Font("Monospaced", Font.PLAIN, 14)); 
 
