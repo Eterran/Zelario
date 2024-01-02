@@ -67,8 +67,7 @@ public class Paladin extends Player {
                return getMaxHP();
           }
           
-          this.damageDealt(target, dmg);
-          return dmg;
+          return this.damageDealt(target, dmg);
      }
      public int useSkill3(Entity target) {
           setCDSkill3(this.getMaxCDSkill3());

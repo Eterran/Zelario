@@ -59,17 +59,15 @@ public class Rogue extends Player {
           setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill1() * (1.0 - target.getPhysicalDefence() / 100.0));
-          this.damageDealt(target, dmg);
-          return dmg;
+          return this.damageDealt(target, dmg);
      }
 
      public int useSkill2(Entity target) {
           setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
-          this.damageDealt(target, dmg);
           target.applyStatus(Status.STUNNED, 1);
-          return dmg;
+          return this.damageDealt(target, dmg);
      }
 
      public int useSkill3(Entity target) {

@@ -61,9 +61,8 @@ public class Mage extends Player {
           setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
           int dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
-          this.damageDealt(target, dmg);
           target.applyStatus(Status.POISONED, 2);
-          return dmg;
+          return this.damageDealt(target, dmg);
          
      }
 
@@ -71,22 +70,19 @@ public class Mage extends Player {
           setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
           int dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
-          this.damageDealt(target, dmg);
-          return dmg;
+          return this.damageDealt(target, dmg);
      }
 
      public int useSkill3(Entity target) {
           setCDSkill3(this.getMaxCDSkill3());
           this.setMP(this.getMP() - this.getSkill3Mp());
           int dmg = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
-          this.damageDealt(target, dmg);
            target.applyStatus(Status.FROZEN, 2);
-          return dmg;
+           return this.damageDealt(target, dmg);
      }
 
      public int normalAttack(Entity target) {// magical normal attack
           int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0) * 0.2); // player HP
-          this.damageDealt(target, dmg);
-          return dmg;
+          return this.damageDealt(target, dmg);
      }
 }
