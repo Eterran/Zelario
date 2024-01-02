@@ -541,7 +541,7 @@ public class Game {
         turn = !turn;
     }
 
-    public void winCombat(Entity player, Entity monster, JTextPane textPane) {
+    public void winCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
         displayWinCombat();
         isMonsterAlive = false;
         try {
@@ -571,7 +571,18 @@ public class Game {
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
-            // System.out.println("+You are now Level " + player.getLevel());
+        }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "Press Enter to continue.", ColorAttributes.DARK_GRAY);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -582,12 +593,17 @@ public class Game {
         try {
             do {
                 choice = consoleToGUI.getNextInput();
-                if (!choice.matches("^[1-7]$")) {
+                if (!choice.matches("^[1-2]$")) {
                     System.out.println("Invalid input.");
                 }
-            } while (!choice.matches("^[1-7]$"));
+            } while (!choice.matches("^[1-2]$"));
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        if(choice.equals("1")){
+
+        } else {
+            
         }
     }
 
@@ -632,7 +648,7 @@ public class Game {
             return -1;
         }
         if (monster.getHP() <= 0) {
-            winCombat(player, monster, textPane);
+            winCombat(player, monster, textPane, consoleToGUI);
             isMonsterAlive = false;
             RandomMonsterMap.getMapFrame().setVisible(true);
             return 1;
