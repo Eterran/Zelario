@@ -226,6 +226,7 @@ public class Entity {
         }
         if(this.isShadowed){
             this.isShadowed = false;
+            this.clearAllStatus();
             return 0;
         }
         if(this.isWarriorBuff){
