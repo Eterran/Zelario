@@ -8,7 +8,7 @@ import Gamepack.*;
 import Mappack.*;
 import PickCharacter.*;
 import UIpack.*;
-import UIpack.ConsoleToGUI.CustomOutputStream;
+import UIpack.ConsoleToGUI.*;
 
 import java.io.*;
 // import SQLpack.*;
