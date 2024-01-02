@@ -29,28 +29,28 @@ public class Game {
     boolean turn = true;
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI,
-            JFrame frame) {
+            JFrame frame, JScrollPane scrollPane) {
         frame.setVisible(true);
+        textPane.setText("");
 
         System.out.println("You entered a combat with a " + monster.getName());
-
-        System.out.print("+");
-        for (int i = 0; i < 123; i++)
-            System.out.print("-");
-        System.out.println("+");
-        System.out.println();
 
         turn = true;
         isMonsterAlive = true;
         initialLevel = player.getLevel();
         while (isMonsterAlive) {
+            System.out.print("+");
+            for (int i = 0; i < 123; i++)
+                System.out.print("-");
+            System.out.println("+");
+            System.out.println();
             try {
                 CombatMenu.displayCombatMenu(player, monster, textPane, frame);
                 Thread.sleep(100);
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
-            int temp = checkWinLose(player, monster, textPane, consoleToGUI);
+            int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
             if (temp == 1) {
                 frame.setVisible(false);
                 return;
@@ -71,6 +71,7 @@ public class Game {
                         e.printStackTrace();
                     }
                     int monsterPreviousHP = monster.getHP();
+                    textPane.setText("");
                     switch (choice) {
                         case "1":
 
@@ -80,7 +81,7 @@ public class Game {
                                 doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                 doc.insertString(doc.getLength(), " for ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(),
-                                String.format("%4d HP!", player.normalAttack(monster)), ColorAttributes.ORANGE);
+                                String.format("%4d HP!\n", player.normalAttack(monster)), ColorAttributes.ORANGE);
 
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -91,7 +92,7 @@ public class Game {
                         case "2":
                             try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "You brace youself for a hit. ", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "You brace youself for a hit.\n", ColorAttributes.WHITE);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -109,7 +110,7 @@ public class Game {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
-                                    doc.insertString(doc.getLength(), " healed 50 HP!", ColorAttributes.GREEN);
+                                    doc.insertString(doc.getLength(), " healed 50 HP!\n", ColorAttributes.GREEN);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -122,7 +123,7 @@ public class Game {
                                     doc.insertString(doc.getLength(),
                                             Integer.toString(50 - (player.getHP() - player.getMaxHP())),
                                             ColorAttributes.GREEN);
-                                    doc.insertString(doc.getLength(), " HP! ", ColorAttributes.GREEN);
+                                    doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.GREEN);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -135,7 +136,7 @@ public class Game {
                             if (!player.isSkill1Unlocked) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!",
+                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
                                             ColorAttributes.GRAY);
 
                                 } catch (BadLocationException e) {
@@ -160,7 +161,7 @@ public class Game {
                                             doc.insertString(doc.getLength(),
                                                     Integer.toString((monsterPreviousHP - monster.getHP())),
                                                     ColorAttributes.RED);
-                                            doc.insertString(doc.getLength(), " HP!", ColorAttributes.RED);
+                                            doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.RED);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -176,7 +177,7 @@ public class Game {
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(),
-                                                    String.format("buff yourself for %s ATK!", player.getSkill1()),
+                                                    String.format("buff yourself for %s ATK!\n", player.getSkill1()),
                                                     ColorAttributes.CYAN);
 
                                         } catch (BadLocationException e) {
@@ -188,7 +189,7 @@ public class Game {
                                 } else {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "You are silenced!", ColorAttributes.MAGENTA);
+                                        doc.insertString(doc.getLength(), "You are silenced!\n", ColorAttributes.MAGENTA);
 
                                     } catch (BadLocationException e) {
                                         e.printStackTrace();
@@ -224,7 +225,7 @@ public class Game {
                             if (!player.isSkill2Unlocked) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!",
+                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
                                             ColorAttributes.GRAY);
 
                                 } catch (BadLocationException e) {
@@ -248,7 +249,7 @@ public class Game {
                                             doc.insertString(doc.getLength(),
                                                     Integer.toString((monsterPreviousHP - monster.getHP())),
                                                     ColorAttributes.RED);
-                                            doc.insertString(doc.getLength(), " HP!", ColorAttributes.RED);
+                                            doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.RED);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -263,7 +264,7 @@ public class Game {
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(),
-                                                    String.format("buff yourself for %s ATK!", player.getSkill1()),
+                                                    String.format("buff yourself for %s ATK!\n", player.getSkill1()),
                                                     ColorAttributes.CYAN);
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -274,7 +275,7 @@ public class Game {
                                 } else {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "You are silenced!", ColorAttributes.MAGENTA);
+                                        doc.insertString(doc.getLength(), "You are silenced!\n", ColorAttributes.MAGENTA);
                                     } catch (BadLocationException e) {
                                         e.printStackTrace();
                                     }
@@ -294,7 +295,7 @@ public class Game {
                             if (!player.isSkill3Unlocked) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!",
+                                    doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
                                             ColorAttributes.GRAY);
 
                                 } catch (BadLocationException e) {
@@ -317,7 +318,7 @@ public class Game {
                                             doc.insertString(doc.getLength(),
                                                     Integer.toString((monsterPreviousHP - monster.getHP())),
                                                     ColorAttributes.RED);
-                                            doc.insertString(doc.getLength(), " HP!", ColorAttributes.RED);
+                                            doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.RED);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -332,7 +333,7 @@ public class Game {
                                             doc.insertString(doc.getLength(), player.getSkillThreeName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), String.format("buff yourself for %s ATK!", player.getSkill3()),ColorAttributes.CYAN);
+                                            doc.insertString(doc.getLength(), String.format("buff yourself for %s ATK!\n", player.getSkill3()),ColorAttributes.CYAN);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -343,7 +344,7 @@ public class Game {
                                 } else {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "You are silenced, no sound escapes your mouth!", ColorAttributes.MAGENTA);
+                                        doc.insertString(doc.getLength(), "You are silenced, you try to speak but no sound escapes your mouth!\n", ColorAttributes.MAGENTA);
 
                                     } catch (BadLocationException e) {
                                         e.printStackTrace();
@@ -367,7 +368,7 @@ public class Game {
             } else if (player.isFrozen) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
-                    doc.insertString(doc.getLength(), "You tried to move but you are frozen in place!", ColorAttributes.MAGENTA);
+                    doc.insertString(doc.getLength(), "You tried to move but you are frozen in place!\n", ColorAttributes.MAGENTA);
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
@@ -376,14 +377,14 @@ public class Game {
             } else if (player.isStunned) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
-                    doc.insertString(doc.getLength(), "You tried to move but you are stunned!", ColorAttributes.MAGENTA);
+                    doc.insertString(doc.getLength(), "You tried to move but you are stunned!\n", ColorAttributes.MAGENTA);
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
                 endTurn();
             }
-            temp = checkWinLose(player, monster, textPane, consoleToGUI);
+            temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
             if (temp == 1) {
                 frame.setVisible(false);
                 return;
@@ -539,7 +540,7 @@ public class Game {
         turn = !turn;
     }
 
-    public void winCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
+    public void winCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JScrollPane scrollPane) {
         displayWinCombat();
         isMonsterAlive = false;
         try {
@@ -581,6 +582,7 @@ public class Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        consoleToGUI.scrollToBottom(scrollPane);
     }
 
     public void loseCombat(ConsoleToGUI consoleToGUI) {
@@ -637,7 +639,7 @@ public class Game {
         s.close();
     }
 
-    public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
+    public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JScrollPane scrollPane) {
         if (player.getHP() <= 0) {
             loseCombat(consoleToGUI);
             isMonsterAlive = false;
@@ -645,7 +647,7 @@ public class Game {
             return -1;
         }
         if (monster.getHP() <= 0) {
-            winCombat(player, monster, textPane, consoleToGUI);
+            winCombat(player, monster, textPane, consoleToGUI, scrollPane);
             isMonsterAlive = false;
             RandomMonsterMap.getMapFrame().setVisible(true);
             return 1;

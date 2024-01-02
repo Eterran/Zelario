@@ -18,7 +18,7 @@ public class Start {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Zelario");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
+        frame.setSize(810, 800);
 
         // Set the layout of the JFrame's content pane
         frame.getContentPane().setLayout(new BorderLayout());
@@ -43,7 +43,7 @@ public class Start {
         scrollPane.setBorder(null);
         
         // Adding components to the frame
-        frame.getContentPane().add(scrollPane, "Center");
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
         
         // Redirecting System.out to the text area
         PrintStream printStream = new PrintStream(new CustomOutputStream(textPane));
@@ -213,7 +213,7 @@ public class Start {
         }
         Game game = new Game(player);
 
-        RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player),textPane, consoleToGUI, frame, game));
+        RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player),textPane, consoleToGUI, frame, game, scrollPane));
         RandomMonsterMap.getMapFrame().setVisible(true);
         frame.setVisible(false);
     }

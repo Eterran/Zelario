@@ -9,28 +9,28 @@ import java.awt.event.*;
 public class ConsoleToGUI {
     public static class CustomOutputStream extends OutputStream {
         private JTextPane textPane;
-
+        private StringBuilder sb = new StringBuilder();
         public CustomOutputStream(JTextPane textPane) {
             this.textPane = textPane;
         }
         @Override
-    public void write(int b) {
-        // Convert the byte to a string
-        String text = String.valueOf((char) b);
+        public void write(int b) {
+            // Convert the byte to a string
+            String text = String.valueOf((char) b);
 
-        // Get the StyledDocument from the JTextPane
-        StyledDocument doc = textPane.getStyledDocument();
+            // Get the StyledDocument from the JTextPane
+            StyledDocument doc = textPane.getStyledDocument();
 
-        // Append the text to the StyledDocument
-        try {
-            doc.insertString(doc.getLength(), text, null);
-        } catch (BadLocationException e) {
-            e.printStackTrace();
+            // Append the text to the StyledDocument
+            try {
+                doc.insertString(doc.getLength(), text, null);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        // Scroll the JTextPane to the end of the text
+        textPane.setCaretPosition(doc.getLength());
         }
-    // Scroll the JTextPane to the end of the text
-    textPane.setCaretPosition(doc.getLength());
     }
-}
     
     private String userInput = null;
     private final Object lock = new Object();
@@ -63,4 +63,16 @@ public class ConsoleToGUI {
         userInput = null;
         return input;
     }
+    public void scrollToBottom(JScrollPane scrollPane) {
+        JScrollBar verticalBar = scrollPane.getVerticalScrollBar();
+        AdjustmentListener downScroller = new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                JScrollBar scrollBar = (JScrollBar) e.getAdjustable();
+                scrollBar.setValue(scrollBar.getMaximum());
+                verticalBar.removeAdjustmentListener(this);
+            }
+        };
+        verticalBar.addAdjustmentListener(downScroller);
+    }    
 }

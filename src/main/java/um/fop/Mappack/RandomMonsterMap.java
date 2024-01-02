@@ -34,7 +34,7 @@ public class RandomMonsterMap extends JFrame {
         return mapFrame;
     }
 
-    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game) {
+    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
         super("Zelario Game");
 
         JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
@@ -266,7 +266,7 @@ public class RandomMonsterMap extends JFrame {
                         //SwingUtilities.invokeLater(new Runnable() {
                         Thread thread = new Thread(new Runnable() {
                             public void run() {
-                                game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame);
+                                game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame, scrollPane);
                             }
                         });
                         thread.start();

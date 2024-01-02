@@ -14,6 +14,7 @@ public class PickCharacter {
 	public static int heroChoice = -1;
 
 	public static void pickCharacterMenu(ConsoleToGUI consoleToGUI, JTextField userInputField, JTextPane textPane) throws FileNotFoundException {
+		textPane.setText("");
 		File file = new File("src\\main\\java\\um\\fop\\ASCII\\Menu Logo ASCII.txt");
 		Scanner sc = new Scanner(file);
 		while (sc.hasNextLine()) {
@@ -69,14 +70,19 @@ public class PickCharacter {
         }
 		
 		if (input.equals("1")) {
+			textPane.setText("");
 			PickRogue(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("2")) {
+			textPane.setText("");
 			PickWarrior(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("3")) {
+			textPane.setText("");
 			PickArcher(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("4")) {
+			textPane.setText("");
 			PickMage(consoleToGUI, userInputField, textPane);
 		} else if (input.equals("5")) {
+			textPane.setText("");
 			PickPaladin(consoleToGUI, userInputField, textPane);
 		}
 	}
