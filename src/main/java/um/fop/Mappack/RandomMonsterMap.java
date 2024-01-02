@@ -10,6 +10,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import Entitypack.Entity;
 import Gamepack.*;
+import UIpack.ConsoleToGUI;
 
 public class RandomMonsterMap extends JFrame {
     // public static void main(String[] args) {

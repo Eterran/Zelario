@@ -4,6 +4,15 @@ import java.util.Map;
 import java.util.Random;
 import java.util.HashMap;
 
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
+import Entitypack.Monsterpack.*;
+import UIpack.ColorAttributes;
+
+
+
 public class Entity {
     protected String name;
     protected int maxHP;
@@ -70,7 +79,9 @@ public class Entity {
                         + this.magicalDefence + this.skill1 + this.skill2 + this.skill3;
 
         this.statuses = new HashMap<>();
+        this.dialogueDisplayed = new HashMap<>();
 
+        this.isDefending = false;
         this.isFrozen = false;
         this.isConfused = false;
         this.isSilenced = false;
@@ -147,7 +158,7 @@ public class Entity {
         return this.skillThreeName;
     }
 
-     public String getSkill3Description(){
+    public String getSkill3Description(){
         return this.skill3Description;
     }
 
@@ -200,15 +211,13 @@ public class Entity {
     }
 
     public int damageDealt(Entity target, int dmg){   
-        target.damageTaken(dmg);
-        return dmg;
+        return target.damageTaken(dmg);
     }
 
 
     public int normalAttack(Entity target) {//physical normal attack
         int dmg = (int) (this.getPhysicalAttack() * (1.0 - target.getPhysicalDefence() / 100.0) * 0.2); 
-        target.damageTaken(dmg);
-        return dmg;
+        return target.damageTaken(dmg);
     }
 
     public int damageTaken(int dmg) {
@@ -225,8 +234,13 @@ public class Entity {
             this.HP -= reducedDamage;
             return reducedDamage;
         }
+        if(this.isDefending){
+            dmg *= 0.5;
             this.HP -= dmg;
-            return this.HP;  // Return the updated HP value if needed
+            return dmg;
+        }
+        this.HP -= dmg;
+        return dmg;
     }
 
     public void setHP(int newHP){
@@ -257,7 +271,8 @@ public class Entity {
     }
 
     public void defend(Entity target) {
-        this.applyStatus(Status.WARRIORDMGRESIST, 1);
+        this.isDefending = true;
+        this.applyStatus(Status.DEFEND, 1);
     } 
 
     public void setMP(int newMP){
@@ -300,11 +315,13 @@ public class Entity {
     }
     // statuses & Level
     protected Map<Status, Integer> statuses;
+    protected Map<Status, Boolean> dialogueDisplayed = new HashMap<>();
     protected int exp;
     protected int level;
     public int expDrop;
     protected int statsLevel;
 
+    public boolean isDefending;
     public boolean isFrozen;
     public boolean isConfused;
     public boolean isSilenced;
@@ -340,73 +357,240 @@ public class Entity {
         }
     }
 // Status Effects
-    public void applyEffects() {
+    public void applyEffects(JTextPane textPane) {
         for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
             Status status = entry.getKey();
             switch (status) {
                 case POISONED:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.HP = (int) (maxHP * 0.95);
+                        try {
+                            StyledDocument doc = textPane.getStyledDocument();
+                            if(this instanceof Monster){
+                                doc.insertString(doc.getLength(), this.getName() + " is poisoned and takes ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
+                            } else {
+                                doc.insertString(doc.getLength(), "You are poisoned and take ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
+                            }
+                        } catch (BadLocationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                case DEFEND:
+                    if (statuses.get(status) > 0)
+                        this.isDefending = true;
+                    else
+                        this.isDefending = false;
                     break;
                 case SILENCED:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isSilenced = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is silenced!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        dialogueDisplayed.put(status, true);
+                    }
+                    else{
                         this.isSilenced = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case CONFUSION:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isConfused = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is confused!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isConfused = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case FROZEN:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isFrozen = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is frozen!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are frozen, the cold penetrates deep into your skin.\n", ColorAttributes.WHITE);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                        dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isFrozen = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case WEAKENED:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isWeakened = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is weakened!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are weakened, your movements sluggish and attacks feeble.\n", ColorAttributes.WHITE);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isWeakened = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case STUNNED:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isStunned = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is stunned!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                        dialogueDisplayed.put(status, false);
+                        }
+                    }
+                    else{
                         this.isStunned = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case IMMUNITY:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isImmune = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " is immune!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You are immune, a radiant light envelops you, shielding you from harm.\n", ColorAttributes.YELLOW);
+                                }
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isImmune = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
-                case SHADOWSTEP:
-                    if (statuses.get(status) > 0)
+                    case SHADOWSTEP:
+                    if (statuses.get(status) > 0){
                         this.isShadowed = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                if(this instanceof Monster){
+                                    doc.insertString(doc.getLength(), this.getName() + " hides into the shadow!\n", ColorAttributes.WHITE);
+                                } else {
+                                    doc.insertString(doc.getLength(), "You blend into the shadow, a seamless integration with the darkness.\n", ColorAttributes.LIGHT_GRAY);
+                                }
+                                dialogueDisplayed.put(status, true);
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    else {
                         this.isShadowed = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case ARCHERSKILL1BUFF:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isArcherBuff = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "You take a deep breath and focuses deeply on your next shot.\n", ColorAttributes.WHITE);
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isArcherBuff = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case PALADINSKILL1BUFF:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isPaladinBuff = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "You raise your weapon high, channeling a righteous fury within.\n", ColorAttributes.WHITE);
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isPaladinBuff = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
                 case WARRIORDMGRESIST:
-                    if (statuses.get(status) > 0)
+                    if (statuses.get(status) > 0){
                         this.isWarriorBuff = true;
-                    else
+                        if (!dialogueDisplayed.getOrDefault(status, false)) {
+                            try {
+                                StyledDocument doc = textPane.getStyledDocument();
+                                doc.insertString(doc.getLength(), "You plants your feet firmly and ready your shield, a stalwart guardian amidst the chaos.\n", ColorAttributes.WHITE);
+                            } catch (BadLocationException e) {
+                                e.printStackTrace();
+                            }
+                            dialogueDisplayed.put(status, true);
+                        }
+                    }
+                    else{
                         this.isWarriorBuff = false;
+                        dialogueDisplayed.put(status, false);
+                    }
                     break;
             }
         }

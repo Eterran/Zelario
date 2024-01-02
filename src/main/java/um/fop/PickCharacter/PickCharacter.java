@@ -3,8 +3,9 @@ package PickCharacter;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import Gamepack.ConsoleToGUI;
+
 import UIpack.ColorAttributes;
+import UIpack.ConsoleToGUI;
 
 import javax.swing.*;
 import javax.swing.text.*;

@@ -125,7 +125,6 @@ public class Harpy extends Monster {
 
    public int normalAttack(Entity target) {//magical normal attack
         int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
-        this.damageDealt(target, dmg);
-        return dmg;
+        return this.damageDealt(target, dmg);
     }
 }

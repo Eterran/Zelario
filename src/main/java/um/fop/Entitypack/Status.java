@@ -2,6 +2,7 @@ package Entitypack;
 
 
 public enum Status {
+    DEFEND,
     POISONED,
     SILENCED,
     CONFUSION,

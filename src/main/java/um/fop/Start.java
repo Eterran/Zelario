@@ -5,13 +5,14 @@ import javax.swing.border.LineBorder;
 import Entitypack.*;
 import Entitypack.Playerpack.*;
 import Gamepack.*;
-import Gamepack.ConsoleToGUI.CustomOutputStream;
 import Mappack.*;
 import PickCharacter.*;
+import UIpack.*;
+import UIpack.ConsoleToGUI.CustomOutputStream;
 
 import java.io.*;
-//import SQLpack.*;
-//import java.sql.*;
+// import SQLpack.*;
+// import java.sql.*;
 
 public class Start {
     public static void main(String[] args) {
@@ -90,12 +91,12 @@ public class Start {
         //         while(true){
         //             try {
         //                 System.out.println("Register");
-                            // System.out.print("+");
+        //                     System.out.print("+");
 
-                            // int width = 86;
-                            // for (int a=0; a<width;a++)
-                            //     System.out.print("-");
-                            // System.out.println("+");
+        //                     int width = 86;
+        //                     for (int a=0; a<width;a++)
+        //                         System.out.print("-");
+        //                     System.out.println("+");
         //                 System.out.println("Enter your username: ");
         //                 try {
         //                     username = consoleToGUI.getNextInput();
@@ -134,12 +135,12 @@ public class Start {
         //         } catch (Exception e) {
         //             e.printStackTrace();
         //         }
-                    // System.out.print("+");
+        //             System.out.print("+");
 
-                    // int width = 86;
-                    // for (int a=0; a<width;a++)
-                    //     System.out.print("-");
-                    // System.out.println("+");
+        //             int width = 86;
+        //             for (int a=0; a<width;a++)
+        //                 System.out.print("-");
+        //             System.out.println("+");
         //         try {
         //             if (!(SQL.usernameExists(conn, username))) {
         //                 System.out.println("Username does not exists, please try again.");
@@ -214,5 +215,6 @@ public class Start {
 
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player),textPane, consoleToGUI, frame, game));
         RandomMonsterMap.getMapFrame().setVisible(true);
+        frame.setVisible(false);
     }
 }
