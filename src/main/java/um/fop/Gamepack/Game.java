@@ -152,7 +152,7 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillOneName(),
+                                            doc.insertString(doc.getLength(), player.getSkillOneName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and hit ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -172,7 +172,7 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillOneName(),
+                                            doc.insertString(doc.getLength(), player.getSkillOneName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(),
@@ -211,7 +211,7 @@ public class Game {
                                 } else if (player.getCDSkill1() != 0) {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "Your skill is not ready yet!\n",
+                                        doc.insertString(doc.getLength(), "Your skill is not ready yet!\n\n",
                                                 ColorAttributes.ORANGE);
 
                                     } catch (BadLocationException e) {
@@ -240,7 +240,7 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillTwoName(),
+                                            doc.insertString(doc.getLength(), player.getSkillTwoName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and hit ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -259,7 +259,7 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillTwoName(),
+                                            doc.insertString(doc.getLength(), player.getSkillTwoName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(),
@@ -282,7 +282,7 @@ public class Game {
                             } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!",
+                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!\n\n",
                                             ColorAttributes.ORANGE);
 
                                 } catch (BadLocationException e) {
@@ -309,7 +309,7 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillThreeName(),
+                                            doc.insertString(doc.getLength(),player.getSkillThreeName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and hit ", ColorAttributes.WHITE);
                                             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -329,10 +329,10 @@ public class Game {
                                         try {
                                             StyledDocument doc = textPane.getStyledDocument();
                                             doc.insertString(doc.getLength(), "You have used ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), player.getSkillTwoName(),
+                                            doc.insertString(doc.getLength(), player.getSkillThreeName().replace("\t", ""),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(), String.format("buff yourself for %s ATK!", player.getSkill1()),ColorAttributes.CYAN);
+                                            doc.insertString(doc.getLength(), String.format("buff yourself for %s ATK!", player.getSkill3()),ColorAttributes.CYAN);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -352,7 +352,7 @@ public class Game {
                             } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!\n",
+                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!\n\n",
                                             ColorAttributes.ORANGE);
 
                                 } catch (BadLocationException e) {
@@ -571,7 +571,7 @@ public class Game {
         }
         try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), "Press Enter to continue.", ColorAttributes.DARK_GRAY);
+            doc.insertString(doc.getLength(), "Press Enter to continue.\n\n", ColorAttributes.DARK_GRAY);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

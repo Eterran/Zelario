@@ -35,7 +35,7 @@ public class Paladin extends Player {
           this.skillOneName = "Rage\t\t";
           this.skill1Description = "Paladin attack increased for 3 rounds.";
           this.skillTwoName = "Holy Smite\t";
-          this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion of the damage dealt.";
+          this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion \n\t\t\tof the damage dealt.";
           this.skillThreeName = "Divine Shield";
           this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";
           this.skill1 = 20; // Buff Physical Attack
