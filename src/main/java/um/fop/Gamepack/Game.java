@@ -202,7 +202,7 @@ public class Game {
                                 if (player.getMP() < player.getSkill1Mp()) {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "You do not have enough mana!",
+                                        doc.insertString(doc.getLength(), "You do not have enough mana!\n",
                                                 ColorAttributes.ORANGE);
 
                                     } catch (BadLocationException e) {
@@ -211,7 +211,7 @@ public class Game {
                                 } else if (player.getCDSkill1() != 0) {
                                     try {
                                         StyledDocument doc = textPane.getStyledDocument();
-                                        doc.insertString(doc.getLength(), "Your skill is not ready yet!",
+                                        doc.insertString(doc.getLength(), "Your skill is not ready yet!\n",
                                                 ColorAttributes.ORANGE);
 
                                     } catch (BadLocationException e) {
@@ -332,9 +332,7 @@ public class Game {
                                             doc.insertString(doc.getLength(), player.getSkillTwoName(),
                                                     ColorAttributes.ORANGE);
                                             doc.insertString(doc.getLength(), " and ", ColorAttributes.WHITE);
-                                            doc.insertString(doc.getLength(),
-                                                    String.format("buff yourself for %s ATK!", player.getSkill1()),
-                                                    ColorAttributes.CYAN);
+                                            doc.insertString(doc.getLength(), String.format("buff yourself for %s ATK!", player.getSkill1()),ColorAttributes.CYAN);
 
                                         } catch (BadLocationException e) {
                                             e.printStackTrace();
@@ -354,7 +352,7 @@ public class Game {
                             } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!",
+                                    doc.insertString(doc.getLength(), "Your skill is not ready yet!\n",
                                             ColorAttributes.ORANGE);
 
                                 } catch (BadLocationException e) {
@@ -407,7 +405,7 @@ public class Game {
                             doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                             doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
                                     ColorAttributes.MAGENTA);
-                            doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
+                            doc.insertString(doc.getLength(), " HP!\n\n", ColorAttributes.MAGENTA);
 
                         } catch (BadLocationException e) {
                             e.printStackTrace();
@@ -422,7 +420,7 @@ public class Game {
                                 doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
                                         ColorAttributes.MAGENTA);
-                                doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
+                                doc.insertString(doc.getLength(), " HP!\n\n", ColorAttributes.MAGENTA);
 
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -438,7 +436,7 @@ public class Game {
                                     doc.insertString(doc.getLength(), monster.getSkillOneName(), ColorAttributes.PINK);
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.WHITE);
                                     doc.insertString(doc.getLength(),
-                                            String.format(" %d HP!\n", monster.useSkill1(player)), ColorAttributes.RED);
+                                            String.format(" %d HP!\n\n", monster.useSkill1(player)), ColorAttributes.RED);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -453,7 +451,7 @@ public class Game {
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
                                             ColorAttributes.MAGENTA);
-                                    doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " HP!\n\n", ColorAttributes.MAGENTA);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -471,7 +469,7 @@ public class Game {
                                     doc.insertString(doc.getLength(), monster.getSkillTwoName(), ColorAttributes.PINK);
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.WHITE);
                                     doc.insertString(doc.getLength(),
-                                            String.format(" %d HP!\n", monster.useSkill2(player)), ColorAttributes.RED);
+                                            String.format(" %d HP!\n\n", monster.useSkill2(player)), ColorAttributes.RED);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -486,7 +484,7 @@ public class Game {
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
                                             ColorAttributes.MAGENTA);
-                                    doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.MAGENTA);
+                                    doc.insertString(doc.getLength(), " HP!\n\n", ColorAttributes.MAGENTA);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -502,7 +500,7 @@ public class Game {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                    doc.insertString(doc.getLength(), " is frozen and cannot move! \n", ColorAttributes.CYAN);
+                    doc.insertString(doc.getLength(), " is frozen and cannot move! \n\n", ColorAttributes.CYAN);
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
@@ -514,7 +512,7 @@ public class Game {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "\n ", ColorAttributes.MAGENTA);
                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-                    doc.insertString(doc.getLength(), " is stunned and cannot move! \n", ColorAttributes.CYAN);
+                    doc.insertString(doc.getLength(), " is stunned and cannot move! \n\n", ColorAttributes.CYAN);
 
                 } catch (BadLocationException e) {
                     e.printStackTrace();
@@ -546,27 +544,26 @@ public class Game {
         isMonsterAlive = false;
         try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), " Congratulations! You have defeated ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength(), "Congratulations! You have defeated ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
-            doc.insertString(doc.getLength(), "! ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength(), "!\n", ColorAttributes.YELLOW);
 
-            doc.insertString(doc.getLength(), "\n You have received  ", ColorAttributes.YELLOW);
+            doc.insertString(doc.getLength(), "You have received  ", ColorAttributes.YELLOW);
             doc.insertString(doc.getLength(), Integer.toString(player.gainEXP(monster)), ColorAttributes.PINK);
-            doc.insertString(doc.getLength(), "EXP! ", ColorAttributes.PINK);
+            doc.insertString(doc.getLength(), "EXP! \n", ColorAttributes.PINK);
 
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        // System.out.println("+You have defeated " + monster.getName());
-        // System.out.println("+You receive " + player.gainEXP(monster) + "EXP!");
+        
         player.clearAllStatus();
         player.levelUp();
         if (initialLevel < player.getLevel()) {
             try {
                 StyledDocument doc = textPane.getStyledDocument();
-                doc.insertString(doc.getLength(), " You are now ", ColorAttributes.YELLOW);
+                doc.insertString(doc.getLength(), "You are now ", ColorAttributes.YELLOW);
                 doc.insertString(doc.getLength(), String.format("Level %d", player.getLevel()), ColorAttributes.PINK);
-                doc.insertString(doc.getLength(), "! ", ColorAttributes.YELLOW);
+                doc.insertString(doc.getLength(), "! \n\n", ColorAttributes.YELLOW);
 
             } catch (BadLocationException e) {
                 e.printStackTrace();
