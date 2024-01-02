@@ -368,10 +368,10 @@ public class Entity {
                         try {
                             StyledDocument doc = textPane.getStyledDocument();
                             if(this instanceof Monster){
-                                doc.insertString(doc.getLength(), this.getName() + " is poisoned and takes ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), "\n" + this.getName() + " is poisoned and takes ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
                             } else {
-                                doc.insertString(doc.getLength(), "You are poisoned and take ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), "\nYou are poisoned and take ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
                             }
                         } catch (BadLocationException e) {
@@ -392,9 +392,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is silenced!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" + this.getName() + " is silenced!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\nYou are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -414,9 +414,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is confused!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " is confused!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\nYou are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -436,9 +436,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is frozen!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " is frozen!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are frozen, the cold penetrates deep into your skin.\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\nYou are frozen, the cold penetrates deep into your skin.\n", ColorAttributes.WHITE);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -458,9 +458,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is weakened!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " is weakened!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are weakened, your movements sluggish and attacks feeble.\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\nYou are weakened, your movements sluggish and attacks feeble.\n", ColorAttributes.WHITE);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -480,9 +480,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is stunned!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " is stunned!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\nYou are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -502,9 +502,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " is immune!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " is immune!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You are immune, a radiant light envelops you, shielding you from harm.\n", ColorAttributes.YELLOW);
+                                    doc.insertString(doc.getLength(), "\nYou are immune, a radiant light envelops you, shielding you from harm.\n", ColorAttributes.YELLOW);
                                 }
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
@@ -524,9 +524,9 @@ public class Entity {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
                                 if(this instanceof Monster){
-                                    doc.insertString(doc.getLength(), this.getName() + " hides into the shadow!\n", ColorAttributes.WHITE);
+                                    doc.insertString(doc.getLength(), "\n" +this.getName() + " hides into the shadow!\n", ColorAttributes.WHITE);
                                 } else {
-                                    doc.insertString(doc.getLength(), "You blend into the shadow, a seamless integration with the darkness.\n", ColorAttributes.LIGHT_GRAY);
+                                    doc.insertString(doc.getLength(), "\nYou blend into the shadow, a seamless integration with the darkness.\n", ColorAttributes.LIGHT_GRAY);
                                 }
                                 dialogueDisplayed.put(status, true);
                             } catch (BadLocationException e) {
@@ -545,7 +545,7 @@ public class Entity {
                         if (!dialogueDisplayed.getOrDefault(status, false)) {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
-                                doc.insertString(doc.getLength(), "You take a deep breath and focuses deeply on your next shot.\n", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), "\n" +"You take a deep breath and focuses deeply on your next shot.\n", ColorAttributes.WHITE);
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
                             }
@@ -563,7 +563,7 @@ public class Entity {
                         if (!dialogueDisplayed.getOrDefault(status, false)) {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
-                                doc.insertString(doc.getLength(), "You raise your weapon high, channeling a righteous fury within.\n", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), "\n" +"You raise your weapon high, channeling a righteous fury within.\n", ColorAttributes.WHITE);
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
                             }
@@ -581,7 +581,7 @@ public class Entity {
                         if (!dialogueDisplayed.getOrDefault(status, false)) {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
-                                doc.insertString(doc.getLength(), "You plants your feet firmly and ready your shield, a stalwart guardian amidst the chaos.\n", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), "\n" +"You plants your feet firmly and ready your shield, a stalwart guardian amidst the chaos.\n", ColorAttributes.WHITE);
                             } catch (BadLocationException e) {
                                 e.printStackTrace();
                             }
@@ -681,6 +681,7 @@ public class Entity {
             this.level = 35;
         }
         this.checkLvl();
+        this.setLevelStats();
         return this.level;
     }
     public void setLevelStats(){

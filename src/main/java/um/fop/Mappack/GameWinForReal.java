@@ -8,11 +8,6 @@ import java.awt.event.*;
 
 
 public class GameWinForReal extends JFrame {
-    public static void main(String[] args) {
-        GameWinForReal frame = new GameWinForReal();
-        frame.setVisible(true);
-    }
-
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
     private final char OBSTACLE = '#';

@@ -7,12 +7,6 @@ import java.awt.event.*;
 //import Mappack.GameWinForReal;
 
 public class ConnectToFight extends JFrame { //override方法重写alt+enter
-
-    public static void main(String[] args) {
-        ConnectToFight frame = new ConnectToFight();
-        frame.setVisible(true);
-    }
-
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
     private final char OBSTACLE = '#';
