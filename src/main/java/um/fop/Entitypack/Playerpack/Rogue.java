@@ -40,7 +40,7 @@ public class Rogue extends Player {
           this.skillTwoName = "Backstab\t";
           this.skill2Description = "The Rogue sneaks behind the target, delivering a devastating backstab. ";
           this.skillThreeName = "ShadowStep\t";
-          this.skill1Description = "The Rogue can evade the next spell or attack from the enemies.";
+          this.skill3Description = "The Rogue can evade the next spell or attack from the enemies.";
           this.skill1 = 50; // Smite
           this.skill2 = 150; // Backstab (stun one round)
           this.skill3 = 0; // ShadowStep (immune spell or attack one time)
