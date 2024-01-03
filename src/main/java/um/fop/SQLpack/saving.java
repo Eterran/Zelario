@@ -31,7 +31,6 @@ class GameProgress implements Serializable {
     public int getYPosition() { return yPosition; }
 }
 
-
 // 用于保存游戏进度的类
 class SaveGame {
     // 将游戏进度保存为文本格式
@@ -39,6 +38,16 @@ class SaveGame {
         // 使用try-with-resources语句确保PrintWriter最终会被关闭
         try (PrintWriter out = new PrintWriter(filePath)) {
             out.print(progress.toTextFormat()); // 写入游戏进度到文件
+            
+            // 保存Entity的额外属性
+            Entity playerEntity = progress.getPlayerEntity();
+            out.println("Name: " + playerEntity.getName());
+            out.println("Max HP: " + playerEntity.getMaxHP());
+            out.println("Max MP: " + playerEntity.getMaxMP());
+            out.println("Physical Attack: " + playerEntity.getPhysicalAttack());
+            out.println("Magical Attack: " + playerEntity.getMagicalAttack());
+            out.println("Physical Defence: " + playerEntity.getPhysicalDefence());
+            out.println("Magical Defence: " + playerEntity.getMagicalDefence());
         } catch (IOException e) {
             e.printStackTrace(); // 打印异常信息
         }
@@ -59,4 +68,3 @@ class LoadGame {
         }
     }
 }
-
