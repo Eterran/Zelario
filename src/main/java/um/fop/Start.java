@@ -37,12 +37,18 @@ public class Start {
         userInputField.setText("Enter input here");
         userInputField.setForeground(Color.GRAY);
 
-        Timer timer = new Timer(500, null);
-        timer.addActionListener(e -> {
-            if (userInputField.getText().endsWith(">")) {
-                userInputField.setText(userInputField.getText().substring(0, userInputField.getText().length() - 1));
+        JLabel promptLabel = new JLabel(">");
+        promptLabel.setOpaque(true);
+        promptLabel.setBackground(Color.BLACK);
+        promptLabel.setForeground(Color.WHITE);
+        promptLabel.setBorder(new LineBorder(Color.BLACK));
+        promptLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
+
+        Timer timer = new Timer(500, e -> {
+            if (promptLabel.getText().equals(">")) {
+                promptLabel.setText(" ");
             } else {
-                userInputField.setText(userInputField.getText() + ">");
+                promptLabel.setText(">");
             }
         });
 
@@ -66,6 +72,7 @@ public class Start {
             }
         });
 
+
         userInputField.setBackground(Color.BLACK);
         userInputField.setBorder(null); 
         userInputField.setFont(new Font("Monospaced", Font.PLAIN, 14)); 
@@ -88,6 +95,7 @@ public class Start {
 
         inputPanel.setLayout(new BorderLayout());
         inputPanel.add(userInputField, BorderLayout.CENTER);
+        inputPanel.add(promptLabel, BorderLayout.WEST);
         ConsoleToGUI consoleToGUI = new ConsoleToGUI(userInputField);
 
         // Adding components to the frame
