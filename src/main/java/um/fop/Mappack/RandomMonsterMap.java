@@ -19,6 +19,7 @@ public class RandomMonsterMap extends JFrame {
     private final int HEIGHT = 40;
     private final char OBSTACLE = '#';
     private final char PLAYER = '@';
+    private final char STAR = '*';
 
     private char[][] map;
     private int playerX, playerY;
@@ -95,8 +96,12 @@ public class RandomMonsterMap extends JFrame {
 
 //A
 
+        
         for (int j = 28; j < 31; j++) { //顶部-
             map[8][j] = '#';
+        }
+        for (int j = 28; j < 31; j++) { //顶部-
+            map[9][j] = '*';
         }
         for (int j = 27; j < 32; j++) { //中间-
             map[10][j] = '#';
@@ -112,6 +117,9 @@ public class RandomMonsterMap extends JFrame {
 
         for (int j = 0; j < 7; j++) { //顶部R
             map[14][j] = '#';
+        }
+        for (int j = 1; j < 7; j++) { //顶部R
+            map[15][j] = '*';
         }
         for (int j = 0; j < 7; j++) { //顶部R
             map[16][j] = '#';
@@ -272,7 +280,7 @@ public class RandomMonsterMap extends JFrame {
                         });
                         thread.start();
                     }
-                    if (map[newY][newX] != OBSTACLE && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
+                    if (map[newY][newX] != OBSTACLE && map[newY][newX]!=STAR && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
                         map[playerY][playerX] = '.';//把之前的位置清零，以及上色
                         map[newY][newX] = PLAYER;
                         playerX = newX;
@@ -354,6 +362,9 @@ public class RandomMonsterMap extends JFrame {
                 } else if (ch == 'C') {
                     label.setForeground(Color.YELLOW);
                     label.setText(String.valueOf('C'));
+                } else if (ch == '*') {
+                    label.setForeground(Color.blue);
+                    label.setText(String.valueOf('*'));
                 } else if (ch == 'D') {
                     label.setForeground(Color.YELLOW);
                     label.setText(String.valueOf('D'));
