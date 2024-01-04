@@ -364,15 +364,16 @@ public class Entity {
             switch (status) {
                 case POISONED:
                     if (statuses.get(status) > 0){
-                        this.HP = (int) (maxHP * 0.95);
+                        int poisonDMG = (int) (this.getMaxHP() * 0.05);
+                        this.HP -= poisonDMG;
                         try {
                             StyledDocument doc = textPane.getStyledDocument();
                             if(this instanceof Monster){
-                                doc.insertString(doc.getLength(), "\n" + this.getName() + " is poisoned and takes ", ColorAttributes.WHITE);
-                                doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
+                                doc.insertString(doc.getLength(), this.getName() + " is poisoned and takes ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), poisonDMG + "DMG!\n", ColorAttributes.RED);
                             } else {
-                                doc.insertString(doc.getLength(), "\nYou are poisoned and take ", ColorAttributes.WHITE);
-                                doc.insertString(doc.getLength(), (int) (this.HP * 0.05) + "DMG!\n", ColorAttributes.RED);
+                                doc.insertString(doc.getLength(), "You are poisoned and take ", ColorAttributes.WHITE);
+                                doc.insertString(doc.getLength(), poisonDMG + "DMG!\n", ColorAttributes.RED);
                             }
                         } catch (BadLocationException e) {
                             e.printStackTrace();

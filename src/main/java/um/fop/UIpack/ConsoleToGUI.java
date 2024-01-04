@@ -1,7 +1,6 @@
 package UIpack;
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.*;
 
 import java.io.OutputStream;
 import java.awt.event.*;
@@ -75,4 +74,19 @@ public class ConsoleToGUI {
         };
         verticalBar.addAdjustmentListener(downScroller);
     }    
+    public void clearLastLines(JTextPane textPane, int numLines) {
+        Document doc = textPane.getDocument();
+        Element root = doc.getDefaultRootElement();
+        int lineCount = root.getElementCount();
+        int startLine = lineCount - numLines;
+        if (startLine < 0) startLine = 0;
+    
+        try {
+            int startOffset = root.getElement(startLine).getStartOffset();
+            int endOffset = doc.getLength();
+            doc.remove(startOffset, endOffset - startOffset);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
 }
