@@ -147,6 +147,11 @@ public class RandomMonsterMap extends JFrame {
         for (int j = 21; j < 27; j++) { //底部
             map[19][j] = '#';
         }
+           for(int i = 14; i <= 19; i++) {
+        for (int j = 21; j < 27; j++) { //内部
+            map[i][j] = '#';
+        }
+    }
         map[15][20] = '#';
         map[15][27] = '#';
         map[16][20] = '#';
