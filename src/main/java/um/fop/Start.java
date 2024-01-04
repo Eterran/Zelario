@@ -19,9 +19,9 @@ public class Start {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Zelario");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(810, 800);
+        frame.setSize(815, 810);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        //frame.setResizable(false);
 
         // Set the layout of the JFrame's content pane
         frame.getContentPane().setLayout(new BorderLayout());
