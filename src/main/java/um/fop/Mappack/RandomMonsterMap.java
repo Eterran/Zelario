@@ -1,4 +1,4 @@
-package Map;
+package Mappack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -252,7 +252,7 @@ public class RandomMonsterMap extends JFrame {
                         if (choice == 0) {
                             // 游戏重新开始，重新生成地图和玩家位置
                             dispose();
-                            new GameWinForReal().setVisible(true);
+                            new ConnectToFight().setVisible(true);
                         } else {
                             // 退出游戏
                             // System.exit(0);
