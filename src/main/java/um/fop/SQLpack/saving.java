@@ -39,18 +39,15 @@ class GameProgress implements Serializable {
         return playerEntity;
     }
 
-    // 获取X坐标的方法
     public int getXPosition() {
         return xPosition;
     }
 
-    // 获取Y坐标的方法
     public int getYPosition() {
         return yPosition;
     }
 }
 
-// 用于保存游戏进度的类
 class SaveGame {
     public void saveGameProgress(String filePath, GameProgress progress) {
         // 使用ObjectOutputStream序列化GameProgress对象
@@ -60,7 +57,6 @@ class SaveGame {
             e.printStackTrace();
         }
 
-        // 创建一个额外的文本文件来保存Entity的属性
         String textFilePath = filePath + ".txt"; // 文本文件的路径
         try (PrintWriter out = new PrintWriter(textFilePath)) {
             // 获取Entity的属性并保存到文本文件
@@ -71,7 +67,6 @@ class SaveGame {
     }
 }
 
-// 用于加载游戏进度的类
 class LoadGame {
     public GameProgress loadGameProgress(String filePath) {
         // 使用ObjectInputStream反序列化GameProgress对象
