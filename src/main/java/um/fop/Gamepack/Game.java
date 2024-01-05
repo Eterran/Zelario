@@ -17,7 +17,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
-import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
+
 
 public class Game {
     public Game(Entity player) {
