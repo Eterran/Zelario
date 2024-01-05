@@ -26,30 +26,31 @@ public class Paladin extends Player {
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
                     this.magicalDefence = Integer.parseInt(stats[6]);
+                    this.skillOneName = stats[7];
+                    this.skill1Description = stats[8];
+                    this.skillTwoName = stats[9];
+                    this.skill2Description = stats[10];
+                    this.skillThreeName = stats[11];
+                    this.skill3Description = stats[12];
+                    this.skill1 = Integer.parseInt(stats[13]); // Buff Physical Attack
+                    this.skill2 = Integer.parseInt(stats[14]); // Holy Smite, damage and heal a small amount
+                    this.skill3 = Integer.parseInt(stats[15]); // Divine Shield (immune damage 2 round)
+                    this.skill1Mp = Integer.parseInt(stats[16]); 
+                    this.skill2Mp = Integer.parseInt(stats[17]); 
+                    this.skill3Mp = Integer.parseInt(stats[18]);
+                    this.MaxCDSkill1 = Integer.parseInt(stats[19]);
+                    this.MaxCDSkill2 = Integer.parseInt(stats[20]);
+                    this.MaxCDSkill3 = Integer.parseInt(stats[21]);
+                    this.CDSkill1 = Integer.parseInt(stats[19]);
+                    this.CDSkill2 = Integer.parseInt(stats[20]);
+                    this.CDSkill3 = Integer.parseInt(stats[21]);
                }
 
 
           }catch(FileNotFoundException e){
                System.out.println("File was not found");
           }
-          this.skillOneName = "Rage\t\t";
-          this.skill1Description = "Paladin attack increased for 3 rounds.";
-          this.skillTwoName = "Holy Smite\t";
-          this.skill2Description = "Smashes the target with divine light, dealing damage and healing the Paladin for a portion \n\t\t\tof the damage dealt.";
-          this.skillThreeName = "Divine Shield";
-          this.skill3Description ="Creates a protective barrier around the Paladin, rendering them immune to damage for 2 rounds.";
-          this.skill1 = 20; // Buff Physical Attack
-          this.skill2 = 100; // Holy Smite, damage and heal a small amount
-          this.skill3 = 0; // Divine Shield (immune damage 2 round)
-          this.skill1Mp = 30; 
-          this.skill2Mp = 40; 
-          this.skill3Mp = 50;
-          this.MaxCDSkill1 = 4;
-          this.MaxCDSkill2 = 3;
-          this.MaxCDSkill3 = 6;
-          this.CDSkill1 = 4;
-          this.CDSkill2 = 3;
-          this.CDSkill3 = 6;
+         
      }
      public int useSkill1(Entity target) {
           setCDSkill1(this.getMaxCDSkill1());
