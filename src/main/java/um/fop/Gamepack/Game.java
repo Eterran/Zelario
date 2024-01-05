@@ -17,6 +17,8 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
+import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
+
 public class Game {
     public Game(Entity player) {
         turn = true;
@@ -100,7 +102,7 @@ public class Game {
                             break;
                         case "3":
                             clearInput(textPane);
-                            // Escape();
+                            Escape(frame);
                             endTurn();
                             return;
                         case "4":
@@ -651,7 +653,17 @@ public class Game {
         }
         return 0;
     }
-
+    public void Escape(JFrame frame){
+        Random r = new Random();
+        int escapeChance = r.nextInt(99);
+        if(escapeChance < 50){
+            isMonsterAlive = false;
+            RandomMonsterMap.getMapFrame().setVisible(true);
+            frame.setVisible(false);
+        } else {
+            System.out.println("You failed to escape!");
+        }
+    }
     public static Entity spawnRandom(Entity player) {
         Random r = new Random();
         int rand = r.nextInt(100);
