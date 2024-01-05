@@ -7,14 +7,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
-import java.awt.Point;
 import java.util.ArrayList;
+import Entitypack.Entity;
+import Gamepack.*;
+import UIpack.ConsoleToGUI;
 
 public class RandomMonsterMap extends JFrame {
-    public static void main(String[] args) {
-        RandomMonsterMap frame = new RandomMonsterMap();
-        frame.setVisible(true);
-    }
+    private static RandomMonsterMap mapFrame;
 
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
@@ -22,14 +21,19 @@ public class RandomMonsterMap extends JFrame {
     private final char PLAYER = '@';
     private final char STAR = '*';
 
-
-    JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
-    ArrayList<Point> characterLocations = new ArrayList<>();
-
     private char[][] map;
     private int playerX, playerY;
 
-    public RandomMonsterMap() {
+    public static void setFrame(RandomMonsterMap frame){
+        mapFrame = frame;
+    }
+    public static RandomMonsterMap getMapFrame(){
+        return mapFrame;
+    }
+
+    JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
+    ArrayList<Point> characterLocations = new ArrayList<>();
+    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
         super("Zelario Game");
 
         panel.setBackground(Color.BLACK);
@@ -41,6 +45,7 @@ public class RandomMonsterMap extends JFrame {
             }
         }
 
+//地图的边界
         //地图的边界
         for (int i = 0; i < 40; i++) {
             map[i][0] = '#';
@@ -167,6 +172,8 @@ public class RandomMonsterMap extends JFrame {
         map[18][20] = '#';
         map[18][27] = '#';
 
+
+
         // 障碍物区域
         for (int i = 30; i <= 34; i++) {
             for (int j = 30; j <= 34; j++) {
@@ -206,10 +213,12 @@ public class RandomMonsterMap extends JFrame {
             characterLocations.add(new Point(x, y)); // 记录字符位置
         }
 
+
         // 放置@字符
         playerX = 20;
         playerY = 14;
         map[playerY][playerX] = PLAYER;
+
 
         // 绘制地图
         for (int i = 0; i < HEIGHT; i++) {
@@ -248,7 +257,7 @@ public class RandomMonsterMap extends JFrame {
                         break;
                     case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把
                         // 是=0；否=1；
-                        int choice = JOptionPane.showConfirmDialog(null, "是否重新开始游戏？", "确认", JOptionPane.YES_NO_OPTION);
+                        int choice = JOptionPane.showConfirmDialog(null, "DO YOU WANT TO START GAME AGAIN？", "O.O", JOptionPane.YES_NO_OPTION);
                         if (choice == 0) {
                             // 游戏重新开始，重新生成地图和玩家位置
                             dispose();
@@ -260,32 +269,10 @@ public class RandomMonsterMap extends JFrame {
                         break;
                 }
                 //主角更新位置
-                updateLocation(dx, dy);
-                // System.out.println(playerX);
-                // System.out.println(playerY);
-                // int newX = playerX + dx, newY = playerY + dy;
-                // for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
-                // 	Point charLocation = characterLocations.get(i);
-                // 	if (newX == charLocation.x && newY == charLocation.y) {
-                // 		// 如果玩家的新位置包含一个字符，则运行以下代码
-                // 		ConnectToFight connectToFight = new ConnectToFight();
-                // 		SwingUtilities.invokeLater(new Runnable() {
-                // 			public void run() {
-                // 				ConnectToFight connectToFight = new ConnectToFight();
-                // 				connectToFight.setVisible(true); // 在EDT上显示窗口
-                // 			}
-                // 		});
-                // 		characterLocations.remove(i);
-                // 	}
-                // 	if (map[newY][newX] != OBSTACLE && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
-                // 		map[playerY][playerX] = '.';//把之前的位置清零，以及上色
-                // 		map[newY][newX] = PLAYER;
-                // 		playerX = newX;
-                // 		playerY = newY;
-                // 		refreshMap(panel);
-                // 	}
-                // }
+                updateLocation(dx,dy,player,textPane,consoleToGUI,frame,game,scrollPane);
             }
+
+
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -294,8 +281,9 @@ public class RandomMonsterMap extends JFrame {
 
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(480, 480);
+        setSize(600, 600);
         setLocationRelativeTo(null);//null 参数意味着窗口将相对于屏幕的中央定位
+        setResizable(false);
         setFocusable(true);//可以获取焦点
         requestFocus();//请求将焦点赋予给当前组件。因为：窗口一旦显示，就能立即响应用户的输入，like：键盘事件
         /*在图形用户界面（GUI）编程中，"焦点"指的是当前接收键盘输入和类似事件的组件。当一个组件有焦点时，它可以接收来自用户的键盘事件，
@@ -311,7 +299,7 @@ public class RandomMonsterMap extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                System.out.println("successful！");//只在控制台显示
+                //System.out.println("successful！");//只在控制台显示
                 refreshMap(panel);
                 // 移动下player，方便查看到 要不要无所谓 copy来的 有点太高级了
                 try {
@@ -329,7 +317,7 @@ public class RandomMonsterMap extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "you really wanna quit the game？", "you really wanna leave us?", JOptionPane.YES_NO_OPTION);
+                int choice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
@@ -338,26 +326,28 @@ public class RandomMonsterMap extends JFrame {
         });
     }
 
+
     // 更新主角位置
-    private void updateLocation(int dx, int dy) {
+    private void updateLocation(int dx, int dy, Entity player, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
         //主角更新位置
         System.out.println(playerX);
         System.out.println(playerY);
         int newX = playerX + dx, newY = playerY + dy;
         for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
             Point charLocation = characterLocations.get(i);
-            if (newX == charLocation.x && newY == charLocation.y) {
+            if ((newX == charLocation.x && newY == charLocation.y)) {
+                RandomMonsterMap.getMapFrame().setVisible(false);
                 // 如果玩家的新位置包含一个字符，则运行以下代码
-                ConnectToFight connectToFight = new ConnectToFight();
-                SwingUtilities.invokeLater(new Runnable() {
+                //ConnectToFight connectToFight = new ConnectToFight();
+                //SwingUtilities.invokeLater(new Runnable() {
+                Thread thread = new Thread(new Runnable() {
                     public void run() {
-                        ConnectToFight connectToFight = new ConnectToFight();
-                        connectToFight.setVisible(true); // 在EDT上显示窗口
+                        game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame, scrollPane);
                     }
                 });
-                characterLocations.remove(i);
+                thread.start();
             }
-            if (map[newY][newX] != OBSTACLE && map[newY][newX] != STAR && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
+            if (map[newY][newX] != OBSTACLE && map[newY][newX] != STAR &&map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
                 map[playerY][playerX] = '.';//把之前的位置清零，以及上色
                 map[newY][newX] = PLAYER;
                 playerX = newX;
@@ -377,8 +367,7 @@ public class RandomMonsterMap extends JFrame {
                 if (ch == 'A') {
                     label.setForeground(Color.YELLOW);
                     label.setText("A");
-                }
-                if (ch == OBSTACLE) {
+                }if (ch == OBSTACLE) {
                     label.setForeground(Color.GRAY);
                     label.setText(String.valueOf(OBSTACLE));
                 } else if (ch == 'B') {
@@ -406,8 +395,8 @@ public class RandomMonsterMap extends JFrame {
                     label.setForeground(Color.RED);
                     label.setText(String.valueOf('$'));
                 } else if (ch == PLAYER) {
-                    System.out.println("1=" + playerX);
-                    System.out.println("1=" + playerY);
+                    //System.out.println("1=" + playerX);
+                    //System.out.println("1=" + playerY);
                     label.setForeground(Color.pink);
                     label.setText(String.valueOf(PLAYER));
                 } else {
