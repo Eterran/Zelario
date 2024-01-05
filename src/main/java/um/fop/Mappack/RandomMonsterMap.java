@@ -1,4 +1,4 @@
-package Mappack;
+package Map;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,13 +7,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
+import java.awt.Point;
 import java.util.ArrayList;
-import Entitypack.Entity;
-import Gamepack.*;
-import UIpack.ConsoleToGUI;
 
 public class RandomMonsterMap extends JFrame {
-    private static RandomMonsterMap mapFrame;
+    public static void main(String[] args) {
+        RandomMonsterMap frame = new RandomMonsterMap();
+        frame.setVisible(true);
+    }
 
     private final int WIDTH = 40;
     private final int HEIGHT = 40;
@@ -21,20 +22,16 @@ public class RandomMonsterMap extends JFrame {
     private final char PLAYER = '@';
     private final char STAR = '*';
 
+
+    JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
+    ArrayList<Point> characterLocations = new ArrayList<>();
+
     private char[][] map;
     private int playerX, playerY;
 
-    public static void setFrame(RandomMonsterMap frame){
-        mapFrame = frame;
-    }
-    public static RandomMonsterMap getMapFrame(){
-        return mapFrame;
-    }
-
-    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
+    public RandomMonsterMap() {
         super("Zelario Game");
 
-        JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
         panel.setBackground(Color.BLACK);
         map = new char[HEIGHT][WIDTH];
 
@@ -44,7 +41,7 @@ public class RandomMonsterMap extends JFrame {
             }
         }
 
-//地图的边界
+        //地图的边界
         for (int i = 0; i < 40; i++) {
             map[i][0] = '#';
             map[i][39] = '#';
@@ -56,19 +53,20 @@ public class RandomMonsterMap extends JFrame {
 
 // Z
 // 顶部横线
-        for (int j = 1; j < 7; j++) {
+        for (int j = 2; j < 8; j++) {
             map[2][j] = '#';
         }
 
 // 底部横线
-        for (int j = 1; j < 7; j++) {
+        for (int j = 2; j < 8; j++) {
             map[6][j] = '#';
         }
 
 // 斜线
-        for (int i = 2; i < 7; i++) {
-            map[i][7 - i] = '#';
-        }
+        map[3][6] = '*';
+        map[4][4] = '*';
+        map[5][2] = '*';
+
 //E
         for (int j = 10; j < 16; j++) { //顶部E
             map[2][j] = '#';
@@ -96,7 +94,7 @@ public class RandomMonsterMap extends JFrame {
 
 //A
 
-        
+
         for (int j = 28; j < 31; j++) { //顶部-
             map[8][j] = '#';
         }
@@ -155,11 +153,11 @@ public class RandomMonsterMap extends JFrame {
         for (int j = 21; j < 27; j++) { //底部
             map[19][j] = '#';
         }
-           for(int i = 14; i <= 19; i++) {
-        for (int j = 21; j < 27; j++) { //内部
-            map[i][j] = '#';
+        for(int i = 14; i <= 19; i++) {
+            for (int j = 21; j < 27; j++) { //内部
+                map[i][j] = '#';
+            }
         }
-    }
         map[15][20] = '#';
         map[15][27] = '#';
         map[16][20] = '#';
@@ -168,7 +166,6 @@ public class RandomMonsterMap extends JFrame {
         map[17][27] = '#';
         map[18][20] = '#';
         map[18][27] = '#';
-
 
         // 障碍物区域
         for (int i = 30; i <= 34; i++) {
@@ -197,7 +194,7 @@ public class RandomMonsterMap extends JFrame {
         // 随机敌人
         Random random = new Random();
         char[] characters = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-        ArrayList<Point> characterLocations = new ArrayList<>();
+
         for (char character : characters) {
             int x, y;
             do {
@@ -209,12 +206,10 @@ public class RandomMonsterMap extends JFrame {
             characterLocations.add(new Point(x, y)); // 记录字符位置
         }
 
-
         // 放置@字符
         playerX = 20;
         playerY = 14;
         map[playerY][playerX] = PLAYER;
-
 
         // 绘制地图
         for (int i = 0; i < HEIGHT; i++) {
@@ -265,32 +260,32 @@ public class RandomMonsterMap extends JFrame {
                         break;
                 }
                 //主角更新位置
-                int newX = playerX + dx, newY = playerY + dy;
-                for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
-                    Point charLocation = characterLocations.get(i);
-                    if ((newX == charLocation.x && newY == charLocation.y)) {
-                        RandomMonsterMap.getMapFrame().setVisible(false);
-                        // 如果玩家的新位置包含一个字符，则运行以下代码
-                        //ConnectToFight connectToFight = new ConnectToFight();
-                        //SwingUtilities.invokeLater(new Runnable() {
-                        Thread thread = new Thread(new Runnable() {
-                            public void run() {
-                                game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame, scrollPane);
-                            }
-                        });
-                        thread.start();
-                    }
-                    if (map[newY][newX] != OBSTACLE && map[newY][newX]!=STAR && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
-                        map[playerY][playerX] = '.';//把之前的位置清零，以及上色
-                        map[newY][newX] = PLAYER;
-                        playerX = newX;
-                        playerY = newY;
-                        refreshMap(panel);
-                    }
-                }
+                updateLocation(dx, dy);
+                // System.out.println(playerX);
+                // System.out.println(playerY);
+                // int newX = playerX + dx, newY = playerY + dy;
+                // for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
+                // 	Point charLocation = characterLocations.get(i);
+                // 	if (newX == charLocation.x && newY == charLocation.y) {
+                // 		// 如果玩家的新位置包含一个字符，则运行以下代码
+                // 		ConnectToFight connectToFight = new ConnectToFight();
+                // 		SwingUtilities.invokeLater(new Runnable() {
+                // 			public void run() {
+                // 				ConnectToFight connectToFight = new ConnectToFight();
+                // 				connectToFight.setVisible(true); // 在EDT上显示窗口
+                // 			}
+                // 		});
+                // 		characterLocations.remove(i);
+                // 	}
+                // 	if (map[newY][newX] != OBSTACLE && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
+                // 		map[playerY][playerX] = '.';//把之前的位置清零，以及上色
+                // 		map[newY][newX] = PLAYER;
+                // 		playerX = newX;
+                // 		playerY = newY;
+                // 		refreshMap(panel);
+                // 	}
+                // }
             }
-
-
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -299,9 +294,8 @@ public class RandomMonsterMap extends JFrame {
 
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 600);
+        setSize(480, 480);
         setLocationRelativeTo(null);//null 参数意味着窗口将相对于屏幕的中央定位
-        setResizable(false);
         setFocusable(true);//可以获取焦点
         requestFocus();//请求将焦点赋予给当前组件。因为：窗口一旦显示，就能立即响应用户的输入，like：键盘事件
         /*在图形用户界面（GUI）编程中，"焦点"指的是当前接收键盘输入和类似事件的组件。当一个组件有焦点时，它可以接收来自用户的键盘事件，
@@ -317,7 +311,7 @@ public class RandomMonsterMap extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                //System.out.println("successful！");//只在控制台显示
+                System.out.println("successful！");//只在控制台显示
                 refreshMap(panel);
                 // 移动下player，方便查看到 要不要无所谓 copy来的 有点太高级了
                 try {
@@ -335,13 +329,43 @@ public class RandomMonsterMap extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
+                int choice = JOptionPane.showConfirmDialog(null, "you really wanna quit the game？", "you really wanna leave us?", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }
 
         });
+    }
+
+    // 更新主角位置
+    private void updateLocation(int dx, int dy) {
+        //主角更新位置
+        System.out.println(playerX);
+        System.out.println(playerY);
+        int newX = playerX + dx, newY = playerY + dy;
+        for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
+            Point charLocation = characterLocations.get(i);
+            if (newX == charLocation.x && newY == charLocation.y) {
+                // 如果玩家的新位置包含一个字符，则运行以下代码
+                ConnectToFight connectToFight = new ConnectToFight();
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        ConnectToFight connectToFight = new ConnectToFight();
+                        connectToFight.setVisible(true); // 在EDT上显示窗口
+                    }
+                });
+                characterLocations.remove(i);
+            }
+            if (map[newY][newX] != OBSTACLE && map[newY][newX] != STAR && map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
+                map[playerY][playerX] = '.';//把之前的位置清零，以及上色
+                map[newY][newX] = PLAYER;
+                playerX = newX;
+                playerY = newY;
+                refreshMap(panel);
+            }
+        }
+
     }
 
     // 刷新地图
@@ -353,18 +377,16 @@ public class RandomMonsterMap extends JFrame {
                 if (ch == 'A') {
                     label.setForeground(Color.YELLOW);
                     label.setText("A");
-                }if (ch == OBSTACLE) {
-                        label.setForeground(Color.GRAY);
-                        label.setText(String.valueOf(OBSTACLE));
-                    } else if (ch == 'B') {
-                        label.setForeground(Color.YELLOW);
-                        label.setText(String.valueOf('B'));
+                }
+                if (ch == OBSTACLE) {
+                    label.setForeground(Color.GRAY);
+                    label.setText(String.valueOf(OBSTACLE));
+                } else if (ch == 'B') {
+                    label.setForeground(Color.YELLOW);
+                    label.setText(String.valueOf('B'));
                 } else if (ch == 'C') {
                     label.setForeground(Color.YELLOW);
                     label.setText(String.valueOf('C'));
-                } else if (ch == '*') {
-                    label.setForeground(Color.blue);
-                    label.setText(String.valueOf('*'));
                 } else if (ch == 'D') {
                     label.setForeground(Color.YELLOW);
                     label.setText(String.valueOf('D'));
@@ -377,20 +399,23 @@ public class RandomMonsterMap extends JFrame {
                 } else if (ch == 'G') {
                     label.setForeground(Color.YELLOW);
                     label.setText(String.valueOf('G'));
+                } else if (ch == '*') {
+                    label.setForeground(Color.blue);
+                    label.setText(String.valueOf('*'));
                 } else if (ch == '$') {
                     label.setForeground(Color.RED);
                     label.setText(String.valueOf('$'));
-                    } else if (ch == PLAYER) {
-                        //System.out.println("1=" + playerX);
-                        //System.out.println("1=" + playerY);
-                        label.setForeground(Color.pink);
-                        label.setText(String.valueOf(PLAYER));
-                    } else {
-                        label.setForeground(Color.GRAY);
-                        label.setText(".");
-                    }
+                } else if (ch == PLAYER) {
+                    System.out.println("1=" + playerX);
+                    System.out.println("1=" + playerY);
+                    label.setForeground(Color.pink);
+                    label.setText(String.valueOf(PLAYER));
+                } else {
+                    label.setForeground(Color.GRAY);
+                    label.setText(".");
                 }
             }
         }
+    }
 
 }
