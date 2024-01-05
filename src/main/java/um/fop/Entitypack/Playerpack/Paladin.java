@@ -61,7 +61,7 @@ public class Paladin extends Player {
      public int useSkill2(Entity target) {
           setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
-          int dmg = (int) (this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
+          int dmg = (int) (this.getMagicalAttack() * this.getSkill2() * (1.0 - target.getPhysicalDefence() / 100.0));
           this.HP += (int) (damageDealt(target, dmg) * (30 / 100.0));
 
           if(this.HP > getMaxHP()){
