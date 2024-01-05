@@ -12,6 +12,7 @@ import CombatMenu.CombatMenu;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -55,6 +56,7 @@ public class Game {
             int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
             if (temp == 1) {
                 frame.setVisible(false);
+                RandomMonsterMap.getMapFrame().removeMonster();
                 return;
             } else if (temp == -1) {
                 return;
@@ -387,6 +389,7 @@ public class Game {
             temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
             if (temp == 1) {
                 frame.setVisible(false);
+                RandomMonsterMap.getMapFrame().removeMonster();
                 return;
             } else if (temp == -1) {
                 return;
@@ -654,15 +657,9 @@ public class Game {
         return 0;
     }
     public void Escape(JFrame frame){
-        Random r = new Random();
-        int escapeChance = r.nextInt(99);
-        if(escapeChance < 50){
-            isMonsterAlive = false;
-            RandomMonsterMap.getMapFrame().setVisible(true);
-            frame.setVisible(false);
-        } else {
-            System.out.println("You failed to escape!");
-        }
+        isMonsterAlive = false;
+        RandomMonsterMap.getMapFrame().setVisible(true);
+        frame.setVisible(false);
     }
     public static Entity spawnRandom(Entity player) {
         Random r = new Random();

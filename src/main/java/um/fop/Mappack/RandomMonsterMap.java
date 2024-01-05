@@ -346,8 +346,13 @@ public class RandomMonsterMap extends JFrame {
                     }
                 });
                 thread.start();
-            }
-            if (map[newY][newX] != OBSTACLE && map[newY][newX] != STAR &&map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$') {
+                currentMonster = charLocation;
+                newX = playerX - dx;
+                newY = playerY - dy;
+                break;
+            } else
+            if (map[newY][newX] != OBSTACLE && map[newY][newX] != STAR &&map[newY][newX] != 'A' && map[newY][newX] != 'X' && map[newY][newX] != 'R' && map[newY][newX] != '$' 
+            && map[newY][newX] != 'B' &&map[newY][newX] != 'C' &&map[newY][newX] != 'D' &&map[newY][newX] != 'E' &&map[newY][newX] != 'F' &&map[newY][newX] != 'G') {
                 map[playerY][playerX] = '.';//把之前的位置清零，以及上色
                 map[newY][newX] = PLAYER;
                 playerX = newX;
@@ -357,7 +362,13 @@ public class RandomMonsterMap extends JFrame {
         }
 
     }
-
+    public void removeMonster(){
+        map[currentMonster.y][currentMonster.x] = '.';
+        map[playerY][playerX] = PLAYER;
+        characterLocations.remove(currentMonster);
+        refreshMap(panel);
+    }
+    private Point currentMonster;
     // 刷新地图
     private void refreshMap(JPanel panel) {
         for (int i = 0; i < HEIGHT; i++) {
@@ -366,8 +377,8 @@ public class RandomMonsterMap extends JFrame {
                 char ch = map[i][j];
                 if (ch == 'A') {
                     label.setForeground(Color.YELLOW);
-                    label.setText("A");
-                }if (ch == OBSTACLE) {
+                    label.setText(String.valueOf('A'));
+                } else if (ch == OBSTACLE) {
                     label.setForeground(Color.GRAY);
                     label.setText(String.valueOf(OBSTACLE));
                 } else if (ch == 'B') {

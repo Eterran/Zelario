@@ -237,7 +237,7 @@ public class Start {
         // } catch (SQLException e) {
         // System.out.println("Unable to establish connection with the server.");
         // }
-
+        
         while (PickCharacter.heroChoice == -1) {
             try {
                 PickCharacter.pickCharacterMenu(consoleToGUI, userInputField, textPane);
