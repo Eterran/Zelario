@@ -28,6 +28,24 @@ public class Warrior extends Player {
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
                     this.magicalDefence = Integer.parseInt(stats[6]);
+                    this.skillOneName = stats[7];
+                    this.skill1Description = stats[8];
+                    this.skillTwoName = stats[9];
+                    this.skill2Description = stats[10];
+                    this.skillThreeName = stats[11];
+                    this.skill3Description = stats[12];
+                    this.skill1 = Integer.parseInt(stats[13]); 
+                    this.skill2 = Integer.parseInt(stats[14]); 
+                    this.skill3 = Integer.parseInt(stats[15]); 
+                    this.skill1Mp = Integer.parseInt(stats[16]); 
+                    this.skill2Mp = Integer.parseInt(stats[17]); 
+                    this.skill3Mp = Integer.parseInt(stats[18]);
+                    this.MaxCDSkill1 = Integer.parseInt(stats[19]);
+                    this.MaxCDSkill2 = Integer.parseInt(stats[20]);
+                    this.MaxCDSkill3 = Integer.parseInt(stats[21]);
+                    this.CDSkill1 = Integer.parseInt(stats[19]);
+                    this.CDSkill2 = Integer.parseInt(stats[20]);
+                    this.CDSkill3 = Integer.parseInt(stats[21]);
                }
 
 
