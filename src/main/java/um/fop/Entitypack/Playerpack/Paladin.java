@@ -64,7 +64,7 @@ public class Paladin extends Player {
           this.HP += (int) (damageDealt(target, dmg) * (30 / 100.0));
 
           if(this.HP > getMaxHP()){
-               return getMaxHP();
+               setHP(this.getMaxHP());
           }
           
           return this.damageDealt(target, dmg);
