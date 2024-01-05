@@ -611,6 +611,9 @@ public class Entity {
     public int getLevel(){
         return this.level;
     }
+    public int getEXP(){
+        return this.exp;
+    }
     public int levelUp() {
         if (this.exp >= 25 && this.level < 2) {
             this.level = 2;
