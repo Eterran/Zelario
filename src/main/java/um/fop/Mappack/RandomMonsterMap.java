@@ -199,20 +199,7 @@ public class RandomMonsterMap extends JFrame {
         map[33][7] = '$';
 
         // 随机敌人
-        Random random = new Random();
-        char[] characters = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-
-        for (char character : characters) {
-            int x, y;
-            do {
-                x = random.nextInt(WIDTH);
-                y = random.nextInt(HEIGHT);
-            } while (map[y][x] != '.'); // 确保不会重复在同一个位置放置字符
-
-            map[y][x] = character; // 在地图上放置字符
-            characterLocations.add(new Point(x, y)); // 记录字符位置
-        }
-
+        spawnMonster();
 
         // 放置@字符
         playerX = 20;
@@ -366,7 +353,24 @@ public class RandomMonsterMap extends JFrame {
         map[currentMonster.y][currentMonster.x] = '.';
         map[playerY][playerX] = PLAYER;
         characterLocations.remove(currentMonster);
+        if(characterLocations.isEmpty()){
+            spawnMonster();
+        }
         refreshMap(panel);
+    }
+    private void spawnMonster() {
+        Random random = new Random();
+        char[] characters = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+        for (char character : characters) {
+            int x, y;
+            do {
+                x = random.nextInt(WIDTH);
+                y = random.nextInt(HEIGHT);
+            } while (map[y][x] != '.'); // 确保不会重复在同一个位置放置字符
+
+            map[y][x] = character; // 在地图上放置字符
+            characterLocations.add(new Point(x, y)); // 记录字符位置
+        }
     }
     private Point currentMonster;
     // 刷新地图
