@@ -1,0 +1,13 @@
+Player Entity: Default Entity
+HP: -1
+MP: -1
+Level: -1
+X Position: 1
+Y Position: 1
+Name: Default Entity
+Max HP: -1
+Max MP: -1
+Physical Attack: -1
+Magical Attack: -1
+Physical Defence: -1
+Magical Defence: -1
