@@ -713,7 +713,7 @@ import UIpack.ColorAttributes;
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 2;
-                    this.physicalAttack += 6;
+                    this.physicalAttack += 7;
                     this.magicalAttack += 2;
                     this.physicalDefence += 2;
                     this.magicalDefence += 2;
@@ -735,7 +735,7 @@ import UIpack.ColorAttributes;
                     this.maxHP += 2;
                     this.maxMP += 4;
                     this.physicalAttack += 2;
-                    this.magicalAttack += 4;
+                    this.magicalAttack += 5;
                     this.physicalDefence += 2;
                     this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
@@ -755,8 +755,8 @@ import UIpack.ColorAttributes;
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 2;
-                    this.physicalAttack += 4;
-                    this.magicalAttack += 2;
+                    this.physicalAttack += 5;
+                    this.magicalAttack += 3;
                     this.physicalDefence += 4;
                     this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
@@ -776,9 +776,9 @@ import UIpack.ColorAttributes;
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 2;
-                    this.physicalAttack += 4;
-                    this.magicalAttack += 4;
-                    this.physicalDefence += 2;
+                    this.physicalAttack += 5;
+                    this.magicalAttack += 2;
+                    this.physicalDefence += 4;
                     this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
@@ -797,7 +797,7 @@ import UIpack.ColorAttributes;
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 4;
                     this.maxMP += 2;
-                    this.physicalAttack += 2;
+                    this.physicalAttack += 3;
                     this.magicalAttack += 2;
                     this.physicalDefence += 3;
                     this.magicalDefence += 3;
