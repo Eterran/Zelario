@@ -615,8 +615,23 @@ import UIpack.ColorAttributes;
         public int getLevel() {
             return this.level;
         }
-
+        public int getEXP(){
+            return this.exp;
+        }
+        public int getStatsLevel() {
+            return this.statsLevel;
+        }
+        public int setLevel(int level) {
+            this.level = level;
+            return this.level;
+        }
+        public int setEXP(int exp) {
+            this.exp = exp;
+            return this.exp;
+        }
         public int levelUp() {
+            this.checkLvl();
+            this.setLevelStats();
             if (this.exp >= 25 && this.level < 2) {
                 this.level = 2;
             } else if (this.exp >= 50 && this.level < 3) {
@@ -803,11 +818,13 @@ import UIpack.ColorAttributes;
         }
 
         public void checkLvl() {
-            if (this.level == 5) {
+            if (this.level >= 5) {
                 this.isSkill1Unlocked = true;
-            } else if (this.level == 15) {
+            }
+            if (this.level >= 15) {
                 this.isSkill2Unlocked = true;
-            } else if (this.level == 25) {
+            }
+            if (this.level >= 25) {
                 this.isSkill3Unlocked = true;
             }
         }

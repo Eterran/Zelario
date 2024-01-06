@@ -26,9 +26,9 @@ public class Paladin extends Player {
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
                     this.magicalDefence = Integer.parseInt(stats[6]);
-                    this.skillOneName = stats[7];
+                    this.skillOneName = stats[7]+"\t\t";
                     this.skill1Description = stats[8];
-                    this.skillTwoName = stats[9];
+                    this.skillTwoName = stats[9]+"\t";
                     this.skill2Description = stats[10];
                     this.skillThreeName = stats[11];
                     this.skill3Description = stats[12];

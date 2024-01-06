@@ -2,49 +2,36 @@ package SQLpack;
 
 import java.io.*;
 import Entitypack.Entity;
-
+import Entitypack.Playerpack.*;
 
 class GameProgress implements Serializable {
     private Entity playerEntity;
-    private int xPosition;
-    private int yPosition;
-
-    public GameProgress(Entity playerEntity, int xPosition, int yPosition) {
+    public static void main(String[] args) {
+        Entity playerEntity = new Entity();
+        LoadGame loadGame = new LoadGame();
+        GameProgress progress1 = loadGame.loadGameProgress("C:\\Users\\kelvi\\Desktop\\game.dat");
+        System.out.println(progress1.toTextFormat());
+        System.out.println(playerEntity.getHP());
+    }
+    public GameProgress(Entity playerEntity) {
         this.playerEntity = playerEntity;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
     }
-
-
     public String toTextFormat() {
-        return "Player Entity: " + playerEntity.getName() + "\n" +
-                "HP: " + playerEntity.getHP() + "\n" +
-                "MP: " + playerEntity.getMP() + "\n" +
-                "Level: " + playerEntity.getLevel() + "\n" +
-                "X Position: " + getXPosition() + "\n" +
-                "Y Position: " + getYPosition() + "\n" +
-                // 新增的属性
-                "Name: " + playerEntity.getName() + "\n" +
-                "Max HP: " + playerEntity.getMaxHP() + "\n" +
-                "Max MP: " + playerEntity.getMaxMP() + "\n" +
-                "Physical Attack: " + playerEntity.getPhysicalAttack() + "\n" +
-                "Magical Attack: " + playerEntity.getMagicalAttack() + "\n" +
-                "Physical Defence: " + playerEntity.getPhysicalDefence() + "\n" +
-                "Magical Defence: " + playerEntity.getMagicalDefence();
+        return playerEntity.getName() + "\n" +
+                playerEntity.getMaxHP() + "\n" +
+                playerEntity.getMaxMP() + "\n" +
+                playerEntity.getHP() + "\n" +
+                playerEntity.getMP() + "\n" +
+                playerEntity.getPhysicalAttack() + "\n" +
+                playerEntity.getMagicalAttack() + "\n" +
+                playerEntity.getPhysicalDefence() + "\n" +
+                playerEntity.getMagicalDefence() + "\n" +
+                playerEntity.getLevel() + "\n" +
+                playerEntity.getEXP() + "\n";
     }
-
-
 
     public Entity getPlayerEntity() {
         return playerEntity;
-    }
-
-    public int getXPosition() {
-        return xPosition;
-    }
-
-    public int getYPosition() {
-        return yPosition;
     }
 }
 

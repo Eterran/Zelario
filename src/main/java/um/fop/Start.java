@@ -261,6 +261,9 @@ public class Start {
         Game game = new Game(player);
         textPane.setText("");
         displayIntro(consoleToGUI, scrollPane, textPane);
+        player.setLevel(34);
+        player.setEXP(1900);
+        player.levelUp();
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player), textPane, consoleToGUI, frame,
                 game, scrollPane));
         RandomMonsterMap.getMapFrame().setVisible(true);
@@ -292,5 +295,6 @@ public class Start {
             e.printStackTrace();
         }
         consoleToGUI.scrollToBottom(scrollPane);
+        
     }
 }

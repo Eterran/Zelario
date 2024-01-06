@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.ArrayList;
 import Entitypack.Entity;
+import Entitypack.Monsterpack.Boss;
 import Gamepack.*;
 import UIpack.ConsoleToGUI;
 
@@ -23,6 +24,18 @@ public class RandomMonsterMap extends JFrame {
 
     private char[][] map;
     private int playerX, playerY;
+    public int getPlayerX(){
+        return playerX;
+    }
+    public int getPlayerY(){
+        return playerY;
+    }
+    public void setPlayerX(int playerX){
+        this.playerX = playerX;
+    }
+    public void setPlayerY(int playerY){
+        this.playerY = playerY;
+    }
 
     public static void setFrame(RandomMonsterMap frame){
         mapFrame = frame;
@@ -33,8 +46,12 @@ public class RandomMonsterMap extends JFrame {
 
     JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
     ArrayList<Point> characterLocations = new ArrayList<>();
+    ArrayList<Point> bossLocations = new ArrayList<>();
     public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
         super("Zelario Game");
+        bossLocations.add(new Point(33, 5));
+        bossLocations.add(new Point(33, 6));
+        bossLocations.add(new Point(33, 7));
 
         panel.setBackground(Color.BLACK);
         map = new char[HEIGHT][WIDTH];
@@ -194,9 +211,7 @@ public class RandomMonsterMap extends JFrame {
                 map[i][j] = '$';
             }
         }
-        map[33][5] = '$';//只有接触这三个坐标才能打boss
-        map[33][6] = '$';
-        map[33][7] = '$';
+
 
         // 随机敌人
         spawnMonster();
@@ -224,6 +239,7 @@ public class RandomMonsterMap extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
+
                 int dx = 0, dy = 0;
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
@@ -320,6 +336,22 @@ public class RandomMonsterMap extends JFrame {
         System.out.println(playerX);
         System.out.println(playerY);
         int newX = playerX + dx, newY = playerY + dy;
+
+
+
+        // 创建一个boss位置的list，类似    ArrayList<Point> characterLocations = new ArrayList<>();
+        //判断是否达到35级了
+        if (player.getLevel() == 35) {
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    game.beginCombat(player, new Boss(), textPane, consoleToGUI, frame, scrollPane);
+                }
+            });
+            thread.start();
+       }
+
+
+
         for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
             Point charLocation = characterLocations.get(i);
             if ((newX == charLocation.x && newY == charLocation.y)) {
