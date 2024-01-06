@@ -36,7 +36,7 @@ public class CombatMenu {
 			if(player.getName().equals("Warrior"))
 				heroIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Warrior Icon.txt");
 
-			if(monster.getName().equals("ChapTorTiga"))
+			if(monster.getName().equals("Dragon"))
 				enemyIconFile = new File("src\\main\\java\\um\\fop\\ASCII\\Boss Icon.txt");
 
 			if(monster.getName().equals("Goblin"))
