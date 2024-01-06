@@ -1,1 +1,1 @@
-Rogue,250,75,60,40,50,40,Smite,Slash a hit to monster.,Backstab,The Rogue sneaks behind the target and delivering a devastating backstab.,ShadowStep,The Rogue can evade the next spell or attack from the enemies.,50,150,0,60,80,100,4,2,6
+Rogue,252,77,24,17,44,32,Smite,Slash a hit to monster.,Backstab,The Rogue sneaks behind the target and delivering a devastating backstab.,ShadowStep,The Rogue can evade the next spell or attack from the enemies.,50,150,0,60,80,100,4,2,6

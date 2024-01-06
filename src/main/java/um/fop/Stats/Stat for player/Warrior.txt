@@ -1,1 +1,1 @@
-Warrior,300,50,80,20,70,50,Cha Cha Cha,Slash a hit to monster.,Furious Strike,Unleashes a powerful attack and dealing heavy damage to the target.,Shield Wall,The Warrior creates an impenetrable barrier with their shield and reducing incoming damage for 3 rounds.,50,150,50,50,100,140,2,4,6
+Warrior,364,52,22,12,58,38,Cha Cha Cha,Slash a hit to monster.,Furious Strike,Unleashes a powerful attack and dealing heavy damage to the target.,Shield Wall,The Warrior creates an impenetrable barrier with their shield and reducing incoming damage for 3 rounds.,50,150,50,50,100,140,2,4,6
