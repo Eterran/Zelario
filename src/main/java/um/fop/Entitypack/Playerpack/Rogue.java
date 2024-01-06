@@ -28,11 +28,14 @@ public class Rogue extends Player {
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
                     this.magicalDefence = Integer.parseInt(stats[6]);
-                    this.skillOneName = stats[7];
+                    this.skillOneName = stats[7]+"\t";
+
                     this.skill1Description = stats[8];
-                    this.skillTwoName = stats[9];
+                    this.skillTwoName = stats[9]+"\t";
+
                     this.skill2Description = stats[10];
-                    this.skillThreeName = stats[11];
+                    this.skillThreeName = stats[11]+"\t";
+
                     this.skill3Description = stats[12];
                     this.skill1 = Integer.parseInt(stats[13]); 
                     this.skill2 = Integer.parseInt(stats[14]); 

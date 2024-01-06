@@ -402,7 +402,6 @@ public class Game {
                     if (monster.getSkill1() == -1) {
                         try {
                             StyledDocument doc = textPane.getStyledDocument();
-                            doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                             doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                             doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                             doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
@@ -417,7 +416,6 @@ public class Game {
                         if (enemyChoice < 40) {
                             try {
                                 StyledDocument doc = textPane.getStyledDocument();
-                                doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                 doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                 doc.insertString(doc.getLength(), " hits you for ", ColorAttributes.WHITE);
                                 doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
@@ -432,7 +430,6 @@ public class Game {
                             if (monster.getCDSkill1() == 0 && monster.checkMana(monster.getSkill1Mp())) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                     doc.insertString(doc.getLength(), " used ", ColorAttributes.WHITE);
                                     doc.insertString(doc.getLength(), monster.getSkillOneName(), ColorAttributes.PINK);
@@ -448,7 +445,6 @@ public class Game {
                             else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),
@@ -465,7 +461,6 @@ public class Game {
                             if (monster.getCDSkill2() == 0) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                     doc.insertString(doc.getLength(), " used ", ColorAttributes.WHITE);
                                     doc.insertString(doc.getLength(), monster.getSkillTwoName(), ColorAttributes.PINK);
@@ -481,7 +476,6 @@ public class Game {
                             else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
-                                    doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
                                     doc.insertString(doc.getLength(), " and hits you for ", ColorAttributes.MAGENTA);
                                     doc.insertString(doc.getLength(), Integer.toString((monster.normalAttack(player))),

@@ -8,9 +8,9 @@ import Entitypack.Entity;
 public class Orc extends Monster{
     public Orc(Entity player){
         super();
-        if(player.getLevel() >= 1 && player.getLevel() < 10){
+        if(player.getLevel() >= 1 && player.getLevel() < 15){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Orc.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Default Monster stats\\Orc.txt"));
                String temp;
                String[] stats;
 
@@ -36,7 +36,7 @@ public class Orc extends Monster{
 
       }
 
-      if(player.getLevel() >= 10 && player.getLevel() < 25){
+      if(player.getLevel() >= 15 && player.getLevel() < 25){
           try{
                Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Orc2.txt"));
                String temp;

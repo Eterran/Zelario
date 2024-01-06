@@ -9,9 +9,9 @@ import Entitypack.Entity;
 public class Witch extends Monster {
      public Witch(Entity player) {
           super();
-          if(player.getLevel() >= 1 && player.getLevel() < 10){
+          if(player.getLevel() >= 1 && player.getLevel() < 15){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Witch.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Default Monster stats\\Witch.txt"));
                String temp;
                String[] stats;
 
@@ -37,7 +37,7 @@ public class Witch extends Monster {
 
       }
 
-      if(player.getLevel() >= 10 && player.getLevel() < 25){
+      if(player.getLevel() >= 15 && player.getLevel() < 25){
           try{
                Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Witch2.txt"));
                String temp;
@@ -104,12 +104,12 @@ public class Witch extends Monster {
      public int useSkill1(Entity target) {
           setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
-          int dmg = (int) (this.getSkill1() * (2.0 - target.getMagicalDefence() / 100.0));
+          int dmg = (int) ( this.magicalAttack * (this.getSkill1() / 100) * (3.1 - target.getMagicalDefence() / 100.0));
           return this.damageDealt(target, dmg);
      }
 
      public int normalAttack(Entity target) {// magical normal attack
-          int dmg = (int) (this.magicalAttack * (2.0 - target.getMagicalDefence() / 100.0) ); // player HP
+          int dmg = (int) (this.magicalAttack * (3.1 - target.getMagicalDefence() / 100.0) ); // player HP
           return this.damageDealt(target, dmg);
      }
 }

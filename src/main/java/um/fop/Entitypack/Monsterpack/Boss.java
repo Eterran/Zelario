@@ -5,16 +5,16 @@ import Entitypack.*;
 public class Boss extends Monster {
     public Boss() {
         super();
-        this.name = "ChapTorTiga";
-        this.HP = 600;
+        this.name = "Dragon";
+        this.HP = 1000;
         this.MP = 200;
-        this.physicalAttack = 80;
-        this.magicalAttack = 50;
+        this.physicalAttack = 120;
+        this.magicalAttack = 70;
         this.physicalDefence = 30;
         this.magicalDefence = 30;
         this.skillOneName = "Biu Biu Biu";
         this.skill1Description = "a physical damage strike.";
-        this.skillTwoName = "Confusion";
+        this.skillTwoName = "Flame burst";
         this.skill2Description = "a magical attack that can disrupt opponents and silenced.";
         this.skill1 = 150; 
         this.skill2 = 250; 

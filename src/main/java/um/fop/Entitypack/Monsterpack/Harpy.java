@@ -8,9 +8,9 @@ import Entitypack.*;
 public class Harpy extends Monster {
     public Harpy(Entity player) {
         super();
-        if(player.getLevel() >= 1 && player.getLevel() < 10){
+        if(player.getLevel() >= 1 && player.getLevel() < 15){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 10 Monster stats\\Harpy.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Default Monster stats\\Harpy.txt"));
                String temp;
                String[] stats;
 
@@ -36,7 +36,7 @@ public class Harpy extends Monster {
 
       }
 
-       if(player.getLevel() >= 10 && player.getLevel() < 25){
+       if(player.getLevel() >= 15 && player.getLevel() < 25){
           try{
                Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Harpy2.txt"));
                String temp;
@@ -109,20 +109,20 @@ public class Harpy extends Monster {
     public int useSkill1(Entity target) {
         setCDSkill1(this.getMaxCDSkill1());
         this.setMP(this.getMP() - this.getSkill1Mp());
-        int dmg = (int) (this.getSkill1() * (2.0 - target.getPhysicalDefence() / 100.0)); // player HP
+        int dmg = (int) (this.physicalAttack * (this.getSkill1() / 100) * (3.5 - target.getPhysicalDefence() / 100.0)); // player HP
         return this.damageDealt(target, dmg);
     }
 
     public int useSkill2(Entity target) {
         setCDSkill2(this.getMaxCDSkill2());
         this.setMP(this.getMP() - this.getSkill2Mp());
-        int dmg = (int) (this.getSkill2() * (2.0 - target.getMagicalDefence() / 100.0)); // player HP, and add
+        int dmg = (int) (this.magicalAttack * (this.getSkill2() / 100) * (3.1 - target.getMagicalDefence() / 100.0)); // player HP, and add
         target.applyStatus(Status.WEAKENED, 2);
         return this.damageDealt(target, dmg);
     }
 
    public int normalAttack(Entity target) {//magical normal attack
-        int dmg = (int) (this.magicalAttack * (2.0 - target.getMagicalDefence() / 100.0)); // player HP
+        int dmg = (int) (this.magicalAttack * (3.1 - target.getMagicalDefence() / 100.0)); // player HP
         return this.damageDealt(target, dmg);
     }
 }
