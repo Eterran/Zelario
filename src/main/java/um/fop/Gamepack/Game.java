@@ -557,7 +557,6 @@ public class Game {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        
         player.clearAllStatus();
         player.levelUp();
         if (initialLevel < player.getLevel()) {
@@ -606,7 +605,6 @@ public class Game {
             
         }
     }
-
     public void displayLoseCombat() {
         File file = new File("src\\main\\java\\um\\fop\\ASCII\\LosingScreen.txt");
         Scanner s;
@@ -616,13 +614,14 @@ public class Game {
             e.printStackTrace();
             return;
         }
-        while (s.hasNextLine()) {
-            String line = s.nextLine();
+        System.out.println();
+        String line;
+        while((line = s.nextLine()) != null) {
+            System.out.print("\t\t\t");
             System.out.println(line);
         }
         s.close();
     }
-
     public void displayWinCombat() {
         File file = new File("src\\main\\java\\um\\fop\\ASCII\\WinningScreen.txt");
         Scanner s;
@@ -639,12 +638,10 @@ public class Game {
         }
         s.close();
     }
-
     public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JScrollPane scrollPane) {
         if (player.getHP() <= 0) {
             loseCombat(consoleToGUI);
             isMonsterAlive = false;
-            RandomMonsterMap.getMapFrame().setVisible(true);
             return -1;
         }
         if (monster.getHP() <= 0) {

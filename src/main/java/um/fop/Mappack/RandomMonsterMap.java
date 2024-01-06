@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.util.Random;
 import java.util.ArrayList;
 import Entitypack.Entity;
+import Entitypack.Monsterpack.Boss;
 import Gamepack.*;
 import UIpack.ConsoleToGUI;
 
@@ -328,27 +329,14 @@ public class RandomMonsterMap extends JFrame {
 
         // 创建一个boss位置的list，类似    ArrayList<Point> characterLocations = new ArrayList<>();
         //判断是否达到35级了
-//        if (player.getLevel() == 35) {
-//            // 参考下面遇到敌人的处理逻辑，编写遇到boss的处理逻辑
-//            for (int i = 0; i < bossLocations.size(); i++) {//敌人位置
-//                Point charLocation = bossLocations.get(i);
-//                if ((newX == charLocation.x && newY == charLocation.y)) {
-//                    RandomMonsterMap.getMapFrame().setVisible(false);
-//                    // 如果玩家的新位置包含一个字符，则运行以下代码
-//                    //ConnectToFight connectToFight = new ConnectToFight();
-//                    //SwingUtilities.invokeLater(new Runnable() {
-//                    Thread thread = new Thread(new Runnable() {
-//                        public void run() {
-//                            game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame, scrollPane);
-//                        }
-//                    });
-//                    thread.start();
-//                    currentMonster = charLocation;
-//
-//                    break;
-//                }
-//            }
-//        }
+        if (player.getLevel() == 35) {
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    game.beginCombat(player, new Boss(), textPane, consoleToGUI, frame, scrollPane);
+                }
+            });
+            thread.start();
+       }
 
 
 
