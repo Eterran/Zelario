@@ -269,7 +269,7 @@ import UIpack.ColorAttributes;
         }
 
         public void healing() {
-            this.HP += 50;
+            this.HP += 60;
             if (this.getHP() > this.getMaxHP()) {
                 this.setHP(this.getMaxHP());
             } else {
@@ -776,7 +776,7 @@ import UIpack.ColorAttributes;
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 2;
-                    this.physicalAttack += 5;
+                    this.physicalAttack += 4;
                     this.magicalAttack += 2;
                     this.physicalDefence += 4;
                     this.magicalDefence += 2;
