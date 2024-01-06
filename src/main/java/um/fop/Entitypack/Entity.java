@@ -696,12 +696,12 @@ import UIpack.ColorAttributes;
             Random r = new Random();
             if (heroType.equals("Archer")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
-                    this.maxHP += 7;
-                    this.maxMP += 5;
-                    this.physicalAttack += 15;
-                    this.magicalAttack += 5;
+                    this.maxHP += 2;
+                    this.maxMP += 2;
+                    this.physicalAttack += 6;
+                    this.magicalAttack += 2;
                     this.physicalDefence += 2;
-                    this.magicalDefence += 1;
+                    this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -717,11 +717,11 @@ import UIpack.ColorAttributes;
                 }
             } else if (heroType.equals("Mage")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
-                    this.maxHP += 9;
-                    this.maxMP += 17;
-                    this.physicalAttack += 5;
-                    this.magicalAttack += 15;
-                    this.physicalDefence += 1;
+                    this.maxHP += 2;
+                    this.maxMP += 4;
+                    this.physicalAttack += 2;
+                    this.magicalAttack += 4;
+                    this.physicalDefence += 2;
                     this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
@@ -738,11 +738,11 @@ import UIpack.ColorAttributes;
                 }
             } else if (heroType.equals("Paladin")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
-                    this.maxHP += 5;
-                    this.maxMP += 5;
-                    this.physicalAttack += 10;
-                    this.magicalAttack += 10;
-                    this.physicalDefence += 2;
+                    this.maxHP += 2;
+                    this.maxMP += 2;
+                    this.physicalAttack += 4;
+                    this.magicalAttack += 2;
+                    this.physicalDefence += 4;
                     this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
@@ -759,12 +759,12 @@ import UIpack.ColorAttributes;
                 }
             } else if (heroType.equals("Rogue")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
-                    this.maxHP += 8;
-                    this.maxMP += 5;
-                    this.physicalAttack += 8;
-                    this.magicalAttack += 1;
-                    this.physicalDefence += 5;
-                    this.magicalDefence += 5;
+                    this.maxHP += 2;
+                    this.maxMP += 2;
+                    this.physicalAttack += 4;
+                    this.magicalAttack += 4;
+                    this.physicalDefence += 2;
+                    this.magicalDefence += 2;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -780,12 +780,12 @@ import UIpack.ColorAttributes;
                 }
             } else if (heroType.equals("Warrior")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
-                    this.maxHP += 25;
-                    this.maxMP += 5;
-                    this.physicalAttack += 7;
-                    this.magicalAttack += 3;
-                    this.physicalDefence += 4;
-                    this.magicalDefence += 4;
+                    this.maxHP += 4;
+                    this.maxMP += 2;
+                    this.physicalAttack += 2;
+                    this.magicalAttack += 2;
+                    this.physicalDefence += 3;
+                    this.magicalDefence += 3;
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
