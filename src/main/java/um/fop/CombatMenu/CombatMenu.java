@@ -174,13 +174,14 @@ public class CombatMenu {
 				doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillOneName()), ColorAttributes.ORANGE);			
 				doc.insertString(doc.getLength(), "\t"+player.getSkill1Description(), ColorAttributes.CYAN);
 				doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
-				doc.insertString(doc.getLength(), Integer.toString(player.getSkill1Mp()), ColorAttributes.BLUE);			
+				doc.insertString(doc.getLength(), String.format("%3d", player.getSkill1Mp()), ColorAttributes.BLUE);			
+
+				//doc.insertString(doc.getLength(), Integer.toString(player.getSkill1Mp()), ColorAttributes.BLUE);			
 				doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
 				doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
 				doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill1()), ColorAttributes.ORANGE);	
 				doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
 				doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill1()), ColorAttributes.ORANGE);
-				System.out.println();	
 
 
 			} catch (BadLocationException e) {
@@ -209,13 +210,14 @@ public class CombatMenu {
 			doc.insertString(doc.getLength(), String.format("%3.20s", player.getSkillTwoName()), ColorAttributes.ORANGE);			
 			doc.insertString(doc.getLength(), "\t"+player.getSkill2Description(), ColorAttributes.CYAN);
 			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
-			doc.insertString(doc.getLength(), Integer.toString(player.getSkill2Mp()), ColorAttributes.BLUE);			
+			doc.insertString(doc.getLength(), String.format("%3d", player.getSkill2Mp()), ColorAttributes.BLUE);			
+
+			//doc.insertString(doc.getLength(), Integer.toString(player.getSkill2Mp()), ColorAttributes.BLUE);			
 			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
 			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
 			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill2()), ColorAttributes.ORANGE);	
 			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
 			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill2()), ColorAttributes.ORANGE);
-			System.out.println();	
 
 
         } catch (BadLocationException e) {
@@ -243,13 +245,14 @@ public class CombatMenu {
 			doc.insertString(doc.getLength(), String.format("%3.20s ", player.getSkillThreeName()), ColorAttributes.ORANGE);			
 			doc.insertString(doc.getLength(), "\t"+player.getSkill3Description(), ColorAttributes.CYAN);
 			doc.insertString(doc.getLength(), "\n    \t\t\tRequires ", ColorAttributes.BLUE);
-			doc.insertString(doc.getLength(), Integer.toString(player.getSkill3Mp()), ColorAttributes.BLUE);			
+			doc.insertString(doc.getLength(), String.format("%3d", player.getSkill3Mp()), ColorAttributes.BLUE);			
+
+			//doc.insertString(doc.getLength(), Integer.toString(player.getSkill3Mp()), ColorAttributes.BLUE);			
 			doc.insertString(doc.getLength(), " mana", ColorAttributes.BLUE);
 			doc.insertString(doc.getLength(), "\t\tCooldown: ", ColorAttributes.ORANGE);
 			doc.insertString(doc.getLength(), Integer.toString(player.getCDSkill3()), ColorAttributes.ORANGE);	
 			doc.insertString(doc.getLength(), "/", ColorAttributes.ORANGE);
 			doc.insertString(doc.getLength(), Integer.toString(player.getMaxCDSkill3()), ColorAttributes.ORANGE);
-			System.out.println();	
 
 
         } catch (BadLocationException e) {

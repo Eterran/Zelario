@@ -1,1 +1,1 @@
-Archer,240,60,30,10,47,32,Precise\t,Buff physical attack for 2 rounds,Rapid shot,Fires a flurry of arrows at the target and dealing moderate damage.,Trick Shot,Executes a precise shot that can pierce the enemies and causing heavy damage to the enemy.,50,100,300,30,20,60,4,2,6
+Archer,240,60,30,10,47,32,Precise,Buff physical attack for 2 rounds,Rapid shot,Fires a flurry of arrows at the target and dealing moderate damage.,Trick Shot,Executes a precise shot that can pierce the enemies and causing heavy damage to the enemy.,50,100,300,30,20,60,4,2,6
