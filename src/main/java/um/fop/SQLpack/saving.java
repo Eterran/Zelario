@@ -2,39 +2,37 @@ package SQLpack;
 
 import java.io.*;
 import Entitypack.Entity;
-
+import Entitypack.Playerpack.*;
 
 class GameProgress implements Serializable {
     private Entity playerEntity;
-
-
+    public static void main(String[] args) {
+        Entity playerEntity = new Entity();
+        LoadGame loadGame = new LoadGame();
+        GameProgress progress1 = loadGame.loadGameProgress("C:\\Users\\kelvi\\Desktop\\game.dat");
+        System.out.println(progress1.toTextFormat());
+        System.out.println(playerEntity.getHP());
+    }
     public GameProgress(Entity playerEntity) {
         this.playerEntity = playerEntity;
-
     }
-
-
     public String toTextFormat() {
-        return "Player Entity: " + playerEntity.getName() + "\n" +
-                "HP: " + playerEntity.getHP() + "\n" +
-                "MP: " + playerEntity.getMP() + "\n" +
-                "Level: " + playerEntity.getLevel() + "\n" +
-                "Name: " + playerEntity.getName() + "\n" +
-                "Max HP: " + playerEntity.getMaxHP() + "\n" +
-                "EXP: " + playerEntity.getEXP() + "\n" +
-                "Max MP: " + playerEntity.getMaxMP() + "\n" +
-                "Physical Attack: " + playerEntity.getPhysicalAttack() + "\n" +
-                "Magical Attack: " + playerEntity.getMagicalAttack() + "\n" +
-                "Physical Defence: " + playerEntity.getPhysicalDefence() + "\n" +
-                "Magical Defence: " + playerEntity.getMagicalDefence();
+        return playerEntity.getName() + "\n" +
+                playerEntity.getMaxHP() + "\n" +
+                playerEntity.getMaxMP() + "\n" +
+                playerEntity.getHP() + "\n" +
+                playerEntity.getMP() + "\n" +
+                playerEntity.getPhysicalAttack() + "\n" +
+                playerEntity.getMagicalAttack() + "\n" +
+                playerEntity.getPhysicalDefence() + "\n" +
+                playerEntity.getMagicalDefence() + "\n" +
+                playerEntity.getLevel() + "\n" +
+                playerEntity.getEXP() + "\n";
     }
-
-
 
     public Entity getPlayerEntity() {
         return playerEntity;
     }
-
 }
 
 class SaveGame {
