@@ -28,6 +28,24 @@ public class Mage extends Player {
                     this.magicalAttack = Integer.parseInt(stats[4]);
                     this.physicalDefence = Integer.parseInt(stats[5]);
                     this.magicalDefence = Integer.parseInt(stats[6]);
+                    this.skillOneName = stats[7];
+                    this.skill1Description = stats[8];
+                    this.skillTwoName = stats[9];
+                    this.skill2Description = stats[10];
+                    this.skillThreeName = stats[11];
+                    this.skill3Description = stats[12];
+                    this.skill1 = Integer.parseInt(stats[13]); // Poison LV5 unlock
+                    this.skill2 = Integer.parseInt(stats[14]); // Fireball LV10 Unlock
+                    this.skill3 = Integer.parseInt(stats[15]); // Frost Nova LV30 Unlock & can freeze all opponent
+                    this.skill1Mp = Integer.parseInt(stats[16]); 
+                    this.skill2Mp = Integer.parseInt(stats[17]); 
+                    this.skill3Mp = Integer.parseInt(stats[18]);
+                    this.MaxCDSkill1 = Integer.parseInt(stats[19]);
+                    this.MaxCDSkill2 = Integer.parseInt(stats[20]);
+                    this.MaxCDSkill3 = Integer.parseInt(stats[21]);
+                    this.CDSkill1 = Integer.parseInt(stats[19]);
+                    this.CDSkill2 = Integer.parseInt(stats[20]);
+                    this.CDSkill3 = Integer.parseInt(stats[21]);   
                }
 
 
@@ -35,24 +53,7 @@ public class Mage extends Player {
                System.out.println("File was not found");
           }
           
-          this.skillOneName = "Poison\t";
-          this.skill1Description = "Monster will be poisoned for 2 rounds.";
-          this.skillTwoName = "Fireball\t";
-          this.skill2Description = "Hurls a fiery projectile at the target, dealing moderate fire damage.";
-          this.skillThreeName = "Frost\t";
-          this.skill3Description = "The Mage releases a burst of frost, freezing nearby enemies in place for 2 rounds.";
-          this.skill1 = 20; // Poison LV5 unlock
-          this.skill2 = 100; // Fireball LV10 Unlock
-          this.skill3 = 200; // Frost Nova LV30 Unlock & can freeze all opponent
-          this.skill1Mp = 30; 
-          this.skill2Mp = 40; 
-          this.skill3Mp = 70;
-          this.MaxCDSkill1 = 4;
-          this.MaxCDSkill2 = 2;
-          this.MaxCDSkill3 = 6;
-          this.CDSkill1 = 4;
-          this.CDSkill2 = 2;
-          this.CDSkill3 = 6;
+         
      }
 
      
@@ -60,7 +61,7 @@ public class Mage extends Player {
      public int useSkill1(Entity target) {
           setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
-          int dmg = (int) (this.getSkill1() * (1.0 - target.getMagicalDefence() / 100.0));
+          int dmg = (int) (this.getMagicalAttack() * (this.getSkill1() / 100) * (1.0 - target.getMagicalDefence() / 100.0));
           target.applyStatus(Status.POISONED, 2);
           return this.damageDealt(target, dmg);
          
@@ -69,14 +70,14 @@ public class Mage extends Player {
      public int useSkill2(Entity target) {
           setCDSkill2(this.getMaxCDSkill2());
           this.setMP(this.getMP() - this.getSkill2Mp());
-          int dmg = (int) (this.getSkill2() * (1.0 - target.getMagicalDefence() / 100.0));
+          int dmg = (int) (this.getMagicalAttack() * (this.getSkill2() / 100) * (1.0 - target.getMagicalDefence() / 100.0));
           return this.damageDealt(target, dmg);
      }
 
      public int useSkill3(Entity target) {
           setCDSkill3(this.getMaxCDSkill3());
           this.setMP(this.getMP() - this.getSkill3Mp());
-          int dmg = (int) (this.getSkill3() * (1.0 - target.getMagicalDefence() / 100.0));
+          int dmg = (int) (this.getMagicalAttack() * (this.getSkill3() / 100) * (1.0 - target.getMagicalDefence() / 100.0));
            target.applyStatus(Status.FROZEN, 2);
            return this.damageDealt(target, dmg);
      }

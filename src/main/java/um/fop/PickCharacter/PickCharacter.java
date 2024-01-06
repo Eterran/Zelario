@@ -62,7 +62,7 @@ public class PickCharacter {
 			do {
 				input = consoleToGUI.getNextInput();
 				if (!input.matches("^[1-5]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 to 5 only to pick you class.");
 				}
 			} while (!input.matches("^[1-5]$"));
         } catch (InterruptedException e) {
@@ -141,7 +141,7 @@ public class PickCharacter {
 			do {
 				choice = consoleToGUI.getNextInput();
 				if (!choice.matches("^[1-2]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 or 2 to confirm your choice.");
 				}
 			} while (!choice.matches("^[1-2]$"));
         } catch (InterruptedException e) {
@@ -209,7 +209,7 @@ public class PickCharacter {
 			do {
 				choice = consoleToGUI.getNextInput();
 				if (!choice.matches("^[1-2]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 or 2 to confirm your choice.");
 				}
 			} while (!choice.matches("^[1-2]$"));
         } catch (InterruptedException e) {
@@ -276,7 +276,7 @@ public class PickCharacter {
 			do {
 				choice = consoleToGUI.getNextInput();
 				if (!choice.matches("^[1-2]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 or 2 to confirm your choice.");
 				}
 			} while (!choice.matches("^[1-2]$"));
        		 } catch (InterruptedException e) {
@@ -344,7 +344,7 @@ public class PickCharacter {
 			do {
 				choice = consoleToGUI.getNextInput();
 				if (!choice.matches("^[1-2]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 or 2 to confirm your choice.");
 				}
 			} while (!choice.matches("^[1-2]$"));
 	        } catch (InterruptedException e) {
@@ -413,7 +413,7 @@ public class PickCharacter {
 			do {
 				choice = consoleToGUI.getNextInput();
 				if (!choice.matches("^[1-2]$")) {
-					System.out.println("Invalid input.");
+					System.out.println("Invalid input. Please type 1 or 2 to confirm your choice.");
 				}
 			} while (!choice.matches("^[1-2]$"));
 	        } catch (InterruptedException e) {
