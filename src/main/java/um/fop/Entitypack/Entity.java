@@ -615,7 +615,20 @@ import UIpack.ColorAttributes;
         public int getLevel() {
             return this.level;
         }
-
+        public int getEXP(){
+            return this.exp;
+        }
+        public int getStatsLevel() {
+            return this.statsLevel;
+        }
+        public int setLevel(int level) {
+            this.level = level;
+            return this.level;
+        }
+        public int setEXP(int exp) {
+            this.exp = exp;
+            return this.exp;
+        }
         public int levelUp() {
             if (this.exp >= 25 && this.level < 2) {
                 this.level = 2;
