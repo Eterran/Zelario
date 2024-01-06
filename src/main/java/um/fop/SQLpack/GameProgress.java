@@ -6,12 +6,6 @@ import Entitypack.Playerpack.*;
 
 public class GameProgress implements Serializable {
     private Entity playerEntity;
-    public static void main(String[] args) {
-        Entity playerEntity = new Entity();
-        GameProgress progress1 = LoadGame.loadGameProgress("C:\\Users\\kelvi\\Desktop\\game.dat");
-        playerEntity = progress1.getPlayerEntity();
-        System.out.println(playerEntity.getName());
-    }
     public GameProgress(Entity playerEntity) {
         this.playerEntity = playerEntity;
     }

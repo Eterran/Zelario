@@ -23,9 +23,16 @@ public class SQL {
      * @param password 密码
      * @return 注册是否成功
      */
+    public static void main(String[] args) {
+        try {
+            wipeDatabase(getConnection());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void wipeDatabase(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-        String sql = "DELETE FROM YourTableName";
+        String sql = "DELETE FROM users";
         stmt.executeUpdate(sql);
     }
     public static boolean registerUser(Connection conn, String username, String password) {
