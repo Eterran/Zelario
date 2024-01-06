@@ -5,11 +5,17 @@ import java.sql.*; // 导入Java SQL包，用于数据库操作
 
 public class SQL {
     // 数据库连接信息
+    
     private static final String USER = "root"; // 数据库用户名
     private static final String PASS = "123456"; // 数据库密码
-    private static final String DB_URL //= "jdbc:mysql://localhost:3306/austin?useSSL=false&allowPublicKeyRetrieval=true";
-            = "jdbc:mysql://localhost:3306/userDB?user=root";
-
+    private static final String DB_URL = "jdbc:sqlite:db\\database.db";
+    private static String currentUsername;
+    public static void setCurrentUsername(String username) {
+        currentUsername = username;
+    }
+    public static String getCurrentUsername() {
+        return currentUsername;
+    }
     /**
      * 尝试注册新用户
      * @param conn 数据库连接
@@ -17,9 +23,14 @@ public class SQL {
      * @param password 密码
      * @return 注册是否成功
      */
+    public static void wipeDatabase(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String sql = "DELETE FROM YourTableName";
+        stmt.executeUpdate(sql);
+    }
     public static boolean registerUser(Connection conn, String username, String password) {
         // SQL语句用于插入新用户
-        String saveFilePath = "saves/" + username + ".txt";
+        String saveFilePath = "saves/" + username + ".dat";
         File saveFile = new File(saveFilePath);
         if (!saveFile.exists()) {
             try {
@@ -110,7 +121,7 @@ public class SQL {
      * @throws SQLException 如果连接失败
      */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USER, PASS);
+        return DriverManager.getConnection(DB_URL);
     }
 }
 

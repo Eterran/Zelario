@@ -1,2 +1,0 @@
-This is the Tester1.txt file
-This is the end of Tester1.txt file

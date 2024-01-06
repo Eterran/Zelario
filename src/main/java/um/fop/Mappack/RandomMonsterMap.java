@@ -6,12 +6,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.util.Random;
 import java.util.ArrayList;
 import Entitypack.Entity;
 import Entitypack.Monsterpack.Boss;
 import Gamepack.*;
 import UIpack.ConsoleToGUI;
+import SQLpack.*;
 
 public class RandomMonsterMap extends JFrame {
     private static RandomMonsterMap mapFrame;
@@ -47,7 +49,8 @@ public class RandomMonsterMap extends JFrame {
     JPanel panel = new JPanel(new GridLayout(HEIGHT, WIDTH));
     ArrayList<Point> characterLocations = new ArrayList<>();
     ArrayList<Point> bossLocations = new ArrayList<>();
-    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
+    public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, 
+                        JFrame frame, Game game, JScrollPane scrollPane, Connection conn) {
         super("Zelario Game");
         bossLocations.add(new Point(33, 5));
         bossLocations.add(new Point(33, 6));
@@ -322,6 +325,10 @@ public class RandomMonsterMap extends JFrame {
             public void windowClosing(WindowEvent e) {
                 int choice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
+                    int savingChoice = JOptionPane.showConfirmDialog(null, "Do you want to save？", "Save your progress before you quit?", JOptionPane.YES_NO_OPTION);
+                    if(savingChoice == JOptionPane.YES_OPTION){
+                        SaveGame.saveGameProgress("saves\\" + SQL.getCurrentUsername() + ".dat", new GameProgress(player));
+                    }
                     System.exit(0);
                 }
             }
