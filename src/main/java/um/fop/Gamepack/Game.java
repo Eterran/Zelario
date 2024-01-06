@@ -114,7 +114,7 @@ public class Game {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
-                                    doc.insertString(doc.getLength(), " healed 50 HP!\n", ColorAttributes.GREEN);
+                                    doc.insertString(doc.getLength(), " healed 60 HP!\n", ColorAttributes.GREEN);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
