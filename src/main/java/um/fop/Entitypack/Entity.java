@@ -835,5 +835,115 @@ import UIpack.ColorAttributes;
             if (this.getCDSkill2() > 0) this.CDSkill2--;
             if (this.getCDSkill3() > 0) this.CDSkill3--;
         }
+
+        public void setSaveName(String name){
+            this.name = name;
+        }
+         public void setSaveMaxHP(int maxHP){
+            this.maxHP = maxHP;
+        }
+
+        public void setSaveMaxMP(int maxMP){
+            this.maxMP = maxMP;
+        }
+
+        public void setSaveHP(int hp){
+            this.HP = hp;
+        }
+
+        public void setSaveMP(int mp){
+            this.MP = mp;
+        }
+
+        public void setSavePhysicalAttack(int attack){
+            this.physicalAttack = attack;
+        }
+
+        public void setSaveMagicalAttack(int attack){
+            this.magicalAttack = attack;
+        }
+
+        public void setSavePhysicalDefence(int defence){
+            this.physicalDefence = defence;
+        }
+
+        public void setSaveMagicalDefence(int defence){
+            this.magicalDefence = defence;
+        }
+
+        public void setSaveSkillOneName(String skillname){
+            this.skillOneName = skillname;
+        }
+
+        public void setSaveSkillOneDescription(String desc){
+            this.skill1Description = desc;
+        }
+
+        public void setSaveSkillTwoName(String skillname){
+            this.skillTwoName = skillname;
+        }
+
+        public void setSaveSkillTwoDescription(String desc){
+            this.skill2Description = desc;
+        }
+
+        public void setSaveSkillThreeName(String skillname){
+            this.skillThreeName = skillname;
+        }
+
+        public void setSaveSkillThreeDescription(String desc){
+            this.skill3Description = desc;
+        }
+        
+        public void setSaveSkill1(int skillDmg){
+            this.skill1 = skillDmg;
+        }
+
+        public void setSaveSkill2(int skillDmg){
+            this.skill2 = skillDmg;
+        }
+
+        public void setSaveSkill3(int skillDmg){
+            this.skill3 = skillDmg;
+        }
+
+        public void setSaveSkill1MP(int skillMP){
+            this.skill1Mp = skillMP;
+        }
+
+        public void setSaveSkill2MP(int skillMP){
+            this.skill2Mp = skillMP;
+        }
+
+        public void setSaveSkill3MP(int skillMP){
+            this.skill3Mp = skillMP;
+        }
+
+        public void setSaveMaxCDSkill1(int cd){
+            this.MaxCDSkill1 = cd;
+        }
+
+        public void setSaveMaxCDSkill2(int cd){
+            this.MaxCDSkill2 = cd;
+        }
+
+        public void setSaveMaxCDSkill3(int cd){
+            this.MaxCDSkill3 = cd;
+        }
+
+        public void setSaveCDSkill1(int cd){
+            this.CDSkill1 = cd;
+        }
+
+        public void setSaveCDSkill2(int cd){
+            this.CDSkill2 = cd;
+        }
+
+        public void setSaveCDSkill3(int cd){
+            this.CDSkill3 = cd;
+        }
+        
+
+
     }
 
