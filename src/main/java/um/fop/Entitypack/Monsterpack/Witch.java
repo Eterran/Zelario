@@ -104,12 +104,12 @@ public class Witch extends Monster {
      public int useSkill1(Entity target) {
           setCDSkill1(this.getMaxCDSkill1());
           this.setMP(this.getMP() - this.getSkill1Mp());
-          int dmg = (int) (this.getSkill1() * (2.0 - target.getMagicalDefence() / 100.0));
+          int dmg = (int) (this.getSkill1() * (3.1 - target.getMagicalDefence() / 100.0));
           return this.damageDealt(target, dmg);
      }
 
      public int normalAttack(Entity target) {// magical normal attack
-          int dmg = (int) (this.magicalAttack * (2.0 - target.getMagicalDefence() / 100.0) ); // player HP
+          int dmg = (int) (this.magicalAttack * (4.0 - target.getMagicalDefence() / 100.0) ); // player HP
           return this.damageDealt(target, dmg);
      }
 }
