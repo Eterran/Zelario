@@ -10,7 +10,7 @@ public class Monster extends Entity{
     public int normalAttack(Entity target) {//physical normal attack for monster
         int apply = effect.nextInt(2);
 
-        int dmg = (int) (this.getPhysicalAttack() * (4.0 - target.getPhysicalDefence() / 100.0)); 
+        int dmg = (int) (this.getPhysicalAttack() * (3.5 - target.getPhysicalDefence() / 100.0)); 
 
         if(apply < 2){
             target.applyStatus(Status.WEAKENED,2);
