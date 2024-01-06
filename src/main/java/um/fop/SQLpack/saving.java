@@ -6,13 +6,11 @@ import Entitypack.Entity;
 
 class GameProgress implements Serializable {
     private Entity playerEntity;
-    private int xPosition;
-    private int yPosition;
 
-    public GameProgress(Entity playerEntity, int xPosition, int yPosition) {
+
+    public GameProgress(Entity playerEntity) {
         this.playerEntity = playerEntity;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+
     }
 
 
@@ -21,11 +19,9 @@ class GameProgress implements Serializable {
                 "HP: " + playerEntity.getHP() + "\n" +
                 "MP: " + playerEntity.getMP() + "\n" +
                 "Level: " + playerEntity.getLevel() + "\n" +
-                "X Position: " + getXPosition() + "\n" +
-                "Y Position: " + getYPosition() + "\n" +
-                // 新增的属性
                 "Name: " + playerEntity.getName() + "\n" +
                 "Max HP: " + playerEntity.getMaxHP() + "\n" +
+                "EXP: " + playerEntity.getEXP() + "\n" +
                 "Max MP: " + playerEntity.getMaxMP() + "\n" +
                 "Physical Attack: " + playerEntity.getPhysicalAttack() + "\n" +
                 "Magical Attack: " + playerEntity.getMagicalAttack() + "\n" +
@@ -39,13 +35,6 @@ class GameProgress implements Serializable {
         return playerEntity;
     }
 
-    public int getXPosition() {
-        return xPosition;
-    }
-
-    public int getYPosition() {
-        return yPosition;
-    }
 }
 
 class SaveGame {
