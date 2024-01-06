@@ -363,12 +363,7 @@ public class Game {
                             }
                             break;
                         default:
-<<<<<<< HEAD
                             System.out.println("Invalid input. Please type 1 to 7 to make a move.");
-=======
-                            System.out.println("Invalid input");
-                            
->>>>>>> b5d778a7b64b1e8cd76aa97660c9f2ae067b0f4e
                     }
                 }
             } else if (player.isFrozen) {
@@ -606,7 +601,7 @@ public class Game {
             e.printStackTrace();
         }
         if(choice.equals("1")){
-
+            
         } else {
             
         }
