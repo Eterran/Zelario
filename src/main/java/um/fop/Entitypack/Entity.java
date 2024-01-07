@@ -838,6 +838,7 @@ import UIpack.ColorAttributes;
         public void retry(){
             this.setHP(100);
             this.applyStatus(Status.IMMUNITY, 2);
+            this.CDDecrement();
         }
         public void setSaveName(String name){
             this.name = name;

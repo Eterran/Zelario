@@ -254,7 +254,6 @@ public class Start {
                 e.printStackTrace();
             }
         }
-        player.setHP(1);
         Game game = new Game(player);
         textPane.setText("");
         displayIntro(consoleToGUI, scrollPane, textPane);
