@@ -65,9 +65,13 @@ public class Game {
             }
             int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
-                frame.setVisible(false);
-                RandomMonsterMap.getMapFrame().removeMonster();
-                return;
+                if(monster instanceof Boss){
+                    displayIfWinBoss(frame, textPane, consoleToGUI);
+                } else {
+                    frame.setVisible(false);
+                    RandomMonsterMap.getMapFrame().removeMonster();
+                    return;
+                }
             } else if (temp == -1) {
                 frame.setVisible(false);
                 return;
@@ -125,7 +129,7 @@ public class Game {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
-                                    doc.insertString(doc.getLength(), " healed " + player.getHealing() + "HP!\n", ColorAttributes.GREEN);
+                                    doc.insertString(doc.getLength(), "healed " + player.getHealing() + " HP!\n", ColorAttributes.GREEN);
 
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -134,7 +138,7 @@ public class Game {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
-                                    doc.insertString(doc.getLength(), " healed ", ColorAttributes.GREEN);
+                                    doc.insertString(doc.getLength(), "healed ", ColorAttributes.GREEN);
                                     doc.insertString(doc.getLength(),
                                             Integer.toString(60 - (player.getHP() - player.getMaxHP())),
                                             ColorAttributes.GREEN);
