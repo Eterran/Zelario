@@ -1,1 +1,1 @@
-Mage,220,100,32,39,22,32,Poison,Monster will be poisoned for 2 rounds.,Fireball,Hurls a fiery projectile at the target and dealing moderate fire damage.,Frost,The Mage releases a burst of frost and freezing nearby enemies in place for 2 rounds.,30,100,200,60,80,120,4,2,6
+Mage,220,100,32,39,22,32,Poison,Monster will be poisoned for 2 rounds.,Fireball,Hurls a fiery projectile at the target and dealing moderate fire damage.,Frost,The Mage releases a burst of frost and freezing nearby enemies in place for 2 rounds.,50,150,250,60,80,120,4,2,6

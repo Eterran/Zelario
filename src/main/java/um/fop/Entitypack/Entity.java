@@ -218,6 +218,12 @@ import UIpack.ColorAttributes;
             return this.CDSkill3;
         }
 
+        int healing = 60;
+
+        public int getHealing(){
+            return healing;
+        }
+
         public int damageDealt(Entity target, int dmg) {
             return target.damageTaken(dmg);
         }

@@ -83,7 +83,7 @@ public class Mage extends Player {
      }
 
      public int normalAttack(Entity target) {// magical normal attack
-          int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0) * 0.2); // player HP
+          int dmg = (int) (this.magicalAttack * (1.0 - target.getMagicalDefence() / 100.0)); // player HP
           return this.damageDealt(target, dmg);
      }
 }
