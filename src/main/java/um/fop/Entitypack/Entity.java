@@ -404,9 +404,9 @@ import UIpack.ColorAttributes;
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     if (this instanceof Monster) {
-                                        doc.insertString(doc.getLength(), this.getName() + " is silenced!\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), this.getName() + " is silenced!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -425,9 +425,9 @@ import UIpack.ColorAttributes;
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     if (this instanceof Monster) {
-                                        doc.insertString(doc.getLength(), this.getName() + " is confused!\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), this.getName() + " is confused!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -446,9 +446,11 @@ import UIpack.ColorAttributes;
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     if (this instanceof Monster) {
-                                        doc.insertString(doc.getLength(), this.getName() + " is frozen!\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), this.getName(), ColorAttributes.RED);
+                                        doc.insertString(doc.getLength(), " is ", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "frozen!", ColorAttributes.BLUE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are frozen, the cold penetrates deep into your skin.\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are frozen, the cold penetrates deep into your skin.", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -844,6 +846,10 @@ import UIpack.ColorAttributes;
             this.CDDecrement();
             this.CDDecrement();
             this.CDDecrement();
+            this.recoverMana();
+            this.recoverMana();
+            this.recoverMana();
+            this.recoverMana();
         }
         public void setSaveName(String name){
             this.name = name;

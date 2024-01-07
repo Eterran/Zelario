@@ -728,7 +728,7 @@ public class Game {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("           \t\t\t");
+                System.out.print("         \t\t\t");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -739,6 +739,7 @@ public class Game {
                 }
                 System.out.println();
             }
+            s.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -756,5 +757,44 @@ public class Game {
             e.printStackTrace();
         }
         textPane.setText("");
+    }
+    public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI){
+        try {
+            RandomMonsterMap.getMapFrame().setVisible(false);
+            frame.setVisible(true);
+            textPane.setText("");
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\FinalWinText.txt");
+            Scanner s;
+            s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("         \t\t\t");
+                for (char c : line.toCharArray()) {
+                    System.out.print(c);
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println();
+            }
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\FinalWin.txt");
+            Scanner s;
+            s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("         \t\t\t");
+                System.out.println(line);
+            }
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
