@@ -323,16 +323,15 @@ public class RandomMonsterMap extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                int choice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
+                int choice = JOptionPane.showConfirmDialog(null, "Do you want to save？", "Save your progress?", JOptionPane.YES_NO_OPTION);
                 if (choice == JOptionPane.YES_OPTION) {
-                    int savingChoice = JOptionPane.showConfirmDialog(null, "Do you want to save？", "Save your progress before you quit?", JOptionPane.YES_NO_OPTION);
-                    if(savingChoice == JOptionPane.YES_OPTION){
-                        SaveGame.saveGameProgress("saves\\" + SQL.getCurrentUsername() + ".dat", new GameProgress(player));
+                    SaveGame.saveGameProgress("saves\\" + SQL.getCurrentUsername() + ".dat", new GameProgress(player));
+                    int quitChoice = JOptionPane.showConfirmDialog(null, "Do you really want to quit the game？", "Do you really wanna leave us?", JOptionPane.YES_NO_OPTION);
+                    if(quitChoice == JOptionPane.YES_OPTION){
+                        System.exit(0);
                     }
-                    System.exit(0);
                 }
             }
-
         });
     }
 

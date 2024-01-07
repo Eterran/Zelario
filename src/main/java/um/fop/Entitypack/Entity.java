@@ -835,7 +835,10 @@ import UIpack.ColorAttributes;
             if (this.getCDSkill2() > 0) this.CDSkill2--;
             if (this.getCDSkill3() > 0) this.CDSkill3--;
         }
-
+        public void retry(){
+            this.setHP(100);
+            this.applyStatus(Status.IMMUNITY, 2);
+        }
         public void setSaveName(String name){
             this.name = name;
         }

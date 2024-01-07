@@ -53,12 +53,13 @@ public class Game {
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
-            int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
+            int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
                 frame.setVisible(false);
                 RandomMonsterMap.getMapFrame().removeMonster();
                 return;
             } else if (temp == -1) {
+                frame.setVisible(false);
                 return;
             }
             if (!player.isFrozen && !player.isStunned) {
@@ -385,12 +386,13 @@ public class Game {
                 }
                 endTurn();
             }
-            temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane);
+            temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
                 frame.setVisible(false);
                 RandomMonsterMap.getMapFrame().removeMonster();
                 return;
             } else if (temp == -1) {
+                frame.setVisible(false);
                 return;
             }
             player.applyEffects(textPane);
@@ -579,9 +581,8 @@ public class Game {
         consoleToGUI.scrollToBottom(scrollPane);
     }
 
-    public void loseCombat(ConsoleToGUI consoleToGUI) {
+    public void loseCombat(Entity player, ConsoleToGUI consoleToGUI, JFrame frame, JTextPane textPane) {
         displayLoseCombat();
-        isMonsterAlive = false;
         String choice = "";
         try {
             do {
@@ -594,9 +595,44 @@ public class Game {
             e.printStackTrace();
         }
         if(choice.equals("1")){
-            
+            player.retry();
+            isMonsterAlive = false;
+            textPane.setText("");
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\AnotherChance.txt");
+            Scanner s;
+            try {
+                s = new Scanner(file);
+                while (s.hasNextLine()) {
+                    String line = s.nextLine();
+                    System.out.print("\t\t\t");
+                    for (char c : line.toCharArray()) {
+                        System.out.print(c);
+                        try {
+                            Thread.sleep(25);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    System.out.println();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                StyledDocument doc = textPane.getStyledDocument();
+                System.out.println("\n\n");
+                doc.insertString(doc.getLength(), "Press Enter to continue...\n", ColorAttributes.DARK_GRAY);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+            choice = "";
+            try {
+                choice = consoleToGUI.getNextInput();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
-            
+            System.exit(0);
         }
     }
     public void displayLoseCombat() {
@@ -610,7 +646,8 @@ public class Game {
         }
         System.out.println();
         String line;
-        while((line = s.nextLine()) != null) {
+        while (s.hasNextLine()) {
+            line = s.nextLine();
             System.out.print("\t\t\t");
             System.out.println(line);
         }
@@ -632,10 +669,12 @@ public class Game {
         }
         s.close();
     }
-    public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JScrollPane scrollPane) {
+    public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, 
+                            JScrollPane scrollPane, JFrame frame) {
         if (player.getHP() <= 0) {
-            loseCombat(consoleToGUI);
+            loseCombat(player, consoleToGUI, frame, textPane);
             isMonsterAlive = false;
+            RandomMonsterMap.getMapFrame().setVisible(true);
             return -1;
         }
         if (monster.getHP() <= 0) {

@@ -247,8 +247,14 @@ public class Start {
             } else {
                 player = new Paladin();
             }
+            try {
+                SaveGame.saveGameProgress(SQL.getSaveFile(conn, username), new GameProgress(player));
+            } catch (SQLException e) {
+                System.out.println("Unable to establish connection with the server.");
+                e.printStackTrace();
+            }
         }
-        
+        player.setHP(1);
         Game game = new Game(player);
         textPane.setText("");
         displayIntro(consoleToGUI, scrollPane, textPane);
