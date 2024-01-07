@@ -17,6 +17,7 @@ import UIpack.ConsoleToGUI.*;
 import java.io.*;
 import SQLpack.*;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Start {
     public static void main(String[] args) {
@@ -254,32 +255,43 @@ public class Start {
                 e.printStackTrace();
             }
         }
-        player.setEXP(2000);
+        player.setEXP(1900);
         player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
-        displayIntro(consoleToGUI, scrollPane, textPane);
+        displayIntro(consoleToGUI, scrollPane, textPane, frame);
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player), textPane, consoleToGUI, frame,
                 game, scrollPane, conn));
         RandomMonsterMap.getMapFrame().setVisible(true);
         frame.setVisible(false);
     }
 
-    public static void displayIntro(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane) {
-        System.out.println("\r\n" + //
-                "In the age of Zelario, a realm steeped in magic and mystery, a prophecy unfolds. Legends speak of an ancient artifact, the Heartstone, hidden deep within the Forbidden Forest. This mystical gem is said to hold unimaginable power, capable of shaping the destiny of the entire realm.\r\n"
-                + //
-                "\r\n" + //
-                "You, a humble adventurer seeking fame and fortune, have heard whispers of the Heartstone's existence. Driven by a desire for glory, you embark on a perilous journey to uncover the truth behind the legends. As you delve into the Forbidden Forest, you soon realize that dark forces also seek the Heartstone for nefarious purposes.\r\n"
-                + //
-                "\r\n" + //
-                "Guided by the words of a wise old sage, you must slay foes and gather EXP to be strong enough to reach the Heartstone's secret location.\r\n"
-                + //
-                "\r\n" + //
-                "Your journey is a race against time, as the shadows of an ancient evil gather strength. The fate of Zelario rests on your shoulders. Will you emerge as the hero foretold by prophecy, or will darkness prevail? The adventure awaits, brave soul, as you step into the mystical world of Zelario and embark on a quest that will shape the destiny of an entire realm.");
+    public static void displayIntro(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame) {
+        try {
+            textPane.setText("");
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\Intro.txt");
+            Scanner s;
+            s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("  ");
+                for (char c : line.toCharArray()) {
+                    System.out.print(c);
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println();
+            }
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), "\nPress Enter to continue.\n", ColorAttributes.DARK_GRAY);
+            doc.insertString(doc.getLength(), "\nPress Enter to continue.\n", ColorAttributes.LIGHT_GRAY);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

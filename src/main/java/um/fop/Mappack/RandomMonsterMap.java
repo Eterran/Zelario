@@ -336,6 +336,8 @@ public class RandomMonsterMap extends JFrame {
                     if(quitChoice == JOptionPane.YES_OPTION){
                         System.exit(0);
                     }
+                } else {
+                    System.exit(0);
                 }
             }
         });
