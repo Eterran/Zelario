@@ -33,6 +33,7 @@ public class Boss extends Monster {
         setCDSkill1(this.getMaxCDSkill1());
         this.setMP(this.getMP() - this.getSkill1Mp());
         int dmg = (int) ( this.getPhysicalAttack() * (this.getSkill1()/100) * (3.5 - target.getPhysicalDefence() / 100.0)); // player HP
+        target.applyStatus(Status.WEAKENED, 2);
         return this.damageDealt(target, dmg);
     }
 
@@ -40,9 +41,8 @@ public class Boss extends Monster {
         setCDSkill2(this.getMaxCDSkill2());
         this.setMP(this.getMP() - this.getSkill2Mp());
         int dmg = (int) (this.getPhysicalAttack() * (this.getSkill2()/100) * (3.1 - target.getMagicalDefence() / 100.0)); // player HP, and add
-        target.applyStatus(Status.WEAKENED, 2);
-        target.applyStatus(Status.SILENCED, dmg);
-        target.applyStatus(Status.CONFUSION, dmg);
+        target.applyStatus(Status.SILENCED, 2);
+        target.applyStatus(Status.CONFUSION, 2);
         return this.damageDealt(target, dmg);
     }
 

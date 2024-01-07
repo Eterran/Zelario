@@ -254,8 +254,8 @@ public class Start {
                 e.printStackTrace();
             }
         }
-        player.setEXP(2000);
-        player.levelUp();
+      //  player.setEXP(2000);
+      //  player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
         displayIntro(consoleToGUI, scrollPane, textPane);

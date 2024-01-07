@@ -736,12 +736,14 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
+                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Mage")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 4;
+                    setHP(getMaxHP());
                     this.physicalAttack += 2;
                     this.magicalAttack += 5;
                     this.physicalDefence += 2;
@@ -757,6 +759,7 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
+                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Paladin")) {
@@ -778,6 +781,7 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
+                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Rogue")) {
@@ -799,6 +803,7 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
+                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Warrior")) {
@@ -820,6 +825,7 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
+                        setHP(getMaxHP());
                     }
                 }
             }
