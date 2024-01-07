@@ -66,7 +66,7 @@ public class Goblin extends Monster {
 
       if(player.getLevel() >= 25){
           try{
-               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 20 Monster stats\\Goblin3.txt"));
+               Scanner input = new Scanner(new FileInputStream("src\\main\\java\\um\\fop\\Stats\\Level 30 Monster stats\\Goblin3.txt"));
                String temp;
                String[] stats;
 
