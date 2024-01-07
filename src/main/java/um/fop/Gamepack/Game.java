@@ -136,7 +136,7 @@ public class Game {
                                     doc.insertString(doc.getLength(), "You have ", ColorAttributes.WHITE);
                                     doc.insertString(doc.getLength(), " healed ", ColorAttributes.GREEN);
                                     doc.insertString(doc.getLength(),
-                                            Integer.toString(50 - (player.getHP() - player.getMaxHP())),
+                                            Integer.toString(60 - (player.getHP() - player.getMaxHP())),
                                             ColorAttributes.GREEN);
                                     doc.insertString(doc.getLength(), " HP!\n", ColorAttributes.GREEN);
 
