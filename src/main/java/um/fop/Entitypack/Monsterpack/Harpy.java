@@ -95,8 +95,8 @@ public class Harpy extends Monster {
         this.skill1Description = "a physical damage strike.";
         this.skillTwoName = "Wind Gust";
         this.skill2Description = "a magical attack that can disrupt opponents.";
-        this.skill1 = 150; // Talon strike
-        this.skill2 = 150; // Wind Gust
+        this.skill1 = 180; // Talon strike
+        this.skill2 = 180; // Wind Gust
         this.skill1Mp = 30; 
         this.skill2Mp = 30; 
         this.MaxCDSkill1 = 4;
