@@ -1,6 +1,9 @@
 package Mappack;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,10 +11,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.util.Random;
+import java.util.Scanner;
+import java.io.File;
 import java.util.ArrayList;
 import Entitypack.Entity;
 import Entitypack.Monsterpack.Boss;
 import Gamepack.*;
+import UIpack.ColorAttributes;
 import UIpack.ConsoleToGUI;
 import SQLpack.*;
 
@@ -343,9 +349,6 @@ public class RandomMonsterMap extends JFrame {
         System.out.println(playerY);
         int newX = playerX + dx, newY = playerY + dy;
 
-
-
-        // 创建一个boss位置的list，类似    ArrayList<Point> characterLocations = new ArrayList<>();
         //判断是否达到35级了
         if (player.getLevel() == 35) {
             Thread thread = new Thread(new Runnable() {
@@ -355,8 +358,6 @@ public class RandomMonsterMap extends JFrame {
             });
             thread.start();
        }
-
-
 
         for (int i = 0; i < characterLocations.size(); i++) {//敌人位置
             Point charLocation = characterLocations.get(i);

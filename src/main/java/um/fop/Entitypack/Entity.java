@@ -634,71 +634,71 @@ import UIpack.ColorAttributes;
             this.setLevelStats();
             if (this.exp >= 25 && this.level < 2) {
                 this.level = 2;
-            } else if (this.exp >= 50 && this.level < 3) {
+            } if (this.exp >= 50 && this.level < 3) {
                 this.level = 3;
-            } else if (this.exp >= 80 && this.level < 4) {
+            }  if (this.exp >= 80 && this.level < 4) {
                 this.level = 4;
-            } else if (this.exp >= 110 && this.level < 5) {
+            }  if (this.exp >= 110 && this.level < 5) {
                 this.level = 5;
-            } else if (this.exp >= 140 && this.level < 6) {
+            }  if (this.exp >= 140 && this.level < 6) {
                 this.level = 6;
-            } else if (this.exp >= 170 && this.level < 7) {
+            }  if (this.exp >= 170 && this.level < 7) {
                 this.level = 7;
-            } else if (this.exp >= 210 && this.level < 8) {
+            }  if (this.exp >= 210 && this.level < 8) {
                 this.level = 8;
-            } else if (this.exp >= 250 && this.level < 9) {
+            }  if (this.exp >= 250 && this.level < 9) {
                 this.level = 9;
-            } else if (this.exp >= 300 && this.level < 10) {
+            }  if (this.exp >= 300 && this.level < 10) {
                 this.level = 10;
-            } else if (this.exp >= 350 && this.level < 11) {
+            }  if (this.exp >= 350 && this.level < 11) {
                 this.level = 11;
-            } else if (this.exp >= 400 && this.level < 12) {
+            }  if (this.exp >= 400 && this.level < 12) {
                 this.level = 12;
-            } else if (this.exp >= 450 && this.level < 13) {
+            }  if (this.exp >= 450 && this.level < 13) {
                 this.level = 13;
-            } else if (this.exp >= 500 && this.level < 14) {
+            }  if (this.exp >= 500 && this.level < 14) {
                 this.level = 14;
-            } else if (this.exp >= 550 && this.level < 15) {
+            }  if (this.exp >= 550 && this.level < 15) {
                 this.level = 15;
-            } else if (this.exp >= 600 && this.level < 16) {
+            }  if (this.exp >= 600 && this.level < 16) {
                 this.level = 16;
-            } else if (this.exp >= 650 && this.level < 17) {
+            }  if (this.exp >= 650 && this.level < 17) {
                 this.level = 17;
-            } else if (this.exp >= 700 && this.level < 18) {
+            }  if (this.exp >= 700 && this.level < 18) {
                 this.level = 18;
-            } else if (this.exp >= 750 && this.level < 19) {
+            }  if (this.exp >= 750 && this.level < 19) {
                 this.level = 19;
-            } else if (this.exp >= 800 && this.level < 20) {
+            }  if (this.exp >= 800 && this.level < 20) {
                 this.level = 20;
-            } else if (this.exp >= 850 && this.level < 21) {
+            }  if (this.exp >= 850 && this.level < 21) {
                 this.level = 21;
-            } else if (this.exp >= 900 && this.level < 22) {
+            }  if (this.exp >= 900 && this.level < 22) {
                 this.level = 22;
-            } else if (this.exp >= 950 && this.level < 23) {
+            }  if (this.exp >= 950 && this.level < 23) {
                 this.level = 23;
-            } else if (this.exp >= 1000 && this.level < 24) {
+            }  if (this.exp >= 1000 && this.level < 24) {
                 this.level = 24;
-            } else if (this.exp >= 1070 && this.level < 25) {
+            }  if (this.exp >= 1070 && this.level < 25) {
                 this.level = 25;
-            } else if (this.exp >= 1150 && this.level < 26) {
+            }  if (this.exp >= 1150 && this.level < 26) {
                 this.level = 26;
-            } else if (this.exp >= 1230 && this.level < 27) {
+            }  if (this.exp >= 1230 && this.level < 27) {
                 this.level = 27;
-            } else if (this.exp >= 1310 && this.level < 28) {
+            }  if (this.exp >= 1310 && this.level < 28) {
                 this.level = 28;
-            } else if (this.exp >= 1400 && this.level < 29) {
+            }  if (this.exp >= 1400 && this.level < 29) {
                 this.level = 29;
-            } else if (this.exp >= 1500 && this.level < 30) {
+            }  if (this.exp >= 1500 && this.level < 30) {
                 this.level = 30;
-            } else if (this.exp >= 1600 && this.level < 31) {
+            }  if (this.exp >= 1600 && this.level < 31) {
                 this.level = 31;
-            } else if (this.exp >= 1700 && this.level < 32) {
+            }  if (this.exp >= 1700 && this.level < 32) {
                 this.level = 32;
-            } else if (this.exp >= 1800 && this.level < 33) {
+            }  if (this.exp >= 1800 && this.level < 33) {
                 this.level = 33;
-            } else if (this.exp >= 1900 && this.level < 34) {
+            }  if (this.exp >= 1900 && this.level < 34) {
                 this.level = 34;
-            } else if (this.exp >= 2000 && this.level < 35) {
+            }  if (this.exp >= 2000 && this.level < 35) {
                 this.level = 35;
             }
             this.checkLvl();
@@ -836,8 +836,13 @@ import UIpack.ColorAttributes;
             if (this.getCDSkill3() > 0) this.CDSkill3--;
         }
         public void retry(){
-            this.setHP(100);
+            this.setHP(this.getMaxHP()/2);
             this.applyStatus(Status.IMMUNITY, 2);
+            this.CDDecrement();
+            this.CDDecrement();
+            this.CDDecrement();
+            this.CDDecrement();
+            this.CDDecrement();
             this.CDDecrement();
         }
         public void setSaveName(String name){

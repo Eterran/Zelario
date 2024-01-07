@@ -33,10 +33,20 @@ public class Game {
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI,
             JFrame frame, JScrollPane scrollPane) {
+        frame.setSize(1150, 800);
         frame.setVisible(true);
         textPane.setText("");
-
-        System.out.println("You entered a combat with a " + monster.getName());
+        if(monster instanceof Boss){
+            displayIfBoss(frame, textPane, consoleToGUI);
+        }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "You entered a combat with a ", ColorAttributes.WHITE);
+            doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
+            doc.insertString(doc.getLength(), "!\n", ColorAttributes.WHITE);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
 
         turn = true;
         isMonsterAlive = true;
@@ -707,5 +717,44 @@ public class Game {
     }
     public void clearInput(JTextPane textPane){
             textPane.setText("");
+    }
+    public void displayIfBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI){
+        try {
+            RandomMonsterMap.getMapFrame().setVisible(false);
+            frame.setVisible(true);
+            textPane.setText("");
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\EnterFinalFight.txt");
+            Scanner s;
+            s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("           \t\t\t");
+                for (char c : line.toCharArray()) {
+                    System.out.print(c);
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            System.out.println("\n\n");
+            doc.insertString(doc.getLength(), " Press Enter to continue...\n", ColorAttributes.DARK_GRAY);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        textPane.setText("");
     }
 }
