@@ -10,8 +10,8 @@ public class Boss extends Monster {
         this.MP = 200;
         this.maxHP = 1000;
         this.maxMP = 200;
-        this.physicalAttack = 50;
-        this.magicalAttack = 40;
+        this.physicalAttack = 40;
+        this.magicalAttack = 30;
         this.physicalDefence = 30;
         this.magicalDefence = 30;
         this.skillOneName = "Biu Biu Biu";
