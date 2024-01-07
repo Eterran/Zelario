@@ -402,9 +402,14 @@ public class Game {
             }
             temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
-                frame.setVisible(false);
-                RandomMonsterMap.getMapFrame().removeMonster();
-                return;
+                if(monster instanceof Boss){
+                    displayIfWinBoss(frame, textPane, consoleToGUI);
+                    return;
+                } else {
+                    frame.setVisible(false);
+                    RandomMonsterMap.getMapFrame().removeMonster();
+                    return;
+                }
             } else if (temp == -1) {
                 frame.setVisible(false);
                 return;
@@ -596,7 +601,7 @@ public class Game {
     }
 
     public void loseCombat(Entity player, ConsoleToGUI consoleToGUI, JFrame frame, JTextPane textPane) {
-        displayLoseCombat();
+        displayLoseCombat(textPane);
         String choice = "";
         try {
             do {
@@ -649,23 +654,31 @@ public class Game {
             System.exit(0);
         }
     }
-    public void displayLoseCombat() {
+    public void displayLoseCombat(JTextPane textPane) {
         File file = new File("src\\main\\java\\um\\fop\\ASCII\\LosingScreen.txt");
         Scanner s;
+        System.out.println();
         try {
             s = new Scanner(file);
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
-        System.out.println();
         String line;
         while (s.hasNextLine()) {
             line = s.nextLine();
-            System.out.print("\t\t\t");
-            System.out.println(line);
+            System.out.print("\t\t");
+            try {
+                StyledDocument doc = textPane.getStyledDocument();
+                doc.insertString(doc.getLength(), line, ColorAttributes.RED);
+                System.out.println();
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
         }
         s.close();
+        System.out.println(" 1. Retry");
+        System.out.println(" 2. Quit");
     }
     public void displayWinCombat() {
         File file = new File("src\\main\\java\\um\\fop\\ASCII\\WinningScreen.txt");
@@ -772,7 +785,7 @@ public class Game {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("         \t\t\t");
+                System.out.print("       \t\t\t");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -791,10 +804,17 @@ public class Game {
             File file = new File("src\\main\\java\\um\\fop\\ASCII\\FinalWin.txt");
             Scanner s;
             s = new Scanner(file);
+            System.out.println();
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("         \t\t\t");
-                System.out.println(line);
+                System.out.print("\t\t\t\t");
+                try {
+                    StyledDocument doc = textPane.getStyledDocument();
+                    doc.insertString(doc.getLength(), line , ColorAttributes.YELLOW);
+                    System.out.println();
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
             }
             s.close();
         } catch (Exception e) {

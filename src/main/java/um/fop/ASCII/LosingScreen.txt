@@ -1,20 +1,16 @@
-*/|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|\*
-|                                                                   |
-/                                                                   \
-|                                                                   |
-\   @@@ @@@  @@@@@@  @@@@@@@       @@@@@@@  @@@ @@@@@@@@ @@@@@@@    /
-|   @@! !@@ @@!  @@@ @@!  @@@      @@!  @@@ @@! @@!      @@!  @@@   |
-/    !@!@!  @!@  !@! @!@  !@!      @!@  !@! !!@ @!!!:!   @!@  !@!   \
-|     !!:   !!:  !!! !!:  !!!      !!:  !!! !!: !!:      !!:  !!!   |
-\     .:     : :. :  :: :  :       :: :  :  :   : :: ::: :: :  :    / 
-|                                                                   |
-/                                                                   \
-|                                                                   |
-*\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/*
 
-
-
-1. Retry
-2. Exit
-
->
+                            
+____     ___  ____   ____     ___      ________  _____________ ________ 
+`MM(     )M' 6MMMMb  `MM'     `M'      `MMMMMMMb.`MM`MMMMMMMMM `MMMMMMMb. 
+ `MM.    d' 8P    Y8  MM       M        MM    `Mb MM MM      \  MM    `Mb 
+  `MM.  d' 6M      Mb MM       M        MM     MM MM MM         MM     MM 
+   `MM d'  MM      MM MM       M        MM     MM MM MM    ,    MM     MM 
+    `MM'   MM      MM MM       M        MM     MM MM MMMMMMM    MM     MM 
+     MM    MM      MM MM       M        MM     MM MM MM    `    MM     MM 
+     MM    MM      MM MM       M        MM     MM MM MM         MM     MM 
+     MM    YM      M9 YM       M        MM     MM MM MM         MM     MM 
+     MM     8b    d8   8b     d8        MM    .M9 MM MM      /  MM    .M9 
+    _MM_     YMMMM9     YMMMMM9        _MMMMMMM9'_MM_MMMMMMMMM _MMMMMMM9' 
+                                                                
+                                                                
+                                                                        

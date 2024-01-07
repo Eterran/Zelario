@@ -120,11 +120,12 @@ public class Start {
         try {
             do {
                 input = consoleToGUI.getNextInput();
-                if (!input.matches("^[1-2]$")) {
+                if (!input.matches("^[1-3]$")) {
+                    System.out.println("Invalid input. Please input 1-3 only.");
                 }
-            } while (!input.matches("^[1-2]$"));
+            } while (!input.matches("^[1-3]$"));
         } catch (InterruptedException e) {
-
+            e.printStackTrace();
         }
         switch (input) {
             case "1":
@@ -218,16 +219,21 @@ public class Start {
                     }
                     break;
                 }
-            try {
-                String saveFilePath = SQL.getSaveFile(conn, username);
-                File saveFile = new File(saveFilePath);
-                if (saveFile.exists()) {
-                    GameProgress progress = LoadGame.loadGameProgress(saveFilePath);
-                    player = progress.getPlayerEntity();
+                try {
+                    String saveFilePath = SQL.getSaveFile(conn, username);
+                    File saveFile = new File(saveFilePath);
+                    if (saveFile.exists()) {
+                        GameProgress progress = LoadGame.loadGameProgress(saveFilePath);
+                        player = progress.getPlayerEntity();
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Unable to establish connection with the server.");
                 }
-            } catch (SQLException e) {
-                System.out.println("Unable to establish connection with the server.");
-            }
+            break;
+            case "3":
+                System.out.println("Exiting game...");
+                System.exit(0);
+            break;
         }
         if(player == null){
             while (PickCharacter.heroChoice == -1) {
@@ -255,8 +261,8 @@ public class Start {
                 e.printStackTrace();
             }
         }
-      //  player.setEXP(2000);
-      //  player.levelUp();
+        player.setEXP(1990);
+        player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
         displayIntro(consoleToGUI, scrollPane, textPane, frame);
@@ -274,11 +280,35 @@ public class Start {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("  ");
+                System.out.print("    ");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
                         Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println();
+            }
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            RandomMonsterMap.getMapFrame().setVisible(false);
+            frame.setVisible(true);
+            textPane.setText("");
+            File file = new File("src\\main\\java\\um\\fop\\ASCII\\FinalWinText.txt");
+            Scanner s;
+            s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("         \t\t\t");
+                for (char c : line.toCharArray()) {
+                    System.out.print(c);
+                    try {
+                        Thread.sleep(20);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
