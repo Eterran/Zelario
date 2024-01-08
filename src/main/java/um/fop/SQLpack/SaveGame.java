@@ -1,7 +1,6 @@
 package SQLpack;
 
 import java.io.*;
-import Entitypack.Entity;
 
 public class SaveGame {
     public static void saveGameProgress(String filePath, GameProgress progress) {

@@ -3,6 +3,7 @@ package Entitypack;
 import java.util.Map;
 import java.util.Random;
 import java.util.HashMap;
+import java.lang.reflect.Field;
 
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -332,24 +333,35 @@ import UIpack.ColorAttributes;
         protected Map<Status, Boolean> dialogueDisplayed = new HashMap<>();
         protected int exp;
         protected int level;
-        public int expDrop;
+        protected int expDrop;
         protected int statsLevel;
 
-        public boolean isDefending;
-        public boolean isFrozen;
-        public boolean isConfused;
-        public boolean isSilenced;
-        public boolean isWeakened;
-        public boolean isStunned;
-        public boolean isImmune;
-        public boolean isShadowed;
-        public boolean isArcherBuff;
-        public boolean isWarriorBuff;
-        public boolean isPaladinBuff;
+        protected boolean isDefending;
+        protected boolean isFrozen;
+        protected boolean isConfused;
+        protected boolean isSilenced;
+        protected boolean isWeakened;
+        protected boolean isStunned;
+        protected boolean isImmune;
+        protected boolean isShadowed;
+        protected boolean isArcherBuff;
+        protected boolean isWarriorBuff;
+        protected boolean isPaladinBuff;
 
-        public boolean isSkill1Unlocked;
-        public boolean isSkill2Unlocked;
-        public boolean isSkill3Unlocked;
+        protected boolean isSkill1Unlocked;
+        protected boolean isSkill2Unlocked;
+        protected boolean isSkill3Unlocked;
+
+        public boolean getBoolean(String status) {
+            try {
+                Field field = getClass().getDeclaredField(status);
+                field.setAccessible(true);
+                return (boolean) field.get(this);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 
         // Status functions
         public void applyStatus(Status status, int rounds) {

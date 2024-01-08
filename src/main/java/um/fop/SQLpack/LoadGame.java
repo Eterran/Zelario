@@ -1,7 +1,6 @@
 package SQLpack;
 
 import java.io.*;
-import Entitypack.Entity;
 
 public class LoadGame {
     public static GameProgress loadGameProgress(String filePath) {

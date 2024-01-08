@@ -2,7 +2,6 @@ package SQLpack;
 
 import java.io.*;
 import Entitypack.Entity;
-import Entitypack.Playerpack.*;
 
 public class GameProgress implements Serializable {
     private Entity playerEntity;

@@ -11,13 +11,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.util.Random;
-import java.util.Scanner;
-import java.io.File;
 import java.util.ArrayList;
 import Entitypack.Entity;
 import Entitypack.Monsterpack.Boss;
 import Gamepack.*;
-import UIpack.ColorAttributes;
 import UIpack.ConsoleToGUI;
 import SQLpack.*;
 

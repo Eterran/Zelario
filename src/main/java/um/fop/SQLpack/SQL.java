@@ -5,9 +5,6 @@ import java.sql.*; // 导入Java SQL包，用于数据库操作
 
 public class SQL {
     // 数据库连接信息
-    
-    private static final String USER = "root"; // 数据库用户名
-    private static final String PASS = "123456"; // 数据库密码
     private static final String DB_URL = "jdbc:sqlite:db\\database.db";
     private static String currentUsername;
     public static void setCurrentUsername(String username) {
