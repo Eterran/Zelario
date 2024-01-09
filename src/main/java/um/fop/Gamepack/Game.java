@@ -779,6 +779,7 @@ public class Game {
             e.printStackTrace();
         }
         textPane.setText("");
+        displayDragonFight(consoleToGUI, null, textPane, frame);
     }
     public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI){
         try {
@@ -826,12 +827,21 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public static void displayHeartStone(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+    public static void displayDragonFight(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
         textPane.setText("");
         try {
             List<String> fileNames = Arrays.asList(
-                "src\\main\\java\\um\\fop\\ASCII\\DragonFight.txt"
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight3.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight4.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight5.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight6.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight7.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight8.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight9.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight\\DragonFight10.txt"
             );
             List<String> frames = new ArrayList<>();
             for (String fileName : fileNames) {
@@ -849,7 +859,7 @@ public class Game {
             }
             CountDownLatch latch = new CountDownLatch(1);
 
-            Timer timer = new Timer(5000, null);
+            Timer timer = new Timer(500, null);
             timer.addActionListener(new ActionListener() {
                 int frameIndex = 0;
                 public void actionPerformed(ActionEvent e) {
@@ -876,5 +886,6 @@ public class Game {
             e.printStackTrace();
         }
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        textPane.setText("");
     }
 }

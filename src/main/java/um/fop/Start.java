@@ -322,17 +322,17 @@ public class Start {
         textPane.setText("");
         try {
             List<String> fileNames = Arrays.asList(
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone1.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone2.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone3.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone2.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone1.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone4.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone5.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone6.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone7.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone8.txt",
-                "src\\main\\java\\um\\fop\\ASCII\\Heartstone9.txt"
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone3.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone4.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone5.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone6.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone7.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone8.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\HeartStone\\Heartstone9.txt"
             );
             List<String> frames = new ArrayList<>();
             for (String fileName : fileNames) {
