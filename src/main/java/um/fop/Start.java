@@ -100,10 +100,11 @@ public class Start {
         inputPanel.add(promptLabel, BorderLayout.WEST);
         ConsoleToGUI consoleToGUI = new ConsoleToGUI(userInputField);
 
-        // Adding components to the frame
         frame.getContentPane().add(new JScrollPane(textPane), "Center");
         frame.getContentPane().add(inputPanel, "South");
         frame.setVisible(true);
+        displayLogo(consoleToGUI, scrollPane, textPane, frame);
+        textPane.setText("");
         
         Entity player = null;
         String username = "null", pw = "null";
@@ -268,6 +269,8 @@ public class Start {
         player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
+        
+        
         displayHeartStone(consoleToGUI, scrollPane, textPane, frame);
         displayIntro(consoleToGUI, scrollPane, textPane, frame);
         frame.setVisible(false);
@@ -376,5 +379,61 @@ public class Start {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void displayLogo(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        textPane.setText("");
+        try {
+            List<String> fileNames = Arrays.asList(
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo3.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo4.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\ZelarioLogo\\ZelarioLogo5.txt"
+            );
+            List<String> frames = new ArrayList<>();
+            for (String fileName : fileNames) {
+                File file = new File(fileName);
+                Scanner s = new Scanner(file);
+                StringBuilder sb = new StringBuilder();
+                while (s.hasNextLine()) {
+                    String line = s.nextLine();
+                    sb.append("          ");
+                    sb.append(line);
+                    sb.append("\n");
+                }
+                s.close();
+                frames.add(sb.toString());
+            }
+            CountDownLatch latch = new CountDownLatch(1);
+
+            Timer timer = new Timer(300, null);
+            timer.addActionListener(new ActionListener() {
+                int frameIndex = 0;
+                public void actionPerformed(ActionEvent e) {
+                    if (frameIndex < frames.size()) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                textPane.setText(frames.get(frameIndex));
+                            }
+                        });
+                        frameIndex++;
+                    } else {
+                        ((Timer)e.getSource()).stop();
+                        latch.countDown();
+                    }
+                }
+            });
+            timer.start();
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 }

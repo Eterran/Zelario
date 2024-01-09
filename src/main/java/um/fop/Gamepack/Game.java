@@ -6,6 +6,7 @@ import java.util.concurrent.CountDownLatch;
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
 import Mappack.RandomMonsterMap;
+import Entitypack.Playerpack.*;
 
 import UIpack.ColorAttributes;
 import UIpack.ConsoleToGUI;
@@ -696,7 +697,7 @@ public class Game {
         }
         while (s.hasNextLine()) {
             String line = s.nextLine();
-            System.out.print("\t");
+            System.out.print("\t\t    ");
             System.out.println(line);
         }
         s.close();
@@ -782,7 +783,13 @@ public class Game {
         displayDragonFight(consoleToGUI, null, textPane, frame);
     }
     public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI, Entity player){
-       player.setSpawnDragon(false);
+        player.setSpawnDragon(false);
+        displayWinScreen(consoleToGUI, null, textPane, frame, player);
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             RandomMonsterMap.getMapFrame().setVisible(false);
             frame.setVisible(true);
@@ -792,7 +799,7 @@ public class Game {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("       \t\t\t");
+                System.out.print("         \t\t\t");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -814,7 +821,7 @@ public class Game {
             System.out.println();
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("\t\t\t\t");
+                System.out.print("\t\t\t   ");
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), line , ColorAttributes.YELLOW);
@@ -888,5 +895,61 @@ public class Game {
         }
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
         textPane.setText("");
+    }
+    public static void displayWinScreen(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame, Entity player){
+        Font originalFont = textPane.getFont();
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        if(player instanceof Archer)
+            try {
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\ArcherVictory.txt", textPane);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if (player instanceof Mage)
+            try {
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\MageVictory.txt", textPane);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if (player instanceof Warrior)
+            try {
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\WarriorVictory.txt", textPane);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if (player instanceof Rogue)
+            try {
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\RogueVictory.txt", textPane);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if(player instanceof Paladin)
+            try {
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\PaladinVictory.txt", textPane);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        textPane.setFont(originalFont);
+    }
+    public static void displayFile(String filePath, JTextPane textPane){
+        try {
+            File file = new File(filePath);
+            Scanner s = new Scanner(file);
+            System.out.println();
+            while (s.hasNextLine()) {
+                String line = s.nextLine();
+                System.out.print("\t   ");
+                try {
+                    StyledDocument doc = textPane.getStyledDocument();
+                    doc.insertString(doc.getLength(), line , ColorAttributes.YELLOW);
+                    System.out.println();
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
+            }
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

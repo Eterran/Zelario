@@ -161,7 +161,6 @@ public class CombatMenu {
 			System.out.print("- ");
 		System.out.println("+");
 
-		System.out.println();
 		System.out.println(" 1. Normal Attack");
 		System.out.println(" 2. Defend");
 		System.out.println(" 3. Escape");
