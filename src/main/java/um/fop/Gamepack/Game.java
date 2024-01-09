@@ -71,7 +71,7 @@ public class Game {
             int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
                 if(monster instanceof Boss){
-                    displayIfWinBoss(frame, textPane, consoleToGUI, player);
+                    displayIfWinBoss(frame, textPane, consoleToGUI);
                 } else {
                     frame.setVisible(false);
                     RandomMonsterMap.getMapFrame().removeMonster();
@@ -408,7 +408,7 @@ public class Game {
             temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
             if (temp == 1) {
                 if(monster instanceof Boss){
-                    displayIfWinBoss(frame, textPane, consoleToGUI, player);
+                    displayIfWinBoss(frame, textPane, consoleToGUI);
                     return;
                 } else {
                     frame.setVisible(false);
@@ -781,8 +781,8 @@ public class Game {
         textPane.setText("");
         displayDragonFight(consoleToGUI, null, textPane, frame);
     }
-    public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI, Entity player){
-        player.setSpawnDragon(false);
+    public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI){
+       
         try {
             RandomMonsterMap.getMapFrame().setVisible(false);
             frame.setVisible(true);
