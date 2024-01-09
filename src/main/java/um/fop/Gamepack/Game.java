@@ -81,7 +81,7 @@ public class Game {
                 frame.setVisible(false);
                 return;
             }
-            if (!player.getBoolean("isFrozen") && !player.getBoolean("isStunned")) {
+            if (!player.getFrozen() && !player.getStunned()) {
                 while (turn) {
                     String choice = "";
                     try {
@@ -157,7 +157,7 @@ public class Game {
                             endTurn();
                             break;
                         case "5":
-                            if (!player.getBoolean("isSkill1Unlocked")) {
+                            if (!player.getSkill1Unlocked()) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
@@ -171,7 +171,7 @@ public class Game {
                             }
 
                             if (player.getCDSkill1() == 0 && player.checkMana(player.getSkill1Mp())) { // cd remain 4
-                                if (!player.getBoolean("isSilenced")) {
+                                if (!player.getSilenced()) {
                                     clearInput(textPane);
                                     player.useSkill1(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP)) {
@@ -244,7 +244,7 @@ public class Game {
                             }
                             break;
                         case "6":
-                            if (!player.getBoolean("isSkill2Unlocked")) {
+                            if (!player.getSkill2Unlocked()) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
@@ -256,7 +256,7 @@ public class Game {
                                 break;
                             }
                             if (player.getCDSkill2() == 0 && player.checkMana(player.getSkill1Mp())) {
-                                if (!player.getBoolean("isSilenced")) {
+                                if (!player.getSilenced()) {
                                     clearInput(textPane);
                                     player.useSkill2(monster);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP)) {
@@ -314,7 +314,7 @@ public class Game {
                             }
                             break;
                         case "7":
-                            if (!player.getBoolean("isSkill3Unlocked")) {
+                            if (!player.getSkill3Unlocked()) {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), "You have not unlocked this skill yet!\n",
@@ -326,7 +326,7 @@ public class Game {
                                 break;
                             }
                             if (player.getCDSkill3() == 0 && player.checkMana(player.getSkill1Mp())) {
-                                if (!player.getBoolean("isSilenced")) {
+                                if (!player.getSilenced()) {
                                     player.useSkill3(monster);
                                     clearInput(textPane);
                                     if (monster.checkMonsterHPChange(monsterPreviousHP)) {
@@ -386,7 +386,7 @@ public class Game {
                             System.out.println("Invalid input. Please type 1 to 7 to make a move.");
                     }
                 }
-            } else if (player.getBoolean("isFrozen")) {
+            } else if (player.getFrozen()) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "You tried to move but you are frozen in place!\n", ColorAttributes.MAGENTA);
@@ -395,7 +395,7 @@ public class Game {
                     e.printStackTrace();
                 }
                 endTurn();
-            } else if (player.getBoolean("isStunned")) {
+            } else if (player.getStunned()) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "You tried to move but you are stunned!\n", ColorAttributes.MAGENTA);
@@ -421,7 +421,7 @@ public class Game {
             }
             player.applyEffects(textPane);
             monster.applyEffects(textPane);
-            if (!monster.getBoolean("isFrozen") && !monster.getBoolean("isStunned")) {
+            if (!monster.getFrozen() && !monster.getStunned()) {
                 if (!turn && isMonsterAlive) {
                     Random r = new Random();
                     int enemyChoice = r.nextInt(99);
@@ -517,7 +517,7 @@ public class Game {
                         }
                     }
                 }
-            } else if (monster.getBoolean("isFrozen")) {
+            } else if (monster.getFrozen()) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "\n", ColorAttributes.MAGENTA);
@@ -529,7 +529,7 @@ public class Game {
                 }
 
                 endTurn();
-            } else if (monster.getBoolean("isStunned")) {
+            } else if (monster.getStunned()) {
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), "\n ", ColorAttributes.MAGENTA);

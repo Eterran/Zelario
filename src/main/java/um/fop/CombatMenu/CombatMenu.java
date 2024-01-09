@@ -167,7 +167,7 @@ public class CombatMenu {
 		System.out.println(" 3. Escape");
 		System.out.println(" 4. Heal");
 
-		if (player.getBoolean("isSkill1Unlocked") == true) {
+		if (player.getSkill1Unlocked()) {
 			try {
 				StyledDocument doc = textPane.getStyledDocument();
 				doc.insertString(doc.getLength(), " 5. ", ColorAttributes.GREEN);
@@ -203,7 +203,7 @@ public class CombatMenu {
 			
 		}
 
-		if (player.getBoolean("isSkill2Unlocked") == true) {
+		if (player.getSkill2Unlocked()) {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
             doc.insertString(doc.getLength(), "\n 6. ", ColorAttributes.GREEN);
@@ -238,7 +238,7 @@ public class CombatMenu {
         }
 		}
 
-		if (player.getBoolean("isSkill3Unlocked") == true) {
+		if (player.getSkill3Unlocked()) {
 			try {
             StyledDocument doc = textPane.getStyledDocument();
             doc.insertString(doc.getLength(), "\n 7. ", ColorAttributes.GREEN);

@@ -352,16 +352,49 @@ import UIpack.ColorAttributes;
         protected boolean isSkill2Unlocked;
         protected boolean isSkill3Unlocked;
 
-        public boolean getBoolean(String status) {
-            try {
-                Field field = getClass().getField(status);
-                field.setAccessible(true);
-                return (boolean) field.get(this);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-                return false;
-            }
+        public boolean getDefending() {
+            return this.isDefending;
         }
+        public boolean getFrozen() {
+            return this.isFrozen;
+        }
+        public boolean getConfused() {
+            return this.isConfused;
+        }
+        public boolean getSilenced() {
+            return this.isSilenced;
+        }
+        public boolean getWeakened() {
+            return this.isWeakened;
+        }
+        public boolean getStunned() {
+            return this.isStunned;
+        }
+        public boolean getImmune() {
+            return this.isImmune;
+        }
+        public boolean getShadowed() {
+            return this.isShadowed;
+        }
+        public boolean getArcherBuff() {
+            return this.isArcherBuff;
+        }
+        public boolean getWarriorBuff() {
+            return this.isWarriorBuff;
+        }
+        public boolean getPaladinBuff() {
+            return this.isPaladinBuff;
+        }
+        public boolean getSkill1Unlocked() {
+            return this.isSkill1Unlocked;
+        }
+        public boolean getSkill2Unlocked() {
+            return this.isSkill2Unlocked;
+        }
+        public boolean getSkill3Unlocked() {
+            return this.isSkill3Unlocked;
+        }
+        
 
         // Status functions
         public void applyStatus(Status status, int rounds) {
