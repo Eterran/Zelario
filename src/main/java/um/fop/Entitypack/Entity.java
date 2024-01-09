@@ -354,7 +354,7 @@ import UIpack.ColorAttributes;
 
         public boolean getBoolean(String status) {
             try {
-                Field field = getClass().getDeclaredField(status);
+                Field field = getClass().getField(status);
                 field.setAccessible(true);
                 return (boolean) field.get(this);
             } catch (NoSuchFieldException | IllegalAccessException e) {

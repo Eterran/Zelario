@@ -1,6 +1,7 @@
 package Gamepack;
 
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 
 import Entitypack.*;
 import Entitypack.Monsterpack.*;
@@ -12,11 +13,16 @@ import CombatMenu.CombatMenu;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Font;
 
 
 public class Game {
@@ -819,5 +825,56 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void displayHeartStone(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        textPane.setText("");
+        try {
+            List<String> fileNames = Arrays.asList(
+                "src\\main\\java\\um\\fop\\ASCII\\DragonFight.txt"
+            );
+            List<String> frames = new ArrayList<>();
+            for (String fileName : fileNames) {
+                File file = new File(fileName);
+                Scanner s = new Scanner(file);
+                StringBuilder sb = new StringBuilder();
+                while (s.hasNextLine()) {
+                    String line = s.nextLine();
+                    sb.append("        ");
+                    sb.append(line);
+                    sb.append("\n");
+                }
+                s.close();
+                frames.add(sb.toString());
+            }
+            CountDownLatch latch = new CountDownLatch(1);
+
+            Timer timer = new Timer(5000, null);
+            timer.addActionListener(new ActionListener() {
+                int frameIndex = 0;
+                public void actionPerformed(ActionEvent e) {
+                    if (frameIndex < frames.size()) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                textPane.setText(frames.get(frameIndex));
+                            }
+                        });
+                        frameIndex++;
+                    } else {
+                        ((Timer)e.getSource()).stop();
+                        latch.countDown();
+                    }
+                }
+            });
+            timer.start();
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 }

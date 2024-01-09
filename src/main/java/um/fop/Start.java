@@ -3,7 +3,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
-
 import java.awt.event.*;
 
 import Entitypack.*;
@@ -18,6 +17,10 @@ import java.io.*;
 import SQLpack.*;
 import java.sql.*;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Start {
     public static void main(String[] args) {
@@ -167,34 +170,38 @@ public class Start {
                 break;
             case "2":
                 while (true) {
-                    System.out.println("Login");
-                    System.out.print("Enter your username: ");
-                    try {
-                        username = consoleToGUI.getNextInput();
-                        System.out.println(username);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    System.out.print("Enter your password: ");
-                    try {
-                        pw = consoleToGUI.getNextInput();
-                        System.out.println(pw);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    System.out.print("+");
-
-                    int width = 86;
-                    for (int a = 0; a < width; a++)
-                        System.out.print("-");
-                    System.out.println("+");
-                    try {
-                        if (!(SQL.usernameExists(conn, username))) {
-                            System.out.println("Username does not exists, please try again.");
+                    while (true) {
+                        System.out.println("Login");
+                        System.out.print("Enter your username: ");
+                        try {
+                            username = consoleToGUI.getNextInput();
+                            System.out.println(username);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    } catch (SQLException e) {
-                        System.out.println("Unable to establish connection with the server.");
-                        return;
+                        System.out.print("Enter your password: ");
+                        try {
+                            pw = consoleToGUI.getNextInput();
+                            System.out.println(pw);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        System.out.print("+");
+
+                        int width = 86;
+                        for (int a = 0; a < width; a++)
+                            System.out.print("-");
+                        System.out.println("+");
+                        try {
+                            if (!(SQL.usernameExists(conn, username))) {
+                                System.out.println("Username does not exists, please try again.");
+                            } else {
+                                break;
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("Unable to establish connection with the server.");
+                            return;
+                        }
                     }
                     String existingPassword;
                     try {
@@ -219,15 +226,11 @@ public class Start {
                     }
                     break;
                 }
-                try {
-                    String saveFilePath = SQL.getSaveFile(conn, username);
-                    File saveFile = new File(saveFilePath);
-                    if (saveFile.exists()) {
-                        GameProgress progress = LoadGame.loadGameProgress(saveFilePath);
-                        player = progress.getPlayerEntity();
-                    }
-                } catch (SQLException e) {
-                    System.out.println("Unable to establish connection with the server.");
+                String saveFilePath = "saves\\" + username + ".dat";
+                File saveFile = new File(saveFilePath);
+                if (saveFile.exists()) {
+                    GameProgress progress = LoadGame.loadGameProgress(saveFilePath);
+                    player = progress.getPlayerEntity();
                 }
             break;
             case "3":
@@ -265,14 +268,16 @@ public class Start {
         player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
+        displayHeartStone(consoleToGUI, scrollPane, textPane, frame);
         displayIntro(consoleToGUI, scrollPane, textPane, frame);
+        frame.setVisible(false);
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player), textPane, consoleToGUI, frame,
                 game, scrollPane, conn));
         RandomMonsterMap.getMapFrame().setVisible(true);
-        frame.setVisible(false);
     }
 
     public static void displayIntro(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame) {
+        textPane.setFont(new Font("Garamond", Font.PLAIN, 19));
         try {
             textPane.setText("");
             File file = new File("src\\main\\java\\um\\fop\\ASCII\\Intro.txt");
@@ -296,32 +301,9 @@ public class Start {
             e.printStackTrace();
         }
         try {
-            RandomMonsterMap.getMapFrame().setVisible(false);
-            frame.setVisible(true);
-            textPane.setText("");
-            File file = new File("src\\main\\java\\um\\fop\\ASCII\\FinalWinText.txt");
-            Scanner s;
-            s = new Scanner(file);
-            while (s.hasNextLine()) {
-                String line = s.nextLine();
-                System.out.print("         \t\t\t");
-                for (char c : line.toCharArray()) {
-                    System.out.print(c);
-                    try {
-                        Thread.sleep(20);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.out.println();
-            }
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
             StyledDocument doc = textPane.getStyledDocument();
-            doc.insertString(doc.getLength(), "\nPress Enter to continue.\n", ColorAttributes.LIGHT_GRAY);
+            System.out.println("\n\n");
+            doc.insertString(doc.getLength(), " Press Enter to continue...\n", ColorAttributes.DARK_GRAY);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -332,5 +314,67 @@ public class Start {
             e.printStackTrace();
         }
         consoleToGUI.scrollToBottom(scrollPane);
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
+    }
+
+    public static void displayHeartStone(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        textPane.setText("");
+        try {
+            List<String> fileNames = Arrays.asList(
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone3.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone2.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone1.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone4.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone5.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone6.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone7.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone8.txt",
+                "src\\main\\java\\um\\fop\\ASCII\\Heartstone9.txt"
+            );
+            List<String> frames = new ArrayList<>();
+            for (String fileName : fileNames) {
+                File file = new File(fileName);
+                Scanner s = new Scanner(file);
+                StringBuilder sb = new StringBuilder();
+                while (s.hasNextLine()) {
+                    String line = s.nextLine();
+                    sb.append("        ");
+                    sb.append(line);
+                    sb.append("\n");
+                }
+                s.close();
+                frames.add(sb.toString());
+            }
+            CountDownLatch latch = new CountDownLatch(1);
+
+            Timer timer = new Timer(500, null);
+            timer.addActionListener(new ActionListener() {
+                int frameIndex = 0;
+                public void actionPerformed(ActionEvent e) {
+                    if (frameIndex < frames.size()) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                textPane.setText(frames.get(frameIndex));
+                            }
+                        });
+                        frameIndex++;
+                    } else {
+                        ((Timer)e.getSource()).stop();
+                        latch.countDown();
+                    }
+                }
+            });
+            timer.start();
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
