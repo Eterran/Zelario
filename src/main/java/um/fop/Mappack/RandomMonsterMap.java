@@ -349,7 +349,7 @@ public class RandomMonsterMap extends JFrame {
         int newX = playerX + dx, newY = playerY + dy;
 
         //判断是否达到35级了
-        if (player.getLevel() == 35) {
+        if (player.getLevel() == 35 && player.getDragon()) {
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     game.beginCombat(player, new Boss(), textPane, consoleToGUI, frame, scrollPane);

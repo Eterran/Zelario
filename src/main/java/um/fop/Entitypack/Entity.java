@@ -45,6 +45,7 @@ import UIpack.ColorAttributes;
         protected int CDSkill2;
         protected int CDSkill3;
         protected int totalStats;
+        protected boolean isDragonAlive;
 
         public Entity() {
             this.name = "Default Entity";
@@ -99,6 +100,16 @@ import UIpack.ColorAttributes;
             this.isSkill1Unlocked = false;
             this.isSkill2Unlocked = false;
             this.isSkill3Unlocked = false;
+
+            this.isDragonAlive = true;
+        }
+
+        public boolean getDragon(){
+            return this.isDragonAlive;
+        }
+
+        public void setSpawnDragon(boolean n){
+            this.isDragonAlive = n;
         }
 
         public String getName() {
