@@ -285,7 +285,7 @@ public class Start {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("    ");
+                System.out.print("      ");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -350,7 +350,7 @@ public class Start {
             }
             CountDownLatch latch = new CountDownLatch(1);
 
-            Timer timer = new Timer(500, null);
+            Timer timer = new Timer(300, null);
             timer.addActionListener(new ActionListener() {
                 int frameIndex = 0;
                 public void actionPerformed(ActionEvent e) {
