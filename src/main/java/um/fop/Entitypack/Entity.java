@@ -764,7 +764,7 @@ import UIpack.ColorAttributes;
                 this.level = 34;
             }  if (this.exp >= 2000 && this.level < 35) {
                 this.level = 35;
-            }
+            }  
             this.checkLvl();
             this.setLevelStats();
             return this.level;

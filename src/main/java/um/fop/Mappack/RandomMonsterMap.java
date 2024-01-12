@@ -26,6 +26,7 @@ public class RandomMonsterMap extends JFrame {
     private final char OBSTACLE = '#';
     private final char PLAYER = '@';
     private final char STAR = '*';
+    private boolean dd;
 
     private char[][] map;
     private int playerX, playerY;
@@ -347,6 +348,7 @@ public class RandomMonsterMap extends JFrame {
         System.out.println(playerX);
         System.out.println(playerY);
         int newX = playerX + dx, newY = playerY + dy;
+      
 
         //判断是否达到35级了
         if (player.getLevel() == 35) {
@@ -356,6 +358,7 @@ public class RandomMonsterMap extends JFrame {
                 }
             });
             thread.start();
+            
        }
 
         for (int i = 0; i < characterLocations.size(); i++) {//敌人位置

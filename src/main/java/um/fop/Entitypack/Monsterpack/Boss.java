@@ -18,8 +18,8 @@ public class Boss extends Monster {
         this.skill1Description = "a physical damage strike.";
         this.skillTwoName = "Flame burst";
         this.skill2Description = "a magical attack that can disrupt opponents and silenced.";
-        this.skill1 = 150; 
-        this.skill2 = 250; 
+        this.skill1 = 300; 
+        this.skill2 = 350; 
         this.skill1Mp = 40; 
         this.skill2Mp = 100; 
         this.MaxCDSkill1 = 4;
