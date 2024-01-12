@@ -3,7 +3,6 @@ package Entitypack;
 import java.util.Map;
 import java.util.Random;
 import java.util.HashMap;
-import java.lang.reflect.Field;
 
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -137,9 +136,6 @@ import UIpack.ColorAttributes;
             int temp = this.physicalAttack;
             if (this.isWeakened) {
                 temp = (int) (this.physicalAttack * 0.8);
-                if (this.isArcherBuff) temp += getSkill1();
-                if (this.isPaladinBuff) temp += getSkill1();
-                return temp;
             }
             if (this.isArcherBuff) temp += getSkill1();
             if (this.isPaladinBuff) temp += getSkill1();
@@ -429,7 +425,11 @@ import UIpack.ColorAttributes;
                     entry.setValue(statuses.get(status) - 1);
             }
         }
-
+        public void initialiseDialogue() {
+            for (Map.Entry<Status, Boolean> entry : this.dialogueDisplayed.entrySet()) {
+                entry.setValue(false);
+            }
+        }
         // Status Effects
         public void applyEffects(JTextPane textPane) {
             for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
@@ -468,7 +468,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is silenced!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -489,7 +489,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is confused!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -554,7 +554,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is stunned!\n", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "\nYou are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -781,6 +781,7 @@ import UIpack.ColorAttributes;
                     this.magicalAttack += 2;
                     this.physicalDefence += 2;
                     this.magicalDefence += 2;
+                    setHP(getMaxHP());
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -792,18 +793,17 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
-                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Mage")) {
                 for (; this.statsLevel < this.getLevel(); this.statsLevel++) {
                     this.maxHP += 2;
                     this.maxMP += 4;
-                    setHP(getMaxHP());
                     this.physicalAttack += 2;
                     this.magicalAttack += 5;
                     this.physicalDefence += 2;
                     this.magicalDefence += 2;
+                    setHP(getMaxHP());
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -815,7 +815,6 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
-                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Paladin")) {
@@ -826,6 +825,7 @@ import UIpack.ColorAttributes;
                     this.magicalAttack += 3;
                     this.physicalDefence += 4;
                     this.magicalDefence += 2;
+                    setHP(getMaxHP());
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -837,7 +837,6 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
-                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Rogue")) {
@@ -848,6 +847,7 @@ import UIpack.ColorAttributes;
                     this.magicalAttack += 2;
                     this.physicalDefence += 4;
                     this.magicalDefence += 2;
+                    setHP(getMaxHP());
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -859,7 +859,6 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
-                        setHP(getMaxHP());
                     }
                 }
             } else if (heroType.equals("Warrior")) {
@@ -870,6 +869,7 @@ import UIpack.ColorAttributes;
                     this.magicalAttack += 2;
                     this.physicalDefence += 3;
                     this.magicalDefence += 3;
+                    setHP(getMaxHP());
                     for (int i = 0; i < 5; i++) {
                         int rand = r.nextInt(4);
                         if (rand == 0) this.physicalAttack += 1;
@@ -881,7 +881,6 @@ import UIpack.ColorAttributes;
                         int rand = r.nextInt(2);
                         if (rand == 0) this.maxHP += 1;
                         if (rand == 1) this.maxMP += 1;
-                        setHP(getMaxHP());
                     }
                 }
             }

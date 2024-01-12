@@ -278,8 +278,6 @@ public class CombatMenu {
 		for (int i = 0; i < width; i++)
 			System.out.print("-");
 		System.out.println("+");
-		System.out.print(">");
-
 	}
 
 }

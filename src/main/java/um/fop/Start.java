@@ -82,14 +82,6 @@ public class Start {
         userInputField.setBorder(null);
         userInputField.setFont(new Font("Monospaced", Font.PLAIN, 14));
 
-        JScrollPane scrollPane = new JScrollPane(textPane);
-        scrollPane.setBorder(null);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        scrollPane.setBorder(null);
-
-        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
-
         PrintStream printStream = new PrintStream(new CustomOutputStream(textPane));
         System.setOut(printStream);
 
@@ -103,7 +95,7 @@ public class Start {
         frame.getContentPane().add(new JScrollPane(textPane), "Center");
         frame.getContentPane().add(inputPanel, "South");
         frame.setVisible(true);
-        displayLogo(consoleToGUI, scrollPane, textPane, frame);
+        displayLogo(consoleToGUI, textPane, frame);
         textPane.setText("");
         
         Entity player = null;
@@ -265,21 +257,21 @@ public class Start {
                 e.printStackTrace();
             }
         }
-        player.setEXP(1990);
+        player.setEXP(2100);
         player.levelUp();
         Game game = new Game(player);
         textPane.setText("");
         
         
-        displayHeartStone(consoleToGUI, scrollPane, textPane, frame);
-        displayIntro(consoleToGUI, scrollPane, textPane, frame);
+        displayHeartStone(consoleToGUI, textPane, frame);
+        displayIntro(consoleToGUI, textPane, frame);
         frame.setVisible(false);
         RandomMonsterMap.setFrame(new RandomMonsterMap(player, Game.spawnRandom(player), textPane, consoleToGUI, frame,
-                game, scrollPane, conn));
+                game, conn));
         RandomMonsterMap.getMapFrame().setVisible(true);
     }
 
-    public static void displayIntro(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame) {
+    public static void displayIntro(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame) {
         textPane.setFont(new Font("Garamond", Font.PLAIN, 19));
         try {
             textPane.setText("");
@@ -316,11 +308,10 @@ public class Start {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        consoleToGUI.scrollToBottom(scrollPane);
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
     }
 
-    public static void displayHeartStone(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+    public static void displayHeartStone(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame){
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
         textPane.setText("");
         try {
@@ -380,7 +371,7 @@ public class Start {
             e.printStackTrace();
         }
     }
-    public static void displayLogo(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+    public static void displayLogo(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame){
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
         textPane.setText("");
         try {

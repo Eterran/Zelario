@@ -24,8 +24,8 @@ public class Boss extends Monster {
         this.skill2Mp = 100; 
         this.MaxCDSkill1 = 4;
         this.MaxCDSkill2 = 6;
-        this.CDSkill1 = 4;
-        this.CDSkill2 = 6;
+        this.CDSkill1 = 1;
+        this.CDSkill2 = 3;
         this.expDrop = 100;
     }
 

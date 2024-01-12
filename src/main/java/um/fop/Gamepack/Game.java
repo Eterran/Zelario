@@ -38,7 +38,9 @@ public class Game {
     boolean turn = true;
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI,
-            JFrame frame, JScrollPane scrollPane) {
+            JFrame frame) {
+        player.initialiseDialogue();
+        monster.initialiseDialogue();
         frame.setSize(1150, 800);
         frame.setVisible(true);
         textPane.setText("");
@@ -69,7 +71,7 @@ public class Game {
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
-            int temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
+            int temp = checkWinLose(player, monster, textPane, consoleToGUI, frame);
             if (temp == 1) {
                 if(monster instanceof Boss){
                     displayIfWinBoss(frame, textPane, consoleToGUI,player);
@@ -406,7 +408,7 @@ public class Game {
                 }
                 endTurn();
             }
-            temp = checkWinLose(player, monster, textPane, consoleToGUI, scrollPane, frame);
+            temp = checkWinLose(player, monster, textPane, consoleToGUI, frame);
             if (temp == 1) {
                 if(monster instanceof Boss){
                     displayIfWinBoss(frame, textPane, consoleToGUI, player);
@@ -467,9 +469,7 @@ public class Game {
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
                                 }
-                            }
-
-                            else {
+                            } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -498,9 +498,7 @@ public class Game {
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
                                 }
-                            }
-
-                            else {
+                            } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -513,7 +511,6 @@ public class Game {
                                     e.printStackTrace();
                                 }
                             }
-
                             endTurn();
                         }
                     }
@@ -562,7 +559,7 @@ public class Game {
         turn = !turn;
     }
 
-    public void winCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, JScrollPane scrollPane) {
+    public void winCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI) {
         displayWinCombat();
         isMonsterAlive = false;
         try {
@@ -603,7 +600,6 @@ public class Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        consoleToGUI.scrollToBottom(scrollPane);
     }
 
     public void loseCombat(Entity player, ConsoleToGUI consoleToGUI, JFrame frame, JTextPane textPane) {
@@ -703,7 +699,7 @@ public class Game {
         s.close();
     }
     public int checkWinLose(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, 
-                            JScrollPane scrollPane, JFrame frame) {
+                            JFrame frame) {
         if (player.getHP() <= 0) {
             loseCombat(player, consoleToGUI, frame, textPane);
             isMonsterAlive = false;
@@ -711,9 +707,10 @@ public class Game {
             return -1;
         }
         if (monster.getHP() <= 0) {
-            winCombat(player, monster, textPane, consoleToGUI, scrollPane);
+            winCombat(player, monster, textPane, consoleToGUI);
             isMonsterAlive = false;
-            RandomMonsterMap.getMapFrame().setVisible(true);
+            if(!(monster instanceof Boss))
+                RandomMonsterMap.getMapFrame().setVisible(true);
             return 1;
         }
         return 0;
@@ -780,16 +777,11 @@ public class Game {
             e.printStackTrace();
         }
         textPane.setText("");
-        displayDragonFight(consoleToGUI, null, textPane, frame);
+        displayDragonFight(consoleToGUI, textPane, frame);
     }
     public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI, Entity player){
         player.setSpawnDragon(false);
-        displayWinScreen(consoleToGUI, null, textPane, frame, player);
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        textPane.setText("");
         try {
             RandomMonsterMap.getMapFrame().setVisible(false);
             frame.setVisible(true);
@@ -799,7 +791,7 @@ public class Game {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("         \t\t\t");
+                System.out.print("        \t\t\t");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -834,8 +826,22 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            System.out.println("\n\n");
+            doc.insertString(doc.getLength(), " Press Enter to exit...\n", ColorAttributes.DARK_GRAY);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
-    public static void displayDragonFight(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame){
+    public static void displayDragonFight(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame){
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
         textPane.setText("");
         try {
@@ -896,9 +902,9 @@ public class Game {
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14));
         textPane.setText("");
     }
-    public static void displayWinScreen(ConsoleToGUI consoleToGUI, JScrollPane scrollPane, JTextPane textPane, JFrame frame, Entity player){
+    public static void displayWinScreen(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame, Entity player){
         Font originalFont = textPane.getFont();
-        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 3));
         if(player instanceof Archer)
             try {
                 displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\ArcherVictory.txt", textPane);
@@ -929,6 +935,13 @@ public class Game {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        textPane.setText("");
         textPane.setFont(originalFont);
     }
     public static void displayFile(String filePath, JTextPane textPane){
