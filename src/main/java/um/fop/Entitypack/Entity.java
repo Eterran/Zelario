@@ -425,7 +425,11 @@ import UIpack.ColorAttributes;
                     entry.setValue(statuses.get(status) - 1);
             }
         }
-
+        public void initialiseDialogue() {
+            for (Map.Entry<Status, Boolean> entry : this.dialogueDisplayed.entrySet()) {
+                entry.setValue(false);
+            }
+        }
         // Status Effects
         public void applyEffects(JTextPane textPane) {
             for (Map.Entry<Status, Integer> entry : this.statuses.entrySet()) {
@@ -464,7 +468,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is silenced!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are silenced, you try to open your mouth but only a muted whisper escapes.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -485,7 +489,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is confused!", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are confused, stars seem to fly by faster and faster.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
@@ -550,7 +554,7 @@ import UIpack.ColorAttributes;
                                     if (this instanceof Monster) {
                                         doc.insertString(doc.getLength(), this.getName() + " is stunned!\n", ColorAttributes.WHITE);
                                     } else {
-                                        doc.insertString(doc.getLength(), "\nYou are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
+                                        doc.insertString(doc.getLength(), "You are stunned, endering you momentarily incapacitated.\n", ColorAttributes.WHITE);
                                     }
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();

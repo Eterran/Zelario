@@ -39,6 +39,8 @@ public class Game {
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI,
             JFrame frame) {
+        player.initialiseDialogue();
+        monster.initialiseDialogue();
         frame.setSize(1150, 800);
         frame.setVisible(true);
         textPane.setText("");
@@ -467,9 +469,7 @@ public class Game {
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
                                 }
-                            }
-
-                            else {
+                            } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -498,9 +498,7 @@ public class Game {
                                 } catch (BadLocationException e) {
                                     e.printStackTrace();
                                 }
-                            }
-
-                            else {
+                            } else {
                                 try {
                                     StyledDocument doc = textPane.getStyledDocument();
                                     doc.insertString(doc.getLength(), monster.getName(), ColorAttributes.RED);
@@ -513,7 +511,6 @@ public class Game {
                                     e.printStackTrace();
                                 }
                             }
-
                             endTurn();
                         }
                     }
@@ -712,7 +709,8 @@ public class Game {
         if (monster.getHP() <= 0) {
             winCombat(player, monster, textPane, consoleToGUI);
             isMonsterAlive = false;
-            RandomMonsterMap.getMapFrame().setVisible(true);
+            if(!(monster instanceof Boss))
+                RandomMonsterMap.getMapFrame().setVisible(true);
             return 1;
         }
         return 0;
@@ -783,13 +781,6 @@ public class Game {
     }
     public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI, Entity player){
         player.setSpawnDragon(false);
-        displayWinScreen(consoleToGUI, textPane, frame, player);
-        String choice = "";
-        try {
-            choice = consoleToGUI.getNextInput();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         textPane.setText("");
         try {
             RandomMonsterMap.getMapFrame().setVisible(false);
@@ -800,7 +791,7 @@ public class Game {
             s = new Scanner(file);
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("         \t\t\t");
+                System.out.print("        \t\t\t");
                 for (char c : line.toCharArray()) {
                     System.out.print(c);
                     try {
@@ -835,6 +826,20 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            System.out.println("\n\n");
+            doc.insertString(doc.getLength(), " Press Enter to exit...\n", ColorAttributes.DARK_GRAY);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
     public static void displayDragonFight(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame){
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
@@ -899,7 +904,7 @@ public class Game {
     }
     public static void displayWinScreen(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame, Entity player){
         Font originalFont = textPane.getFont();
-        textPane.setFont(new Font("Monospaced", Font.PLAIN, 6));
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 3));
         if(player instanceof Archer)
             try {
                 displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\ArcherVictory.txt", textPane);
@@ -930,6 +935,13 @@ public class Game {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        textPane.setText("");
         textPane.setFont(originalFont);
     }
     public static void displayFile(String filePath, JTextPane textPane){
