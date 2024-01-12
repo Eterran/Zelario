@@ -1,9 +1,6 @@
 package Mappack;
 
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -53,7 +50,7 @@ public class RandomMonsterMap extends JFrame {
     ArrayList<Point> characterLocations = new ArrayList<>();
     ArrayList<Point> bossLocations = new ArrayList<>();
     public RandomMonsterMap(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI, 
-                        JFrame frame, Game game, JScrollPane scrollPane, Connection conn) {
+                        JFrame frame, Game game, Connection conn) {
         super("Zelario Game");
         bossLocations.add(new Point(33, 5));
         bossLocations.add(new Point(33, 6));
@@ -264,21 +261,9 @@ public class RandomMonsterMap extends JFrame {
                     case KeyEvent.VK_D:
                         dx = 1;
                         break;
-                    case KeyEvent.VK_ESCAPE:  // 监听ESC键 要不要无所谓把
-                        // 是=0；否=1；
-                        int choice = JOptionPane.showConfirmDialog(null, "DO YOU WANT TO START GAME AGAIN？", "O.O", JOptionPane.YES_NO_OPTION);
-                        if (choice == 0) {
-                            // 游戏重新开始，重新生成地图和玩家位置
-                            dispose();
-                            new ConnectToFight().setVisible(true);
-                        } else {
-                            // 退出游戏
-                            // System.exit(0);
-                        }
-                        break;
                 }
                 //主角更新位置
-                updateLocation(dx,dy,player,textPane,consoleToGUI,frame,game,scrollPane);
+                updateLocation(dx,dy,player,textPane,consoleToGUI,frame,game);
             }
 
 
@@ -342,7 +327,7 @@ public class RandomMonsterMap extends JFrame {
 
 
     // 更新主角位置
-    private void updateLocation(int dx, int dy, Entity player, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game, JScrollPane scrollPane) {
+    private void updateLocation(int dx, int dy, Entity player, JTextPane textPane, ConsoleToGUI consoleToGUI, JFrame frame, Game game) {
         //主角更新位置
         System.out.println(playerX);
         System.out.println(playerY);
@@ -352,7 +337,7 @@ public class RandomMonsterMap extends JFrame {
         if (player.getLevel() == 35) {
             Thread thread = new Thread(new Runnable() {
                 public void run() {
-                    game.beginCombat(player, new Boss(), textPane, consoleToGUI, frame, scrollPane);
+                    game.beginCombat(player, new Boss(), textPane, consoleToGUI, frame);
                 }
             });
             thread.start();
@@ -367,7 +352,7 @@ public class RandomMonsterMap extends JFrame {
                 //SwingUtilities.invokeLater(new Runnable() {
                 Thread thread = new Thread(new Runnable() {
                     public void run() {
-                        game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame, scrollPane);
+                        game.beginCombat(player, Game.spawnRandom(player), textPane, consoleToGUI, frame);
                     }
                 });
                 thread.start();
