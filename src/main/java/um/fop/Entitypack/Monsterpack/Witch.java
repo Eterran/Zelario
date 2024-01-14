@@ -97,7 +97,7 @@ public class Witch extends Monster {
           this.skill1 = 150; // Fireball
           this.skill1Mp = 20;
           this.MaxCDSkill1 = 4;
-          this.CDSkill1 = 4;
+          this.CDSkill1 = 2;
           this.expDrop = 40;
      }
 

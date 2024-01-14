@@ -101,8 +101,8 @@ public class Harpy extends Monster {
         this.skill2Mp = 30; 
         this.MaxCDSkill1 = 4;
         this.MaxCDSkill2 = 6;
-        this.CDSkill1 = 4;
-        this.CDSkill2 = 6;
+        this.CDSkill1 = 2;
+        this.CDSkill2 = 3;
         this.expDrop = 75;
     }
 
