@@ -23,7 +23,6 @@ public class RandomMonsterMap extends JFrame {
     private final char OBSTACLE = '#';
     private final char PLAYER = '@';
     private final char STAR = '*';
-    private boolean dd;
 
     private char[][] map;
     private int playerX, playerY;
