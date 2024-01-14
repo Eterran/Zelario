@@ -36,6 +36,7 @@ public class Game {
     int initialLevel;
     boolean isMonsterAlive = true;
     boolean turn = true;
+    static boolean bossDialogueShown = false;
 
     public void beginCombat(Entity player, Entity monster, JTextPane textPane, ConsoleToGUI consoleToGUI,
             JFrame frame) {
@@ -739,45 +740,48 @@ public class Game {
             textPane.setText("");
     }
     public void displayIfBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI){
-        try {
-            RandomMonsterMap.getMapFrame().setVisible(false);
-            frame.setVisible(true);
-            textPane.setText("");
-            File file = new File("src\\main\\java\\um\\fop\\ASCII\\EnterFinalFight.txt");
-            Scanner s;
-            s = new Scanner(file);
-            while (s.hasNextLine()) {
-                String line = s.nextLine();
-                System.out.print("         \t\t\t");
-                for (char c : line.toCharArray()) {
-                    System.out.print(c);
-                    try {
-                        Thread.sleep(20);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        if(!bossDialogueShown){
+            try {
+                RandomMonsterMap.getMapFrame().setVisible(false);
+                frame.setVisible(true);
+                textPane.setText("");
+                File file = new File("src\\main\\java\\um\\fop\\ASCII\\EnterFinalFight.txt");
+                Scanner s;
+                s = new Scanner(file);
+                while (s.hasNextLine()) {
+                    String line = s.nextLine();
+                    System.out.print("         \t\t\t");
+                    for (char c : line.toCharArray()) {
+                        System.out.print(c);
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    System.out.println();
                 }
-                System.out.println();
+                s.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            StyledDocument doc = textPane.getStyledDocument();
-            System.out.println("\n\n");
-            doc.insertString(doc.getLength(), " Press Enter to continue...\n", ColorAttributes.DARK_GRAY);
-        } catch (BadLocationException e) {
-            e.printStackTrace();
-        }
-        String choice = "";
-        try {
-            choice = consoleToGUI.getNextInput();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                StyledDocument doc = textPane.getStyledDocument();
+                System.out.println("\n\n");
+                doc.insertString(doc.getLength(), " Press Enter to continue...\n", ColorAttributes.DARK_GRAY);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+            String choice = "";
+            try {
+                choice = consoleToGUI.getNextInput();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         textPane.setText("");
         displayDragonFight(consoleToGUI, textPane, frame);
+        bossDialogueShown = true;
     }
     public void displayIfWinBoss(JFrame frame, JTextPane textPane, ConsoleToGUI consoleToGUI, Entity player){
         player.setSpawnDragon(false);
@@ -813,7 +817,7 @@ public class Game {
             System.out.println();
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("\t\t\t   ");
+                System.out.print("\t\t         ");
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), line , ColorAttributes.YELLOW);
@@ -826,6 +830,20 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        String choice = "";
+        try {
+            choice = consoleToGUI.getNextInput();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            StyledDocument doc = textPane.getStyledDocument();
+            doc.insertString(doc.getLength(), "" , ColorAttributes.WHITE);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        textPane.setText("");
+        displayWinScreen(consoleToGUI, textPane, frame, player);
         try {
             StyledDocument doc = textPane.getStyledDocument();
             System.out.println("\n\n");
@@ -833,7 +851,7 @@ public class Game {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        String choice = "";
+        choice = "";
         try {
             choice = consoleToGUI.getNextInput();
         } catch (InterruptedException e) {
@@ -905,33 +923,38 @@ public class Game {
     public static void displayWinScreen(ConsoleToGUI consoleToGUI, JTextPane textPane, JFrame frame, Entity player){
         Font originalFont = textPane.getFont();
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 3));
+        try {
+            displayFile("src\\main\\java\\um\\fop\\ASCII\\TheEnd.txt", textPane, "\t\t\t\t\t\t                         ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if(player instanceof Archer)
             try {
-                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\ArcherVictory.txt", textPane);
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\ArcherVictory.txt", textPane, "\t\t\t\t\t");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         if (player instanceof Mage)
             try {
-                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\MageVictory.txt", textPane);
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\MageVictory.txt", textPane, "\t\t\t\t\t");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         if (player instanceof Warrior)
             try {
-                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\WarriorVictory.txt", textPane);
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\WarriorVictory.txt", textPane, "\t\t\t\t\t");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         if (player instanceof Rogue)
             try {
-                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\RogueVictory.txt", textPane);
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\RogueVictory.txt", textPane, "\t\t\t\t\t");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         if(player instanceof Paladin)
             try {
-                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\PaladinVictory.txt", textPane);
+                displayFile("src\\main\\java\\um\\fop\\ASCII\\WinScreen\\PaladinVictory.txt", textPane, "\t\t\t\t\t");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -944,14 +967,14 @@ public class Game {
         textPane.setText("");
         textPane.setFont(originalFont);
     }
-    public static void displayFile(String filePath, JTextPane textPane){
+    public static void displayFile(String filePath, JTextPane textPane, String spacing){
         try {
             File file = new File(filePath);
             Scanner s = new Scanner(file);
             System.out.println();
             while (s.hasNextLine()) {
                 String line = s.nextLine();
-                System.out.print("\t   ");
+                System.out.print(spacing);
                 try {
                     StyledDocument doc = textPane.getStyledDocument();
                     doc.insertString(doc.getLength(), line , ColorAttributes.YELLOW);
