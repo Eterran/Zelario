@@ -401,7 +401,7 @@ public class Start {
             timer.addActionListener(new ActionListener() {
                 int frameIndex = 0;
                 public void actionPerformed(ActionEvent e) {
-                    if (frameIndex < frames.size()) {
+                    if (frameIndex < frames.size() -1 ) {
                         SwingUtilities.invokeLater(new Runnable() {
                             public void run() {
                                 textPane.setText(frames.get(frameIndex));

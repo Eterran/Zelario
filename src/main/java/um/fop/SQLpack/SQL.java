@@ -1,10 +1,9 @@
 package SQLpack;
 import java.io.File;
 import java.io.IOException;
-import java.sql.*; // 导入Java SQL包，用于数据库操作
+import java.sql.*;
 
 public class SQL {
-    // 数据库连接信息
     private static final String DB_URL = "jdbc:sqlite:db\\database.db";
     private static String currentUsername;
     public static void setCurrentUsername(String username) {
@@ -13,13 +12,7 @@ public class SQL {
     public static String getCurrentUsername() {
         return currentUsername;
     }
-    /**
-     * 尝试注册新用户
-     * @param conn 数据库连接
-     * @param username 用户名
-     * @param password 密码
-     * @return 注册是否成功
-     */
+
     public static void main(String[] args) {
         try {
             wipeDatabase(getConnection());
@@ -33,7 +26,6 @@ public class SQL {
         stmt.executeUpdate(sql);
     }
     public static boolean registerUser(Connection conn, String username, String password) {
-        // SQL语句用于插入新用户
         String saveFilePath = "saves/" + username + ".dat";
         File saveFile = new File(saveFilePath);
         if (!saveFile.exists()) {
@@ -48,11 +40,11 @@ public class SQL {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             pstmt.setString(3, saveFilePath);
-            int affectedRows = pstmt.executeUpdate(); // 执行更新并返回影响的行数
-            return affectedRows > 0; // 如果影响的行数大于0，则注册成功
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
         } catch (SQLException e) {
-            e.printStackTrace(); // 如果插入出现问题，打印错误轨迹
-            return false; // 发生异常时，注册失败
+            e.printStackTrace();
+            return false;
         }
     }
     public static String getSaveFile(Connection conn, String username) throws SQLException {
@@ -106,7 +98,7 @@ public class SQL {
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT);
         preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
-        return resultSet.next(); // If resultSet.next() returns true, the username exists
+        return resultSet.next();
     }
     public static String getPassword(Connection conn, String username) throws SQLException {
         String SQL_SELECT = "SELECT password FROM users WHERE username = ?";
@@ -119,11 +111,7 @@ public class SQL {
             return null;
         }
     }
-    /**
-     * 获取数据库连接
-     * @return 数据库连接对象
-     * @throws SQLException 如果连接失败
-     */
+    
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL);
     }

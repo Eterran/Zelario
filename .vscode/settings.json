@@ -1,6 +1,11 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ],
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/sqlite-jdbc-3.45.2.0.jar"
+        ]
+    },
     "cmake.configureOnOpen": true
 }
